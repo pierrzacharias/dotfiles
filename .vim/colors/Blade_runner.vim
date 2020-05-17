@@ -5,7 +5,6 @@ if exists("syntax_on")
 endif
 
 let colors_name = "Blade_runner"
-
 if &t_Co >= 256 || has("gui_running")
     hi Normal ctermbg=233 ctermfg=187 cterm=NONE guibg=#0F0908 guifg=#E0CCAE gui=NONE
     set background=dark
@@ -33,37 +32,37 @@ if &t_Co >= 256 || has("gui_running")
     hi TabLineFill ctermbg=233 ctermfg=223 cterm=NONE guibg=#1F1311 guifg=#F2DDBC gui=NONE
     hi TabLineSel  ctermfg=215 cterm=NONE guibg=bg guifg=#F2A766 gui=NONE
     hi Title  ctermfg=Magenta  cterm=bold guibg=bg guifg=#F2DDBC gui=bold
-    hi CursorLine ctermbg=cyan ctermfg=NONE cterm=NONE guibg=#1F1311 guifg=NONE gui=NONE
-    hi LineNr  ctermfg=239 cterm=NONE guibg=bg guifg=#6B4035 gui=NONE
+    hi CursorLine ctermbg=NONE ctermfg=NONE cterm=NONE guibg=#1F1311 guifg=NONE gui=NONE
+    hi LineNr  cterm=NONE guibg=bg guifg=#cdd1bb gui=NONE
     hi CursorLineNr  ctermfg=137 cterm=NONE guibg=bg guifg=#A67458 gui=NONE
     hi qfLineNr  ctermfg=239 cterm=NONE guibg=bg guifg=#6B4035 gui=NONE
     hi helpLeadBlank  ctermfg=223 cterm=NONE guibg=bg guifg=#F2DDBC gui=NONE
     hi helpNormal  ctermfg=223 cterm=NONE guibg=bg guifg=#F2DDBC gui=NONE
     hi Visual ctermbg=239 ctermfg=187 cterm=NONE guibg=#6B4035 guifg=#E0CCAE gui=NONE
     hi VisualNOS ctermbg=137 ctermfg=223 cterm=NONE guibg=#A67458 guifg=#F2DDBC gui=NONE
-    hi Pmenu ctermbg=234 ctermfg=137 cterm=NONE guibg=#291916 guifg=#A67458 gui=NONE
-    hi PmenuSbar  ctermfg=223 cterm=NONE guibg=bg guifg=#F2DDBC gui=NONE
-    hi PmenuSel ctermbg=234 ctermfg=215 cterm=NONE guibg=#291916 guifg=#F2A766 gui=NONE
-    hi PmenuThumb  ctermfg=223 cterm=NONE guibg=bg guifg=#F2DDBC gui=NONE
-    hi FoldColumn  ctermfg=cyan cterm=NONE guibg=bg guifg=#66292F gui=NONE
-    hi Folded  ctermfg=137 cterm=NONE guibg=bg guifg=#A67458 gui=NONE
+    hi Pmenu ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#471216 gui=NONE
+    hi PmenuSel ctermfg=NONE ctermbg=24 cterm=NONE guifg=NONE guibg=#204a87 gui=NONE
+    "hi PmenuSbar  ctermfg=223 cterm=NONE guibg=bg guifg=#F2DDBC gui=NONE
+    "hi PmenuThumb  ctermfg=223 cterm=NONE guibg=bg guifg=#F2DDBC gui=NONE
+    hi FoldColumn   guibg=#520205 "gui=NONE
+    hi Folded  guibg=#520205 "gui=NONE
     hi WildMenu  ctermfg=173 cterm=NONE guibg=bg guifg=#D47D49 gui=NONE
     hi SpecialKey  ctermfg=magenta  cterm=NONE guibg=bg guifg=#a4896f gui=NONE
     hi DiffAdd ctermbg=234 ctermfg=137 cterm=NONE guibg=#291916 guifg=#A4895C gui=NONE
-    hi DiffChange ctermbg=234 ctermfg=cyan cterm=NONE guibg=#291916 guifg=#66292F gui=NONE
+    hi DiffChange ctermbg=234 ctermfg=NONE cterm=NONE guibg=#291916 guifg=#66292F gui=NONE
     hi DiffDelete ctermbg=234 ctermfg=130 cterm=NONE guibg=#291916 guifg=#BF472C gui=NONE
     hi DiffText ctermbg=234 ctermfg=137 cterm=NONE guibg=#291916 guifg=#A4895C gui=NONE
     hi IncSearch ctermbg=137 ctermfg=223 cterm=NONE guibg=#A67458 guifg=#F2DDBC gui=NONE
     hi Search ctermbg=137 ctermfg=233 cterm=NONE guibg=#A67458 guifg=#1F1311 gui=NONE
     hi Directory  ctermfg=223 cterm=NONE guibg=bg guifg=#F2DDBC gui=NONE
     hi MatchParen ctermbg=137 ctermfg=215 cterm=bold guibg=#A67458 guifg=#F2A766 gui=bold
-    hi SpellBad ctermbg=lightblue ctermfg=NONE cterm=NONE guibg=#66292F guifg=NONE gui=NONE guisp=#66292F
+    hi SpellBad ctermbg=darkred ctermfg=NONE cterm=NONE guibg=#66292F guifg=NONE gui=NONE guisp=#66292F
     hi SpellCap ctermbg=234 ctermfg=NONE cterm=NONE guibg=#291916 guifg=NONE gui=NONE guisp=#A67458
     hi SpellLocal ctermbg=137 ctermfg=NONE cterm=NONE guibg=#A4895C guifg=NONE gui=NONE guisp=#A4895C
     hi SpellRare ctermbg=234 ctermfg=NONE cterm=NONE guibg=#291916 guifg=NONE gui=NONE guisp=#A67458
     hi ColorColumn ctermbg=234 ctermfg=NONE cterm=NONE guibg=#1F1311 guifg=NONE gui=NONE
     hi signColumn  ctermfg=137 cterm=NONE guibg=bg guifg=#A67458 gui=NONE
-    hi ErrorMsg ctermbg=lightblue cterm=NONE guibg=#66292F guifg=#F2DDBC gui=NONE
+    hi ErrorMsg ctermbg=darkred ctermfg = darkblue cterm=NONE guibg=#66292F guifg=#F2DDBC gui=NONE
     hi ModeMsg  ctermfg=215 cterm=bold guibg=bg guifg=#F2A766 gui=bold
     hi MoreMsg  ctermfg=137 cterm=NONE guibg=bg guifg=#A67458 gui=NONE
     hi Question  ctermfg=215 cterm=NONE guibg=bg guifg=#F2A766 gui=NONE
@@ -132,12 +131,13 @@ elseif &t_Co == 8 || $TERM !~# '^linux' || &t_Co == 16
     hi helpNormal  ctermfg=white cterm=NONE
     hi Visual ctermbg=darkgrey ctermfg=white cterm=NONE
     hi VisualNOS ctermbg=darkgrey ctermfg=white cterm=NONE
-    hi Pmenu ctermbg=black ctermfg=darkgrey cterm=NONE
-    hi PmenuSbar  ctermfg=white cterm=NONE
-    hi PmenuSel ctermbg=black ctermfg=yellow cterm=NONE
-    hi PmenuThumb  ctermfg=white cterm=NONE
-    hi FoldColumn  ctermfg=magenta cterm=NONE
-    hi Folded  ctermfg=darkgrey cterm=NONE
+    hi Phhenu ctermbg=black ctermfg=darkgrey cterm=NONE
+    hi Pmenu ctermfg=NONE ctermbg=236 cterm=NONE guifg=NONE guibg=#471216 gui=NONE
+    hi PmenuSel ctermfg=NONE ctermbg=24 cterm=NONE guifg=NONE guibg=#204a87 gui=NONE
+    "hi PmenuSbar  ctermfg=white cterm=NONE
+    "hi PmenuThumb  ctermfg=white cterm=NONE
+    hi FoldColumn  guibg=#520205 
+    hi Folded  guibg=#520205 
     hi WildMenu  ctermfg=yellow cterm=NONE
     hi SpecialKey  ctermfg=grey cterm=NONE
     hi DiffAdd ctermbg=black ctermfg=lightblue cterm=NONE
@@ -154,7 +154,7 @@ elseif &t_Co == 8 || $TERM !~# '^linux' || &t_Co == 16
     hi SpellRare ctermbg=black ctermfg=NONE cterm=NONE
     hi ColorColumn ctermbg=black ctermfg=NONE cterm=NONE
     hi signColumn  ctermfg=darkgrey cterm=NONE
-    hi ErrorMsg ctermbg=lightblue cterm=NONE
+    hi ErrorMsg ctermbg=darkred cterm=NONE
     hi ModeMsg  ctermfg=yellow cterm=bold
     hi MoreMsg  ctermfg=darkgrey cterm=NONE
     hi Question  ctermfg=yellow cterm=NONE

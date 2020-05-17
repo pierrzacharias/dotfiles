@@ -1,14 +1,82 @@
-set diffopt+=indent-heuristic
-set nocompatible
-set number relativenumber
-filetype plugin on
-syntax on " This is required
-\\[0.5cm]
-filetype plugin indent on
-set path+=**
-set wildmenu
-map <C-s> :call Synctex()<cr>
 
+filetype plugin indent on
+set nocompatible
+syntax on 
+set number relativenumber
+set path+=**
+set diffopt+=indent-heuristic
+set wildmenu
+"
+" ██████╗░  ██╗░░░░░  ██╗░░░██╗  ░██████╗░  
+" ██╔══██╗  ██║░░░░░  ██║░░░██║  ██╔════╝░  
+" ██████╔╝  ██║░░░░░  ██║░░░██║  ██║░░██╗░  
+" ██╔═══╝░  ██║░░░░░  ██║░░░██║  ██║░░╚██╗  
+" ██║░░░░░  ███████╗  ╚██████╔╝  ╚██████╔╝  
+" ╚═╝░░░░░  ╚══════╝  ░╚═════╝░  ░╚════╝░  
+
+call plug#begin('~/.vim/plugged')
+"
+Plug 'michaeljsmith/vim-indent-object' " New text object, based on indentation levels.
+Plug 'maxboisvert/vim-simple-complete'
+Plug 'sheerun/vim-polyglot'                            " synthax checker
+"Plug 'https://github.com/godlygeek/tabular'            " manage tabulation TODO : configure
+Plug 'https://github.com/svermeulen/vim-subversive'    " replace content with register
+Plug 'preservim/nerdtree'                              " show file tree
+Plug 'https://github.com/majutsushi/tagbar'            " show tabs
+"Plug 'https://github.com/airblade/vim-gitgutter'      " git helper TODO : configure
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
+Plug 'jlanzarotta/bufexplorer'                         " help to manage opened buffers
+Plug 'skywind3000/gutentags_plus'                      " help to generate tags
+Plug 'https://github.com/universal-ctags/ctags'
+Plug 'https://github.com/miyakogi/conoline.vim'        " highlights the line of the cursor
+Plug 'https://github.com/tpope/vim-surround'           " help with (, {, {, ...
+Plug 'https://github.com/tpope/vim-commentary'
+Plug 'lervag/vimtex'                                   " Latex plugin
+"
+"Plug 'https://github.com/jmcantrell/vim-virtualenv'
+"Plug 'https://github.com/vim-scripts/ReplaceWithRegister'
+"Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+"Plug 'https://github.com/mox-mox/vim-localsearch'
+"Plug 'https://github.com/nathanaelkane/vim-indent-guides'
+"Plug 'https://github.com/jmcantrell/vim-virtualenv'
+"Plug 'https://bolt80.com/gutentags/'
+"Plug 'https://github.com/vim-latex/vim-latex'
+"Plug 'https://github.com/junegunn/goyo.vim'
+"Plug 'https://github.com/ervandew/supertab'
+"Plug 'skywind3000/vim-auto-popmenu'
+"Plug 'liuchengxu/vim-clap'
+"Plug 'https://github.com/vim-scripts/AutoComplPop'
+"Plug 'https://github.com/tpope/vim-obsession'
+"Plug 'https://github.com/vimwiki/vimwiki'
+"Plug 'https://github.com/ctrlpvim/ctrlp.vim'
+"
+call plug#end() "run :PlugInstall
+"
+" ░██████╗  ██╗░░░██╗  ██████╗░  ███╗░░░███╗  ███████╗  ██████╗░  ░██████╗  ██╗  ██╗░░░██╗  ███████╗  
+" ██╔════╝  ██║░░░██║  ██╔══██╗  ████╗░████║  ██╔════╝  ██╔══██╗  ██╔════╝  ██║  ██║░░░██║  ██╔════╝  
+" ╚█████╗░  ██║░░░██║  ██████╦╝  ██╔████╔██║  █████╗░░  ██████╔╝  ╚█████╗░  ██║  ╚██╗░██╔╝  █████╗░░  
+" ░╚═══██╗  ██║░░░██║  ██╔══██╗  ██║╚██╔╝██║  ██╔══╝░░  ██╔══██╗  ░╚═══██╗  ██║  ░╚████╔╝░  ██╔══╝░░  
+" ██████╔╝  ╚██████╔╝  ██████╦╝  ██║░╚═╝░██║  ███████╗  ██║░░██║  ██████╔╝  ██║  ░░╚██╔╝░░  ███████╗  
+" ╚═════╝░░  ░╚═════╝░  ╚═════╝░  ╚═╝░░░░░╚═╝  ╚══════╝  ╚═╝░░╚═╝  ╚═════╝░░  ╚═╝  ░░░╚═╝░░░  ╚══════╝  
+
+" Substitute Motion
+nmap gr <plug>(SubversiveSubstitute)
+nmap gr_ <plug>(SubversiveSubstituteLine)
+nmap gr$ <plug>(SubversiveSubstituteToEndOfLine)
+"
+" Substitute Over Range Motion
+nmap gri <plug>(SubversiveSubstituteRange)
+xmap gri <plug>(SubversiveSubstituteRange)
+nmap grw <plug>(SubversiveSubstituteWordRange)
+"
+" need to confirm substitution
+nmap <leader>gri <plug>(SubversiveSubstituteRangeConfirm)
+xmap <leader>gri <plug>(SubversiveSubstituteRangeConfirm)
+nmap <leader>grw <plug>(SubversiveSubstituteWordRangeConfirm)
+let g:subversivePromptWithCurrent=1
+"let g:subversivePreserveCursorPosition=1 "cursor will not move when substitutions are applied
+"
 " ██╗░░██╗  ██╗  ████████╗  ███████╗  
 " ██║░██╔╝  ██║  ╚══██╔══╝  ██╔════╝  
 " █████═╝░  ██║  ░░░██║░░░  █████╗░░  
@@ -16,23 +84,31 @@ map <C-s> :call Synctex()<cr>
 " ██║░╚██╗  ██║  ░░░██║░░░  ███████╗  
 " ╚═╝░░╚═╝  ╚═╝  ░░╚═╝░░░  ╚══════╝  
 
+" You can manually invoke the completions in insert mode with <C-X><C-U>
 set statusline=%<%f\ %h%m%r%{kite#statusline()}%=%-14.(%l,%c%V%)\ %P
-set laststatus=2  " always display the status line
-"let g:kite_auto_complete=0
-let g:kite_tab_complete=1
-set completeopt+=menuone   " show the popup menu even when there is only 1 match
-set completeopt+=noinsert  " don't insert any text until user chooses a match
-"set completeopt-=longest   " don't insert the longest common text
-"set completeopt+=preview
-autocmd CompleteDone * if !pumvisible() | pclose | endif
-set belloff+=ctrlg
-
+set laststatus=2                                          " always display the status line
+"let g:kite_auto_complete=0                               " completions will show up automatically 
+let g:kite_tab_complete=1                                " If you'd like to use <Tab> instead of <C-y>
+set completeopt+=menuone                                  " show the popup menu even when there is only 1 match
+set completeopt+=noinsert                                " don't insert any text until user chooses a match
+"set completeopt-=longest                                 " don't insert the longest common text
+set completeopt-=preview                                 " show documentation in a new buffer
+"autocmd CompleteDone * if !pumvisible() | pclose | endif "preview window automatically closed once a completion has been inserted
+"set belloff+=ctrlg
+"
+" Naviguate between snippets
+execute "set <M-h>=\e'"
+execute "set <M-l>=\e'"
+let g:kite_previous_placeholder = '<M-h>'
+let g:kite_next_placeholder = '<M-l>'
+"
 " ██████╗░  ░█████╗░  ███╗░░░███╗  ██████╗░  ██╗░░░░░  ███████╗  ████████╗  ███████╗  ███╗░░░███╗  ███████╗  
 " ██╔══██╗  ██╔══██╗  ████╗░████║  ██╔══██╗  ██║░░░░░  ██╔════╝  ╚══██╔══╝  ██╔════╝  ████╗░████║  ██╔════╝  
 " ██║░░╚═╝  ██║░░██║  ██╔████╔██║  ██████╔╝  ██║░░░░░  █████╗░░  ░░░██║░░░  █████╗░░  ██╔████╔██║  █████╗░░  
 " ██║░░██╗  ██║░░██║  ██║╚██╔╝██║  ██╔═══╝░  ██║░░░░░  ██╔══╝░░  ░░░██║░░░  ██╔══╝░░  ██║╚██╔╝██║  ██╔══╝░░  
 " ╚█████╔╝  ╚█████╔╝  ██║░╚═╝░██║  ██║░░░░░  ███████╗  ███████╗  ░░░██║░░░  ███████╗  ██║░╚═╝░██║  ███████╗  
 " ░╚════╝░   ╚════╝░  ╚═╝░░░░░╚═╝  ╚═╝░░░░░  ╚══════╝  ╚══════╝  ░░╚═╝░░░  ╚══════╝  ╚═╝░░░░░╚═╝  ╚══════╝  
+
 "set encoding=utf-8
 "let g:ycm_python_interpreter_path = ''
 "let g:ycm_python_sys_path = []
@@ -54,7 +130,7 @@ set belloff+=ctrlg
 "set omnifunc=syntaxcomplete#Complete
 "inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
   "\ '<C-n><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
-
+"
 "inoremap <expr> <M-,> pumvisible() ? '<C-n>' :
   \ '<C-x><C-o><C-n><C-p><C-r>=pumvisible() ? "\<lt>Down>" : ""<CR>'
 "inoremap <expr> <S-Tab>  pumvisible() ? "\<C-p>" : "\<Up>"
@@ -87,13 +163,13 @@ command! MakeTags !ctags -R .
 "set statusline+=%{gutentags#statusline()}
 " enable gtags module
 let g:gutentags_modules = ['ctags', 'gtags_cscope']
-
+"
 " config project root markers.
 let g:gutentags_project_root = ['.root']
-
+"
 " generate datebases in my cache directory, prevent gtags files polluting my project
 let g:gutentags_cache_dir = expand('~/.cache/tags')
-
+"
 " change focus to quickfix window after search (optional).
 let g:gutentags_plus_switch = 1
 "gutentags will identify current project root by by root markers (.git/.svn/.root). if your project is not in any git/svn repository, gutentags will not generate gtags database for it. To avoid this, you can create an empty .root file in your project root, and gutentags will know where is your project root and generate gtags database for it
@@ -116,21 +192,27 @@ set background=dark
 " ░░░██║░░░  ██╔══██║  ██╔══██╗  
 " ░░░██║░░░  ██║░░██║  ██████╦╝  
 " ░░╚═╝░░░  ╚═╝░░╚═╝  ╚═════╝░  
+" show existing tab with 4 spaces width
+set tabstop=5
+" when indenting with '>', use 4 spaces width
 set shiftwidth=4
 set autoindent
 set smartindent
+
 " ░██████╗  ██████╗░  ██╗░░░░░  ██╗  ████████╗  
 " ██╔════╝  ██╔══██╗  ██║░░░░░  ██║  ╚══██╔══╝  
 " ╚█████╗░  ██████╔╝  ██║░░░░░  ██║  ░░░██║░░░  
 " ░╚═══██╗  ██╔═══╝░  ██║░░░░░  ██║  ░░░██║░░░  
 " ██████╔╝  ██║░░░░░  ███████╗  ██║  ░░░██║░░░  
 " ╚═════╝░░  ╚═╝░░░░░  ╚══════╝  ╚═╝  ░░╚═╝░░░  
+
 set splitbelow splitright
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
-
+"max height Ctrl-w _
+"maz width Ctrl-w |. 
 noremap <silent> <C-Left> :vertical resize +3<CR>
 noremap <silent> <C-Right> :vertical resize -3<CR>
 noremap <silent> <C-Up> :resize +3<CR>
@@ -177,78 +259,34 @@ map <C-n> :NERDTreeToggle<CR>
 " ░╚═══██╗  ██╔══██║  ██║░░██║  ██╔══██╗  ░░░██║░░░  ██║░░██╗  ██║░░░██║  ░░░██║░░░  ░╚═══██╗  
 " ██████╔╝  ██║░░██║  ╚█████╔╝  ██║░░██║  ░░░██║░░░  ╚█████╔╝  ╚██████╔╝  ░░░██║░░░  ██████╔╝  
 " ╚═════╝░░  ░╚═╝░░╚═╝   ╚════╝░  ╚═╝░░╚═╝  ░░╚═╝░░░  ░╚════╝░  ░╚═════╝░  ░░╚═╝░░░  ╚═════╝░░  
-
 map <C-l> :set rnu<CR>
 map <C-a> :set nornu<CR>
-
+"
 map <Leader>mm :vnew term://zsh<CR>
+"
 nnoremap <leader> <c-w>
 "inoremap <S-Tab> <C-p>
-
-
-execute "set <M-f>=\ef"
+"
+execute "set <M-f>=\ef"  
 nnoremap <M-f> :update<cr>
+execute "set <M-c>=\ec"  
+"
+"
+" ██████╗░  ███████╗  ░██████╗░  ██╗  ░██████╗  ████████╗  ███████╗  ██████╗░  ░██████╗  
+" ██╔══██╗  ██╔════╝  ██╔════╝░  ██║  ██╔════╝  ╚══██╔══╝  ██╔════╝  ██╔══██╗  ██╔════╝  
+" ██████╔╝  █████╗░░  ██║░░██╗░  ██║  ╚█████╗░  ░░░██║░░░  █████╗░░  ██████╔╝  ╚█████╗░  
+" ██╔══██╗  ██╔══╝░░  ██║░░╚██╗  ██║  ░╚═══██╗  ░░░██║░░░  ██╔══╝░░  ██╔══██╗  ░╚═══██╗  
+" ██║░░██║  ███████╗  ╚██████╔╝  ██║  ██████╔╝  ░░░██║░░░  ███████╗  ██║░░██║  ██████╔╝  
+" ╚═╝░░╚═╝  ╚══════╝  ░╚════╝░  ╚═╝  ╚═════╝░░  ░░╚═╝░░░  ╚══════╝  ╚═╝░░╚═╝  ╚═════╝░░  
 
-execute "set <M-c>=\ec"
-nnoremap <M-c> :VimtexCompile<cr>
-
-execute "set <M-3>=\e3"
-nnoremap <M-3> :copen<cr>
-" List contents of all registers (that typically contain pasteable text).
+" List contents of all registers 
 nnoremap <silent> "" :registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>
-
 command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
+" Clean Registers 
 execute "set <M-'>=\e'"
-nnoremap <M-'> :WipeReg<cr>
-" List contents of all registers (that typically contain pasteable text).
-
-" ██████╗░  ██╗░░░░░  ██╗░░░██╗  ░██████╗░  
-" ██╔══██╗  ██║░░░░░  ██║░░░██║  ██╔════╝░  
-" ██████╔╝  ██║░░░░░  ██║░░░██║  ██║░░██╗░  
-" ██╔═══╝░  ██║░░░░░  ██║░░░██║  ██║░░╚██╗  
-" ██║░░░░░  ███████╗  ╚██████╔╝  ╚██████╔╝  
-" ╚═╝░░░░░  ╚══════╝  ░╚═════╝░  ░╚════╝░  
-
-call plug#begin('~/.vim/plugged')
-
-"Plug 'https://github.com/mox-mox/vim-localsearch'
-"Plug 'https://github.com/nathanaelkane/vim-indent-guides'
-"Plug 'https://github.com/jmcantrell/vim-virtualenv'
-"Plug 'https://bolt80.com/gutentags/'
-"Plug 'https://github.com/godlygeek/tabular'
-"Plug 'https://github.com/vim-latex/vim-latex'
-"Plug 'https://github.com/junegunn/goyo.vim'
-"Plug 'https://github.com/ervandew/supertab'
-"Plug 'skywind3000/vim-auto-popmenu'
-"Plug 'liuchengxu/vim-clap'
-"Plug 'https://github.com/vim-scripts/AutoComplPop'
-"Plug 'https://github.com/tpope/vim-obsession'
-"Plug 'https://github.com/vimwiki/vimwiki'
-"Plug 'https://github.com/ctrlpvim/ctrlp.vim'
+nnoremap <M-'> :WipeReg<cr>   
 "
 "
-"
-Plug 'preservim/nerdtree'
-Plug 'https://github.com/jmcantrell/vim-virtualenv'
-Plug 'https://github.com/majutsushi/tagbar'
-Plug 'https://github.com/airblade/vim-gitgutter'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'jlanzarotta/bufexplorer'
-Plug 'skywind3000/gutentags_plus'
-Plug 'https://github.com/universal-ctags/ctags'
-Plug 'https://github.com/miyakogi/conoline.vim'
-Plug 'https://github.com/tpope/vim-surround'
-Plug 'https://github.com/tpope/vim-commentary'
-Plug 'https://github.com/vim-scripts/ReplaceWithRegister'
-Plug 'https://github.com/christoomey/vim-system-copy'
-Plug 'ajmwagar/vim-deus'
-Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
-Plug 'lervag/vimtex'
-
-
-call plug#end() "run :PlugInstall
-
 " ██╗░░░░░  ░█████╗░  ████████╗  ███████╗  ██╗░░██╗  
 " ██║░░░░░  ██╔══██╗  ╚══██╔══╝  ██╔════╝  ╚██╗██╔╝  
 " ██║░░░░░  ███████║  ░░░██║░░░  █████╗░░  ░╚███╔╝░  
@@ -256,6 +294,12 @@ call plug#end() "run :PlugInstall
 " ███████╗  ██║░░██║  ░░░██║░░░  ███████╗  ██╔╝╚██╗  
 " ╚══════╝  ╚═╝░░╚═╝  ░░╚═╝░░░  ╚══════╝  ╚═╝░░╚═╝  
 
+map <C-s> :call Synctex()<cr>
+execute "set <M-c>=\e3"
+nnoremap <M-c> :VimtexCompile<cr>  
+execute "set <M-3>=\e3"
+nnoremap <M-3> :copen<cr>  
+"
 " :copen to see error
 let g:vimtex_enabled=1
 "let g:vimtex_complete_recursive_bib=1
@@ -267,7 +311,7 @@ let g:vimtex_view_general_viewer = 'zathura'
 "let g:livepreview_engine = 'lualatex'
 let g:vimtex_compiler_method = 'latexmk'
 "let g:vimtex_compiler_latexmk_engines = 'lualatex'
-
+"
 " See $pdf_mode = 4 in .latexmk for lualatx
 let g:vimtex_compiler_latexmk = {
     \ 'backend' : 'jobs',
@@ -287,7 +331,7 @@ let g:vimtex_compiler_latexmk = {
     "\   '-interaction=nonstopmode',
     \ ],
     \}
-
+"
 
 " ███████╗  ██╗░░░██╗  ███╗░░██╗  ██████╗░  ████████╗  ██╗  ░█████╗░  ███╗░░██╗  ░██████╗  
 " ██╔════╝  ██║░░░██║  ████╗░██║  ██╔══██╗  ╚══██╔══╝  ██║  ██╔══██╗  ████╗░██║  ██╔════╝  
@@ -298,7 +342,7 @@ let g:vimtex_compiler_latexmk = {
 
 " remove whitespace at end of lines
 :nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
-
+"
 function! TestPy2()
 python << EOF
 import vim
@@ -307,13 +351,13 @@ vim.command("let sInVim = %s"% s)
 EOF
     r type(sInVim)
 endfunction
+"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ███████╗  ███╗░░██╗  ██████╗░  
+" ██╔════╝  ████╗░██║  ██╔══██╗  
+" █████╗░░  ██╔██╗██║  ██║░░██║  
+" ██╔══╝░░  ██║╚████║  ██║░░██║  
+" ███████╗  ██║░╚███║  ██████╔╝  
+" ╚══════╝  ╚═╝░░╚══╝  ╚═════╝░  
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-
-
-
-
-
