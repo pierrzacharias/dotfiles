@@ -52,8 +52,8 @@ if &t_Co >= 256 || has("gui_running")
     hi DiffChange ctermbg=234 ctermfg=NONE cterm=NONE guibg=#291916 guifg=#66292F gui=NONE
     hi DiffDelete ctermbg=234 ctermfg=130 cterm=NONE guibg=#291916 guifg=#BF472C gui=NONE
     hi DiffText ctermbg=234 ctermfg=137 cterm=NONE guibg=#291916 guifg=#A4895C gui=NONE
-    hi IncSearch ctermbg=137 ctermfg=223 cterm=NONE guibg=#A67458 guifg=#F2DDBC gui=NONE
-    hi Search ctermbg=137 ctermfg=233 cterm=NONE guibg=#A67458 guifg=#1F1311 gui=NONE
+    hi IncSearch cterm=NONE guibg=#000b1e guifg=NONE gui=NONE  gui=NONE 
+    hi Search cterm=NONE guibg=peru guifg=wheat gui=NONE 
     hi Directory  ctermfg=223 cterm=NONE guibg=bg guifg=#F2DDBC gui=NONE
     hi MatchParen ctermbg=137 ctermfg=215 cterm=bold guibg=#A67458 guifg=#F2A766 gui=bold
     hi SpellBad ctermbg=darkred ctermfg=NONE cterm=NONE guibg=#66292F guifg=NONE gui=NONE guisp=#66292F
@@ -144,8 +144,8 @@ elseif &t_Co == 8 || $TERM !~# '^linux' || &t_Co == 16
     hi DiffChange ctermbg=black ctermfg=magenta cterm=NONE
     hi DiffDelete ctermbg=black ctermfg=darkred cterm=NONE
     hi DiffText ctermbg=black ctermfg=lightred cterm=NONE
-    hi IncSearch ctermbg=darkgrey ctermfg=white cterm=NONE
-    hi Search ctermbg=darkgrey ctermfg=black cterm=NONE
+    hi IncSearch cterm=NONE guibg=#000b1e guifg=NONE gui=NONE 
+    hi Search cterm=NONE guibg=peru guifg=wheat gui=NONE 
     hi Directory  ctermfg=white cterm=NONE
     hi MatchParen ctermbg=darkgrey ctermfg=yellow cterm=bold
     hi SpellBad ctermbg=magenta ctermfg=NONE cterm=NONE

@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/pierre/Documents/CV/Data_Scientist_CV/CV_EN'
+let g:netrw_dirhist_6='/home/pierre/.vim/colors'
+let g:netrw_dirhist_5='/home/pierre/Documents/Courses/Exo_python/google-python-exercises/babynames'
+let g:netrw_dirhist_4='/home/pierre/Documents/Courses'
+let g:netrw_dirhist_3='/home/pierre/.cache/vim/swap'
+let g:netrw_dirhist_2='/home/pierre/Documents/learn_docker/test_python/python_app'
+let g:netrw_dirhist_1='/home/pierre/test_2'
+let g:netrw_dirhist_0='/home/pierre/.config/polybar/gmail'
+let g:netrw_dirhist_9='/home/pierre/Documents/custom_compositor/kwin-tiling/contents/code'
+let g:netrw_dirhist_8='/home/pierre/Documents/custom_compositor/kwin-tiling/contents'

@@ -1,4 +1,4 @@
-
+"set termguicolors
 filetype plugin indent on
 set nocompatible
 syntax on 
@@ -172,8 +172,19 @@ let g:gutentags_cache_dir = expand('~/.cache/tags')
 "
 " change focus to quickfix window after search (optional).
 let g:gutentags_plus_switch = 1
-"gutentags will identify current project root by by root markers (.git/.svn/.root). if your project is not in any git/svn repository, gutentags will not generate gtags database for it. To avoid this, you can create an empty .root file in your project root, and gutentags will know where is your project root and generate gtags database for it
+" remap tag open in new split windows
+set previewheight=60
+function! FollowTag()
+  if !exists("w:tagbrowse")
+    vsplit
+    let w:tagbrowse=1
+  endif
+  execute "tag " . expand("<cword>")
+endfunction
 
+nnoremap <C-W><C-]> :call FollowTag()<CR>zt
+"
+"
 " ██████╗░  ██╗░░░██╗  ██████╗░  ░██████╗  ░█████╗░  ██████╗░  
 " ██╔══██╗  ██║░░░██║  ██╔══██╗  ██╔════╝  ██╔══██╗  ██╔══██╗  
 " ██║░░╚═╝  ██║░░░██║  ██████╔╝  ╚█████╗░  ██║░░██║  ██████╔╝  
@@ -210,7 +221,7 @@ set splitbelow splitright
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+nnoremap <C-'> <C-w>l
 "max height Ctrl-w _
 "maz width Ctrl-w |. 
 noremap <silent> <C-Left> :vertical resize +3<CR>
@@ -228,7 +239,10 @@ noremap <silent> <C-Down> :resize -3<CR>
 colorscheme Blade_runner
 "colorscheme farout
 hi Normal guibg=NONE ctermbg=NONE
-
+hi Search guibg=peru guifg=wheat
+"hi Search cterm=NONE ctermfg=grey ctermbg=blue
+hi Search cterm=NONE ctermfg=49 ctermbg=130
+" 130
 " ░█████╗░  ██╗  ██████╗░  ██╗░░░░░  ██╗  ███╗░░██╗  ███████╗  
 " ██╔══██╗  ██║  ██╔══██╗  ██║░░░░░  ██║  ████╗░██║  ██╔════╝  
 " ███████║  ██║  ██████╔╝  ██║░░░░░  ██║  ██╔██╗██║  █████╗░░  
@@ -271,6 +285,40 @@ execute "set <M-f>=\ef"
 nnoremap <M-f> :update<cr>
 execute "set <M-c>=\ec"  
 "
+execute "set <M-d>=\ed"  
+nnoremap <silent><A-d> m`:silent +g/\m^\s*$/d<CR>``:noh<CR>  " delete line below if blanck
+execute "set <M-s>=\es"  
+nnoremap <silent><A-s> m`:silent -g/\m^\s*$/d<CR>``:noh<CR> " delete line above if blank
+execute "set <M-o>=\eo"  
+nnoremap <silent><A-o> :set paste<CR>m`o<Esc>``:set nopaste<CR> " insert blank line below
+execute "set <M-p>=\em"  
+nnoremap <silent><A-p> :set paste<CR>m`O<Esc>``:set nopaste<CR>
+"
+" When editing a file, always jump to the last known cursor position.
+" Don't do it when the position is invalid, when inside an event handler
+" (happens when dropping a file on gvim) and for a commit message (it's
+" likely a different one than last time).
+autocmd BufReadPost *
+  \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+  \ |   exe "normal! g`\""
+  \ | end
+"
+" ░██████╗  ███████╗  ░█████╗░  ██████╗░  ██████╗░  ██╗░░██╗  
+" ██╔════╝  ██╔════╝  ██╔══██╗  ██╔══██╗  ██╔══██╗  ██║░░██║  
+" ╚█████╗░  █████╗░░  ███████║  ██████╔╝  ██║░░╚═╝  ███████║  
+" ░╚═══██╗  ██╔══╝░░  ██╔══██║  ██╔══██╗  ██║░░██╗  ██╔══██║  
+" ██████╔╝  ███████╗  ██║░░██║  ██║░░██║  ╚█████╔╝  ██║░░██║  
+" ╚═════╝░░  ╚══════╝  ╚═╝░░╚═╝  ╚═╝░░╚═╝  ░╚════╝░  ░╚═╝░░╚═╝  
+
+" Press spacebar to highlight searching items
+"set viminfo^=h
+set hlsearch
+" Press Space to turn off highlighting and clear any message already displayed.
+nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+" Press F4 to toggle highlighting on/off, and show current value.
+noremap <F4> :set hlsearch! hlsearch?<CR>
+" F8 will highlight all occurrences of the current word
+nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 "
 " ██████╗░  ███████╗  ░██████╗░  ██╗  ░██████╗  ████████╗  ███████╗  ██████╗░  ░██████╗  
 " ██╔══██╗  ██╔════╝  ██╔════╝░  ██║  ██╔════╝  ╚══██╔══╝  ██╔════╝  ██╔══██╗  ██╔════╝  
@@ -293,6 +341,7 @@ nnoremap <M-'> :WipeReg<cr>
 " ██║░░░░░  ██╔══██║  ░░░██║░░░  ██╔══╝░░  ░██╔██╗░  
 " ███████╗  ██║░░██║  ░░░██║░░░  ███████╗  ██╔╝╚██╗  
 " ╚══════╝  ╚═╝░░╚═╝  ░░╚═╝░░░  ╚══════╝  ╚═╝░░╚═╝  
+
 
 map <C-s> :call Synctex()<cr>
 execute "set <M-c>=\e3"
