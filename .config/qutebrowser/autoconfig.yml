@@ -40,7 +40,7 @@ settings:
   colors.completion.category.fg:
     global: '#fa9730'
   colors.completion.even.bg:
-    global: '#310d0f'
+    global: '#22191f'
   colors.completion.fg:
     global:
     - '#fa9730'
@@ -59,15 +59,15 @@ settings:
   colors.completion.match.fg:
     global: '#8e5e36'
   colors.completion.odd.bg:
-    global: '#310d0f'
+    global: '#22191f'
   colors.completion.scrollbar.bg:
-    global: '#310d0f'
+    global: '#22191f'
   colors.completion.scrollbar.fg:
     global: '#ffd653'
   colors.contextmenu.disabled.bg:
-    global: '#310d0f'
+    global: '#22191f'
   colors.downloads.bar.bg:
-    global: '#310d0f'
+    global: '#22191f'
   colors.downloads.error.fg:
     global: '#fa9730'
   colors.downloads.start.fg:
@@ -83,7 +83,7 @@ settings:
   colors.messages.error.fg:
     global: '#0010fa'
   colors.messages.info.bg:
-    global: '#310d0f'
+    global: '#22191f'
   colors.messages.info.border:
     global: '#86462f'
   colors.messages.warning.border:
@@ -97,7 +97,7 @@ settings:
   colors.statusbar.caret.selection.fg:
     global: '#fa9730'
   colors.statusbar.command.bg:
-    global: '#310d0f'
+    global: '#22191f'
   colors.statusbar.command.fg:
     global: '#fa9730'
   colors.statusbar.command.private.fg:
@@ -105,7 +105,7 @@ settings:
   colors.statusbar.insert.fg:
     global: '#fa9730'
   colors.statusbar.normal.bg:
-    global: '#310d0f'
+    global: '#22191f'
   colors.statusbar.normal.fg:
     global: '#fa9730'
   colors.statusbar.passthrough.fg:
@@ -113,7 +113,7 @@ settings:
   colors.statusbar.private.fg:
     global: '#fa9730'
   colors.statusbar.progress.bg:
-    global: '#5b0124'
+    global: '#22191f'
   colors.statusbar.url.fg:
     global: '#fa9730'
   colors.statusbar.url.hover.fg:
@@ -121,11 +121,11 @@ settings:
   colors.statusbar.url.success.http.fg:
     global: '#fa9730'
   colors.tabs.bar.bg:
-    global: '#320d0f'
+    global: '#22191f'
   colors.tabs.even.bg:
-    global: '#310d0f'
+    global: '#22191f'
   colors.tabs.even.fg:
-    global: '#310d0f'
+    global: '#fa9730'
   colors.tabs.odd.fg:
     global: '#fa9730'
   colors.tabs.pinned.even.fg:
@@ -135,19 +135,19 @@ settings:
   colors.tabs.pinned.selected.even.fg:
     global: '#fa9730'
   colors.tabs.pinned.selected.odd.bg:
-    global: '#9e2931'
+    global: '#22191f'
   colors.tabs.pinned.selected.odd.fg:
     global: '#fa9730'
   colors.tabs.selected.even.bg:
-    global: '#310d0f'
+    global: '#22191f'
   colors.tabs.selected.even.fg:
     global: '#fa9730'
   colors.tabs.selected.odd.bg:
-    global: '#9e2931'
+    global: '#22191f'
   colors.tabs.selected.odd.fg:
     global: '#fa9730'
   colors.webpage.bg:
-    global: #310d0f
+    global: #22191f
   content.notifications:
     https://www.reddit.com: false
   fonts.completion.category:
@@ -159,7 +159,7 @@ settings:
   fonts.web.size.minimum_logical:
     global: 8
   hints.border:
-    global: '1px solid #86462f'
+    global: '1px solid #22191f'
   qt.highdpi:
     global: true
   url.default_page:
@@ -170,22 +170,22 @@ settings:
   url.start_pages:
     global: https://www.google.com/
   zoom.default:
-    global: 120%
+    global: 140%
   zoom.levels:
     global:
-    - 30%
-    - 40%
     - 50%
+    - 60%
     - 80%
+    - 90%
     - 100%
-    - 110%
-    - 100%
-    - 110%
-    - 125%
-    - 150%
+    - 120%
+    - 130%
+    - 140%
+    - 155%
+    - 160%
     - 175%
     - 200%
     - 250%
     - 300%
     - 400%
-    - 500%
+    - 500

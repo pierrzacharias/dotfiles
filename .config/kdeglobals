@@ -1,0 +1,174 @@
+[$Version]
+update_info=filepicker.upd:filepicker-remove-old-previews-entry,fonts_global.upd:Fonts_Global,fonts_global_toolbar.upd:Fonts_Global_Toolbar,kwin.upd:animation-speed,icons_remove_effects.upd:IconsRemoveEffects
+
+[ColorEffects:Disabled]
+ChangeSelectionColor=
+Color=255,168,17
+ColorAmount=0
+ColorEffect=3
+ContrastAmount=0
+ContrastEffect=1
+Enable=
+IntensityAmount=1
+IntensityEffect=2
+
+[ColorEffects:Inactive]
+ChangeSelectionColor=true
+Color=112,111,110
+ColorAmount=0.025
+ColorEffect=2
+ContrastAmount=0.1
+ContrastEffect=2
+Enable=true
+IntensityAmount=0
+IntensityEffect=0
+
+[Colors:Button]
+BackgroundAlternate=13,12,8
+BackgroundNormal=34,25,31
+DecorationFocus=163,90,69
+DecorationHover=15,23,34
+ForegroundActive=250,151,48
+ForegroundInactive=250,151,48
+ForegroundLink=250,151,48
+ForegroundNegative=255,85,162
+ForegroundNeutral=255,214,83
+ForegroundNormal=250,151,48
+ForegroundPositive=255,85,255
+ForegroundVisited=169,120,63
+
+[Colors:Complementary]
+BackgroundAlternate=0,11,30
+BackgroundNormal=13,12,8
+DecorationFocus=177,194,206
+DecorationHover=39,76,106
+ForegroundActive=245,120,0
+ForegroundInactive=2,175,255
+ForegroundLink=234,0,217
+ForegroundNegative=255,0,0
+ForegroundNeutral=255,255,0
+ForegroundNormal=255,168,17
+ForegroundPositive=0,255,0
+ForegroundVisited=113,28,145
+
+[Colors:Selection]
+BackgroundAlternate=26,70,192
+BackgroundNormal=11,91,113
+DecorationFocus=163,90,69
+DecorationHover=255,214,83
+ForegroundActive=250,151,48
+ForegroundInactive=206,203,183
+ForegroundLink=250,151,48
+ForegroundNegative=255,85,162
+ForegroundNeutral=255,214,83
+ForegroundNormal=205,209,187
+ForegroundPositive=255,85,255
+ForegroundVisited=169,120,63
+
+[Colors:Tooltip]
+BackgroundAlternate=29,34,40
+BackgroundNormal=34,25,31
+DecorationFocus=163,90,69
+DecorationHover=255,214,83
+ForegroundActive=250,151,48
+ForegroundInactive=250,151,48
+ForegroundLink=250,151,48
+ForegroundNegative=255,85,162
+ForegroundNeutral=255,214,83
+ForegroundNormal=250,151,48
+ForegroundPositive=255,85,255
+ForegroundVisited=169,120,63
+
+[Colors:View]
+BackgroundAlternate=25,30,21
+BackgroundNormal=34,25,31
+DecorationFocus=163,90,69
+DecorationHover=41,79,97
+ForegroundActive=250,151,48
+ForegroundInactive=250,151,48
+ForegroundLink=250,151,48
+ForegroundNegative=255,85,162
+ForegroundNeutral=255,214,83
+ForegroundNormal=250,151,48
+ForegroundPositive=255,163,33
+ForegroundVisited=169,120,63
+
+[Colors:Window]
+BackgroundAlternate=170,85,127
+BackgroundNormal=34,25,31
+DecorationFocus=163,90,69
+DecorationHover=255,214,83
+ForegroundActive=250,151,48
+ForegroundInactive=250,151,48
+ForegroundLink=250,151,48
+ForegroundNegative=255,85,162
+ForegroundNeutral=255,214,83
+ForegroundNormal=250,151,48
+ForegroundPositive=255,85,255
+ForegroundVisited=169,120,63
+
+[DirSelect Dialog]
+DirSelectDialog Size=640,480
+History Items[$e]=file:$HOME/Documents/Courses/usefull,file:$HOME/wallpaper,file:///run/media/pierre/Nouveau nom1,file:///run/media/pierre/Nouveau nom,file:$HOME/Music,file:$HOME/Music,file:$HOME/Pictures/druilet,file:$HOME/Pictures/druilet,file:$HOME/Documents/deces_papa,file:$HOME/Documents/CV/new_CV,file:$HOME/Templates/template_latex/presentation/Figures,file:$HOME/Documents/document admin,file:$HOME/Documents/document admin,file:$HOME/Documents/Courses/project_serie_temporelles/time_series_project,file:$HOME/Documents/Courses/2A/Modelisation_des_series_temporelles/TP6,file:$HOME/Documents/Courses/3A,file:$HOME/Documents/Courses/3A,file:$HOME/Documents/Courses/project_serie_temporelles/time_series_project/repport,file:$HOME/Documents/Courses/project_serie_temporelles/time_series_project,file:$HOME/Music/Reaper_theme,file:$HOME/Documents/document admin,file:$HOME,file:$HOME/Music,file:$HOME/Pictures/foncd-crean,file:$HOME/Pictures/foncd-crean
+
+[General]
+ColorScheme=BladeRunner2
+Name=Mirage Solid
+Name[fr_FR]=Brise sombre
+TerminalApplication[$e]=Termite
+UseSystemBell=true
+XftAntialias=true
+XftHintStyle=hintslight
+XftSubPixel=rgb
+dbfile=/home/pierre/.mozilla/firefox/kivyhyag.default/places.sqlite
+fixed=mplus Nerd Font Mono,12,-1,5,50,0,0,0,0,0,regular
+font=mplus Nerd Font Mono,10,-1,5,50,0,0,0,0,0,regular
+menuFont=mplus Nerd Font Mono,10,-1,5,50,0,0,0,0,0,regular
+shadeSortColumn=true
+smallestReadableFont=mplus Nerd Font Mono,8,-1,5,50,0,0,0,0,0,regular
+toolBarFont=mplus Nerd Font Mono,12,-1,5,50,0,0,0,0,0,regular
+
+[Icons]
+Theme=Mirage-Breeze-Dark
+
+[KDE]
+AnimationDurationFactor=0.5
+LookAndFeelPackage=Mirage
+ShowIconsInMenuItems=true
+ShowIconsOnPushButtons=true
+SingleClick=false
+contrast=4
+widgetStyle=breeze
+
+[KFileDialog Settings]
+Allow Expansion=false
+Automatically select filename extension=true
+Breadcrumb Navigation=true
+Decoration position=2
+LocationCombo Completionmode=5
+PathCombo Completionmode=5
+Show Bookmarks=false
+Show Full Path=false
+Show Inline Previews=true
+Show Preview=false
+Show Speedbar=true
+Show hidden files=false
+Sort by=Name
+Sort directories first=true
+Sort reversed=false
+Speedbar Width=152
+View Style=Simple
+
+[Toolbar style]
+ToolButtonStyle=TextOnly
+ToolButtonStyleOtherToolbars=TextOnly
+
+[WM]
+activeBackground=187,120,43
+activeBlend=178,139,77
+activeFont=mplus Nerd Font Mono,10,-1,5,50,0,0,0,0,0,regular
+activeForeground=250,151,48
+frame=0,0,0
+inactiveBackground=34,25,31
+inactiveBlend=34,25,31
+inactiveForeground=250,151,48

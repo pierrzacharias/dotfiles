@@ -6,7 +6,7 @@ bold_is_bright = true
 #cell_width_scale = 1.0
 clickable_url = true
 #dynamic_title = true
-font = mplus Nerd Font Mono
+font = mplus Nerd Font Mono 12
 #fullscreen = true
 #icon_name = terminal
 #mouse_autohide = false
@@ -23,10 +23,10 @@ scrollback_lines = 10000
 #browser = xdg-open
 
 # "system", "on" or "off"
-cursor_blink = system
+cursor_blink = off
 
 # "block", "underline" or "ibeam"
-cursor_shape = underlinek
+cursor_shape = block
 
 # Hide links that are no longer valid in url select overlay mode
 #filter_unmatched_urls = true
@@ -39,14 +39,17 @@ cursor_shape = underlinek
 
 # "off", "left" or "right"
 #scrollbar = right
-
+mouse_autohide = true
+allow_bold = true
+dynamic_title = true
 [colors]
 
 # special
 foreground      = #fa9730
 foreground_bold = #fa9730
-cursor          = #344791
-background      = rgba(49,13,15, 0.8)
+cursor          = #fa9730
+cursor_foreground = #310d0f
+background      = rgba(34,25,31, 0.8)
 
 # black
 color0  = #666666
@@ -79,4 +82,19 @@ color14 = #ffc178
 # white
 color7  = #dddddd
 color15 = #cccccc
+
+[hints]
+background = #310d0f
+foreground = #fa9730
+active_foreground = #fa9730
+active_background = #310d0f
+
+
+
+
+
+
+
+
+
 

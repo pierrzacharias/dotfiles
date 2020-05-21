@@ -241,8 +241,8 @@ colorscheme Blade_runner
 hi Normal guibg=NONE ctermbg=NONE
 hi Search guibg=peru guifg=wheat
 "hi Search cterm=NONE ctermfg=grey ctermbg=blue
-hi Search cterm=NONE ctermfg=49 ctermbg=130
-" 130
+hi Search cterm=NONE ctermfg=190  ctermbg=26
+" 215
 " ░█████╗░  ██╗  ██████╗░  ██╗░░░░░  ██╗  ███╗░░██╗  ███████╗  
 " ██╔══██╗  ██║  ██╔══██╗  ██║░░░░░  ██║  ████╗░██║  ██╔════╝  
 " ███████║  ██║  ██████╔╝  ██║░░░░░  ██║  ██╔██╗██║  █████╗░░  
