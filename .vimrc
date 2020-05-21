@@ -1,4 +1,5 @@
 "set termguicolors
+set encoding=utf-8
 filetype plugin indent on
 set nocompatible
 syntax on 
@@ -109,7 +110,6 @@ let g:kite_next_placeholder = '<M-l>'
 " ╚█████╔╝  ╚█████╔╝  ██║░╚═╝░██║  ██║░░░░░  ███████╗  ███████╗  ░░░██║░░░  ███████╗  ██║░╚═╝░██║  ███████╗  
 " ░╚════╝░   ╚════╝░  ╚═╝░░░░░╚═╝  ╚═╝░░░░░  ╚══════╝  ╚══════╝  ░░╚═╝░░░  ╚══════╝  ╚═╝░░░░░╚═╝  ╚══════╝  
 
-"set encoding=utf-8
 "let g:ycm_python_interpreter_path = ''
 "let g:ycm_python_sys_path = []
 "let g:ycm_extra_conf_vim_data = [
