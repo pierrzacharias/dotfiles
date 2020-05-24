@@ -26,11 +26,10 @@ count_was = 0
 def print_count(count, is_odd=False):
     tilde = '~' if is_odd else ''
     output = ''
-    
     color_count = '%{F' + args.color + '}' + str(count) + ' %{F-}'
     #if count > 0:
     #output = unread_prefix + tilde + str(count)
-    output = unread_prefix + tilde + color_count
+    output = unread_prefix + tilde + color_count + ' ' 
     #else:
     #    output = (args.prefix + ' ' + tilde).strip()
     print(output, flush=True)

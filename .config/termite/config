@@ -6,7 +6,7 @@ bold_is_bright = true
 #cell_width_scale = 1.0
 clickable_url = true
 #dynamic_title = true
-font = mplus Nerd Font Mono 12
+font = mplus Nerd Font Mono 11
 #fullscreen = true
 #icon_name = terminal
 #mouse_autohide = false
@@ -42,59 +42,88 @@ cursor_shape = block
 mouse_autohide = true
 allow_bold = true
 dynamic_title = true
+
+
 [colors]
+# Base16 Gruvbox
+# Scheme: Gordon Chiam (https://github.com/gchiam)
 
-# special
-foreground      = #fa9730
-foreground_bold = #fa9730
-cursor          = #fa9730
-cursor_foreground = #310d0f
-background      = rgba(34,25,31, 0.8)
+foreground      = #d5c4a1
+foreground_bold = #d5c4a1
+cursor          = #d5c4a1
+background    = rgba(0,0,0, 0.8)
 
-# black
-color0  = #666666
-color8  = #888888
+# 16 color space
+color0  = #282828
+color1  = #cc241d
+color2  = #98971a
+color3  = #d79921
+color4  = #458588
+color5  = #b16286
+color6  = #689d6a
+color7  = #d5c4a1
+color8  = #ebdbb2
+color9  = #cc241d
+color10 = #98971a
+color11 = #d79921
+color12 = #458588
+color13 = #b16286
+color14 = #689d6a
+color15 = #fbf1c7
 
-# red
-color1  = #ff8278
-color9  = #ff8278
-
-# green
-color2  = #bde077
-color10 = #bde077
-
-# yellow
-color3  = #eadc84
-color11 = #eadc84
-
-# blue
-color4  = #06b6ef
-color12 = #06b6ef
-
-# magenta
-color5  = #dd91f3
-color13 = #dd91f3
-
-# cyan
-color6  = #ffc178
-color14 = #ffc178
-
-# white
-color7  = #dddddd
-color15 = #cccccc
-
-[hints]
-background = #310d0f
-foreground = #fa9730
-active_foreground = #fa9730
-active_background = #310d0f
+# 256 color space
+color16 = #d65d0e
+color17 = #a89984
+color18 = #504945
+color19 = #7c6f54
+color20 = #bdae93
+color21 = #ebdbb2#
 
 
 
-
-
-
-
-
-
-
+#[colors]
+ #special
+#foreground      = #fa9730
+#foreground_bold = #fa9730
+#cursor          =#000b1e
+#cursor_foreground = #000b1e
+#background      = rgba(34,25,31, 1)
+#
+## black
+#color0  = #666666
+#color8  = #888888
+#
+## red
+#color1  = #ff8278
+#color9  = #ff8278
+##
+### green
+#color2  = #bde077
+#color10 = #bde077
+##
+### yellow
+#color3  = #eadc84
+#color11 = #eadc84
+#
+## blue
+#color4  = #06b6ef
+#color12 = #06b6ef
+#
+### magenta
+#color5  = #dd91f3
+#color13 = #dd91f3
+#
+### cyan
+#color6  = #ffc178
+#color14 = #ffc178
+#
+### white
+#color7  = #dddddd
+#color15 = #cccccc
+#
+#[hints]
+#background = #310d0f
+#foreground = #fa973ææ0
+#active_foreground = #fa9730
+#active_background = #310d0f
+#

@@ -2,11 +2,18 @@
 set encoding=utf-8
 filetype plugin indent on
 set nocompatible
+set ignorecase
+set smartcase
 syntax on 
 set number relativenumber
 set path+=**
 set diffopt+=indent-heuristic
 set wildmenu
+set laststatus=2
+set lazyredraw
+set ai
+set showcmd
+set cmdheight=1
 "
 " ██████╗░  ██╗░░░░░  ██╗░░░██╗  ░██████╗░  
 " ██╔══██╗  ██║░░░░░  ██║░░░██║  ██╔════╝░  
@@ -17,6 +24,7 @@ set wildmenu
 
 call plug#begin('~/.vim/plugged')
 "
+Plug 'morhetz/gruvbox'
 Plug 'michaeljsmith/vim-indent-object' " New text object, based on indentation levels.
 Plug 'maxboisvert/vim-simple-complete'
 Plug 'sheerun/vim-polyglot'                            " synthax checker
@@ -25,8 +33,8 @@ Plug 'https://github.com/svermeulen/vim-subversive'    " replace content with re
 Plug 'preservim/nerdtree'                              " show file tree
 Plug 'https://github.com/majutsushi/tagbar'            " show tabs
 "Plug 'https://github.com/airblade/vim-gitgutter'      " git helper TODO : configure
-"Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'jlanzarotta/bufexplorer'                         " help to manage opened buffers
 Plug 'skywind3000/gutentags_plus'                      " help to generate tags
 Plug 'https://github.com/universal-ctags/ctags'
@@ -34,6 +42,8 @@ Plug 'https://github.com/miyakogi/conoline.vim'        " highlights the line of 
 Plug 'https://github.com/tpope/vim-surround'           " help with (, {, {, ...
 Plug 'https://github.com/tpope/vim-commentary'
 Plug 'lervag/vimtex'                                   " Latex plugin
+Plug 'https://github.com/Yggdroot/indentLine'
+Plug 'https://github.com/kien/rainbow_parentheses.vim'
 "
 "Plug 'https://github.com/jmcantrell/vim-virtualenv'
 "Plug 'https://github.com/vim-scripts/ReplaceWithRegister'
@@ -67,14 +77,14 @@ nmap gr_ <plug>(SubversiveSubstituteLine)
 nmap gr$ <plug>(SubversiveSubstituteToEndOfLine)
 "
 " Substitute Over Range Motion
-nmap gri <plug>(SubversiveSubstituteRange)
-xmap gri <plug>(SubversiveSubstituteRange)
-nmap grw <plug>(SubversiveSubstituteWordRange)
+nmap <leader> grf <plug>(SubversiveSubstituteRange)
+xmap <leader> grf <plug>(SubversiveSubstituteRange)
+nmap <leader> grw <plug>(SubversiveSubstituteWordRange)
 "
 " need to confirm substitution
-nmap <leader>gri <plug>(SubversiveSubstituteRangeConfirm)
-xmap <leader>gri <plug>(SubversiveSubstituteRangeConfirm)
-nmap <leader>grw <plug>(SubversiveSubstituteWordRangeConfirm)
+nmap <leader> grc <plug>(SubversiveSubstituteRangeConfirm)
+xmap <leader> grc <plug>(SubversiveSubstituteRangeConfirm)
+nmap <leader> grcw <plug>(SubversiveSubstituteWordRangeConfirm)
 let g:subversivePromptWithCurrent=1
 "let g:subversivePreserveCursorPosition=1 "cursor will not move when substitutions are applied
 "
@@ -193,7 +203,7 @@ nnoremap <C-W><C-]> :call FollowTag()<CR>zt
 " ░╚════╝░  ░╚═════╝░  ╚═╝░░╚═╝  ╚═════╝░░   ╚════╝░  ╚═╝░░╚═╝  
 
 set background=dark
-"set cursorline
+set cursorline
 "Colet g:conoline_color_normal_dark = 'guifg=#3d321e'
 "let g:conoline_color_insert_dark = 'guifg=#3d321e'
 
@@ -203,6 +213,7 @@ set background=dark
 " ░░░██║░░░  ██╔══██║  ██╔══██╗  
 " ░░░██║░░░  ██║░░██║  ██████╦╝  
 " ░░╚═╝░░░  ╚═╝░░╚═╝  ╚═════╝░  
+set expandtab
 " show existing tab with 4 spaces width
 set tabstop=5
 " when indenting with '>', use 4 spaces width
@@ -235,14 +246,17 @@ noremap <silent> <C-Down> :resize -3<CR>
 " ██║░░██╗  ██║░░██║  ██║░░░░░  ██║░░██║  ██╔══██╗  
 " ╚█████╔╝  ╚█████╔╝  ███████╗  ╚█████╔╝  ██║░░██║  
 " ░╚════╝░   ╚════╝░  ╚══════╝   ╚════╝░  ╚═╝░░╚═╝  
+let g:gruvbox_italic=1
+colorscheme gruvbox
+let g:airline_powerline_fonts = 3
+"let g:airline_theme = 'minimalist'
+let g:gruvbox_contrast_dark = 'soft'
 
-colorscheme Blade_runner
-"colorscheme farout
+"let g:gruvbox_contrast_light = 'hard'
+"colorscheme Blade_runner
 hi Normal guibg=NONE ctermbg=NONE
-hi Search guibg=peru guifg=wheat
-"hi Search cterm=NONE ctermfg=grey ctermbg=blue
-hi Search cterm=NONE ctermfg=190  ctermbg=26
-" 215
+"hi Search cterm=NONE ctermfg=190  ctermbg=26
+" 
 " ░█████╗░  ██╗  ██████╗░  ██╗░░░░░  ██╗  ███╗░░██╗  ███████╗  
 " ██╔══██╗  ██║  ██╔══██╗  ██║░░░░░  ██║  ████╗░██║  ██╔════╝  
 " ███████║  ██║  ██████╔╝  ██║░░░░░  ██║  ██╔██╗██║  █████╗░░  
@@ -250,13 +264,18 @@ hi Search cterm=NONE ctermfg=190  ctermbg=26
 " ██║░░██║  ██║  ██║░░██║  ███████╗  ██║  ██║░╚███║  ███████╗  
 " ╚═╝░░╚═╝  ╚═╝  ╚═╝░░╚═╝  ╚══════╝  ╚═╝  ╚═╝░░╚══╝  ╚══════╝  
 
-let g:airline_theme='deus'
+"let g:airline_theme='deus'
+let g:airline_theme = 'minimalist'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = ']'
+let g:airline#extensions#tabline#left_alt_sep = '>'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 "let g:airline_statusline_ontop=1
+let g:airline#extensions#fugitiveline#enabled = 0
+let g:airline#extensions#whitespace#checks = ['indent']
+
+
 
 " ███╗░░██╗  ███████╗  ██████╗░  ██████╗░  ████████╗  ██████╗░  ███████╗  ███████╗  
 " ████╗░██║  ██╔════╝  ██╔══██╗  ██╔══██╗  ╚══██╔══╝  ██╔══██╗  ██╔════╝  ██╔════╝  
@@ -388,7 +407,20 @@ let g:vimtex_compiler_latexmk = {
 " ██╔══╝░░  ██║░░░██║  ██║╚████║  ██║░░██╗  ░░░██║░░░  ██║  ██║░░██║  ██║╚████║  ░╚═══██╗  
 " ██║░░░░░  ╚██████╔╝  ██║░╚███║  ╚█████╔╝  ░░░██║░░░  ██║  ╚█████╔╝  ██║░╚███║  ██████╔╝  
 " ╚═╝░░░░░  ░╚═════╝░  ╚═╝░░╚══╝  ░╚════╝░  ░░╚═╝░░░  ╚═╝   ╚════╝░  ╚═╝░░╚══╝  ╚═════╝░░  
-
+"let g:lightline = {
+      ""\ 'component_function': {
+      ""\   'fileformat': 'LightlineFileformat',
+      ""\   'filetype': 'LightlineFiletype',
+      ""\ },
+      ""\ }
+""
+""function! LightlineFileformat()
+  ""return winwidth(0) > 70 ? &fileformat : ''
+""endfunction
+""
+""function! LightlineFiletype()
+  ""return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+""endfunction
 " remove whitespace at end of lines
 :nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 "

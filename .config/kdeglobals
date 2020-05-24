@@ -3,117 +3,117 @@ update_info=filepicker.upd:filepicker-remove-old-previews-entry,fonts_global.upd
 
 [ColorEffects:Disabled]
 ChangeSelectionColor=
-Color=255,168,17
+Color=56,56,56
 ColorAmount=0
-ColorEffect=3
-ContrastAmount=0
+ColorEffect=0
+ContrastAmount=0.65000000000000002
 ContrastEffect=1
 Enable=
-IntensityAmount=1
+IntensityAmount=0.10000000000000001
 IntensityEffect=2
 
 [ColorEffects:Inactive]
 ChangeSelectionColor=true
 Color=112,111,110
-ColorAmount=0.025
+ColorAmount=0.025000000000000001
 ColorEffect=2
-ContrastAmount=0.1
+ContrastAmount=0.10000000000000001
 ContrastEffect=2
 Enable=true
 IntensityAmount=0
 IntensityEffect=0
 
 [Colors:Button]
-BackgroundAlternate=13,12,8
-BackgroundNormal=34,25,31
-DecorationFocus=163,90,69
-DecorationHover=15,23,34
-ForegroundActive=250,151,48
-ForegroundInactive=250,151,48
-ForegroundLink=250,151,48
-ForegroundNegative=255,85,162
-ForegroundNeutral=255,214,83
-ForegroundNormal=250,151,48
-ForegroundPositive=255,85,255
-ForegroundVisited=169,120,63
+BackgroundAlternate=60,56,54
+BackgroundNormal=0,0,0
+DecorationFocus=104,157,106
+DecorationHover=131,165,152
+ForegroundActive=142,192,124
+ForegroundInactive=55,115,117
+ForegroundLink=184,187,38
+ForegroundNegative=218,68,83
+ForegroundNeutral=246,116,0
+ForegroundNormal=235,219,178
+ForegroundPositive=39,174,96
+ForegroundVisited=127,140,141
 
 [Colors:Complementary]
-BackgroundAlternate=0,11,30
-BackgroundNormal=13,12,8
-DecorationFocus=177,194,206
-DecorationHover=39,76,106
-ForegroundActive=245,120,0
-ForegroundInactive=2,175,255
-ForegroundLink=234,0,217
-ForegroundNegative=255,0,0
-ForegroundNeutral=255,255,0
-ForegroundNormal=255,168,17
-ForegroundPositive=0,255,0
-ForegroundVisited=113,28,145
+BackgroundAlternate=10,169,226
+BackgroundNormal=10,169,226
+DecorationFocus=10,169,226
+DecorationHover=10,169,226
+ForegroundActive=10,169,226
+ForegroundInactive=10,169,226
+ForegroundLink=10,169,226
+ForegroundNegative=10,169,226
+ForegroundNeutral=10,169,226
+ForegroundNormal=10,169,226
+ForegroundPositive=10,169,226
+ForegroundVisited=10,169,226
 
 [Colors:Selection]
-BackgroundAlternate=26,70,192
-BackgroundNormal=11,91,113
-DecorationFocus=163,90,69
-DecorationHover=255,214,83
-ForegroundActive=250,151,48
-ForegroundInactive=206,203,183
-ForegroundLink=250,151,48
-ForegroundNegative=255,85,162
-ForegroundNeutral=255,214,83
-ForegroundNormal=205,209,187
-ForegroundPositive=255,85,255
-ForegroundVisited=169,120,63
+BackgroundAlternate=142,192,124
+BackgroundNormal=104,157,106
+DecorationFocus=104,157,106
+DecorationHover=131,165,152
+ForegroundActive=252,252,252
+ForegroundInactive=235,219,178
+ForegroundLink=253,188,75
+ForegroundNegative=218,68,83
+ForegroundNeutral=246,116,0
+ForegroundNormal=235,219,178
+ForegroundPositive=39,174,96
+ForegroundVisited=189,195,199
 
 [Colors:Tooltip]
-BackgroundAlternate=29,34,40
-BackgroundNormal=34,25,31
-DecorationFocus=163,90,69
-DecorationHover=255,214,83
-ForegroundActive=250,151,48
-ForegroundInactive=250,151,48
-ForegroundLink=250,151,48
-ForegroundNegative=255,85,162
-ForegroundNeutral=255,214,83
-ForegroundNormal=250,151,48
-ForegroundPositive=255,85,255
-ForegroundVisited=169,120,63
+BackgroundAlternate=60,56,54
+BackgroundNormal=40,40,40
+DecorationFocus=104,157,106
+DecorationHover=131,165,152
+ForegroundActive=184,187,38
+ForegroundInactive=55,115,117
+ForegroundLink=142,192,124
+ForegroundNegative=218,68,83
+ForegroundNeutral=246,116,0
+ForegroundNormal=235,219,178
+ForegroundPositive=39,174,96
+ForegroundVisited=127,140,141
 
 [Colors:View]
-BackgroundAlternate=25,30,21
-BackgroundNormal=34,25,31
-DecorationFocus=163,90,69
-DecorationHover=41,79,97
-ForegroundActive=250,151,48
-ForegroundInactive=250,151,48
-ForegroundLink=250,151,48
-ForegroundNegative=255,85,162
-ForegroundNeutral=255,214,83
-ForegroundNormal=250,151,48
-ForegroundPositive=255,163,33
-ForegroundVisited=169,120,63
+BackgroundAlternate=60,56,54
+BackgroundNormal=0,0,0
+DecorationFocus=104,157,106
+DecorationHover=131,165,152
+ForegroundActive=184,187,38
+ForegroundInactive=55,115,117
+ForegroundLink=142,192,124
+ForegroundNegative=218,68,83
+ForegroundNeutral=246,116,0
+ForegroundNormal=235,219,178
+ForegroundPositive=39,174,96
+ForegroundVisited=127,140,141
 
 [Colors:Window]
-BackgroundAlternate=170,85,127
-BackgroundNormal=34,25,31
-DecorationFocus=163,90,69
-DecorationHover=255,214,83
-ForegroundActive=250,151,48
-ForegroundInactive=250,151,48
-ForegroundLink=250,151,48
-ForegroundNegative=255,85,162
-ForegroundNeutral=255,214,83
-ForegroundNormal=250,151,48
-ForegroundPositive=255,85,255
-ForegroundVisited=169,120,63
+BackgroundAlternate=60,56,54
+BackgroundNormal=0,0,0
+DecorationFocus=104,157,106
+DecorationHover=131,165,152
+ForegroundActive=184,187,38
+ForegroundInactive=55,115,117
+ForegroundLink=142,192,124
+ForegroundNegative=218,68,83
+ForegroundNeutral=246,116,0
+ForegroundNormal=235,219,178
+ForegroundPositive=39,174,96
+ForegroundVisited=127,140,141
 
 [DirSelect Dialog]
-DirSelectDialog Size=640,480
-History Items[$e]=file:$HOME/Documents/Courses/usefull,file:$HOME/wallpaper,file:///run/media/pierre/Nouveau nom1,file:///run/media/pierre/Nouveau nom,file:$HOME/Music,file:$HOME/Music,file:$HOME/Pictures/druilet,file:$HOME/Pictures/druilet,file:$HOME/Documents/deces_papa,file:$HOME/Documents/CV/new_CV,file:$HOME/Templates/template_latex/presentation/Figures,file:$HOME/Documents/document admin,file:$HOME/Documents/document admin,file:$HOME/Documents/Courses/project_serie_temporelles/time_series_project,file:$HOME/Documents/Courses/2A/Modelisation_des_series_temporelles/TP6,file:$HOME/Documents/Courses/3A,file:$HOME/Documents/Courses/3A,file:$HOME/Documents/Courses/project_serie_temporelles/time_series_project/repport,file:$HOME/Documents/Courses/project_serie_temporelles/time_series_project,file:$HOME/Music/Reaper_theme,file:$HOME/Documents/document admin,file:$HOME,file:$HOME/Music,file:$HOME/Pictures/foncd-crean,file:$HOME/Pictures/foncd-crean
+DirSelectDialog Size=2552,1406
+History Items[$e]=file:$HOME/wallpaper/iceberg,file:$HOME/Documents/Courses/usefull,file:$HOME/wallpaper,file:///run/media/pierre/Nouveau nom1,file:///run/media/pierre/Nouveau nom,file:$HOME/Music,file:$HOME/Music,file:$HOME/Pictures/druilet,file:$HOME/Pictures/druilet,file:$HOME/Documents/deces_papa,file:$HOME/Documents/CV/new_CV,file:$HOME/Templates/template_latex/presentation/Figures,file:$HOME/Documents/document admin,file:$HOME/Documents/document admin,file:$HOME/Documents/Courses/project_serie_temporelles/time_series_project,file:$HOME/Documents/Courses/2A/Modelisation_des_series_temporelles/TP6,file:$HOME/Documents/Courses/3A,file:$HOME/Documents/Courses/3A,file:$HOME/Documents/Courses/project_serie_temporelles/time_series_project/repport,file:$HOME/Documents/Courses/project_serie_temporelles/time_series_project,file:$HOME/Music/Reaper_theme,file:$HOME/Documents/document admin,file:$HOME,file:$HOME/Music,file:$HOME/Pictures/foncd-crean,file:$HOME/Pictures/foncd-crean
 
 [General]
-ColorScheme=BladeRunner2
-Name=Mirage Solid
+ColorScheme=Dark_Gruxbox
+Name=GruvboxColors
 Name[fr_FR]=Brise sombre
 TerminalApplication[$e]=Termite
 UseSystemBell=true
@@ -129,16 +129,16 @@ smallestReadableFont=mplus Nerd Font Mono,8,-1,5,50,0,0,0,0,0,regular
 toolBarFont=mplus Nerd Font Mono,12,-1,5,50,0,0,0,0,0,regular
 
 [Icons]
-Theme=Mirage-Breeze-Dark
+Theme=Gruvbox
 
 [KDE]
 AnimationDurationFactor=0.5
-LookAndFeelPackage=Mirage
+LookAndFeelPackage=GruvboxPlasma
 ShowIconsInMenuItems=true
 ShowIconsOnPushButtons=true
 SingleClick=false
 contrast=4
-widgetStyle=breeze
+widgetStyle=Breeze
 
 [KFileDialog Settings]
 Allow Expansion=false
@@ -153,7 +153,7 @@ Show Inline Previews=true
 Show Preview=false
 Show Speedbar=true
 Show hidden files=false
-Sort by=Name
+Sort by=Date
 Sort directories first=true
 Sort reversed=false
 Speedbar Width=152
@@ -164,11 +164,11 @@ ToolButtonStyle=TextOnly
 ToolButtonStyleOtherToolbars=TextOnly
 
 [WM]
-activeBackground=187,120,43
-activeBlend=178,139,77
+activeBackground=39,39,39
+activeBlend=235,219,178
 activeFont=mplus Nerd Font Mono,10,-1,5,50,0,0,0,0,0,regular
-activeForeground=250,151,48
+activeForeground=235,219,178
 frame=0,0,0
-inactiveBackground=34,25,31
-inactiveBlend=34,25,31
-inactiveForeground=250,151,48
+inactiveBackground=40,40,40
+inactiveBlend=60,56,54
+inactiveForeground=204,190,155
