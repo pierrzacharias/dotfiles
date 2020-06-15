@@ -24,6 +24,12 @@ set cmdheight=1
 
 call plug#begin('~/.vim/plugged')
 "
+Plug 'dense-analysis/ale'
+Plug 'https://github.com/dense-analysis/ale'
+Plug 'https://github.com/Chiel92/vim-autoformat'
+Plug 'https://github.com/jupyter-vim/jupyter-vim' " TODO : tester avec
+" neovim
+Plug 'https://github.com/szymonmaszke/vimpyter'
 Plug 'morhetz/gruvbox'
 Plug 'michaeljsmith/vim-indent-object' " New text object, based on indentation levels.
 Plug 'maxboisvert/vim-simple-complete'
@@ -64,6 +70,105 @@ Plug 'https://github.com/kien/rainbow_parentheses.vim'
 "
 call plug#end() "run :PlugInstall
 "
+" ██████╗░  ███████╗  ░█████╗░  ██████╗░  ██╗░░░░░  ███████╗  ████████╗  ███████╗  
+" ██╔══██╗  ██╔════╝  ██╔══██╗  ██╔══██╗  ██║░░░░░  ██╔════╝  ╚══██╔══╝  ██╔════╝  
+" ██║░░██║  █████╗░░  ██║░░██║  ██████╔╝  ██║░░░░░  █████╗░░  ░░░██║░░░  █████╗░░  
+" ██║░░██║  ██╔══╝░░  ██║░░██║  ██╔═══╝░  ██║░░░░░  ██╔══╝░░  ░░░██║░░░  ██╔══╝░░  
+" ██████╔╝  ███████╗  ╚█████╔╝  ██║░░░░░  ███████╗  ███████╗  ░░░██║░░░  ███████╗  
+" ╚═════╝░  ╚══════╝   ╚════╝░  ╚═╝░░░░░  ╚══════╝  ╚══════╝  ░░╚═╝░░░  ╚══════╝  
+
+"
+"  ██████╗░  ██╗░░░██╗  ████████╗  ██╗░░██╗  ░█████╗░  ███╗░░██╗  
+"  ██╔══██╗  ╚██╗░██╔╝  ╚══██╔══╝  ██║░░██║  ██╔══██╗  ████╗░██║  
+"  ██████╔╝  ░╚████╔╝░  ░░░██║░░░  ███████║  ██║░░██║  ██╔██╗██║  
+"  ██╔═══╝░  ░░╚██╔╝░░  ░░░██║░░░  ██╔══██║  ██║░░██║  ██║╚████║  
+"  ██║░░░░░  ░░░██║░░░  ░░░██║░░░  ██║░░██║  ╚█████╔╝  ██║░╚███║  
+"  ╚═╝░░░░░  ░░░╚═╝░░░  ░░╚═╝░░░  ░╚═╝░░╚═╝   ╚════╝░  ╚═╝░░╚══╝  
+"
+" let g:syntastic_python_checker = 'flake8 --ignore=E501'
+noremap <F7> :Autoformat<CR>
+
+"
+" Bind F5 to save file if modified and execute python script in a buffer.
+nnoremap <silent> <F9> :call SaveAndExecutePython()<CR>
+vnoremap <silent> <F9> :<C-u>call SaveAndExecutePython()<CR>
+
+function! SaveAndExecutePython()
+    " SOURCE [reusable window]: https://github.com/fatih/vim-go/blob/master/autoload/go/ui.vim
+
+    " save and reload current file
+    silent execute "update | edit"
+
+    " get file path of current file
+    let s:current_buffer_file_path = expand("%")
+
+    let s:output_buffer_name = "Python"
+    let s:output_buffer_filetype = "output"
+
+    " reuse existing buffer window if it exists otherwise create a new one
+    if !exists("s:buf_nr") || !bufexists(s:buf_nr)
+        silent execute 'botright vnew ' . s:output_buffer_name
+        let s:buf_nr = bufnr('%')
+    elseif bufwinnr(s:buf_nr) == -1
+        silent execute 'botright new'
+        silent execute s:buf_nr . 'buffer'
+    elseif bufwinnr(s:buf_nr) != bufwinnr('%')
+        silent execute bufwinnr(s:buf_nr) . 'wincmd w'
+    endif
+
+    silent execute "setlocal filetype=" . s:output_buffer_filetype
+    setlocal bufhidden=delete
+    setlocal buftype=nofile
+    setlocal noswapfile
+    setlocal nobuflisted
+    setlocal winfixheight
+    setlocal cursorline " make it easy to distinguish
+    setlocal nonumber
+    setlocal norelativenumber
+    setlocal showbreak=""
+
+    " clear the buffer
+    setlocal noreadonly
+    setlocal modifiable
+    %delete _
+
+    " add the console output
+    silent execute ".!python " . shellescape(s:current_buffer_file_path, 1)
+
+    " resize window to content length
+    " Note: This is annoying because if you print a lot of lines then your code buffer is forced to a height of one line every time you run this function.
+    "       However without this line the buffer starts off as a default size and if you resize the buffer then it keeps that custom size after repeated runs of this function.
+    "       But if you close the output buffer then it returns to using the default size when its recreated
+    "execute 'resize' . line('$')
+
+    " make the buffer non modifiable
+    setlocal readonly
+    setlocal nomodifiable
+endfunction
+
+let g:pymode_python = '0'
+"
+" ░░░░░██╗  ██╗░░░██╗  ██████╗░  ██╗░░░██╗  ████████╗  ███████╗  ██████╗░  
+" ░░░░░██║  ██║░░░██║  ██╔══██╗  ╚██╗░██╔╝  ╚══██╔══╝  ██╔════╝  ██╔══██╗  
+" ░░░░░██║  ██║░░░██║  ██████╔╝  ░╚████╔╝░  ░░░██║░░░  █████╗░░  ██████╔╝  
+" ██╗░░██║  ██║░░░██║  ██╔═══╝░  ░░╚██╔╝░░  ░░░██║░░░  ██╔══╝░░  ██╔══██╗  
+" ╚█████╔╝  ╚██████╔╝  ██║░░░░░  ░░░██║░░░  ░░░██║░░░  ███████╗  ██║░░██║  
+" ░╚════╝░  ░╚═════╝░  ╚═╝░░░░░  ░░░╚═╝░░░  ░░╚═╝░░░  ╚══════╝  ╚═╝░░╚═╝  
+autocmd Filetype ipynb nmap <silent><Leader>ji :VimpyterInsertPythonBlock<CR>
+autocmd Filetype ipynb nmap <silent><Leader>js :VimpyterStartJupyter<CR>
+autocmd Filetype ipynb nmap <silent><Leader>jn :VimpyterStartNteract<CR>
+" https://github.com/szymonmaszke/vimpyter/issues/4
+" convert a notebook to a python file or whatever
+" jupyter-nbconvert --to python *.ipynb 
+
+" set pythonthreedll=
+" set pythonthreehome = "/usr/lib/python3.8/"
+" let g:jupyter_auto_connect=1
+let b:jupyter_kernel_type='python3'
+" set pythonthreedll=python38.dll
+let g:jupyter_monitor_console=1
+set pyxversion=3
+"
 " ░██████╗  ██╗░░░██╗  ██████╗░  ███╗░░░███╗  ███████╗  ██████╗░  ░██████╗  ██╗  ██╗░░░██╗  ███████╗  
 " ██╔════╝  ██║░░░██║  ██╔══██╗  ████╗░████║  ██╔════╝  ██╔══██╗  ██╔════╝  ██║  ██║░░░██║  ██╔════╝  
 " ╚█████╗░  ██║░░░██║  ██████╦╝  ██╔████╔██║  █████╗░░  ██████╔╝  ╚█████╗░  ██║  ╚██╗░██╔╝  █████╗░░  
@@ -96,22 +201,22 @@ let g:subversivePromptWithCurrent=1
 " ╚═╝░░╚═╝  ╚═╝  ░░╚═╝░░░  ╚══════╝  
 
 " You can manually invoke the completions in insert mode with <C-X><C-U>
-set statusline=%<%f\ %h%m%r%{kite#statusline()}%=%-14.(%l,%c%V%)\ %P
-set laststatus=2                                          " always display the status line
+" set statusline=%<%f\ %h%m%r%{kite#statusline()}%=%-14.(%l,%c%V%)\ %P
+" set laststatus=2                                          " always display the status line
 "let g:kite_auto_complete=0                               " completions will show up automatically 
 let g:kite_tab_complete=1                                " If you'd like to use <Tab> instead of <C-y>
-set completeopt+=menuone                                  " show the popup menu even when there is only 1 match
-set completeopt+=noinsert                                " don't insert any text until user chooses a match
+" set completeopt+=menuone                                  " show the popup menu even when there is only 1 match
+" set completeopt+=noinsert                                " don't insert any text until user chooses a match
 "set completeopt-=longest                                 " don't insert the longest common text
-set completeopt-=preview                                 " show documentation in a new buffer
+" set completeopt-=preview                                 " show documentation in a new buffer
 "autocmd CompleteDone * if !pumvisible() | pclose | endif "preview window automatically closed once a completion has been inserted
 "set belloff+=ctrlg
 "
 " Naviguate between snippets
 execute "set <M-h>=\e'"
 execute "set <M-l>=\e'"
-let g:kite_previous_placeholder = '<M-h>'
-let g:kite_next_placeholder = '<M-l>'
+" let g:kite_previous_placeholder = '<M-h>'
+" let g:kite_next_placeholder = '<M-l>'
 "
 " ██████╗░  ░█████╗░  ███╗░░░███╗  ██████╗░  ██╗░░░░░  ███████╗  ████████╗  ███████╗  ███╗░░░███╗  ███████╗  
 " ██╔══██╗  ██╔══██╗  ████╗░████║  ██╔══██╗  ██║░░░░░  ██╔════╝  ╚══██╔══╝  ██╔════╝  ████╗░████║  ██╔════╝  
@@ -232,7 +337,7 @@ set splitbelow splitright
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
-nnoremap <C-'> <C-w>l
+nnoremap <C-o> <C-w>l
 "max height Ctrl-w _
 "maz width Ctrl-w |. 
 noremap <silent> <C-Left> :vertical resize +3<CR>
@@ -285,13 +390,16 @@ let g:airline#extensions#whitespace#checks = ['indent']
 " ╚═╝░░╚══╝  ╚══════╝  ╚═╝░░╚═╝  ╚═════╝░  ░░╚═╝░░░  ╚═╝░░╚═╝  ╚══════╝  ╚══════╝  
 
 map <C-n> :NERDTreeToggle<CR>
-
+let NERDTreeQuitOnOpen=1
+"
 " ░██████╗  ██╗░░██╗  ░█████╗░  ██████╗░  ████████╗  ██████╗░  ██╗░░░██╗  ████████╗  ░██████╗  
 " ██╔════╝  ██║░░██║  ██╔══██╗  ██╔══██╗  ╚══██╔══╝  ██╔══██╗  ██║░░░██║  ╚══██╔══╝  ██╔════╝  
 " ╚█████╗░  ███████║  ██║░░██║  ██████╔╝  ░░░██║░░░  ██║░░╚═╝  ██║░░░██║  ░░░██║░░░  ╚█████╗░  
 " ░╚═══██╗  ██╔══██║  ██║░░██║  ██╔══██╗  ░░░██║░░░  ██║░░██╗  ██║░░░██║  ░░░██║░░░  ░╚═══██╗  
 " ██████╔╝  ██║░░██║  ╚█████╔╝  ██║░░██║  ░░░██║░░░  ╚█████╔╝  ╚██████╔╝  ░░░██║░░░  ██████╔╝  
 " ╚═════╝░░  ░╚═╝░░╚═╝   ╚════╝░  ╚═╝░░╚═╝  ░░╚═╝░░░  ░╚════╝░  ░╚═════╝░  ░░╚═╝░░░  ╚═════╝░░  
+
+:nnoremap K <Esc>i<CR><Esc>
 map <C-l> :set rnu<CR>
 map <C-a> :set nornu<CR>
 "
@@ -321,6 +429,12 @@ autocmd BufReadPost *
   \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
   \ |   exe "normal! g`\""
   \ | end
+
+nnoremap qq :wq<CR>
+" remap end-of-line to x
+nnoremap x $
+inoremap <C-E> <End>
+
 "
 " ░██████╗  ███████╗  ░█████╗░  ██████╗░  ██████╗░  ██╗░░██╗  
 " ██╔════╝  ██╔════╝  ██╔══██╗  ██╔══██╗  ██╔══██╗  ██║░░██║  
@@ -334,8 +448,8 @@ autocmd BufReadPost *
 set hlsearch
 " Press Space to turn off highlighting and clear any message already displayed.
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
-" Press F4 to toggle highlighting on/off, and show current value.
-noremap <F4> :set hlsearch! hlsearch?<CR>
+" Press F6 to toggle highlighting on/off, and show current value.
+noremap <F6> :set hlsearch! hlsearch?<CR>
 " F8 will highlight all occurrences of the current word
 nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
 "
@@ -400,6 +514,11 @@ let g:vimtex_compiler_latexmk = {
     \ ],
     \}
 "
+" To prevent conceal in LaTeX files
+let g:tex_conceal = ''
+"
+" To prevent conceal in any file
+"set conceallevel = 0
 
 " ███████╗  ██╗░░░██╗  ███╗░░██╗  ██████╗░  ████████╗  ██╗  ░█████╗░  ███╗░░██╗  ░██████╗  
 " ██╔════╝  ██║░░░██║  ████╗░██║  ██╔══██╗  ╚══██╔══╝  ██║  ██╔══██╗  ████╗░██║  ██╔════╝  
