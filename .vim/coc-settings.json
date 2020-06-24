@@ -1,0 +1,14 @@
+{
+    "diagnostic.infoSign": "i-",
+    "diagnostic.hintSign": "➤",
+    "diagnostic.warningSign": "⚠",
+    "diagnostic.errorSign": "✖",
+    "diagnostic.enableSign":true,
+    "diagnostic.maxWindowWidth": 400,
+    "diagnostic.messageTarget":"echo",
+    "diagnostic.virtualTextPrefix":"coc.diag",
+    "diagnostic.maxWindowHeight": 30,
+    "suggest.maxPreviewWidth":200,
+    "diagnostic.messageDelay":1,
+    "coc.preferences.jumpCommand":"vsplit"
+}
