@@ -33,7 +33,6 @@ Plug 'antoinemadec/coc-fzf'                            " integrate fzf with coc.
 Plug 'junegunn/vim-easy-align'                         " Helps alignment TODO: LEARN
 Plug 'dense-analysis/ale'                              " syntax checking and semantic errors
 Plug 'neoclide/coc.nvim', {'branch': 'release'}        " visual studio completion engine
-Plug 'luochen1990/rainbow'                             " useless rainbow parenthesis
 Plug 'michaeljsmith/vim-indent-object'                 " New text object, based on indentation levels.
 Plug 'maxboisvert/vim-simple-complete'                 " as-you-type keyword completion
 Plug 'https://github.com/svermeulen/vim-subversive'    " replace content with register
