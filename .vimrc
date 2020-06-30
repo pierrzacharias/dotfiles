@@ -26,10 +26,6 @@ set mouse=a
 " ██║░░░░░  ███████╗  ╚██████╔╝  ╚██████╔╝
 " ╚═╝░░░░░  ╚══════╝  ░╚═════╝░  ░╚════╝░
 call plug#begin('~/.vim/plugged')
-"
-" INSTALLED
-"
-" Plug 'https://github.com/chengzeyi/fzf-preview.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }    " fuzzy finder 
 Plug 'junegunn/fzf.vim'                                " fuzzy finder Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'                             " place search at prject root, look for .gitingore
@@ -57,16 +53,15 @@ Plug 'lervag/vimtex'                                   " Latex plugin
 Plug 'https://github.com/Yggdroot/indentLine'          " help with indent TODO: Configure
 "
 " TOTEST
+" https://github.com/mileszs/ack.vim                   " wrap grep tools in vim
 " Plug 'vim-vdebug/vdebug'                             "TODO : configure  https://github.com/camspiers/dotfiles/blob/master/files/.config/nvim/init.VimtexCompile
 " Plug 'kkoomen/vim-doge'                              " Docblock generator
-"
-" TODO
-"
 " Plug 'rbong/vim-flog'                                " Commit viewer
 " Plug 'bkad/CamelCaseMotion'                          " Motions for inside camel case
 "
 " REMOVED
 "
+" Plug 'https://github.com/chengzeyi/fzf-preview.vim'
 " Plug 'sheerun/vim-polyglot'                          " synthax checker
 " Plug 'lifepillar/vim-gruvbox8'                         " Faster version of gruvbox
 "Plug 'https://github.com/airblade/vim-gitgutter'      " git helper TODO : configure
@@ -93,8 +88,6 @@ call plug#end() "run :PlugInstall
 colorscheme gruvbox                        | " Sets theme to gruvbox
 let g:gruvbox_italic=1
 let g:gruvbox_contrast_dark = 'soft'
-let g:airline_powerline_fonts = 3
-"let g:airline_theme = 'minimalist'
 "colorscheme Blade_runner
 hi Search cterm=NONE ctermfg=190  ctermbg=26
 set cursorline
@@ -159,7 +152,8 @@ nnoremap <C-f> :BLines<CR>
 
 let g:fzf_tags_command = 'ctags -R'
 " Border color
-let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'left' } }
+let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp'} }
+" let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'left' } }
 let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline '
 let $FZF_DEFAULT_COMMAND="rg --files --hidden"
 
@@ -299,7 +293,6 @@ let g:coc_snippet_next = '<TAB>'
  " 'coc-git',
  " 'coc-spell-checker',
 "
-let g:airline#extensions#coc#enabled = 1
 "
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -700,7 +693,7 @@ let g:ale_sign_warning = ' '
 highlight ALEErrorSign ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
 highlight ALEWarningSign ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
 " :verbose hi ALEErrorSign
-" let g:airline#extensions#ale#enabled = 1
+
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
@@ -751,17 +744,20 @@ noremap <silent> <C-Down> :resize -3<CR>
 " ██╔══██║  ██║  ██╔══██╗  ██║░░░░░  ██║  ██║╚████║  ██╔══╝░░
 " ██║░░██║  ██║  ██║░░██║  ███████╗  ██║  ██║░╚███║  ███████╗
 " ╚═╝░░╚═╝  ╚═╝  ╚═╝░░╚═╝  ╚══════╝  ╚═╝  ╚═╝░░╚══╝  ╚══════╝
-
-"let g:airline_theme='deus'
-let g:airline_theme = 'minimalist'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '>'
-" let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
-"let g:airline_statusline_ontop=1
+let g:airline_theme='bubblegum'
+let g:airline_powerline_fonts = 1
+"
 let g:airline#extensions#fugitiveline#enabled = 0
-let g:airline#extensions#whitespace#checks = ['']
+"let g:airline_theme='deus'
+" let g:airline_theme = 'minimalist'
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#left_sep = ' '
+" let g:airline#extensions#tabline#left_alt_sep = '>'
+" let g:airline_powerline_fonts = 1
+" let g:airline#extensions#tabline#formatter = 'unique_tail'
+" let g:airline#extensions#fugitiveline#enabled = 0
+" let g:airline#extensions#whitespace#checks = ['']
+" let g:airline#extensions#ale#enabled = 1
 "
 " ██████╗░  ███████╗  ███╗░░░███╗  ░█████╗░  ██████╗░
 " ██╔══██╗  ██╔════╝  ████╗░████║  ██╔══██╗  ██╔══██╗
@@ -787,7 +783,7 @@ nnoremap L g_
 nnoremap H ^
 :nnoremap K <Esc>i<CR><Esc>
 map <C-l> :set rnu<CR>
-map <C-a> :set nornu<CR>
+" map <C-a> :set nornu<CR>
 "
 map <Leader>mm :vnew term://zsh<CR>
 "
@@ -823,10 +819,13 @@ autocmd BufReadPost *
   \ | end
 
 nnoremap qq :wq<CR>
+
 " remap end-of-line to x
 nnoremap x $
 inoremap <C-E> <End>
-
+"
+" change to the directory of the currently open files
+nnoremap <leader>f :cd %:p:h<CR>
 "
 " ░██████╗  ███████╗  ░█████╗░  ██████╗░  ██████╗░  ██╗░░██╗
 " ██╔════╝  ██╔════╝  ██╔══██╗  ██╔══██╗  ██╔══██╗  ██║░░██║
@@ -920,13 +919,22 @@ let g:tex_conceal = ''
 " ╚═╝░░░░░  ░╚═════╝░  ╚═╝░░╚══╝  ░╚════╝░  ░░╚═╝░░░  ╚═╝   ╚════╝░  ╚═╝░░╚══╝  ╚═════╝░░
 :nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 "
+" ██████╗░  ░█████╗░  ██╗  ███╗░░██╗  ██████╗░  ░█████╗░  ░██╗░░░░░░░██╗  
+" ██╔══██╗  ██╔══██╗  ██║  ████╗░██║  ██╔══██╗  ██╔══██╗  ░██║░░██╗░░██║  
+" ██████╔╝  ███████║  ██║  ██╔██╗██║  ██████╦╝  ██║░░██║  ░╚██╗████╗██╔╝  
+" ██╔══██╗  ██╔══██║  ██║  ██║╚████║  ██╔══██╗  ██║░░██║  ░░████╔═████║░  
+" ██║░░██║  ██║░░██║  ██║  ██║░╚███║  ██████╦╝  ╚█████╔╝  ░░╚██╔╝░╚██╔╝░  
+" ╚═╝░░╚═╝  ╚═╝░░╚═╝  ╚═╝  ╚═╝░░╚══╝  ╚═════╝░   ╚════╝░  ░░░╚═╝░░░╚═╝░░  
+" let g:rainbow_active = 1
+" let g:rainbow#max_level = 16
+" let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+" autocmd FileType * RainbowParentheses
+"
 " ░█████╗░  ████████╗  ██╗░░██╗  ███████╗  ██████╗░
 " ██╔══██╗  ╚══██╔══╝  ██║░░██║  ██╔════╝  ██╔══██╗
 " ██║░░██║  ░░░██║░░░  ███████║  █████╗░░  ██████╔╝
 " ██║░░██║  ░░░██║░░░  ██╔══██║  ██╔══╝░░  ██╔══██╗
 " ╚█████╔╝  ░░░██║░░░  ██║░░██║  ███████╗  ██║░░██║
-let g:rainbow_active = 1
-
 " Novigate in floating windows https://github.com/neoclide/coc.nvim/issues/1405
 function! s:coc_float_scroll(forward) abort
   let float = coc#util#get_float()
@@ -961,6 +969,14 @@ inoremap <silent><expr> <up> coc#util#has_float() ? <SID>coc_float_scroll(0) : "
 vnoremap <silent><expr> <down> coc#util#has_float() ? <SID>coc_float_scroll(1) : "\<down>"
 vnoremap <silent><expr> <up> coc#util#has_float() ? <SID>coc_float_scroll(0) : "\<up>"
 
+" ██████╗░  ███████╗  ███╗░░██╗  ████████╗  ███████╗  ██████╗░  
+" ██╔══██╗  ██╔════╝  ████╗░██║  ╚══██╔══╝  ██╔════╝  ██╔══██╗  
+" ██║░░╚═╝  █████╗░░  ██╔██╗██║  ░░░██║░░░  █████╗░░  ██████╔╝  
+" ██║░░██╗  ██╔══╝░░  ██║╚████║  ░░░██║░░░  ██╔══╝░░  ██╔══██╗  
+" ╚█████╔╝  ███████╗  ██║░╚███║  ░░░██║░░░  ███████╗  ██║░░██║  
+" ░╚════╝░  ╚══════╝  ╚═╝░░╚══╝  ░░╚═╝░░░  ╚══════╝  ╚═╝░░╚═╝  
+set scrolloff=999
+:nnoremap <Leader>l :let &scrolloff=999-&scrolloff<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ███████╗  ███╗░░██╗  ██████╗░
 " ██╔════╝  ████╗░██║  ██╔══██╗

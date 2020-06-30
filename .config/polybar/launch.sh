@@ -8,9 +8,17 @@ killall -q polybar
 # Wait until the processes have been shut down
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
-# Launch bar1 and bar2
-polybar -c ~/.config/polybar/config.ini main.f &
-polybar -c ~/.config/polybar/config.ini main.mail &
-polybar -c ~/.config/polybar/config.ini main.title &
-polybar -c ~/.config/polybar/config.ini main.time &
-polybar -c ~/.config/polybar/config.ini main.battery &
+MONITOR="eDP1" polybar -c ~/.config/polybar/config.ini main.edp &
+MONITOR="eDP1" polybar -c ~/.config/polybar/config.ini main.mail.edp &
+# MONITOR="eDP1" polybar -c ~/.config/polybar/config.ini main.time.edp &
+# MONITOR="eDP1" polybar -c ~/.config/polybar/config.ini main.title.edp &
+# MONITOR="eDP1" polybar -c ~/.config/polybar/config.ini main.battery.edp &
+
+# MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini main.f.2 &
+# MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini main.mail.2 &
+# MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini main.title.2 &
+# MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini main.time.2 &
+# MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini main.battery.2 &
+# for m in $(polybar --list-monitors | cut -d":" -f1); do
+#     # MONITOR=$m polybar --reload bar1 &
+# done

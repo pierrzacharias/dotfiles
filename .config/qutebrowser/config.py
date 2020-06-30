@@ -474,21 +474,16 @@ c.fonts.web.size.minimum_logical = 8
 # Type: Dict
 c.bindings.key_mappings = {'<Ctrl+6>': '<Ctrl+^>', '<Ctrl+Enter>': '<Ctrl+Return>', '<Ctrl+j>': '<Return>', '<Ctrl+m>': '<Return>', '<Ctrl+[>': '<Escape>', '<Enter>': '<Return>', '<Shift+Enter>': '<Return>', '<Shift+Return>': '<Return>'}
 c.content.user_stylesheets = [
-                             "~/.config/qutebrowser/solarized-everything-css/css/darculized/darculized-all-sites.css",
-                             #"~/.config/qutebrowser/solarized-everything-css/css/darculized/darculized-bigblow.css",
-                             #"~/.config/qutebrowser/solarized-everything-css/css/darculized/darculized-disqus.com.css",
-                             #"~/.config/qutebrowser/solarized-everything-css/css/darculized/darculized-duckduckgo.com.css",
-                             #"~/.config/qutebrowser/solarized-everything-css/css/darculized/darculized-generic.css",
-                             #"~/.config/qutebrowser/solarized-everything-css/css/darculized/darculized-lwn.net.css",
-                             #"~/.config/qutebrowser/solarized-everything-css/css/darculized/darculized-mediawiki.org.css",
-                             #"~/.config/qutebrowser/solarized-everything-css/css/darculized/darculized-news.ycombinator.com.css",
-                             #"~/.config/qutebrowser/solarized-everything-css/css/darculized/darculized-planet.emacsen.org.css",
-                             #"~/.config/qutebrowser/solarized-everything-css/css/darculized/darculized-reddit.com.css",
-                             #"~/.config/qutebrowser/solarized-everything-css/css/darculized/darculized-sakai.css",
-                             "~/.config/qutebrowser/solarized-everything-css/css/darculized/darculized-stackexchange.com.css",
-                             #"~/.config/qutebrowser/solarized-everything-css/css/darculized/github.com.css",
-                             #"~/.config/qutebrowser/solarized-everything-css/css/darculized/darculized-github.css",
-                             "~/.config/qutebrowser/solarized-everything-css/css/darculized/darculized-google.com.css",
-                             #"~/.config/qutebrowser/solarized-everything-css/css/darculized/google.com.css",
-                             "~/.config/qutebrowser/solarized-everything-css/css/darculized/soundcloud.css",
+                             "~/.config/qutebrowser/gruvbox-dark-css/css/solarized-all-sites-dark.css",
+                             "~/.config/qutebrowser/gruvbox-dark-css/css/solarized-google-dark.css",
+                             #"~/.config/qutebrowser/gruvbox-dark-css/css/solarized-disqus-dark.css",
+                             #"~/.config/qutebrowser/gruvbox-dark-css/css/solarized-duckduckgo-dark.css",
+                             #"~/.config/qutebrowser/gruvbox-dark-css/css/solarized-generic-dark.css",
+                             "~/.config/qutebrowser/gruvbox-dark-css/css/solarized-github-dark.css",
+                             #"~/.config/qutebrowser/gruvbox-dark-css/css/solarized-hackernews-dark.css",
+                             #"~/.config/qutebrowser/gruvbox-dark-css/css/solarized-lwn-dark.css",
+                             #"~/.config/qutebrowser/gruvbox-dark-css/css/solarized-mediawiki-dark.css",
+                             "~/.config/qutebrowser/gruvbox-dark-css/css/solarized-reddit-dark.css",
+                             #"~/.config/qutebrowser/gruvbox-dark-css/css/solarized-sakai-dark.css",
+                             "~/.config/qutebrowser/gruvbox-dark-css/css/solarized-stackexchange-dark.css"
                              ]

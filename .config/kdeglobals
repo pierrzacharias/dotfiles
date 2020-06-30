@@ -122,10 +122,10 @@ XftHintStyle=hintslight
 XftSubPixel=rgb
 dbfile=/home/pierre/.mozilla/firefox/kivyhyag.default/places.sqlite
 fixed=mplus Nerd Font Mono,12,-1,5,50,0,0,0,0,0,regular
-font=mplus Nerd Font Mono,10,-1,5,50,0,0,0,0,0,regular
-menuFont=mplus Nerd Font Mono,10,-1,5,50,0,0,0,0,0,regular
+font=mplus Nerd Font Mono,12,-1,5,50,0,0,0,0,0,regular
+menuFont=mplus Nerd Font Mono,12,-1,5,50,0,0,0,0,0,regular
 shadeSortColumn=true
-smallestReadableFont=mplus Nerd Font Mono,8,-1,5,50,0,0,0,0,0,regular
+smallestReadableFont=mplus Nerd Font Mono,12,-1,5,50,0,0,0,0,0,regular
 toolBarFont=mplus Nerd Font Mono,12,-1,5,50,0,0,0,0,0,regular
 
 [Icons]
@@ -143,7 +143,7 @@ widgetStyle=Breeze
 [KFileDialog Settings]
 Allow Expansion=false
 Automatically select filename extension=true
-Breadcrumb Navigation=true
+Breadcrumb Navigation=false
 Decoration position=2
 LocationCombo Completionmode=5
 PathCombo Completionmode=5
@@ -155,8 +155,8 @@ Show Speedbar=true
 Show hidden files=false
 Sort by=Date
 Sort directories first=true
-Sort reversed=false
-Speedbar Width=152
+Sort reversed=true
+Speedbar Width=178
 View Style=Simple
 
 [Toolbar style]
@@ -166,7 +166,7 @@ ToolButtonStyleOtherToolbars=TextOnly
 [WM]
 activeBackground=39,39,39
 activeBlend=235,219,178
-activeFont=mplus Nerd Font Mono,10,-1,5,50,0,0,0,0,0,regular
+activeFont=mplus Nerd Font Mono,12,-1,5,50,0,0,0,0,0,regular
 activeForeground=235,219,178
 frame=0,0,0
 inactiveBackground=40,40,40
