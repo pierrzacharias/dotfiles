@@ -26,8 +26,10 @@ set mouse=a
 " ██║░░░░░  ███████╗  ╚██████╔╝  ╚██████╔╝
 " ╚═╝░░░░░  ╚══════╝  ░╚═════╝░  ░╚════╝░
 call plug#begin('~/.vim/plugged')
+Plug 'https://github.com/AndrewRadev/sideways.vim'     " move func args  
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }    " fuzzy finder 
 Plug 'junegunn/fzf.vim'                                " fuzzy finder Plug 'junegunn/fzf.vim'
+" Plug 'https://github.com/yuki-ycino/fzf-preview.vim'                                " fuzzy finder Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'                             " place search at prject root, look for .gitingore
 Plug 'antoinemadec/coc-fzf'                            " integrate fzf with coc.vim
 Plug 'junegunn/vim-easy-align'                         " Helps alignment TODO: LEARN
@@ -75,6 +77,19 @@ Plug 'https://github.com/Yggdroot/indentLine'          " help with indent TODO: 
 "Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 "
 call plug#end() "run :PlugInstall
+"
+" ░██████╗  ██╗  ██████╗░  ███████╗  ░██╗░░░░░░░██╗  ░█████╗░  ██╗░░░██╗  
+" ██╔════╝  ██║  ██╔══██╗  ██╔════╝  ░██║░░██╗░░██║  ██╔══██╗  ╚██╗░██╔╝  
+" ╚█████╗░  ██║  ██║░░██║  █████╗░░  ░╚██╗████╗██╔╝  ███████║  ░╚████╔╝░  
+" ░╚═══██╗  ██║  ██║░░██║  ██╔══╝░░  ░░████╔═████║░  ██╔══██║  ░░╚██╔╝░░  
+" ██████╔╝  ██║  ██████╔╝  ███████╗  ░░╚██╔╝░╚██╔╝░  ██║░░██║  ░░░██║░░░  
+" ╚═════╝░░  ╚═╝  ╚═════╝░  ╚══════╝  ░░░╚═╝░░░╚═╝░░  ╚═╝░░╚═╝  ░░░╚═╝░░░  
+execute "set <M-h>=\eh"
+nnoremap <M-h> :SidewaysLeft<cr>
+execute "set <M-l>=\el"
+nnoremap <M-l> :SidewaysRight<cr>
+nnoremap mh :SidewaysJumpLeft<cr>
+nnoremap ml :SidewaysJumpRight<cr>
 "
 " ██████╗░  ░█████╗░  ██╗░░░░░  ░█████╗░  ██████╗░
 " ██╔══██╗  ██╔══██╗  ██║░░░░░  ██╔══██╗  ██╔══██╗
@@ -140,13 +155,13 @@ let g:fzf_action = {
 " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
 let g:fzf_history_dir = '~/.local/share/fzf-history'
 
-execute "set <M-h>=\eh"
-map <M-h> :Files<CR>
+map <Leader>h :Files<CR>
 map gb :Buffers<CR>
-nnoremap <leader>g :Rg<CR>
+nnoremap <leader>R :Rg<CR>
 nnoremap mt :Tags<CR>
 nnoremap mm :Marks<CR>
 nnoremap <C-f> :BLines<CR>
+nnoremap <C-o> :FzfPreviewProjectFiles<CR>
 
 
 let g:fzf_tags_command = 'ctags -R'
@@ -225,7 +240,7 @@ function! s:file_is_in_directory(file, directory)
   return filereadable(a:file) && match(a:file, a:directory . '/') == 0
 endfunction
 
-nmap <Leader>h :PHistory<CR>
+nmap <Leader>y :PHistory<CR>
 nmap <Leader>: :History:<CR>
 nmap <Leader>M :Maps<CR>
 "
@@ -259,8 +274,9 @@ endfunction
 " ╚█████╔╝  ╚█████╔╝  ╚█████╔╝
 " ░╚════╝░   ╚════╝░
 let g:coc_global_extensions = [
-  \ 'coc-css', 'coc-json', 'coc-snippets', 'coc-prettier', 'coc-python', 'coc-vimtex',
-  \ 'coc-vimlsp', 'coc-sql', 'coc-eslint', 'coc-reason', 'coc-tslint','coc-stylelint', 'coc-tsserver', 'coc-sh'
+  \ 'coc-tsserver', 'coc-json', 'coc-snippets', 'coc-prettier', 'coc-python', 'coc-vimtex',
+  \ 'coc-vimlsp', 'coc-sql', 'coc-eslint', 'coc-reason', 'coc-tslint','coc-stylelint', 'coc-tsserver', 'coc-sh', 
+  \ 'coc-css' #https://github.com/neoclide/coc-tsserver
 \ ]
   " \ 'coc-html',  'coc-yaml',
 " 'coc-explorer'
@@ -576,7 +592,7 @@ nmap gr$ <plug>(SubversiveSubstituteToEndOfLine)
 " Substitute Over Range Motion
 nmap <leader> grf <plug>(SubversiveSubstituteRange)
 xmap <leader> grf <plug>(SubversiveSubstituteRange)
-nmap <leader> grw <plug>(SubversiveSubstituteWordRange)
+nmap <leader> grm <plug>(SubversiveSubstituteWordRange)
 "
 " need to confirm substitution
 nmap <leader> grc <plug>(SubversiveSubstituteRangeConfirm)
@@ -835,7 +851,7 @@ nnoremap <leader>f :cd %:p:h<CR>
 
 " Press spacebar to highlight searching items
 "set viminfo^=h
-set hlsearch
+" set hlsearch
 " Press ff to turn off highlighting and clear any message already displayed.
 nnoremap <silent> ff :nohlsearch<Bar>:echo<CR>
 " Press F6 to toggle highlighting on/off, and show current value.
@@ -917,17 +933,6 @@ let g:tex_conceal = ''
 " ██║░░░░░  ╚██████╔╝  ██║░╚███║  ╚█████╔╝  ░░░██║░░░  ██║  ╚█████╔╝  ██║░╚███║  ██████╔╝
 " ╚═╝░░░░░  ░╚═════╝░  ╚═╝░░╚══╝  ░╚════╝░  ░░╚═╝░░░  ╚═╝   ╚════╝░  ╚═╝░░╚══╝  ╚═════╝░░
 :nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
-"
-" ██████╗░  ░█████╗░  ██╗  ███╗░░██╗  ██████╗░  ░█████╗░  ░██╗░░░░░░░██╗  
-" ██╔══██╗  ██╔══██╗  ██║  ████╗░██║  ██╔══██╗  ██╔══██╗  ░██║░░██╗░░██║  
-" ██████╔╝  ███████║  ██║  ██╔██╗██║  ██████╦╝  ██║░░██║  ░╚██╗████╗██╔╝  
-" ██╔══██╗  ██╔══██║  ██║  ██║╚████║  ██╔══██╗  ██║░░██║  ░░████╔═████║░  
-" ██║░░██║  ██║░░██║  ██║  ██║░╚███║  ██████╦╝  ╚█████╔╝  ░░╚██╔╝░╚██╔╝░  
-" ╚═╝░░╚═╝  ╚═╝░░╚═╝  ╚═╝  ╚═╝░░╚══╝  ╚═════╝░   ╚════╝░  ░░░╚═╝░░░╚═╝░░  
-" let g:rainbow_active = 1
-" let g:rainbow#max_level = 16
-" let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
-" autocmd FileType * RainbowParentheses
 "
 " ░█████╗░  ████████╗  ██╗░░██╗  ███████╗  ██████╗░
 " ██╔══██╗  ╚══██╔══╝  ██║░░██║  ██╔════╝  ██╔══██╗
