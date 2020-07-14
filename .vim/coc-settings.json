@@ -4,11 +4,12 @@
     "diagnostic.warningSign": "⚠",
     "diagnostic.errorSign": "✖",
     "diagnostic.enableSign":true,
-    "diagnostic.maxWindowWidth": 400,
+    "suggest.enablePreview": true,
+    "diagnostic.maxWindowWidth": 800,
     "diagnostic.messageTarget":"echo",
     "diagnostic.virtualTextPrefix":"coc.diag",
-    "diagnostic.maxWindowHeight": 30,
-    "suggest.maxPreviewWidth":200,
-    "diagnostic.messageDelay":1,
-    "coc.preferences.jumpCommand":"vsplit"
+    "diagnostic.maxWindowHeight": 400,
+    "suggest.maxPreviewWidth":800,
+    "diagnostic.messageDelay":1,   
+    "coc.preferences.jumpCommand": "jump"
 }

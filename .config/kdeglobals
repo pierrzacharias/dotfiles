@@ -33,23 +33,23 @@ ForegroundInactive=55,115,117
 ForegroundLink=184,187,38
 ForegroundNegative=218,68,83
 ForegroundNeutral=246,116,0
-ForegroundNormal=235,219,178
+ForegroundNormal=200,186,151
 ForegroundPositive=39,174,96
 ForegroundVisited=127,140,141
 
 [Colors:Complementary]
-BackgroundAlternate=10,169,226
-BackgroundNormal=10,169,226
-DecorationFocus=10,169,226
-DecorationHover=10,169,226
-ForegroundActive=10,169,226
-ForegroundInactive=10,169,226
-ForegroundLink=10,169,226
-ForegroundNegative=10,169,226
-ForegroundNeutral=10,169,226
-ForegroundNormal=10,169,226
-ForegroundPositive=10,169,226
-ForegroundVisited=10,169,226
+BackgroundAlternate=0,11,30
+BackgroundNormal=13,12,8
+DecorationFocus=255,168,17
+DecorationHover=255,168,17
+ForegroundActive=245,120,0
+ForegroundInactive=2,175,255
+ForegroundLink=234,0,217
+ForegroundNegative=255,0,0
+ForegroundNeutral=255,255,0
+ForegroundNormal=255,168,17
+ForegroundPositive=0,255,0
+ForegroundVisited=113,28,145
 
 [Colors:Selection]
 BackgroundAlternate=142,192,124
@@ -57,11 +57,11 @@ BackgroundNormal=104,157,106
 DecorationFocus=104,157,106
 DecorationHover=131,165,152
 ForegroundActive=252,252,252
-ForegroundInactive=235,219,178
+ForegroundInactive=200,186,151
 ForegroundLink=253,188,75
 ForegroundNegative=218,68,83
 ForegroundNeutral=246,116,0
-ForegroundNormal=235,219,178
+ForegroundNormal=200,186,151
 ForegroundPositive=39,174,96
 ForegroundVisited=189,195,199
 
@@ -89,7 +89,7 @@ ForegroundInactive=55,115,117
 ForegroundLink=142,192,124
 ForegroundNegative=218,68,83
 ForegroundNeutral=246,116,0
-ForegroundNormal=235,219,178
+ForegroundNormal=200,186,151
 ForegroundPositive=39,174,96
 ForegroundVisited=127,140,141
 
@@ -103,13 +103,13 @@ ForegroundInactive=55,115,117
 ForegroundLink=142,192,124
 ForegroundNegative=218,68,83
 ForegroundNeutral=246,116,0
-ForegroundNormal=235,219,178
+ForegroundNormal=200,186,151
 ForegroundPositive=39,174,96
 ForegroundVisited=127,140,141
 
 [DirSelect Dialog]
-DirSelectDialog Size=2552,1406
-History Items[$e]=file:$HOME/wallpaper/iceberg,file:$HOME/Documents/Courses/usefull,file:$HOME/wallpaper,file:///run/media/pierre/Nouveau nom1,file:///run/media/pierre/Nouveau nom,file:$HOME/Music,file:$HOME/Music,file:$HOME/Pictures/druilet,file:$HOME/Pictures/druilet,file:$HOME/Documents/deces_papa,file:$HOME/Documents/CV/new_CV,file:$HOME/Templates/template_latex/presentation/Figures,file:$HOME/Documents/document admin,file:$HOME/Documents/document admin,file:$HOME/Documents/Courses/project_serie_temporelles/time_series_project,file:$HOME/Documents/Courses/2A/Modelisation_des_series_temporelles/TP6,file:$HOME/Documents/Courses/3A,file:$HOME/Documents/Courses/3A,file:$HOME/Documents/Courses/project_serie_temporelles/time_series_project/repport,file:$HOME/Documents/Courses/project_serie_temporelles/time_series_project,file:$HOME/Music/Reaper_theme,file:$HOME/Documents/document admin,file:$HOME,file:$HOME/Music,file:$HOME/Pictures/foncd-crean,file:$HOME/Pictures/foncd-crean
+DirSelectDialog Size=1319,1294
+History Items[$e]=file:$HOME/wallpaper/htoline_chararcters,file:$HOME/wallpaper/htoline_chararcters,file:$HOME/Videos,file:$HOME/wallpaper/iceberg,file:$HOME/Documents/Courses/usefull,file:$HOME/wallpaper,file:///run/media/pierre/Nouveau nom1,file:///run/media/pierre/Nouveau nom,file:$HOME/Music,file:$HOME/Music,file:$HOME/Pictures/druilet,file:$HOME/Pictures/druilet,file:$HOME/Documents/deces_papa,file:$HOME/Documents/CV/new_CV,file:$HOME/Templates/template_latex/presentation/Figures,file:$HOME/Documents/document admin,file:$HOME/Documents/document admin,file:$HOME/Documents/Courses/project_serie_temporelles/time_series_project,file:$HOME/Documents/Courses/2A/Modelisation_des_series_temporelles/TP6,file:$HOME/Documents/Courses/3A,file:$HOME/Documents/Courses/3A,file:$HOME/Documents/Courses/project_serie_temporelles/time_series_project/repport,file:$HOME/Documents/Courses/project_serie_temporelles/time_series_project,file:$HOME/Music/Reaper_theme,file:$HOME/Documents/document admin,file:$HOME,file:$HOME/Music,file:$HOME/Pictures/foncd-crean,file:$HOME/Pictures/foncd-crean
 
 [General]
 ColorScheme=Dark_Gruxbox
@@ -121,12 +121,12 @@ XftAntialias=true
 XftHintStyle=hintslight
 XftSubPixel=rgb
 dbfile=/home/pierre/.mozilla/firefox/kivyhyag.default/places.sqlite
-fixed=mplus Nerd Font Mono,12,-1,5,50,0,0,0,0,0,regular
-font=mplus Nerd Font Mono,12,-1,5,50,0,0,0,0,0,regular
-menuFont=mplus Nerd Font Mono,12,-1,5,50,0,0,0,0,0,regular
+fixed=TerminessTTF Nerd Font Mono,14,-1,5,57,0,0,0,0,0,Medium
+font=M+ 1mn,14,-1,5,57,0,0,0,0,0,Medium
+menuFont=M+ 1mn,14,-1,5,57,0,0,0,0,0,Medium
 shadeSortColumn=true
-smallestReadableFont=mplus Nerd Font Mono,12,-1,5,50,0,0,0,0,0,regular
-toolBarFont=mplus Nerd Font Mono,12,-1,5,50,0,0,0,0,0,regular
+smallestReadableFont=M+ 1mn,14,-1,5,57,0,0,0,0,0,Medium
+toolBarFont=M+ 1mn,14,-1,5,57,0,0,0,0,0,Medium
 
 [Icons]
 Theme=Gruvbox
@@ -143,7 +143,7 @@ widgetStyle=Breeze
 [KFileDialog Settings]
 Allow Expansion=false
 Automatically select filename extension=true
-Breadcrumb Navigation=false
+Breadcrumb Navigation=true
 Decoration position=2
 LocationCombo Completionmode=5
 PathCombo Completionmode=5
@@ -157,7 +157,7 @@ Sort by=Date
 Sort directories first=true
 Sort reversed=true
 Speedbar Width=178
-View Style=Simple
+View Style=Detail
 
 [Toolbar style]
 ToolButtonStyle=TextOnly
@@ -166,7 +166,7 @@ ToolButtonStyleOtherToolbars=TextOnly
 [WM]
 activeBackground=39,39,39
 activeBlend=235,219,178
-activeFont=mplus Nerd Font Mono,12,-1,5,50,0,0,0,0,0,regular
+activeFont=M+ 1mn,14,-1,5,57,0,0,0,0,0,Medium
 activeForeground=235,219,178
 frame=0,0,0
 inactiveBackground=40,40,40

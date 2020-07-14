@@ -15,10 +15,13 @@ MONITOR="eDP1" polybar -c ~/.config/polybar/config.ini main.title.edp &
 MONITOR="eDP1" polybar -c ~/.config/polybar/config.ini main.battery.edp &
 
 MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini main.hdmi &
-MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini main.mail.hdmi &
+MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini main.workspaces.hdmi &
 MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini main.title.hdmi &
-MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini main.time.hdmi &
-MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini main.battery.hdmi &
+
+# MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini main.mail.hdmi &
+# MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini main.title.hdmi &
+# MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini main.time.hdmi &
+# MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini main.battery.hdmi &
 # for m in $(polybar --list-monitors | cut -d":" -f1); do
 #     # MONITOR=$m polybar --reload bar1 &
 # done
