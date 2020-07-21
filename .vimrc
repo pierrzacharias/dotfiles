@@ -26,6 +26,7 @@ set mouse=a
 " ██║░░░░░  ███████╗  ╚██████╔╝  ╚██████╔╝
 " ╚═╝░░░░░  ╚══════╝  ░╚═════╝░  ░╚════╝░
 call plug#begin('~/.vim/plugged')
+Plug 'https://github.com/MathSquared/vim-python-sql'
 Plug 'https://github.com/AndrewRadev/sideways.vim'     " move func args  
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }    " fuzzy finder 
 Plug 'junegunn/fzf.vim'                                " fuzzy finder Plug 'junegunn/fzf.vim'
@@ -40,6 +41,7 @@ Plug 'maxboisvert/vim-simple-complete'                 " as-you-type keyword com
 Plug 'https://github.com/svermeulen/vim-subversive'    " replace content with register
 Plug 'preservim/nerdtree'                              " file explorer
 Plug 'ryanoasis/vim-devicons'                          "  add icon
+Plug 'fcpg/vim-orbital'
 Plug 'morhetz/gruvbox'
 Plug 'https://github.com/majutsushi/tagbar'            " show tabs
 Plug 'vim-airline/vim-airline'                         " add visual line
@@ -100,15 +102,18 @@ nnoremap ml :SidewaysJumpRight<cr>
 
 " colorscheme gruvbox8                        | " Sets theme to gruvbox
 colorscheme gruvbox                        | " Sets theme to gruvbox
+" colorscheme orbital
 let g:gruvbox_italic=1
 let g:gruvbox_contrast_dark = 'soft'
 "colorscheme Blade_runner
-hi Search cterm=NONE ctermfg=190  ctermbg=26
+" hi Search cterm=NONE ctermfg=190  ctermbg=26
+let g:gruvbox_undercurl=0
 set cursorline
-"Colet g:conoline_color_normal_dark = 'guifg=#3d321e'
-"let g:conoline_color_insert_dark = 'guifg=#3d321e'
-let base16colorspace=256                    | " Access colors present in 256 colorspace
-" set termguicolors                           | " Enables 24bit colors
+
+" let g:conoline_color_normal_dark = 'guifg=#3d321e'
+" let g:conoline_color_insert_dark = 'guifg=#3d321e'
+" let base16colorspace=256                    | " Access colors present in 256 colorspace
+set termguicolors                           | " Enables 24bit colors
 set background=dark
 hi Normal guibg=NONE ctermbg=NONE
 hi SignColumn guifg=#ebdbb2 guibg=NONE ctermbg=NONE
@@ -119,23 +124,15 @@ set foldtext=clean_fold#fold_text_minimal() | " Clean folds
 set noshowmode                              | " Don't show mode changes
 " set novisualbell                            | " Don't display visual bell
 " set nowrap                                  | " Don't wrap lines
-set showmatch                               | " Show matching braces
+" set showmatch                               | " Show matching braces
 " Highlight Customizations {{{
-highlight Comment gui=italic,bold           | " Make comments italic
-"
+highlight Comment gui=italic            | " Make comments italic
 augroup python_syntax_extra
   autocmd!
   autocmd! Syntax python :syn keyword Keyword self
 augroup END
 highlight Keyword cterm=italic ctermfg=5
-" ██╗░░██╗  ██╗  ░██████╗░  ██╗░░██╗  ██╗░░░░░  ██╗  ░██████╗░  ██╗░░██╗  ████████╗  
-" ██║░░██║  ██║  ██╔════╝░  ██║░░██║  ██║░░░░░  ██║  ██╔════╝░  ██║░░██║  ╚══██╔══╝  
-" ███████║  ██║  ██║░░██╗░  ███████║  ██║░░░░░  ██║  ██║░░██╗░  ███████║  ░░░██║░░░  
-" ██╔══██║  ██║  ██║░░╚██╗  ██╔══██║  ██║░░░░░  ██║  ██║░░╚██╗  ██╔══██║  ░░░██║░░░  
-" ██║░░██║  ██║  ╚██████╔╝  ██║░░██║  ███████╗  ██║  ╚██████╔╝  ██║░░██║  ░░░██║░░░  
-" ░╚═╝░░╚═╝  ╚═╝  ░╚════╝░  ░╚═╝░░╚═╝  ╚══════╝  ╚═╝  ░╚════╝░  ░╚═╝░░╚═╝  ░░╚═╝░░░  
-"
-"
+
 " ███████╗  ███████╗  ███████╗  
 " ██╔════╝  ╚════██║  ██╔════╝  
 " █████╗░░  ░░███╔═╝  █████╗░░  
@@ -276,7 +273,7 @@ endfunction
 let g:coc_global_extensions = [
   \ 'coc-tsserver', 'coc-json', 'coc-snippets', 'coc-prettier', 'coc-python', 'coc-vimtex',
   \ 'coc-vimlsp', 'coc-sql', 'coc-eslint', 'coc-reason', 'coc-tslint','coc-stylelint', 'coc-tsserver', 'coc-sh', 
-  \ 'coc-css' 
+  \ 'coc-css', 'coc-highlight' 
 \ ]
   " \ 'coc-html',  'coc-yaml',
 " 'coc-explorer'
@@ -332,7 +329,7 @@ nmap <silent> mn <Plug>(coc-diagnostic-next)
 "
 " GoTo code navigation.
 nmap <silent> md <Plug>(coc-definition)
-" nnoremap <silent> mvd :call CocAction('jumpDefinition', 'drop')<CR>
+nnoremap <silent> gd :call CocAction('jumpDefinition', 'drop')<CR>
 " nnoremap <silent> mjd :call CocAction('jumpDefinition', 'jump')<CR>
 
 
@@ -426,7 +423,8 @@ nnoremap <silent><nowait> mp  :<C-u>CocListResume<CR>
 "
 " Explorer
 " execute "set <M-n>=\en"
-" nmap <C-n> :CocCommand explorer<CR>
+" nmap <C-n> :
+" CocCommand explorer<CR>
 " autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 "
 " ██████╗░  ░█████╗░  ██████╗░  ███████╗  ███████╗  ███████╗  ██╗░░░░░  ██╗  ░██████╗  ████████╗  
@@ -438,7 +436,7 @@ nnoremap <silent><nowait> mp  :<C-u>CocListResume<CR>
 nnoremap <silent> <Leader>a  :<C-u>CocFzfList diagnostics<CR>
 nnoremap <silent> <Leader>b  :<C-u>CocFzfList diagnostics --current-buf<CR>
 nnoremap <silent> <Leader>c  :<C-u>CocFzfList commands<CR>
-nnoremap <silent> <Leader>e  :<C-u>CocFzfList extensions<CR>
+" nnoremap <silent> <Leader>e  :<C-u>CocFzfList extensions<CR>
 nnoremap <silent> <Leader>l  :<C-u>CocFzfList location<CR>
 nnoremap <silent> <Leader>o  :<C-u>CocFzfList outline<CR>
 nnoremap <silent> <Leader>s  :<C-u>CocFzfList symbols<CR>
@@ -756,7 +754,8 @@ noremap <silent> <C-Down> :resize -3<CR>
 let g:airline_powerline_fonts = 1
 "
 " let g:airline#extensions#fugitiveline#enabled = 0
-let g:airline_theme='raven'
+" let g:airline_theme='raven'
+let g:airline_theme='orbital'
 " let g:airline_theme='monochrome'
 " let g:airline_theme = 'minimalist'
 " let g:airline#extensions#tabline#enabled = 1
@@ -790,7 +789,7 @@ nnoremap <space> i <space><esc>
 " nnoremap <M-m> <C-p>
 nnoremap L g_
 nnoremap H ^
-:nnoremap K <Esc>i<CR><Esc>
+nnoremap K <Esc>i<CR><Esc>
 map <C-l> :set rnu<CR>
 " map <C-a> :set nornu<CR>
 "
@@ -802,7 +801,7 @@ nnoremap <leader> <c-w>
 " Save the file if there is any changes
 execute "set <M-f>=\ef"
 nnoremap <M-f> :update<cr>
-:inoremap <M-f> <Esc> :update<cr>
+inoremap <M-f> <Esc>:update<cr>
 execute "set <M-c>=\ec"
 "
 " ░██████╗  ██╗░░██╗  ░█████╗░  ██████╗░  ████████╗  ██████╗░  ██╗░░░██╗  ████████╗  ░██████╗
@@ -973,8 +972,8 @@ vnoremap <silent><expr> <up> coc#util#has_float() ? <SID>coc_float_scroll(0) : "
 " ██║░░██╗  ██╔══╝░░  ██║╚████║  ░░░██║░░░  ██╔══╝░░  ██╔══██╗  
 " ╚█████╔╝  ███████╗  ██║░╚███║  ░░░██║░░░  ███████╗  ██║░░██║  
 " ░╚════╝░  ╚══════╝  ╚═╝░░╚══╝  ░░╚═╝░░░  ╚══════╝  ╚═╝░░╚═╝  
-set scrolloff=999
-:nnoremap <Leader>l :let &scrolloff=999-&scrolloff<CR>
+set scrolloff=100
+:nnoremap <Leader>l :let &scrolloff=100-&scrolloff<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ███████╗  ███╗░░██╗  ██████╗░
 " ██╔════╝  ████╗░██║  ██╔══██╗
