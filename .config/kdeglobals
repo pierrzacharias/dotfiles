@@ -1,5 +1,5 @@
 [$Version]
-update_info=filepicker.upd:filepicker-remove-old-previews-entry,fonts_global.upd:Fonts_Global,fonts_global_toolbar.upd:Fonts_Global_Toolbar,kwin.upd:animation-speed,icons_remove_effects.upd:IconsRemoveEffects
+update_info=filepicker.upd:filepicker-remove-old-previews-entry,fonts_global.upd:Fonts_Global,fonts_global_toolbar.upd:Fonts_Global_Toolbar,kwin.upd:animation-speed,icons_remove_effects.upd:IconsRemoveEffects,style_widgetstyle_default_breeze.upd:StyleWidgetStyleDefaultBreeze
 
 [ColorEffects:Disabled]
 ChangeSelectionColor=
@@ -109,7 +109,7 @@ ForegroundVisited=11,96,255
 
 [DirSelect Dialog]
 DirSelectDialog Size=1319,1294
-History Items[$e]=file:$HOME/wallpaper/htoline_chararcters,file:$HOME/wallpaper/htoline_chararcters,file:$HOME/Videos,file:$HOME/wallpaper/iceberg,file:$HOME/Documents/Courses/usefull,file:$HOME/wallpaper,file:///run/media/pierre/Nouveau nom1,file:///run/media/pierre/Nouveau nom,file:$HOME/Music,file:$HOME/Music,file:$HOME/Pictures/druilet,file:$HOME/Pictures/druilet,file:$HOME/Documents/deces_papa,file:$HOME/Documents/CV/new_CV,file:$HOME/Templates/template_latex/presentation/Figures,file:$HOME/Documents/document admin,file:$HOME/Documents/document admin,file:$HOME/Documents/Courses/project_serie_temporelles/time_series_project,file:$HOME/Documents/Courses/2A/Modelisation_des_series_temporelles/TP6,file:$HOME/Documents/Courses/3A,file:$HOME/Documents/Courses/3A,file:$HOME/Documents/Courses/project_serie_temporelles/time_series_project/repport,file:$HOME/Documents/Courses/project_serie_temporelles/time_series_project,file:$HOME/Music/Reaper_theme,file:$HOME/Documents/document admin,file:$HOME,file:$HOME/Music,file:$HOME/Pictures/foncd-crean,file:$HOME/Pictures/foncd-crean
+History Items[$e]=file:$HOME/wallpaper/Jodorowsky's Dune (2013)_files,file:$HOME/wallpaper/Jodorowsky's Dune (2013)_files,file:$HOME/wallpaper/Jodorowsky's Dune (2013)_files,file:$HOME/wallpaper/htoline_chararcters,file:$HOME/wallpaper/htoline_chararcters,file:$HOME/Videos,file:$HOME/wallpaper/iceberg,file:$HOME/Documents/Courses/usefull,file:$HOME/wallpaper,file:///run/media/pierre/Nouveau nom1,file:///run/media/pierre/Nouveau nom,file:$HOME/Music,file:$HOME/Music,file:$HOME/Pictures/druilet,file:$HOME/Pictures/druilet,file:$HOME/Documents/deces_papa,file:$HOME/Documents/CV/new_CV,file:$HOME/Templates/template_latex/presentation/Figures,file:$HOME/Documents/document admin,file:$HOME/Documents/document admin,file:$HOME/Documents/Courses/project_serie_temporelles/time_series_project,file:$HOME/Documents/Courses/2A/Modelisation_des_series_temporelles/TP6,file:$HOME/Documents/Courses/3A,file:$HOME/Documents/Courses/3A,file:$HOME/Documents/Courses/project_serie_temporelles/time_series_project/repport,file:$HOME/Documents/Courses/project_serie_temporelles/time_series_project,file:$HOME/Music/Reaper_theme,file:$HOME/Documents/document admin,file:$HOME,file:$HOME/Music,file:$HOME/Pictures/foncd-crean,file:$HOME/Pictures/foncd-crean
 
 [General]
 ColorScheme=Dune
@@ -149,7 +149,7 @@ LocationCombo Completionmode=5
 PathCombo Completionmode=5
 Show Bookmarks=false
 Show Full Path=false
-Show Inline Previews=true
+Show Inline Previews=false
 Show Preview=false
 Show Speedbar=true
 Show hidden files=false

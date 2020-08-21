@@ -1,4 +1,5 @@
 set encoding=utf-8
+set incsearch
 filetype plugin indent on
 set nocompatible
 set ignorecase
@@ -17,7 +18,7 @@ set updatetime=30                                      " Smaller updatetime for 
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
 " set textprop=True
-set mouse=a
+" set mouse=a
 "
 " ██████╗░  ██╗░░░░░  ██╗░░░██╗  ░██████╗░
 " ██╔══██╗  ██║░░░░░  ██║░░░██║  ██╔════╝░
@@ -26,6 +27,8 @@ set mouse=a
 " ██║░░░░░  ███████╗  ╚██████╔╝  ╚██████╔╝
 " ╚═╝░░░░░  ╚══════╝  ░╚═════╝░  ░╚════╝░
 call plug#begin('~/.vim/plugged')
+" Plug 'https://github.com/ncm2/float-preview.nvim/'
+Plug 'https://github.com/tpope/vim-fugitive'
 Plug 'https://github.com/MathSquared/vim-python-sql'
 Plug 'https://github.com/AndrewRadev/sideways.vim'     " move func args  
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }    " fuzzy finder 
@@ -44,8 +47,9 @@ Plug 'ryanoasis/vim-devicons'                          "  add icon
 Plug 'fcpg/vim-orbital'
 Plug 'morhetz/gruvbox'
 Plug 'https://github.com/majutsushi/tagbar'            " show tabs
-Plug 'vim-airline/vim-airline'                         " add visual line
-Plug 'vim-airline/vim-airline-themes'                  " theme for airline
+Plug 'bluz71/vim-moonfly-statusline'
+" Plug 'vim-airline/vim-airline'                         " add visual line
+" Plug 'vim-airline/vim-airline-themes'                  " theme for airline
 Plug 'jlanzarotta/bufexplorer'                         " help to manage opened buffers
 Plug 'skywind3000/gutentags_plus'                      " help to generate tags
 Plug 'https://github.com/universal-ctags/ctags'        " help to generate tags
@@ -86,12 +90,10 @@ call plug#end() "run :PlugInstall
 " ░╚═══██╗  ██║  ██║░░██║  ██╔══╝░░  ░░████╔═████║░  ██╔══██║  ░░╚██╔╝░░  
 " ██████╔╝  ██║  ██████╔╝  ███████╗  ░░╚██╔╝░╚██╔╝░  ██║░░██║  ░░░██║░░░  
 " ╚═════╝░░  ╚═╝  ╚═════╝░  ╚══════╝  ░░░╚═╝░░░╚═╝░░  ╚═╝░░╚═╝  ░░░╚═╝░░░  
-execute "set <M-h>=\eh"
-nnoremap <M-h> :SidewaysLeft<cr>
-execute "set <M-l>=\el"
-nnoremap <M-l> :SidewaysRight<cr>
-nnoremap mh :SidewaysJumpLeft<cr>
-nnoremap ml :SidewaysJumpRight<cr>
+nnoremap mh :SidewaysLeft<cr>
+nnoremap ml :SidewaysRight<cr>
+" nnoremap mh :SidewaysJumpLeft<cr>
+" nnoremap ml :SidewaysJumpRight<cr>
 "
 " ██████╗░  ░█████╗░  ██╗░░░░░  ░█████╗░  ██████╗░
 " ██╔══██╗  ██╔══██╗  ██║░░░░░  ██╔══██╗  ██╔══██╗
@@ -116,6 +118,7 @@ set cursorline
 set termguicolors                           | " Enables 24bit colors
 set background=dark
 hi Normal guibg=NONE ctermbg=NONE
+" hi Normal guibg=#201a14 ctermbg=NONE
 hi SignColumn guifg=#ebdbb2 guibg=NONE ctermbg=NONE
 highlight VertSplit guibg=NONE guifg=#181A1F
 set fillchars=vert:│,fold:+
@@ -164,52 +167,29 @@ nmap <C-S> :Buffers<CR>
 
 let g:fzf_tags_command = 'ctags -R'
 " Border color
-" let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp'} }
 " let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline '
 let $FZF_DEFAULT_OPTS=' --color=dark --color=fg:7,bg:-1,hl:-1,bg+:-1,hl+:1 --color=info:5,prompt:5,pointer:12,marker:1,spinner:1,header:-1 --layout=reverse  --margin=1,4'
 let $FZF_DEFAULT_COMMAND="rg --files --hidden"
 let g:fzf_commands_expect = 'alt-enter'
 " let g:fzf_preview_window = 'right:50%:noborder:hidden'
 " let g:coc_fzf_opts = []
-function! CreateCenteredFloatingWindow()
-    let width = min([&columns - 4, max([80, &columns - 20])])
-    let height = min([&lines - 4, max([20, &lines - 10])])
-    let top = ((&lines - height) / 2) - 1
-    let left = (&columns - width) / 2
-    let opts = {'relative': 'editor', 'row': top, 'col': left, 'width': width, 'height': height, 'style': 'minimal'}
-
-    let top = "╭" . repeat("─", width - 2) . "╮"
-    let mid = "│" . repeat(" ", width - 2) . "│"
-    let bot = "╰" . repeat("─", width - 2) . "╯"
-    let lines = [top] + repeat([mid], height - 2) + [bot]
-    let s:buf = nvim_create_buf(v:false, v:true)
-    call nvim_buf_set_lines(s:buf, 0, -1, v:true, lines)
-    call nvim_open_win(s:buf, v:true, opts)
-    set winhl=Normal:Floating
-    let opts.row += 1
-    let opts.height -= 2
-    let opts.col += 2
-    let opts.width -= 4
-    call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
-    au BufWipeout <buffer> exe 'bw '.s:buf
-endfunction
-
-let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
-" Customize fzf colors to match your color scheme
-" let g:fzf_colors =
-"     \ { 'fg':      ['fg', 'Normal'],
-"     \ 'bg':      ['bg', 'background'],
-"     \ 'hl':      ['fg', 'Comment'],
-"     \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-"     \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-"     \ 'hl+':     ['fg', 'Statement'],
-"     \ 'info':    ['fg', 'PreProc'],
-"     \ 'border':  ['fg', '#fff'],
-"     \ 'prompt':  ['fg', 'Conditional'],
-"     \ 'pointer': ['fg', 'Exception'],
-"     \ 'marker':  ['fg', 'Keyword'],
-"     \ 'spinner': ['fg', 'Label'],
-"     \ 'header':  ['fg', 'Comment'] }
+let g:fzf_layout = 
+    \ {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo', 'border': 'sharp'} 
+    \ }
+" \ 'bg':      ['bg', '#201a14'],
+let g:fzf_colors = { 'fg':      ['fg', 'Normal'],
+    \ 'bg':      ['bg', 'background'],
+    \ 'hl':      ['fg', 'Comment'],
+    \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+    \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+    \ 'hl+':     ['fg', 'Statement'],
+    \ 'info':    ['fg', 'PreProc'],
+    \ 'border':  ['fg', '#fff'],
+    \ 'prompt':  ['fg', 'Conditional'],
+    \ 'pointer': ['fg', 'Exception'],
+    \ 'marker':  ['fg', 'Keyword'],
+    \ 'spinner': ['fg', 'Label'],
+    \ 'header':  ['fg', 'Comment'] }
 
 "Get Files
 execute "set <M-g>=\en"
@@ -296,11 +276,11 @@ endfunction
 let g:coc_global_extensions = [
   \ 'coc-tsserver', 'coc-json', 'coc-snippets', 'coc-prettier', 'coc-python', 'coc-vimtex',
   \ 'coc-vimlsp', 'coc-sql', 'coc-eslint', 'coc-reason', 'coc-tslint','coc-stylelint', 'coc-tsserver', 'coc-sh', 
-  \ 'coc-css', 'coc-highlight' 
+  \ 'coc-css', 'coc-highlight', 'coc-pairs' 
 \ ]
   " \ 'coc-html',  'coc-yaml',
 " 'coc-explorer'
-  " \ 'coc-lists', 'coc-pairs', 'coc-phpls',
+  " \ 'coc-lists', , 'coc-phpls',
 " See coc config in "coc-settings.json" with :CocConfig
     "diagnostic.enable":,
 " Map Alt-n to trigger completion: >
@@ -315,15 +295,14 @@ set shortmess+=c                                             " Remove messages f
 inoremap <expr> <Enter> pumvisible() ? "\<C-y>" : "\<CR>"
 " Map <tab> for trigger completion, completion confirm, snippet expand and jump like VSCode. >
 " inoremap <silent><expr> <TAB>
-"     \ pumvisible() ? coc#_select_confirm() :
-"     \ coc#expandableOrJumpable() ?
-"     \ "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-"     \ <SID>check_back_space() ? "\<TAB>" :
-"     \ coc#refresh()
-" function! s:check_back_space() abort
-"     let col = col('.') - 1
-"     return !col || getline('.')[col - 1]  =~# '\s'
-" endfunction
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 let g:coc_snippet_next = '<TAB>'
  " 'coc-git',
  " 'coc-spell-checker',
@@ -588,7 +567,7 @@ let g:pymode_python = 0
 " let g:jupyter_auto_connect=1
 " let b:jupyter_kernel_type='python3'
 " set pythonthreedll=python38.dll
-let g:jupyter_monitor_console=1
+" let g:jupyter_monitor_console=1
 " set pyxversion=3
 "
 " ░██████╗  ██╗░░░██╗  ██████╗░  ███╗░░░███╗  ███████╗  ██████╗░  ░██████╗  ██╗  ██╗░░░██╗  ███████╗
@@ -598,20 +577,20 @@ let g:jupyter_monitor_console=1
 " ██████╔╝  ╚██████╔╝  ██████╦╝  ██║░╚═╝░██║  ███████╗  ██║░░██║  ██████╔╝  ██║  ░░╚██╔╝░░  ███████╗
 " ╚═════╝░░  ░╚═════╝░  ╚═════╝░  ╚═╝░░░░░╚═╝  ╚══════╝  ╚═╝░░╚═╝  ╚═════╝░░  ╚═╝  ░░░╚═╝░░░  ╚══════╝
 
-" Substitute Motion
-nmap gr <plug>(SubversiveSubstitute)
-nmap gr_ <plug>(SubversiveSubstituteLine)
-nmap gr$ <plug>(SubversiveSubstituteToEndOfLine)
+" s for substitute
+nmap s <plug>(SubversiveSubstitute)
+nmap ss <plug>(SubversiveSubstituteLine)
+nmap S <plug>(SubversiveSubstituteToEndOfLine)
 "
 " Substitute Over Range Motion
-nmap <leader> grf <plug>(SubversiveSubstituteRange)
-xmap <leader> grf <plug>(SubversiveSubstituteRange)
-nmap <leader> grm <plug>(SubversiveSubstituteWordRange)
+nmap <leader>s <plug>(SubversiveSubstituteRange)
+xmap <leader>s <plug>(SubversiveSubstituteRange)
+nmap <leader>s <plug>(SubversiveSubstituteWordRange)
 "
 " need to confirm substitution
-nmap <leader> grc <plug>(SubversiveSubstituteRangeConfirm)
-xmap <leader> grc <plug>(SubversiveSubstituteRangeConfirm)
-nmap <leader> grcw <plug>(SubversiveSubstituteWordRangeConfirm)
+nmap <leader>cs <plug>(SubversiveSubstituteRangeConfirm)
+xmap <leader>cs <plug>(SubversiveSubstituteRangeConfirm)
+nmap <leader>css <plug>(SubversiveSubstituteWordRangeConfirm)
 let g:subversivePromptWithCurrent=1
 "let g:subversivePreserveCursorPosition=1 "cursor will not move when substitutions are applied
 "
@@ -766,6 +745,15 @@ noremap <silent> <C-Left> :vertical resize +3<CR>
 noremap <silent> <C-Right> :vertical resize -3<CR>
 noremap <silent> <C-Up>  :resize +3<CR>
 noremap <silent> <C-Down> :resize -3<CR>
+
+" ███╗░░░███╗  ░█████╗░  ░█████╗░  ███╗░░██╗  ███████╗  ██╗░░░░░  ██╗░░░██╗  
+" ███╗░████║  ██╔══██╗  ██╔══██╗  ████╗░██║  ██╔════╝  ██║░░░░░  ╚██╗░██╔╝  
+" █╔████╔██║  ██║░░██║  ██║░░██║  ██╔██╗██║  █████╗░░  ██║░░░░░  ░╚████╔╝░  
+" █║╚██╔╝██║  ██║░░██║  ██║░░██║  ██║╚████║  ██╔══╝░░  ██║░░░░░  ░░╚██╔╝░░  
+" █║░╚═╝░██║  ╚█████╔╝  ╚█████╔╝  ██║░╚███║  ██║░░░░░  ███████╗  ░░░██║░░░  
+" ═╝░░░░░╚═╝   ╚════╝░   ╚════╝░  ╚═╝░░╚══╝  ╚═╝░░░░░  ╚══════╝  ░░░╚═╝░░░  
+let g:moonflyIgnoreDefaultColors = 1
+let g:moonflyWithGitBranchCharacter = 1
 "
 " ░█████╗░  ██╗  ██████╗░  ██╗░░░░░  ██╗  ███╗░░██╗  ███████╗
 " ██╔══██╗  ██║  ██╔══██╗  ██║░░░░░  ██║  ████╗░██║  ██╔════╝
@@ -773,6 +761,7 @@ noremap <silent> <C-Down> :resize -3<CR>
 " ██╔══██║  ██║  ██╔══██╗  ██║░░░░░  ██║  ██║╚████║  ██╔══╝░░
 " ██║░░██║  ██║  ██║░░██║  ███████╗  ██║  ██║░╚███║  ███████╗
 " ╚═╝░░╚═╝  ╚═╝  ╚═╝░░╚═╝  ╚══════╝  ╚═╝  ╚═╝░░╚══╝  ╚══════╝
+
 " let g:airline_theme='bubblegum'
 let g:airline_powerline_fonts = 1
 "
@@ -850,7 +839,6 @@ autocmd BufReadPost *
   \ | end
 
 nnoremap qq :wq<CR>
-
 " remap end-of-line to x
 nnoremap x $
 inoremap <C-E> <End>
@@ -889,15 +877,12 @@ command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | 
 execute "set <M-'>=\e'"
 nnoremap <M-'> :WipeReg<cr>
 "
-"
 " ██╗░░░░░  ░█████╗░  ████████╗  ███████╗  ██╗░░██╗
 " ██║░░░░░  ██╔══██╗  ╚══██╔══╝  ██╔════╝  ╚██╗██╔╝
 " ██║░░░░░  ███████║  ░░░██║░░░  █████╗░░  ░╚███╔╝░
 " ██║░░░░░  ██╔══██║  ░░░██║░░░  ██╔══╝░░  ░██╔██╗░
 " ███████╗  ██║░░██║  ░░░██║░░░  ███████╗  ██╔╝╚██╗
 " ╚══════╝  ╚═╝░░╚═╝  ░░╚═╝░░░  ╚══════╝  ╚═╝░░╚═╝
-
-
 " map <C-s> :call Synctex()<cr>
 execute "set <M-c>=\e3"
 nnoremap <M-c> :VimtexCompile<cr>
@@ -995,7 +980,7 @@ vnoremap <silent><expr> <up> coc#util#has_float() ? <SID>coc_float_scroll(0) : "
 " ██║░░██╗  ██╔══╝░░  ██║╚████║  ░░░██║░░░  ██╔══╝░░  ██╔══██╗  
 " ╚█████╔╝  ███████╗  ██║░╚███║  ░░░██║░░░  ███████╗  ██║░░██║  
 " ░╚════╝░  ╚══════╝  ╚═╝░░╚══╝  ░░╚═╝░░░  ╚══════╝  ╚═╝░░╚═╝  
-set scrolloff=100
+set scrolloff=5
 :nnoremap <Leader>l :let &scrolloff=100-&scrolloff<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ███████╗  ███╗░░██╗  ██████╗░
