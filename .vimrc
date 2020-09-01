@@ -27,13 +27,17 @@ set shortmess+=c
 " ██║░░░░░  ███████╗  ╚██████╔╝  ╚██████╔╝
 " ╚═╝░░░░░  ╚══════╝  ░╚═════╝░  ░╚════╝░
 call plug#begin('~/.vim/plugged')
+Plug 'https://github.com/sillybun/vim-repl' 
+" Plug 'https://github.com/KKPMW/vim-sendtowindow' "send text to as windows 
+" Plug 'https://github.com/wincent/terminus' "send text to as windows 
 " Plug 'https://github.com/ncm2/float-preview.nvim/'
+Plug 'https://github.com/Huxpro/clever-f.vimlsp'        " repeat searched letters"
+Plug 'https://github.com/KKPMW/vim-sendtowindow' "send text to as windows 
 Plug 'https://github.com/tpope/vim-fugitive'
 Plug 'https://github.com/MathSquared/vim-python-sql'
 Plug 'https://github.com/AndrewRadev/sideways.vim'     " move func args  
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }    " fuzzy finder 
 Plug 'junegunn/fzf.vim'                                " fuzzy finder Plug 'junegunn/fzf.vim'
-" Plug 'https://github.com/yuki-ycino/fzf-preview.vim'                                " fuzzy finder Plug 'junegunn/fzf.vim'
 Plug 'airblade/vim-rooter'                             " place search at prject root, look for .gitingore
 Plug 'antoinemadec/coc-fzf'                            " integrate fzf with coc.vim
 Plug 'junegunn/vim-easy-align'                         " Helps alignment TODO: LEARN
@@ -48,8 +52,6 @@ Plug 'fcpg/vim-orbital'
 Plug 'morhetz/gruvbox'
 Plug 'https://github.com/majutsushi/tagbar'            " show tabs
 Plug 'bluz71/vim-moonfly-statusline'
-" Plug 'vim-airline/vim-airline'                         " add visual line
-" Plug 'vim-airline/vim-airline-themes'                  " theme for airline
 Plug 'jlanzarotta/bufexplorer'                         " help to manage opened buffers
 Plug 'skywind3000/gutentags_plus'                      " help to generate tags
 Plug 'https://github.com/universal-ctags/ctags'        " help to generate tags
@@ -68,6 +70,9 @@ Plug 'https://github.com/Yggdroot/indentLine'          " help with indent TODO: 
 "
 " REMOVED
 "
+" Plug 'https://github.com/yuki-ycino/fzf-preview.vim'                                " fuzzy finder Plug 'junegunn/fzf.vim'
+" Plug 'vim-airline/vim-airline'                         " add visual line
+" Plug 'vim-airline/vim-airline-themes'                  " theme for airline
 " Plug 'https://github.com/chengzeyi/fzf-preview.vim'
 " Plug 'sheerun/vim-polyglot'                          " synthax checker
 " Plug 'lifepillar/vim-gruvbox8'                         " Faster version of gruvbox
@@ -83,6 +88,19 @@ Plug 'https://github.com/Yggdroot/indentLine'          " help with indent TODO: 
 "Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 "
 call plug#end() "run :PlugInstall
+
+" ██████╗░  ███████╗  ██████╗░  ██╗░░░░░  
+" ██╔══██╗  ██╔════╝  ██╔══██╗  ██║░░░░░  
+" ██████╔╝  █████╗░░  ██████╔╝  ██║░░░░░  
+" ██╔══██╗  ██╔══╝░░  ██╔═══╝░  ██║░░░░░  
+" ██║░░██║  ███████╗  ██║░░░░░  ███████╗  
+" ╚═╝░░╚═╝  ╚══════╝  ╚═╝░░░░░  ╚══════╝  
+nnoremap <leader>r :REPLToggle<CR>
+autocmd Filetype python nnoremap <F12> <Esc>:REPLDebugStopAtCurrentLine<Cr>
+autocmd Filetype python nnoremap <F10> <Esc>:REPLPDBN<Cr>
+autocmd Filetype python nnoremap <F11> <Esc>:REPLPDBS<Cr>
+
+
 "
 " ░██████╗  ██╗  ██████╗░  ███████╗  ░██╗░░░░░░░██╗  ░█████╗░  ██╗░░░██╗  
 " ██╔════╝  ██║  ██╔══██╗  ██╔════╝  ░██║░░██╗░░██║  ██╔══██╗  ╚██╗░██╔╝  
@@ -101,7 +119,7 @@ nnoremap ml :SidewaysRight<cr>
 " ██║░░██╗  ██║░░██║  ██║░░░░░  ██║░░██║  ██╔══██╗
 " ╚█████╔╝  ╚█████╔╝  ███████╗  ╚█████╔╝  ██║░░██║
 " ░╚════╝░   ╚════╝░  ╚══════╝   ╚════╝░  ╚═╝░░╚═╝
-
+hi Terminal cterm=None 
 " colorscheme gruvbox8                        | " Sets theme to gruvbox
 colorscheme gruvbox                        | " Sets theme to gruvbox
 " colorscheme orbital
@@ -115,9 +133,10 @@ set cursorline
 " let g:conoline_color_normal_dark = 'guifg=#3d321e'
 " let g:conoline_color_insert_dark = 'guifg=#3d321e'
 " let base16colorspace=256                    | " Access colors present in 256 colorspace
-set termguicolors                           | " Enables 24bit colors
+" set termguicolors                           | " Enables 24bit colors
 set background=dark
 hi Normal guibg=NONE ctermbg=NONE
+hi Terminal guibg=NONE ctermbg=NONE
 " hi Normal guibg=#201a14 ctermbg=NONE
 hi SignColumn guifg=#ebdbb2 guibg=NONE ctermbg=NONE
 highlight VertSplit guibg=NONE guifg=#181A1F
@@ -822,6 +841,7 @@ execute "set <M-c>=\ec"
 " ░╚═══██╗  ██╔══██║  ██║░░██║  ██╔══██╗  ░░░██║░░░  ██║░░██╗  ██║░░░██║  ░░░██║░░░  ░╚═══██╗
 " ██████╔╝  ██║░░██║  ╚█████╔╝  ██║░░██║  ░░░██║░░░  ╚█████╔╝  ╚██████╔╝  ░░░██║░░░  ██████╔╝
 " ╚═════╝░░  ░╚═╝░░╚═╝   ╚════╝░  ╚═╝░░╚═╝  ░░╚═╝░░░  ░╚════╝░  ░╚═════╝░  ░░╚═╝░░░  ╚═════╝░░
+nnoremap <Leader>t :vert terminal<CR>
 nnoremap <silent>db m`:silent +g/\m^\s*$/d<CR>``:noh<CR>  " delete line below if blanck
 nnoremap <silent>da m`:silent -g/\m^\s*$/d<CR>``:noh<CR> " delete line above if blank
 execute "set <M-o>=\eo"
