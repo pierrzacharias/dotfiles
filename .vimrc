@@ -27,31 +27,28 @@ set shortmess+=c
 " ██║░░░░░  ███████╗  ╚██████╔╝  ╚██████╔╝
 " ╚═╝░░░░░  ╚══════╝  ░╚═════╝░  ░╚════╝░
 call plug#begin('~/.vim/plugged')
-Plug 'https://github.com/sillybun/vim-repl' 
-" Plug 'https://github.com/KKPMW/vim-sendtowindow' "send text to as windows 
-" Plug 'https://github.com/wincent/terminus' "send text to as windows 
-" Plug 'https://github.com/ncm2/float-preview.nvim/'
-Plug 'https://github.com/Huxpro/clever-f.vimlsp'        " repeat searched letters"
-Plug 'https://github.com/KKPMW/vim-sendtowindow' "send text to as windows 
+"
+Plug 'https://github.com/KKPMW/vim-sendtowindow'       " send text to as windows 
+Plug 'https://github.com/sillybun/vim-repl'            " python terminal 
 Plug 'https://github.com/tpope/vim-fugitive'
 Plug 'https://github.com/MathSquared/vim-python-sql'
 Plug 'https://github.com/AndrewRadev/sideways.vim'     " move func args  
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }    " fuzzy finder 
 Plug 'junegunn/fzf.vim'                                " fuzzy finder Plug 'junegunn/fzf.vim'
-Plug 'airblade/vim-rooter'                             " place search at prject root, look for .gitingore
+" Plug 'airblade/vim-rooter'                           " place search at prject root, look for .gitingore
 Plug 'antoinemadec/coc-fzf'                            " integrate fzf with coc.vim
 Plug 'junegunn/vim-easy-align'                         " Helps alignment TODO: LEARN
 Plug 'dense-analysis/ale'                              " syntax checking and semantic errors
-Plug 'neoclide/coc.nvim', {'branch': 'release'}        " visual studio completion engine
+Plug 'neoclide/coc.nvim', {'branch': 'felease'}        " visual studio completion engine
 Plug 'michaeljsmith/vim-indent-object'                 " New text object, based on indentation levels.
 Plug 'maxboisvert/vim-simple-complete'                 " as-you-type keyword completion
 Plug 'https://github.com/svermeulen/vim-subversive'    " replace content with register
 Plug 'preservim/nerdtree'                              " file explorer
-Plug 'ryanoasis/vim-devicons'                          "  add icon
+Plug 'ryanoasis/vim-devicons'                          " add icon
 Plug 'fcpg/vim-orbital'
-Plug 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'                                 " color theme
 Plug 'https://github.com/majutsushi/tagbar'            " show tabs
-Plug 'bluz71/vim-moonfly-statusline'
+Plug 'bluz71/vim-moonfly-statusline'                   " minimal bar
 Plug 'jlanzarotta/bufexplorer'                         " help to manage opened buffers
 Plug 'skywind3000/gutentags_plus'                      " help to generate tags
 Plug 'https://github.com/universal-ctags/ctags'        " help to generate tags
@@ -62,6 +59,8 @@ Plug 'lervag/vimtex'                                   " Latex plugin
 Plug 'https://github.com/Yggdroot/indentLine'          " help with indent TODO: Configure
 "
 " TOTEST
+" Plug 'https://github.com/wincent/terminus' "send text to as windows 
+" Plug 'https://github.com/ncm2/float-preview.nvim/'
 " https://github.com/mileszs/ack.vim                   " wrap grep tools in vim
 " Plug 'vim-vdebug/vdebug'                             "TODO : configure  https://github.com/camspiers/dotfiles/blob/master/files/.config/nvim/init.VimtexCompile
 " Plug 'kkoomen/vim-doge'                              " Docblock generator
@@ -89,6 +88,23 @@ Plug 'https://github.com/Yggdroot/indentLine'          " help with indent TODO: 
 "
 call plug#end() "run :PlugInstall
 
+" ░██████╗  ███████╗  ███╗░░██╗  ██████╗░  ████████╗  ░█████╗░  
+" ██╔════╝  ██╔════╝  ████╗░██║  ██╔══██╗  ╚══██╔══╝  ██╔══██╗ 
+" ╚█████╗░  █████╗░░  ██╔██╗██║  ██║░░██║  ░░░██║░░░  ██║░░██║
+" ░╚═══██╗  ██╔══╝░░  ██║╚████║  ██║░░██║  ░░░██║░░░  ██║░░██
+" ██████╔╝  ███████╗  ██║░╚███║  ██████╔╝  ░░░██║░░░  ╚█████╔╝ 
+" ╚═════╝░░  ╚══════╝  ╚═╝░░╚══╝  ╚═════╝░  ░░╚═╝░░░   ╚════╝░ 
+" 
+let g:sendtowindow_use_defaults=0
+nmap xl <Plug>SendRight
+xmap xl <Plug>SendRightV
+nmap xh <Plug>SendLeft
+xmap xh <Plug>SendLeftV
+nmap xk <Plug>SendUp
+xmap xk <Plug>SendUpV
+nmap xj <Plug>SendDown
+xmap xj <Plug>SendDownV
+" 
 " ██████╗░  ███████╗  ██████╗░  ██╗░░░░░  
 " ██╔══██╗  ██╔════╝  ██╔══██╗  ██║░░░░░  
 " ██████╔╝  █████╗░░  ██████╔╝  ██║░░░░░  
@@ -99,8 +115,6 @@ nnoremap <leader>r :REPLToggle<CR>
 autocmd Filetype python nnoremap <F12> <Esc>:REPLDebugStopAtCurrentLine<Cr>
 autocmd Filetype python nnoremap <F10> <Esc>:REPLPDBN<Cr>
 autocmd Filetype python nnoremap <F11> <Esc>:REPLPDBS<Cr>
-
-
 "
 " ░██████╗  ██╗  ██████╗░  ███████╗  ░██╗░░░░░░░██╗  ░█████╗░  ██╗░░░██╗  
 " ██╔════╝  ██║  ██╔══██╗  ██╔════╝  ░██║░░██╗░░██║  ██╔══██╗  ╚██╗░██╔╝  
@@ -757,7 +771,7 @@ set splitbelow splitright
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
-nnoremap <C-o> <C-w>l
+nnoremap <C-l> <C-w>l
 "max height Ctrl-w _
 "maz width Ctrl-w |.
 noremap <silent> <C-Left> :vertical resize +3<CR>
@@ -821,7 +835,7 @@ nnoremap <space> i <space><esc>
 nnoremap L g_
 nnoremap H ^
 nnoremap K <Esc>i<CR><Esc>
-map <C-l> :set rnu<CR>
+" map <C-l> :set rnu<CR>
 " map <C-a> :set nornu<CR>
 "
 map <Leader>mm :vnew term://zsh<CR>
