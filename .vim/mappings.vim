@@ -2,17 +2,51 @@
 " # Mappings
 " ------------------------------------------------------------------------------
 "
+" vimspector
+"
+" nmap <silent><F5> <Plug>VimspectorContinue
+" let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
+" F5 	          When debugging, continue.  	                              vimspector#Continue()
+" Shift F5 	     Stop debugging.                                             vimspector#Stop()
+" Ctrl Shift F5 	Restart debugging with the same configuration.              vimspector#Restart()
+ " F6 	          Pause debugee.                                              vimspector#Pause()
+" F9 	          Toggle line breakpoint on the current line.                 vimspector#ToggleBreakpoint()
+" Shift F9 	     Add a function breakpoint for the expression under cursor 	vimspector#AddFunctionBreakpoint( '<cexpr>' )
+" F10 	          Step Over                                        	          vimspector#StepOver()
+" F11 	          Step Into                                        	          vimspector#StepInto()
+" Shift F11 	     Step out of current function scope           	          vimspector#StepOut()
+nnoremap <silent> <leader>dd :call vimspector#Launch()<CR>
+nnoremap <silent> <leader>dc :call vimspector#Continue()<CR>
+nnoremap <silent> <F5> :call vimspector#Continue()<CR>
+nnoremap <silent> <leader>ds :call vimspector#Stop()<CR>
+nnoremap <silent> <leader>dr :call vimspector#Restart()<CR>
+nnoremap <silent> <leader>dp :call vimspector#Pause()<CR>
+nnoremap <silent> <leader>db :call vimspector#ToggleBreakpoint()<CR>
+nnoremap <silent> <F9> :call vimspector#ToggleBreakpoint()<CR>
+nnoremap <silent> <leader>bf :call vimspector#AddFunctionBreakpoint('<cexpr>')<CR>
+nnoremap <silent> <leader>dn :call vimspector#StepOver()<CR>
+nnoremap <silent> <F10> :call vimspector#StepOver()<CR>
+nnoremap <silent> <leader>di :call vimspector#StepInto()<CR>
+nnoremap <silent> <F11> :call vimspector#StepInto()<CR>
+nnoremap <silent> <leader>do :call vimspector#StepOut()<CR>
+nnoremap <silent> <leader><F11> :call vimspector#StepOut()<CR>
+nnoremap <silent> <leader>dq :call vimspector#Reset()<CR>
+nnoremap <silent> <leader>da :call vimspector#ClearBreakpoints()<CR>
+" :VimspectorShowOutput <category> " see an output in WinBar
+" VimspectorWatch <expression>     " Track a variable
+" :VimspectorToggleLog               " See logs
+"
 " general
 "
 
-execute "set <M-f>=\ef"               
+execute "set <M-f>=\ef"
 inoremap <M-f> <Esc>:update<CR>
 nnoremap <M-f> <Esc>:update<CR>
-nnoremap qq :wq<CR>
+nnoremap qq :qa!<CR>
 " inoremap <C-E> <End>
 " nnoremap <leader>f :cd %:p:h<CR>                          " change to the directory of the currently open files
 execute 'set <M-p>=\ep'
-nnoremap <M-p> "+p 
+nnoremap <M-p> "+p
 " execute 'set <M-n>=\en'
 " nnoremap <M-n> <C-n>
 " execute 'set <M-m>=\em'
@@ -35,14 +69,16 @@ nnoremap <silent>da m`:silent -g/\m^\s*$/d<CR>``:noh<CR>  " delete line above if
 execute 'set <M-o>=\eo'
 nnoremap <silent><M-o> :set paste<CR>m`o<Esc>``:set nopaste<CR> " insert blank line below
 nnoremap <Leader>l :let &scrolloff=100-&scrolloff<CR>          " make edit line always centered
-nnoremap <silent><Leader>t :TagbarToggle<CR>          
+nnoremap <silent><Leader>t :TagbarToggle<CR>
+" QuickFix
+nnoremap <C-w>p :copen<CR>
 
 "
 " search
 "
 nnoremap <silent> ff :nohlsearch<Bar>:echo<CR> " Press ff to turn off highlighting and clear any message already displayed.
-noremap <F6> :set hlsearch! hlsearch?<CR> " Press F6 to toggle high lighting on/off, and show  current value.
-nnoremap <F8> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR> " F8 will highlight all occurrences of the current word
+noremap <F2> :set hlsearch! hlsearch?<CR> " Press F6 to toggle high lighting on/off, and show  current value.
+nnoremap <F6> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR> " F8 will highlight all occurrences of the current word
 nnoremap * /\<<C-R>=expand('<cword>')<CR>\><CR>
 nnoremap # ?\<<C-R>=expand('<cword>')<CR>\><CR>
 
@@ -79,12 +115,17 @@ xmap (j <Plug>SendDownV
 "
 " repl
 "
-nnoremap <leader>r :REPLToggle<CR>
-autocmd Filetype python nnoremap <F12> <Esc>:REPLDebugStopAtCurrentLine<Cr>
-autocmd Filetype python nnoremap <F10> <Esc>:REPLPDBN<Cr>
-autocmd Filetype python nnoremap <F11> <Esc>:REPLPDBS<Cr>
+" nnoremap <leader>r :REPLToggle<CR>
+" autocmd Filetype python nnoremap <F12> <Esc>:REPLDebugStopAtCurrentLine<Cr>
+" autocmd Filetype python nnoremap <F10> <Esc>:REPLPDBN<Cr>
+" autocmd Filetype python nnoremap <F11> <Esc>:REPLPDBS<Cr>
 
 "
+" QuickRun
+"
+" nnoremap <F9> :QuickRun -mode n<CR>
+" vnoremap  <F9> :QuickRun -mode v<CR>
+
 " sideway
 "
 nnoremap mh :SidewaysLeft<cr>
@@ -94,7 +135,7 @@ nnoremap ml :SidewaysRight<cr>
 " Fzf
 "
 nnoremap <Leader> <C-w>
-let g:fzf_action = {        
+let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-h': 'split',
   \ 'ctrl-v': 'vsplit' }
@@ -158,7 +199,7 @@ xmap ic <Plug>(coc-classobj-i)
 omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
-nnoremap <silent> D :call <SID>show_documentation()<CR> " show Documentation 
+nnoremap <silent> D :call <SID>show_documentation()<CR> " show Documentation
 nnoremap <silent><nowait> ma  :<C-u>CocList diagnostics<cr> " Show all diagnostics.
 nnoremap <silent><nowait> <Leader>u  :<C-u>CocList extensions<cr> " Manage extensions.
 nnoremap <silent><nowait> mc  :<C-u>CocList commands<cr> " Show commands.
@@ -182,24 +223,26 @@ nnoremap <silent> <Leader>p  :<C-u>CocFzfListResume<CR>
 
 "
 " NERDTree
-" 
+"
 execute "set <M-b>=\en"
 map <C-n> :NERDTreeToggle<CR>
 
-" 
+"
 " python
-" 
-" Bind F5 to save file if modified and execute python script in a buffer.
-nnoremap <silent> <F9> :call SaveAndExecutePython()<CR>
-vnoremap <silent> <F9> :<C-u>call SaveAndExecutePython()<CR>
-" noremap <F7> :Autoformat<CR>
-" 
-nnoremap + 0 77 l F<space>cl<cr><esc>     " cut the line at the 79th carachter 
+"
+" autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+" autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
+" nnoremap <silent> <F9> :call SaveAndExecutePython()<CR>
+" vnoremap <silent> <F9> :<C-u>call SaveAndExecutePython()<CR>
+"
+nnoremap + 0 77 l F<space>cl<cr><esc>     " cut the line at the 79th carachter
 autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 vnoremap <silent>= :'<,'>Autopep8<CR>
-" 
+" Add easy nbreakpoint shortcut
+nnoremap <silent> <C-B> :let a='import pdb; pdb.set_trace()'\|put=a<CR>
+"
 " submersive
-" 
+"
 " s for substitute
 nmap s <plug>(SubversiveSubstitute)
 nmap ss <plug>(SubversiveSubstituteLine)
@@ -235,5 +278,4 @@ execute "set <M-c>=\e3"
 nnoremap <M-c> :VimtexCompile<cr>
 execute "set <M-3>=\e3"
 " :copen to see error
-nnoremap <M-3> :copen<cr> 
-
+nnoremap <M-3> :copen<cr>

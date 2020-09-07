@@ -1,21 +1,35 @@
 " TODO
 "    debuguer python
-"    erreur coc affiché en fenetre
 "   - generation de tags à chaque enrengistrment
-"   indent nerdtree
-"   voir tagbar avec latex
-" ░██████╗░  ███████╗  ███╗░░██╗  ███████╗  ██████╗░  ░█████╗░  ██╗░░░░░  
-" ██╔════╝░  ██╔════╝  ████╗░██║  ██╔════╝  ██╔══██╗  ██╔══██╗  ██║░░░░░  
-" ██║░░██╗░  █████╗░░  ██╔██╗██║  █████╗░░  ██████╔╝  ███████║  ██║░░░░░  
-" ██║░░╚██╗  ██╔══╝░░  ██║╚████║  ██╔══╝░░  ██╔══██╗  ██╔══██║  ██║░░░░░  
-" ╚██████╔╝  ███████╗  ██║░╚███║  ███████╗  ██║░░██║  ██║░░██║  ███████╗  
-" ░╚════╝░  ╚══════╝  ╚═╝░░╚══╝  ╚══════╝  ╚═╝░░╚═╝  ╚═╝░░╚═╝  ╚══════╝  
+"   - ameliorer chemin tags pour fichers differents
+"   - voir config tagbar avec latex
+"
+" ░██████╗░  ███████╗  ███╗░░██╗  ███████╗  ██████╗░  ░█████╗░  ██╗░░░░░
+" ██╔════╝░  ██╔════╝  ████╗░██║  ██╔════╝  ██╔══██╗  ██╔══██╗  ██║░░░░░
+" ██║░░██╗░  █████╗░░  ██╔██╗██║  █████╗░░  ██████╔╝  ███████║  ██║░░░░░
+" ██║░░╚██╗  ██╔══╝░░  ██║╚████║  ██╔══╝░░  ██╔══██╗  ██╔══██║  ██║░░░░░
+" ╚██████╔╝  ███████╗  ██║░╚███║  ███████╗  ██║░░██║  ██║░░██║  ███████╗
+" ░╚════╝░  ╚══════╝  ╚═╝░░╚══╝  ╚══════╝  ╚═╝░░╚═╝  ╚═╝░░╚═╝  ╚══════╝
+" scriptencoding utf-8
+set backspace=indent,eol,start
+set spelllang=en
+setglobal helplang=en,fr
+set nostartofline               " don't jump to start of line
+set shiftround                    " Snap indents via > or < to multiples of w
+set expandtab                     " Prefer spaces over tabs
+set hls
 set scrolloff=5
 set showtabline=2
 set encoding=utf-8
 set incsearch
 filetype plugin indent on         " Enable filetype detection for plugins and indentation options
-set noswapfile                    " Disable swapfiles too
+" No swap files for unmodified buffers
+set noswapfile
+augroup Swap
+  autocmd CursorHold,BufWritePost,BufReadPost,BufLeave *
+      \ if isdirectory(expand("<amatch>:h")) | let &swapfile = &modified | endif
+augroup END
+"
 set nocompatible
 set ignorecase
 set smartcase
@@ -35,6 +49,30 @@ set mouse=a
 set tags=tags
 " set textprop=True
 "
+set suffixes+=.pyc,.pyo         " ignore compiled Python files
+set suffixes+=.egg-info         " ignore compiled Python files
+set suffixes+=.png              " don't edit .png files please
+set wildignore+=*.pyc,*.pyo     " same as 'suffixes', but for tab completion
+set wildignore+=*/__pycache__/* " compiled python files
+set wildignore+=*/*.egg-info/*  " setuptools droppings
+"
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent execute "!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
+"
+" Make cursor go to the line edited line when opening a file
+if has("autocmd")
+  augroup redhat
+  autocmd!
+  " When editing a file, always jump to the last cursor position
+  autocmd BufReadPost *
+  \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+  \   exe "normal! g'\"" |
+  \ endif
+  augroup END
+endif
+"
 " ██████╗░  ██╗░░░░░  ██╗░░░██╗  ░██████╗░
 " ██╔══██╗  ██║░░░░░  ██║░░░██║  ██╔════╝░
 " ██████╔╝  ██║░░░░░  ██║░░░██║  ██║░░██╗░
@@ -45,43 +83,41 @@ call plug#begin('~/.vim/plugged')
 "
 " New
 "
-Plug 'https://github.com/tpope/vim-vinegar'
-Plug 'https://github.com/romainl/vim-qf'
+Plug 'https://github.com/romainl/vim-qf'              " help with the quickfix lists
 Plug 'https://github.com/tpope/vim-fugitive'
-"
-" Snippets (don't really use them, but eh)
-"
-" Plug 'SirVer/ultisnips'
-" Plug 'honza/vim-snippets'
 "
 " Navigation
 "
-Plug 'https://github.com/tpope/vim-surround'           " object with (, {, {, ...
+Plug 'https://github.com/tpope/vim-surround'           " add object with (, {, {, ...
 Plug 'https://github.com/tpope/vim-commentary'         " comment out
-Plug 'https://github.com/KKPMW/vim-sendtowindow'       " send text to as windows 
-" Plug 'https://github.com/AndrewRadev/sideways.vim'     " move func args  
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }    " fuzzy finder 
+Plug 'https://github.com/KKPMW/vim-sendtowindow'       " send text to as windows
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }    " fuzzy finder
 Plug 'junegunn/fzf.vim'                                " fuzzy finder Plug 'junegunn/fzf.vim'
-Plug 'https://github.com/camspiers/animate.vim'
 Plug 'https://github.com/majutsushi/tagbar'            " show tabs
-" Plug 'airblade/vim-rooter'                           " place search at prject root, look for .gitingore
 Plug 'jlanzarotta/bufexplorer'                         " help to manage opened buffers
 "
-" IDE
+" IDE masterrace
 "
-Plug 'https://github.com/tpope/vim-endwise'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}        " visual studio completion engine
+Plug 'https://github.com/gotcha/vimpdb'
+Plug 'https://github.com/puremourning/vimspector'      " A debugger in vim for multiples languages
+Plug 'https://github.com/tpope/vim-endwise'            " end certain structures automatically
+Plug 'neoclide/coc.nvim', {'branch': 'release'}        " new community driven completion engine
 Plug 'dense-analysis/ale'                              " syntax checking and semantic errors
 Plug 'antoinemadec/coc-fzf'                            " integrate fzf with coc.vim
-Plug 'preservim/nerdtree' |                            " file explorer
-            \ Plug 'Xuyuanp/nerdtree-git-plugin'"
+Plug 'preservim/nerdtree'                              " file explorer
+Plug 'https://github.com/thinca/vim-quickrun'          " Run python and others easely
+"
 " Python
 "
+Plug  'https://github.com/jeetsukumaran/vim-pythonsense' " text objects and motions for Python classes, methods, functions,bound
+Plug 'mgedmin/python-imports.vim'                       " Insert Python import statements computed from tags, bound to <F5>
 Plug 'https://github.com/MathSquared/vim-python-sql'
-Plug 'https://github.com/sillybun/vim-repl'            " python terminal 
-Plug 'https://github.com/tell-k/vim-autopep8'
+Plug 'mgedmin/pytag.vim'                               " better tags for python TODO
+Plug 'https://github.com/sillybun/vim-repl'            " python terminal
+Plug 'mgedmin/python_open_module.vim'                  " Python standard library source code
+Plug 'https://github.com/tell-k/vim-autopep8'          " autoformat python code to pep8
 "
-" Bag of mappings
+" mappings
 "
 Plug 'junegunn/vim-easy-align'                         " Helps alignment TODO: LEARN
 Plug 'michaeljsmith/vim-indent-object'                 " New text object, based on indentation levels.
@@ -90,28 +126,37 @@ Plug 'https://github.com/svermeulen/vim-subversive'    " replace content with re
 Plug 'https://github.com/kana/vim-textobj-entire'      " text object for the all buffer
 Plug 'https://github.com/kana/vim-textobj-user'        " add new text objects
 "
-" Tags 
-" 
+" Tags
+"
 Plug 'skywind3000/gutentags_plus'                      " help to generate tags
 Plug 'https://github.com/universal-ctags/ctags'        " help to generate tags
 "
-" Theming 
-" 
-Plug 'fcpg/vim-orbital'
+" Theming
+"
 Plug 'morhetz/gruvbox'                                 " color theme
 Plug 'https://github.com/miyakogi/conoline.vim'        " highlights the line of the cursor
 Plug 'ryanoasis/vim-devicons'                          " add icon
-" Plug 'bluz71/vim-moonfly-statusline'                   " minimal bar
 Plug 'vim-airline/vim-airline'                         " add visual line
 Plug 'vim-airline/vim-airline-themes'                  " theme for airline
+Plug 'https://github.com/camspiers/animate.vim'        " windows move animation
+Plug 'vim/killersheep'                                " absolutely essential
 "
-" Latex 
-" 
+" Latex
+"
 Plug 'lervag/vimtex'                                   " Latex plugin
 Plug 'https://github.com/Yggdroot/indentLine'          " help with indent TODO: Configure
 "
+" Snippets
+"
+" Plug 'SirVer/ultisnips'
+" Plug 'honza/vim-snippets'
+"
 " TOTEST
-" Plug 'https://github.com/wincent/terminus' "send text to as windows 
+" Plug 'airblade/vim-rooter'                           " place search at project root, look for .gitingore
+" Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'https://github.com/AndrewRadev/sideways.vim'   " move func args
+" Plug 'https://github.com/tpope/vim-vinegar'
+" Plug 'https://github.com/wincent/terminus' "send text to as windows
 " Plug 'https://github.com/ncm2/float-preview.nvim/'
 " https://github.com/mileszs/ack.vim                   " wrap grep tools in vim
 " Plug 'vim-vdebug/vdebug'                             "TODO : configure  https://github.com/camspiers/dotfiles/blob/master/files/.config/nvim/init.VimtexCompile
@@ -131,24 +176,63 @@ Plug 'https://github.com/Yggdroot/indentLine'          " help with indent TODO: 
 "
 call plug#end() "run :PlugInstall
 
-" ░█████╗░  ██╗░░░██╗  ████████╗  ░█████╗░  ██████╗░  ███████╗  ██████╗░   
-" ██╔══██╗  ██║░░░██║  ╚══██╔══╝  ██╔══██╗  ██╔══██╗  ██╔════╝  ██╔══██╗   
-" ███████║  ██║░░░██║  ░░░██║░░░  ██║░░██║  ██████╔╝  █████╗░░  ██████╔╝   
-" ██╔══██║  ██║░░░██║  ░░░██║░░░  ██║░░██║  ██╔═══╝░  ██╔══╝░░  ██╔═══╝░   
-" ██║░░██║  ╚██████╔╝  ░░░██║░░░  ╚█████╔╝  ██║░░░░░  ███████╗  ██║░░░░░   
-" ╚═╝░░╚═╝  ░╚═════╝░  ░░╚═╝░░░   ╚════╝░  ╚═╝░░░░░  ╚══════╝  ╚═╝░░░░░   
+" ██╗░░░██╗  ██╗  ███╗░░░███╗  ░██████╗  ██████╗░  ███████╗  ██████╗░  ████████╗  ░█████╗░  ██████╗░
+" ██║░░░██║  ██║  ████╗░████║  ██╔════╝  ██╔══██╗  ██╔════╝  ██╔══██╗  ╚══██╔══╝  ██╔══██╗  ██╔══██╗
+" ╚██╗░██╔╝  ██║  ██╔████╔██║  ╚█████╗░  ██████╔╝  █████╗░░  ██║░░╚═╝  ░░░██║░░░  ██║░░██║  ██████╔╝
+" ░╚████╔╝░  ██║  ██║╚██╔╝██║  ░╚═══██╗  ██╔═══╝░  ██╔══╝░░  ██║░░██╗  ░░░██║░░░  ██║░░██║  ██╔══██╗
+" ░░╚██╔╝░░  ██║  ██║░╚═╝░██║  ██████╔╝  ██║░░░░░  ███████╗  ╚█████╔╝  ░░░██║░░░  ╚█████╔╝  ██║░░██║
+" ░░░╚═╝░░░  ╚═╝  ╚═╝░░░░░╚═╝  ╚═════╝░░  ╚═╝░░░░░  ╚══════╝  ░╚════╝░  ░░╚═╝░░░   ╚════╝░  ╚═╝░░╚═╝
+" packadd! vimspector
+" sign define vimspectorBP         text=\ ● texthl=WarningMsg
+" sign define vimspectorBPCond     text=\ ◆ texthl=WarningMsg
+" sign define vimspectorBPDisabled text=\ ● texthl=LineNr
+" sign define vimspectorPC         text=\ ▶ texthl=MatchParen linehl=CursorLine"
+"
+" nnoremenu WinBar.■\ Stop :call vimspector#Stop()<CR>
+" nnoremenu WinBar.▶\ Cont :call vimspector#Continue()<CR>
+" nnoremenu WinBar.▷\ Pause :call vimspector#Pause()<CR>
+" nnoremenu WinBar.↷\ Next :call vimspector#StepOver()<CR>
+" nnoremenu WinBar.→\ Step :call vimspector#StepInto()<CR>
+" nnoremenu WinBar.←\ Out :call vimspector#StepOut()<CR>
+" nnoremenu WinBar.⟲: :call vimspector#Restart()<CR>
+" nnoremenu WinBar.✕ :call vimspector#Reset()<CR>"
+"
+" hi default WinBar guibg=NONE ctermbg=NONE
+" hi default link VimspectorDone  DiffAdd
+" hi default link VimspectorSkip  DiffAdd
+" hi default link VimspectorError WarningMsg
+" hi default link VimspectorGadget String
+" hi default link VimspectorGadgetVersion Identifier"
+"
+"
+"  ██████╗░  ██╗░░░██╗  ██╗  ██████╗░  ██╗░░██╗  ██████╗░  ██╗░░░██╗  ███╗░░██╗
+" ██╔═══██╗  ██║░░░██║  ██║  ██╔══██╗  ██║░██╔╝  ██╔══██╗  ██║░░░██║  ████╗░██║
+" ██║██╗██║  ██║░░░██║  ██║  ██║░░╚═╝  █████═╝░  ██████╔╝  ██║░░░██║  ██╔██╗██║
+" ╚██████╔╝  ██║░░░██║  ██║  ██║░░██╗  ██╔═██╗░  ██╔══██╗  ██║░░░██║  ██║╚████║
+" ░╚═██╔═╝░  ╚██████╔╝  ██║  ╚█████╔╝  ██║░╚██╗  ██║░░██║  ╚██████╔╝  ██║░╚███║
+"  ░░╚═╝░░░  ░╚═════╝░  ╚═╝  ░╚════╝░  ╚═╝░░╚═╝  ╚═╝░░╚═╝  ░╚═════╝░  ╚═╝░░╚══╝
+let b:quickrun_config = {
+    \ 'outputter': 'quickfix'
+    \ }
+" let g:quickrun_config['R'] = {'command': 'R', 'exec': ['%c -s --no-save -f %s', ':%s/.\b//g']}
+" ░█████╗░  ██╗░░░██╗  ████████╗  ░█████╗░  ██████╗░  ███████╗  ██████╗░
+" ██╔══██╗  ██║░░░██║  ╚══██╔══╝  ██╔══██╗  ██╔══██╗  ██╔════╝  ██╔══██╗
+" ███████║  ██║░░░██║  ░░░██║░░░  ██║░░██║  ██████╔╝  █████╗░░  ██████╔╝
+" ██╔══██║  ██║░░░██║  ░░░██║░░░  ██║░░██║  ██╔═══╝░  ██╔══╝░░  ██╔═══╝░
+" ██║░░██║  ╚██████╔╝  ░░░██║░░░  ╚█████╔╝  ██║░░░░░  ███████╗  ██║░░░░░
+" ╚═╝░░╚═╝  ░╚═════╝░  ░░╚═╝░░░   ╚════╝░  ╚═╝░░░░░  ╚══════╝  ╚═╝░░░░░
 let g:autopep8_max_line_length=79
 " let g:autopep8_ignore="E501,W293"
 " let g:autopep8_disable_show_diff=1
 "
-" ██████╗░  ░█████╗░  ████████╗  ██╗░░██╗  
-" ██╔══██╗  ██╔══██╗  ╚══██╔══╝  ██║░░██║  
-" ██████╔╝  ███████║  ░░░██║░░░  ███████║  
-" ██╔═══╝░  ██╔══██║  ░░░██║░░░  ██╔══██║  
-" ██║░░░░░  ██║░░██║  ░░░██║░░░  ██║░░██║  
-" ╚═╝░░░░░  ╚═╝░░╚═╝  ░░╚═╝░░░  ░╚═╝░░╚═╝  
+" ██████╗░  ░█████╗░  ████████╗  ██╗░░██╗
+" ██╔══██╗  ██╔══██╗  ╚══██╔══╝  ██║░░██║
+" ██████╔╝  ███████║  ░░░██║░░░  ███████║
+" ██╔═══╝░  ██╔══██║  ░░░██║░░░  ██╔══██║
+" ██║░░░░░  ██║░░██║  ░░░██║░░░  ██║░░██║
+" ╚═╝░░░░░  ╚═╝░░╚═╝  ░░╚═╝░░░  ░╚═╝░░╚═╝
 " Parent paths
-let g:dotfiles_path = $HOME 
+let g:dotfiles_path = $HOME
 let g:dotvim_path = $HOME . '/.vim'
 " Get path relative to .vimrc file
 function! VimrcPath(path)
@@ -165,12 +249,12 @@ let g:vimrc_related_paths = [
   \ VimrcPath('*.vim')
   \ ]
 "
-" ███╗░░░███╗  ░█████╗░  ██████╗░  ██████╗░  ██╗  ███╗░░██╗  ░██████╗░  ░██████╗  
-" ████╗░████║  ██╔══██╗  ██╔══██╗  ██╔══██╗  ██║  ████╗░██║  ██╔════╝░  ██╔════╝  
-" ██╔████╔██║  ███████║  ██████╔╝  ██████╔╝  ██║  ██╔██╗██║  ██║░░██╗░  ╚█████╗░  
-" ██║╚██╔╝██║  ██╔══██║  ██╔═══╝░  ██╔═══╝░  ██║  ██║╚████║  ██║░░╚██╗  ░╚═══██╗  
-" ██║░╚═╝░██║  ██║░░██║  ██║░░░░░  ██║░░░░░  ██║  ██║░╚███║  ╚██████╔╝  ██████╔╝  
-" ╚═╝░░░░░╚═╝  ╚═╝░░╚═╝  ╚═╝░░░░░  ╚═╝░░░░░  ╚═╝  ╚═╝░░╚══╝  ░╚════╝░  ╚═════╝░░  
+" ███╗░░░███╗  ░█████╗░  ██████╗░  ██████╗░  ██╗  ███╗░░██╗  ░██████╗░  ░██████╗
+" ████╗░████║  ██╔══██╗  ██╔══██╗  ██╔══██╗  ██║  ████╗░██║  ██╔════╝░  ██╔════╝
+" ██╔████╔██║  ███████║  ██████╔╝  ██████╔╝  ██║  ██╔██╗██║  ██║░░██╗░  ╚█████╗░
+" ██║╚██╔╝██║  ██╔══██║  ██╔═══╝░  ██╔═══╝░  ██║  ██║╚████║  ██║░░╚██╗  ░╚═══██╗
+" ██║░╚═╝░██║  ██║░░██║  ██║░░░░░  ██║░░░░░  ██║  ██║░╚███║  ╚██████╔╝  ██████╔╝
+" ╚═╝░░░░░╚═╝  ╚═╝░░╚═╝  ╚═╝░░░░░  ╚═╝░░░░░  ╚═╝  ╚═╝░░╚══╝  ░╚════╝░  ╚═════╝░░
 
 execute 'source ' VimrcPath('mappings.vim')
 "
@@ -181,7 +265,7 @@ execute 'source ' VimrcPath('mappings.vim')
 " ╚█████╔╝  ╚█████╔╝  ███████╗  ╚█████╔╝  ██║░░██║
 " ░╚════╝░   ╚════╝░  ╚══════╝   ╚════╝░  ╚═╝░░╚═╝
 
-hi Terminal cterm=None 
+hi Terminal cterm=None
 colorscheme gruvbox                        | " Sets theme to gruvbox
 let g:gruvbox_italic=1
 let g:gruvbox_contrast_dark = 'soft'
@@ -211,58 +295,58 @@ augroup python_syntax_extra
 augroup END
 highlight Keyword cterm=italic ctermfg=5
 "
-" ██╗  ███╗░░██╗  ██████╗░  ███████╗  ███╗░░██╗  ████████╗  ██╗░░░░░  ██╗  ███╗░░██╗  ███████╗  
-" ██║  ████╗░██║  ██╔══██╗  ██╔════╝  ████╗░██║  ╚══██╔══╝  ██║░░░░░  ██║  ████╗░██║  ██╔════╝  
-" ██║  ██╔██╗██║  ██║░░██║  █████╗░░  ██╔██╗██║  ░░░██║░░░  ██║░░░░░  ██║  ██╔██╗██║  █████╗░░  
-" ██║  ██║╚████║  ██║░░██║  ██╔══╝░░  ██║╚████║  ░░░██║░░░  ██║░░░░░  ██║  ██║╚████║  ██╔══╝░░  
-" ██║  ██║░╚███║  ██████╔╝  ███████╗  ██║░╚███║  ░░░██║░░░  ███████╗  ██║  ██║░╚███║  ███████╗  
-" ╚═╝  ╚═╝░░╚══╝  ╚═════╝░  ╚══════╝  ╚═╝░░╚══╝  ░░╚═╝░░░  ╚══════╝  ╚═╝  ╚═╝░░╚══╝  ╚══════╝  
+" ██╗  ███╗░░██╗  ██████╗░  ███████╗  ███╗░░██╗  ████████╗
+" ██║  ████╗░██║  ██╔══██╗  ██╔════╝  ████╗░██║  ╚══██╔══╝
+" ██║  ██╔██╗██║  ██║░░██║  █████╗░░  ██╔██╗██║  ░░░██║░░░
+" ██║  ██║╚████║  ██║░░██║  ██╔══╝░░  ██║╚████║  ░░░██║░░░
+" ██║  ██║░╚███║  ██████╔╝  ███████╗  ██║░╚███║  ░░░██║░░░
+" ╚═╝  ╚═╝░░╚══╝  ╚═════╝░  ╚══════╝  ╚═╝░░╚══╝  ░░╚═╝░░░
 
 let g:indentLine_color_term =22
 let g:indentLine_char = ">"
 let g:indentLine_leadingSpaceChar = '—'
-let g:indentLine_leadingSpaceEnabled=1 
+let g:indentLine_leadingSpaceEnabled=1
 let g:indentLine_showFirstIndentLevel=0
 "
-" ██████╗░  ░█████╗░  ███╗░░██╗  ░█████╗░  ██╗░░░░░  ██╗  ███╗░░██╗  ███████╗  
-" ██╔══██╗  ██╔══██╗  ████╗░██║  ██╔══██╗  ██║░░░░░  ██║  ████╗░██║  ██╔════╝  
-" ██║░░╚═╝  ██║░░██║  ██╔██╗██║  ██║░░██║  ██║░░░░░  ██║  ██╔██╗██║  █████╗░░  
-" ██║░░██╗  ██║░░██║  ██║╚████║  ██║░░██║  ██║░░░░░  ██║  ██║╚████║  ██╔══╝░░  
-" ╚█████╔╝  ╚█████╔╝  ██║░╚███║  ╚█████╔╝  ███████╗  ██║  ██║░╚███║  ███████╗  
-" ░╚════╝░   ╚════╝░  ╚═╝░░╚══╝   ╚════╝░  ╚══════╝  ╚═╝  ╚═╝░░╚══╝  ╚══════╝  
+" ██████╗░  ░█████╗░  ███╗░░██╗  ░█████╗░  ██╗░░░░░  ██╗  ███╗░░██╗  ███████╗
+" ██╔══██╗  ██╔══██╗  ████╗░██║  ██╔══██╗  ██║░░░░░  ██║  ████╗░██║  ██╔════╝
+" ██║░░╚═╝  ██║░░██║  ██╔██╗██║  ██║░░██║  ██║░░░░░  ██║  ██╔██╗██║  █████╗░░
+" ██║░░██╗  ██║░░██║  ██║╚████║  ██║░░██║  ██║░░░░░  ██║  ██║╚████║  ██╔══╝░░
+" ╚█████╔╝  ╚█████╔╝  ██║░╚███║  ╚█████╔╝  ███████╗  ██║  ██║░╚███║  ███████╗
+" ░╚════╝░   ╚════╝░  ╚═╝░░╚══╝   ╚════╝░  ╚══════╝  ╚═╝  ╚═╝░░╚══╝  ╚══════╝
 
 let g:conoline_color_insert_dark = 'guibg=#333333 guifg=NONE gui=None '
                            \. 'ctermbg=232 ctermfg=NONE'
 let g:conoline_color_normal_dark = 'guibg=#333333 guifg=NONE gui=None '
                            \. 'ctermbg=234 ctermfg=NONE'
 "
-" ░█████╗░  ███╗░░██╗  ██╗  ███╗░░░███╗  ░█████╗░  ████████╗  ███████╗  
-" ██╔══██╗  ████╗░██║  ██║  ████╗░████║  ██╔══██╗  ╚══██╔══╝  ██╔════╝  
-" ███████║  ██╔██╗██║  ██║  ██╔████╔██║  ███████║  ░░░██║░░░  █████╗░░  
-" ██╔══██║  ██║╚████║  ██║  ██║╚██╔╝██║  ██╔══██║  ░░░██║░░░  ██╔══╝░░  
-" ██║░░██║  ██║░╚███║  ██║  ██║░╚═╝░██║  ██║░░██║  ░░░██║░░░  ███████╗  
-" ╚═╝░░╚═╝  ╚═╝░░╚══╝  ╚═╝  ╚═╝░░░░░╚═╝  ╚═╝░░╚═╝  ░░╚═╝░░░  ╚══════╝  
+" ░█████╗░  ███╗░░██╗  ██╗  ███╗░░░███╗  ░█████╗░  ████████╗  ███████╗
+" ██╔══██╗  ████╗░██║  ██║  ████╗░████║  ██╔══██╗  ╚══██╔══╝  ██╔════╝
+" ███████║  ██╔██╗██║  ██║  ██╔████╔██║  ███████║  ░░░██║░░░  █████╗░░
+" ██╔══██║  ██║╚████║  ██║  ██║╚██╔╝██║  ██╔══██║  ░░░██║░░░  ██╔══╝░░
+" ██║░░██║  ██║░╚███║  ██║  ██║░╚═╝░██║  ██║░░██║  ░░░██║░░░  ███████╗
+" ╚═╝░░╚═╝  ╚═╝░░╚══╝  ╚═╝  ╚═╝░░░░░╚═╝  ╚═╝░░╚═╝  ░░╚═╝░░░  ╚══════╝
 
 let g:animate#duration = 200.0
 let g:animate#easing_func = 'animate#ease_linear'
 "
-" ░██████╗  ███████╗  ███╗░░██╗  ██████╗░  ████████╗  ░█████╗░  
-" ██╔════╝  ██╔════╝  ████╗░██║  ██╔══██╗  ╚══██╔══╝  ██╔══██╗ 
+" ░██████╗  ███████╗  ███╗░░██╗  ██████╗░  ████████╗  ░█████╗░
+" ██╔════╝  ██╔════╝  ████╗░██║  ██╔══██╗  ╚══██╔══╝  ██╔══██╗
 " ╚█████╗░  █████╗░░  ██╔██╗██║  ██║░░██║  ░░░██║░░░  ██║░░██║
 " ░╚═══██╗  ██╔══╝░░  ██║╚████║  ██║░░██║  ░░░██║░░░  ██║░░██
-" ██████╔╝  ███████╗  ██║░╚███║  ██████╔╝  ░░░██║░░░  ╚█████╔╝ 
-" ╚═════╝░░  ╚══════╝  ╚═╝░░╚══╝  ╚═════╝░  ░░╚═╝░░░   ╚════╝░ 
- 
+" ██████╔╝  ███████╗  ██║░╚███║  ██████╔╝  ░░░██║░░░  ╚█████╔╝
+" ╚═════╝░░  ╚══════╝  ╚═╝░░╚══╝  ╚═════╝░  ░░╚═╝░░░   ╚════╝░
+
 let g:sendtowindow_use_defaults=0
 
 " nnoremap ml :SidewaysJumpRight<cr>
 "
-" ███████╗  ███████╗  ███████╗  
-" ██╔════╝  ╚════██║  ██╔════╝  
-" █████╗░░  ░░███╔═╝  █████╗░░  
-" ██╔══╝░░  ██╔══╝░░  ██╔══╝░░  
-" ██║░░░░░  ███████╗  ██║░░░░░  
-" ╚═╝░░░░░  ╚══════╝  ╚═╝░░░░░  
+" ███████╗  ███████╗  ███████╗
+" ██╔════╝  ╚════██║  ██╔════╝
+" █████╗░░  ░░███╔═╝  █████╗░░
+" ██╔══╝░░  ██╔══╝░░  ██╔══╝░░
+" ██║░░░░░  ███████╗  ██║░░░░░
+" ╚═╝░░░░░  ╚══════╝  ╚═╝░░░░░
 
 " Enable per-command history.
 " CTRL-N and CTRL-P will be automatically bound to next-history and
@@ -323,10 +407,10 @@ function! s:file_is_in_directory(file, directory)
   return filereadable(a:file) && match(a:file, a:directory . '/') == 0
 endfunction
 "
-" ░██████╗  ██╗  ░██████╗░  ███╗░░██╗ 
+" ░██████╗  ██╗  ░██████╗░  ███╗░░██╗
 " ██╔════╝  ██║  ██╔════╝░  ████╗░██║
 " ╚█████╗░  ██║  ██║░░██╗░  ██╔██╗██
-" ░╚═══██╗  ██║  ██║░░╚██╗  ██║╚████║ 
+" ░╚═══██╗  ██║  ██║░░╚██╗  ██║╚████║
 " ██████╔╝  ██║  ╚██████╔╝  ██║░╚███║
 " ╚═════╝░░  ╚═╝  ░╚════╝░  ╚═╝░░╚══╝
 " always show signcolumns
@@ -356,8 +440,8 @@ set nowritebackup
 set shortmess+=c                                             " Remove messages from in-completion menus
 let g:coc_global_extensions = [
   \ 'coc-tsserver', 'coc-json', 'coc-snippets', 'coc-prettier', 'coc-python', 'coc-vimtex',
-  \ 'coc-vimlsp', 'coc-sql', 'coc-eslint', 'coc-reason', 'coc-tslint','coc-stylelint', 'coc-tsserver', 'coc-sh', 
-  \ 'coc-css', 'coc-highlight', 'coc-pairs' 
+  \ 'coc-vimlsp', 'coc-sql', 'coc-eslint', 'coc-reason', 'coc-tslint','coc-stylelint', 'coc-tsserver', 'coc-sh',
+  \ 'coc-css', 'coc-highlight', 'coc-pairs'
 \ ]
   " \ 'coc-html',  'coc-yaml',
 " 'coc-explorer'
@@ -504,6 +588,13 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in
 "  ██║░░░░░  ░░░██║░░░  ░░░██║░░░  ██║░░██║  ╚█████╔╝  ██║░╚███║
 "  ╚═╝░░░░░  ░░░╚═╝░░░  ░░╚═╝░░░  ░╚═╝░░╚═╝   ╚════╝░  ╚═╝░░╚══╝
 "
+au BufNewFile,BufRead *.py
+    \ set expandtab       |" replace tabs with spaces
+    \ set autoindent      |" copy indent when starting a new line
+    \ set tabstop=4
+    \ set softtabstop=4
+    \ set shiftwidth=4
+    \ set foldmethod=indent
 let g:pymode_python = 0
 let g:ale_python_autopep8_use_global = 1
 " let g:syntastic_python_checker = 'flake8 --ignore=E501'
@@ -587,7 +678,6 @@ set cpt=.,k,w,b
 " ░░░██║░░░  ██║░░██║  ╚██████╔╝  ██████╔╝
 " ░░╚═╝░░░  ╚═╝░░╚═╝  ░╚════╝░  ╚═════╝░░
 
-autocmd VimEnter * nested :call tagbar#autoopen(1) " Open tagbar auto
 let g:tagbar_compact = 1
 let g:tagbar_show_linenumbers = 2
 let g:tagbar_iconchars = ['▸', '▾']
@@ -625,15 +715,13 @@ nnoremap <C-W><C-]> :call FollowTag()<CR>zt
 "   ██╔══██║  ██║╚████║  ██╔══██║  ██║░░░░░  ░░╚██╔╝░░  ░╚═══██╗  ██║  ░╚═══██╗
 "   ██║░░██║  ██║░╚███║  ██║░░██║  ███████╗  ░░░██║░░░  ██████╔╝  ██║  ██████╔╝
 "    ╚═╝░░╚═╝  ╚═╝░░╚══╝  ╚═╝░░╚═╝  ╚══════╝  ░░░╚═╝░░░  ╚═════╝░░  ╚═╝  ╚═════╝░░
-" In ~/.vim/vimrc, or somewhere similar.
+let g:ale_linters = {'python': ['pep8']}
 let g:ale_fixers = {
     \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \}
-" let g:ale_fix_on_save = 1                          " Set this variable to 1 to fix files when you save them.
+let g:ale_fix_on_save = 1      " Set this variable to 1 to fix files when you save them.
 let g:ale_sign_error = ' '
 let g:ale_sign_warning = ' '
-" highlight clear ALEErrorSign
-" highlight clear ALEWarningSign
 highlight ALEErrorSign ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
 highlight ALEWarningSign ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
 " :verbose hi ALEErrorSign
@@ -645,7 +733,7 @@ nmap <silent> zj <Plug>(ale_next_wrap)
 let g:ale_set_quickfix = 1
 " g:ale_python_auto_pipenv = 1 " Detect whether the file is inside a pipen
 " See https://github.com/dense-analysis/ale/blob/master/doc/ale-python.txt
-let g:ale_python_pylint_options = "--disable=C0301"  " Remove pylint error useless as long line 
+let g:ale_python_pylint_options = "--disable=C0301"  " Remove pylint error useless as long line
 "
 " ████████╗  ░█████╗░  ██████╗░
 " ╚══██╔══╝  ██╔══██╗  ██╔══██╗
@@ -671,12 +759,12 @@ set fillchars=vert:│,fold:+
 set splitbelow splitright
 nnoremap <C-h> <C-w>h
 
-" ███╗░░░███╗  ░█████╗░  ░█████╗░  ███╗░░██╗  ███████╗  ██╗░░░░░  ██╗░░░██╗  
-" ███╗░████║  ██╔══██╗  ██╔══██╗  ████╗░██║  ██╔════╝  ██║░░░░░  ╚██╗░██╔╝  
-" █╔████╔██║  ██║░░██║  ██║░░██║  ██╔██╗██║  █████╗░░  ██║░░░░░  ░╚████╔╝░  
-" █║╚██╔╝██║  ██║░░██║  ██║░░██║  ██║╚████║  ██╔══╝░░  ██║░░░░░  ░░╚██╔╝░░  
-" █║░╚═╝░██║  ╚█████╔╝  ╚█████╔╝  ██║░╚███║  ██║░░░░░  ███████╗  ░░░██║░░░  
-" ═╝░░░░░╚═╝   ╚════╝░   ╚════╝░  ╚═╝░░╚══╝  ╚═╝░░░░░  ╚══════╝  ░░░╚═╝░░░  
+" ███╗░░░███╗  ░█████╗░  ░█████╗░  ███╗░░██╗  ███████╗  ██╗░░░░░  ██╗░░░██╗
+" ███╗░████║  ██╔══██╗  ██╔══██╗  ████╗░██║  ██╔════╝  ██║░░░░░  ╚██╗░██╔╝
+" █╔████╔██║  ██║░░██║  ██║░░██║  ██╔██╗██║  █████╗░░  ██║░░░░░  ░╚████╔╝░
+" █║╚██╔╝██║  ██║░░██║  ██║░░██║  ██║╚████║  ██╔══╝░░  ██║░░░░░  ░░╚██╔╝░░
+" █║░╚═╝░██║  ╚█████╔╝  ╚█████╔╝  ██║░╚███║  ██║░░░░░  ███████╗  ░░░██║░░░
+" ═╝░░░░░╚═╝   ╚════╝░   ╚════╝░  ╚═╝░░╚══╝  ╚═╝░░░░░  ╚══════╝  ░░░╚═╝░░░
 " let g:moonflyIgnoreDefaultColors = 1
 " let g:moonflyWithGitBranchCharacter = 1
 " let g:moonflyWithCocIndicator = 1

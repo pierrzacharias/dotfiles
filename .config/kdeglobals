@@ -155,7 +155,7 @@ Show Speedbar=true
 Show hidden files=false
 Sort by=Date
 Sort directories first=true
-Sort reversed=false
+Sort reversed=true
 Speedbar Width=178
 View Style=Detail
 
