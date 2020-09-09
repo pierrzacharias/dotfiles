@@ -6,8 +6,6 @@ bold_is_bright = true
 #cell_width_scale = 1.0
 clickable_url = true
 dynamic_title = true
-# font = ProFontWindows 14
-# font = TerminessTTF Nerd Font Mono 14
 font = M+ 1mn 14
 # fullscreen = true
 #icon_name = terminal
@@ -54,8 +52,9 @@ foreground      = #f5ac78
 foreground_bold = #f5ac78
 cursor          = #7aabb6
 cursor_foreground= #000
-background    = rgba(0,0,0, 0.8)
-# background    = rgba(34, 27, 21, 0.85)
+# background    = rgba(0,0,0, 0.)
+# background    = rgba(25, 16, 12, 0.4)
+background    = rgba(24, 19, 15, 0.4)
 
 # 16 color space
 color0  = #282828

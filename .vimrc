@@ -4,6 +4,7 @@
 "   - ameliorer chemin tags pour fichers differents
 "   - voir config tagbar avec latex
 "
+"
 " ░██████╗░  ███████╗  ███╗░░██╗  ███████╗  ██████╗░  ░█████╗░  ██╗░░░░░
 " ██╔════╝░  ██╔════╝  ████╗░██║  ██╔════╝  ██╔══██╗  ██╔══██╗  ██║░░░░░
 " ██║░░██╗░  █████╗░░  ██╔██╗██║  █████╗░░  ██████╔╝  ███████║  ██║░░░░░
@@ -11,6 +12,7 @@
 " ╚██████╔╝  ███████╗  ██║░╚███║  ███████╗  ██║░░██║  ██║░░██║  ███████╗
 " ░╚════╝░  ╚══════╝  ╚═╝░░╚══╝  ╚══════╝  ╚═╝░░╚═╝  ╚═╝░░╚═╝  ╚══════╝
 " scriptencoding utf-8
+set paste                         " auto-indent paste
 set backspace=indent,eol,start
 set spelllang=en
 setglobal helplang=en,fr
@@ -26,8 +28,8 @@ filetype plugin indent on         " Enable filetype detection for plugins and in
 " No swap files for unmodified buffers
 set noswapfile
 augroup Swap
-  autocmd CursorHold,BufWritePost,BufReadPost,BufLeave *
-      \ if isdirectory(expand("<amatch>:h")) | let &swapfile = &modified | endif
+    autocmd CursorHold,BufWritePost,BufReadPost,BufLeave *
+                \ if isdirectory(expand("<amatch>:h")) | let &swapfile = &modified | endif
 augroup END
 "
 set nocompatible
@@ -54,23 +56,24 @@ set suffixes+=.egg-info         " ignore compiled Python files
 set suffixes+=.png              " don't edit .png files please
 set wildignore+=*.pyc,*.pyo     " same as 'suffixes', but for tab completion
 set wildignore+=*/__pycache__/* " compiled python files
+
 set wildignore+=*/*.egg-info/*  " setuptools droppings
 "
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent execute "!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-  autocmd VimEnter * PlugInstall | source $MYVIMRC
+    silent execute "!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
+    autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 "
 " Make cursor go to the line edited line when opening a file
 if has("autocmd")
-  augroup redhat
-  autocmd!
-  " When editing a file, always jump to the last cursor position
-  autocmd BufReadPost *
-  \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-  \   exe "normal! g'\"" |
-  \ endif
-  augroup END
+    augroup redhat
+        autocmd!
+        " When editing a file, always jump to the last cursor position
+        autocmd BufReadPost *
+                    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+                    \   exe "normal! g'\"" |
+                    \ endif
+    augroup END
 endif
 "
 " ██████╗░  ██╗░░░░░  ██╗░░░██╗  ░██████╗░
@@ -83,11 +86,14 @@ call plug#begin('~/.vim/plugged')
 "
 " New
 "
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'https://github.com/junegunn/vimloclisteasy-align'
 Plug 'https://github.com/romainl/vim-qf'              " help with the quickfix lists
 Plug 'https://github.com/tpope/vim-fugitive'
 "
 " Navigation
 "
+Plug 'https://github.com/mattn/vim-findroot'           " Find root of project
 Plug 'https://github.com/tpope/vim-surround'           " add object with (, {, {, ...
 Plug 'https://github.com/tpope/vim-commentary'         " comment out
 Plug 'https://github.com/KKPMW/vim-sendtowindow'       " send text to as windows
@@ -106,16 +112,18 @@ Plug 'dense-analysis/ale'                              " syntax checking and sem
 Plug 'antoinemadec/coc-fzf'                            " integrate fzf with coc.vim
 Plug 'preservim/nerdtree'                              " file explorer
 Plug 'https://github.com/thinca/vim-quickrun'          " Run python and others easely
+" Plug 'https://github.com/tpope/vim-dispatch'           " could be an alternative to quickrun
+" Plug 'https://github.com/mattboehm/vim-unstack'      " open trace, don't  work :(
 "
 " Python
 "
-Plug  'https://github.com/jeetsukumaran/vim-pythonsense' " text objects and motions for Python classes, methods, functions,bound
+Plug 'https://github.com/ColinKennedy/vim-textobj-block-party' " text objects and motions for Python required +python
 Plug 'mgedmin/python-imports.vim'                       " Insert Python import statements computed from tags, bound to <F5>
-Plug 'https://github.com/MathSquared/vim-python-sql'
 Plug 'mgedmin/pytag.vim'                               " better tags for python TODO
 Plug 'https://github.com/sillybun/vim-repl'            " python terminal
 Plug 'mgedmin/python_open_module.vim'                  " Python standard library source code
 Plug 'https://github.com/tell-k/vim-autopep8'          " autoformat python code to pep8
+" https://www.reddit.com/r/vim/comments/83iwc1/is_there_a_vim_plugin_for_generating_python/ " python doc ?
 "
 " mappings
 "
@@ -133,6 +141,9 @@ Plug 'https://github.com/universal-ctags/ctags'        " help to generate tags
 "
 " Theming
 "
+"
+Plug 'habamax/vim-gruvbit'
+Plug 'habamax/vim-gruvbit'
 Plug 'morhetz/gruvbox'                                 " color theme
 Plug 'https://github.com/miyakogi/conoline.vim'        " highlights the line of the cursor
 Plug 'ryanoasis/vim-devicons'                          " add icon
@@ -145,13 +156,35 @@ Plug 'vim/killersheep'                                " absolutely essential
 "
 Plug 'lervag/vimtex'                                   " Latex plugin
 Plug 'https://github.com/Yggdroot/indentLine'          " help with indent TODO: Configure
+" Plug 'https://vimawesome.com/plugin/tex-fold'          " add-on for latex TODO
+" Plug 'vim-grammarous'                                  " Grammar corrections
+"
+" Jupyter
+"
+" Plug 'https://github.com/mattn/vim_kernel'
 "
 " Snippets
 "
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
 "
+" Markdown file
+"
+" https://github.com/tyru/vim-markdown
+" https://github.com/superbrothers/vim-quickrun-markdown-gfm/blob/ea8c26c4980eb84ae2bdbc99c753fcbaad557395/README.md
+" Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " preview for markdown files
+"
+" R
+"
+" https://github.com/tyru/R-Vim-runtime
+"
+" Databases
+"
+" Plug 'https://github.com/MathSquared/vim-python-sql'
+" https://github.com/tpope/vim-dadbod
+"
 " TOTEST
+" Plug 'https://github.com/Shougo/denite.nvim'        " file , buffers manager
 " Plug 'airblade/vim-rooter'                           " place search at project root, look for .gitingore
 " Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'https://github.com/AndrewRadev/sideways.vim'   " move func args
@@ -174,8 +207,11 @@ Plug 'https://github.com/Yggdroot/indentLine'          " help with indent TODO: 
 "Plug 'liuchengxu/vim-clap'
 "Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 "
+"
 call plug#end() "run :PlugInstall
 
+
+"
 " ██╗░░░██╗  ██╗  ███╗░░░███╗  ░██████╗  ██████╗░  ███████╗  ██████╗░  ████████╗  ░█████╗░  ██████╗░
 " ██║░░░██║  ██║  ████╗░████║  ██╔════╝  ██╔══██╗  ██╔════╝  ██╔══██╗  ╚══██╔══╝  ██╔══██╗  ██╔══██╗
 " ╚██╗░██╔╝  ██║  ██╔████╔██║  ╚█████╗░  ██████╔╝  █████╗░░  ██║░░╚═╝  ░░░██║░░░  ██║░░██║  ██████╔╝
@@ -211,10 +247,69 @@ call plug#end() "run :PlugInstall
 " ╚██████╔╝  ██║░░░██║  ██║  ██║░░██╗  ██╔═██╗░  ██╔══██╗  ██║░░░██║  ██║╚████║
 " ░╚═██╔═╝░  ╚██████╔╝  ██║  ╚█████╔╝  ██║░╚██╗  ██║░░██║  ╚██████╔╝  ██║░╚███║
 "  ░░╚═╝░░░  ░╚═════╝░  ╚═╝  ░╚════╝░  ╚═╝░░╚═╝  ╚═╝░░╚═╝  ░╚═════╝░  ╚═╝░░╚══╝
+" outputter/message/log = the output don't capture logging
+            " \ 'runner':'terminal',
+            " \ 'runner/terminal/into':1,
+            " \ 'outputter/buffer/close_on_empty' : 1,
+            " \ 'outputter/loclist/into':1
+
+            " \ 'runner': 'vimproc',
+            " \ 'runner':'terminal',
+            " \ 'runner/terminal/into':1,
 let b:quickrun_config = {
-    \ 'outputter': 'quickfix'
-    \ }
+            \ 'outputter':'error',
+            \ 'outputter/error/success':'buffer',
+            \ 'outputter/error/error':'loclist',
+            \  }
+
+"             \ 'outputter/loclist/errorformat':'&errorformat',
+            " \ 'outputter/buffer/close_on_empty' : 1,
+
+            " \ "hook/close_unite_quickfix/enable_hook_loaded" : 1,
+            " \ "hook/unite_quickfix/enable_failure" : 1,
+            " \ "hook/close_quickfix/enable_exit" : 1,
+            " \ "hook/close_buffer/enable_failure" : 1,
+            " \ "hook/close_buffer/enable_empty_data" : 1,
+            " \ "outputter/buffer/split" : ":botright 8sp",
+            " \ "outputter" : "multi:buffer:quickfix",
+            " \	"outputter/buffer/append":0,
+            " \	"outputter":"buffered",
+            " \	"outputter/buffered/target":"buffer",
+            " \	"outputter/buffer/split":"Uniqtab",
+            " \	"runner/vimproc/updatetime":0,
+            " \ 'outputter/buffer/close_on_empty' : 1,
+            " \ 'outputter/message/log':0,
+            " \ 'runner/terminal/into':1,
+            " \ 'outputter/loclist/into':1
+            " \ 'outputter': 'quickfix'
+            " \ 'outputter/quickfix/into':1
+" 'tex': {
+"         \    'command': 'platex',
+"         \    'exec': ['%c -output-directory %s:h %s', 'dvipdfmx -o %s:r.pdf %s:r.dvi', 'open %s:r.pdf']
+"         \   },
+" let g:quickrun_config['sql'] = {
+" 		\ 'command': 'psql',
+" 		\ 'exec': ['%c %o < %s'],
+" 		\ 'cmdopt': '%{MakepgsqlCommandOptions()}',
+" 		\ }
+
 " let g:quickrun_config['R'] = {'command': 'R', 'exec': ['%c -s --no-save -f %s', ':%s/.\b//g']}
+" stop quickrun with <Ctrl-c>
+nnoremap <expr><silent> <C-c> quickrun#is_running() ? quickrun#sweep_sessions() : "\<C-c>"
+"
+" ░██████╗░  ██╗░░░██╗  ██╗  ██████╗░  ██╗░░██╗  ███████╗  ██╗  ██╗░░██╗
+" ██╔═══██╗  ██║░░░██║  ██║  ██╔══██╗  ██║░██╔╝  ██╔════╝  ██║  ╚██╗██╔╝
+" ██║██╗██║  ██║░░░██║  ██║  ██║░░╚═╝  █████═╝░  █████╗░░  ██║  ░╚███╔╝░
+" ╚██████╔╝  ██║░░░██║  ██║  ██║░░██╗  ██╔═██╗░  ██╔══╝░░  ██║  ░██╔██╗░
+" ░╚═██╔═╝░  ╚██████╔╝  ██║  ╚█████╔╝  ██║░╚██╗  ██║░░░░░  ██║  ██╔╝╚██╗
+"  ░░╚═╝░░░  ░╚═════╝░  ╚═╝  ░╚════╝░  ╚═╝░░╚═╝  ╚═╝░░░░░  ╚═╝  ╚═╝░░╚═╝
+
+" close quickfix
+function! CloseQuickRunWindow()
+    execute "normal \<c-c>\<c-w>jZZ"
+endfunction
+
+nnoremap <silent> <F2> :call ToggleQuickFix()<cr>"
 " ░█████╗░  ██╗░░░██╗  ████████╗  ░█████╗░  ██████╗░  ███████╗  ██████╗░
 " ██╔══██╗  ██║░░░██║  ╚══██╔══╝  ██╔══██╗  ██╔══██╗  ██╔════╝  ██╔══██╗
 " ███████║  ██║░░░██║  ░░░██║░░░  ██║░░██║  ██████╔╝  █████╗░░  ██████╔╝
@@ -267,8 +362,10 @@ execute 'source ' VimrcPath('mappings.vim')
 
 hi Terminal cterm=None
 colorscheme gruvbox                        | " Sets theme to gruvbox
+" colorscheme gruvbit
 let g:gruvbox_italic=1
-let g:gruvbox_contrast_dark = 'soft'
+" let g:gruvbox_contrast_dark = 'soft'
+let g:gruvbox_contrast_dark = 'hard'
 " hi Search cterm=NONE ctermfg=190  ctermbg=26
 let g:gruvbox_undercurl=0
 " set cursorline                               " Highlight current line
@@ -289,10 +386,6 @@ set noshowmode                              | " Don't show mode changes
 " set showmatch                               | " Show matching braces
 "
 highlight Comment gui=italic            | " Make comments italic
-augroup python_syntax_extra
-  autocmd!
-  autocmd! Syntax python :syn keyword Keyword self
-augroup END
 highlight Keyword cterm=italic ctermfg=5
 "
 " ██╗  ███╗░░██╗  ██████╗░  ███████╗  ███╗░░██╗  ████████╗
@@ -581,6 +674,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | exe 'cd '.argv()[0] | endif
 "
+"
 "  ██████╗░  ██╗░░░██╗  ████████╗  ██╗░░██╗  ░█████╗░  ███╗░░██╗
 "  ██╔══██╗  ╚██╗░██╔╝  ╚══██╔══╝  ██║░░██║  ██╔══██╗  ████╗░██║
 "  ██████╔╝  ░╚████╔╝░  ░░░██║░░░  ███████║  ██║░░██║  ██╔██╗██║
@@ -595,21 +689,22 @@ au BufNewFile,BufRead *.py
     \ set softtabstop=4
     \ set shiftwidth=4
     \ set foldmethod=indent
-let g:pymode_python = 0
+    \ if !exists("current_compiler")
+    \     compiler python              " assign compiler to custom python compiler
+    \ endif
+    \ set makeprg=python3\ %
+"
+let g:pymode_python = 1
 let g:ale_python_autopep8_use_global = 1
 " let g:syntastic_python_checker = 'flake8 --ignore=E501'
 function! SaveAndExecutePython()
     " SOURCE [reusable window]: https://github.com/fatih/vim-go/blob/master/autoload/go/ui.vim
-
     " save and reload current file
     silent execute "update | edit"
-
     " get file path of current file
     let s:current_buffer_file_path = expand("%")
-
     let s:output_buffer_name = "Python"
     let s:output_buffer_filetype = "output"
-
     " reuse existing buffer window if it exists otherwise create a new one
     if !exists("s:buf_nr") || !bufexists(s:buf_nr)
         silent execute 'botright vnew ' . s:output_buffer_name
@@ -620,7 +715,6 @@ function! SaveAndExecutePython()
     elseif bufwinnr(s:buf_nr) != bufwinnr('%')
         silent execute bufwinnr(s:buf_nr) . 'wincmd w'
     endif
-
     silent execute "setlocal filetype=" . s:output_buffer_filetype
     setlocal bufhidden=delete
     setlocal buftype=nofile
@@ -631,25 +725,27 @@ function! SaveAndExecutePython()
     setlocal nonumber
     setlocal norelativenumber
     setlocal showbreak=""
-
     " clear the buffer
     setlocal noreadonly
     setlocal modifiable
     %delete _
-
     " add the console output
     silent execute ".!python " . shellescape(s:current_buffer_file_path, 1)
-
     " resize window to content length
     " Note: This is annoying because if you print a lot of lines then your code buffer is forced to a height of one line every time you run this function.
     "       However without this line the buffer starts off as a default size and if you resize the buffer then it keeps that custom size after repeated runs of this function.
     "       But if you close the output buffer then it returns to using the default size when its recreated
     "execute 'resize' . line('$')
-
     " make the buffer non modifiable
     setlocal readonly
     setlocal nomodifiable
 endfunction
+"
+" add syntax highlight for python
+" augroup python_syntax_extra
+"   autocmd!
+"   autocmd! Syntax python :syn keyword Keyword self
+" augroup END
 "
 " ░██████╗  ██╗░░░██╗  ██████╗░  ███╗░░░███╗  ███████╗  ██████╗░  ░██████╗  ██╗  ██╗░░░██╗  ███████╗
 " ██╔════╝  ██║░░░██║  ██╔══██╗  ████╗░████║  ██╔════╝  ██╔══██╗  ██╔════╝  ██║  ██║░░░██║  ██╔════╝
@@ -846,3 +942,4 @@ let g:tex_flavor = 'latex'
 "   \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
 "   \ |   exe "normal! g`\""
 "   \ | end
+"

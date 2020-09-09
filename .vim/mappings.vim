@@ -2,6 +2,51 @@
 " # Mappings
 " ------------------------------------------------------------------------------
 "
+" general
+"
+execute "set <M-f>=\ef"
+inoremap <M-f> <Esc>:update<CR>
+nnoremap <M-f> <Esc><Esc>:update<CR>
+nnoremap qq :qa!<CR>
+" inoremap <C-E> <End>
+" nnoremap <leader>f :cd %:p:h<CR>                          " change to the directory of the currently open files
+execute 'set <M-p>=\ep'
+nnoremap <M-p> "+p
+" execute 'set <M-n>=\en'
+" nnoremap <M-n> <C-n>
+" execute 'set <M-m>=\em'
+" nnoremap <M-m> <C-p>
+" nnoremap L g_<CR>
+" nnoremap H ^<CR>
+nnoremap K a<cr><esc>
+" map <C-l> :set rnu<CR>
+" map <C-a> :set nornu<CR>
+" nnoremap <leader> <c-w>
+" Save the file if there is any changes
+nnoremap g<space> i<space><Esc>
+" execute 'set <M-c>=\ec'
+" Move between rows in wrapped lines
+" noremap j gj
+noremap k gk
+nnoremap <Leader>h :vert terminal<CR>
+nnoremap <silent>db m`:silent +g/\m^\s*$/d<CR>``:noh<CR>  " delete line below if blanck
+nnoremap <silent>da m`:silent -g/\m^\s*$/d<CR>``:noh<CR>  " delete line above if blank
+execute 'set <M-o>=\eo'
+nnoremap <silent><M-o> :set paste<CR>m`o<Esc>``:set nopaste<CR> " insert blank line below
+nnoremap <Leader>l :let &scrolloff=100-&scrolloff<CR>          " make edit line always centered
+nnoremap <silent><Leader>t :TagbarToggle<CR>
+"
+" Loclist
+"
+nnoremap <C-w>p :lopen<CR>                  " open loclist
+nnoremap <C-p> :lcl<CR>                     " close loclist
+execute "set <M-u>=\eu"
+nnoremap <M-u> :lla <CR>                    " navigate to last item in list
+"
+" compile with :make
+"
+" nnoremap <silent><Leader>r :make<CR>
+"
 " vimspector
 "
 " nmap <silent><F5> <Plug>VimspectorContinue
@@ -35,49 +80,12 @@ nnoremap <silent> <leader>da :call vimspector#ClearBreakpoints()<CR>
 " :VimspectorShowOutput <category> " see an output in WinBar
 " VimspectorWatch <expression>     " Track a variable
 " :VimspectorToggleLog               " See logs
-"
-" general
-"
-
-execute "set <M-f>=\ef"
-inoremap <M-f> <Esc>:update<CR>
-nnoremap <M-f> <Esc>:update<CR>
-nnoremap qq :qa!<CR>
-" inoremap <C-E> <End>
-" nnoremap <leader>f :cd %:p:h<CR>                          " change to the directory of the currently open files
-execute 'set <M-p>=\ep'
-nnoremap <M-p> "+p
-" execute 'set <M-n>=\en'
-" nnoremap <M-n> <C-n>
-" execute 'set <M-m>=\em'
-" nnoremap <M-m> <C-p>
-" nnoremap L g_<CR>
-" nnoremap H ^<CR>
-nnoremap K a<cr><esc>
-" map <C-l> :set rnu<CR>
-" map <C-a> :set nornu<CR>
-" nnoremap <leader> <c-w>
-" Save the file if there is any changes
-nnoremap g<space> i<space><Esc>
-" execute 'set <M-c>=\ec'
-" Move between rows in wrapped lines
-noremap j gj
-noremap k gk
-nnoremap <Leader>h :vert terminal<CR>
-nnoremap <silent>db m`:silent +g/\m^\s*$/d<CR>``:noh<CR>  " delete line below if blanck
-nnoremap <silent>da m`:silent -g/\m^\s*$/d<CR>``:noh<CR>  " delete line above if blank
-execute 'set <M-o>=\eo'
-nnoremap <silent><M-o> :set paste<CR>m`o<Esc>``:set nopaste<CR> " insert blank line below
-nnoremap <Leader>l :let &scrolloff=100-&scrolloff<CR>          " make edit line always centered
-nnoremap <silent><Leader>t :TagbarToggle<CR>
-" QuickFix
-nnoremap <C-w>p :copen<CR>
 
 "
 " search
 "
 nnoremap <silent> ff :nohlsearch<Bar>:echo<CR> " Press ff to turn off highlighting and clear any message already displayed.
-noremap <F2> :set hlsearch! hlsearch?<CR> " Press F6 to toggle high lighting on/off, and show  current value.
+" noremap <F2> :set hlsearch! hlsearch?<CR> " Press F6 to toggle high lighting on/off, and show  current value.
 nnoremap <F6> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR> " F8 will highlight all occurrences of the current word
 nnoremap * /\<<C-R>=expand('<cword>')<CR>\><CR>
 nnoremap # ?\<<C-R>=expand('<cword>')<CR>\><CR>
@@ -123,9 +131,10 @@ xmap (j <Plug>SendDownV
 "
 " QuickRun
 "
-" nnoremap <F9> :QuickRun -mode n<CR>
-" vnoremap  <F9> :QuickRun -mode v<CR>
-
+execute "set <M-i>=\ei"
+nnoremap <M-i> :QuickRun -mode n<CR>
+vnoremap  <M-i> :QuickRun -mode v<CR>
+"
 " sideway
 "
 nnoremap mh :SidewaysLeft<cr>
@@ -232,14 +241,21 @@ map <C-n> :NERDTreeToggle<CR>
 "
 " autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 " autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-" nnoremap <silent> <F9> :call SaveAndExecutePython()<CR>
-" vnoremap <silent> <F9> :<C-u>call SaveAndExecutePython()<CR>
+nnoremap  <Leader>e :call SaveAndExecutePython()<CR>
+vnoremap  <Leader>e :<C-u>call SaveAndExecutePython()<CR>
 "
 nnoremap + 0 77 l F<space>cl<cr><esc>     " cut the line at the 79th carachter
 autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 vnoremap <silent>= :'<,'>Autopep8<CR>
-" Add easy nbreakpoint shortcut
-nnoremap <silent> <C-B> :let a='import pdb; pdb.set_trace()'\|put=a<CR>
+"
+" python pdb
+"
+" Add easy nbreakpoint shortcut with correct identation
+nnoremap <silent> <C-B> :let a='import pdb; pdb.set_trace()'\|put=a<CR>kJi<CR><ESC>
+" execute python code in a new terminal, usefull with pdb
+autocmd Filetype python nnoremap <buffer> <Leader>r :w<CR>:vert ter python3 "%"<CR>
+" go out terminal mode by pressing <Esc>, return in terminal mode with i
+tnoremap <silent><Esc> <C-[><C-[> <C-\><C-n>
 "
 " submersive
 "

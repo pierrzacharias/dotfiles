@@ -18,4 +18,4 @@ sudo make
 sudo make install
 ```
 
-![](desktop.png)
+![](screenshot.png)
