@@ -2,11 +2,12 @@
 
 * KERNEL : KDE plasma
 * SHELL : zsh
-* THEME : KDE-gaps-glow
 * TERMINAL : Termite
-* FONT : mplus Nerd
+* FONT : M+ 1mn
 * COMPOSITOR : picom
 * BAR : polybar
+
+![](polybar.png)
 
 To compile vim in python mode:
 ```
