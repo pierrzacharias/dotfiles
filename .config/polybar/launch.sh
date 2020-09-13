@@ -3,11 +3,10 @@ killall -q polybar
 # while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini background2 &
+sleep 0.2
+sleep 0.2
+MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep99 &
 sleep 0.5
-# MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep01 &
-# sleep 0.2
-# MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep99 &
-# sleep 0.5
 MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep25 &
 MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep15 &
 sleep 0.5
@@ -38,11 +37,13 @@ MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep22 &
 MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep12 &
 sleep 0.5
 MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini main2 &
-sleep 0.5
-MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep11 &
-MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep21 &
-sleep 0.5
-MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini main1 &
+sleep 0.2
+# MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep01 &
+# sleep 0.5
+# MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep11 &
+# MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep21 &
+# sleep 0.5
+# MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini main1 &
 
 
 # MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini background2 &

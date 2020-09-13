@@ -1,2 +1,2 @@
 #!/bin/sh
-python ~/.config/polybar/gmail/launch.py -p=' mail ' -ns --color="#d49241"
+python ~/.config/polybar/gmail/launch.py -p=' mail ' -ns --color="#d49241"
