@@ -4,30 +4,35 @@ killall -q polybar
 
 MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini background2 &
 sleep 0.5
-MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep01 &
-sleep 0.2
-MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep99 &
-sleep 0.5
+# MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep01 &
+# sleep 0.2
+# MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep99 &
+# sleep 0.5
 MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep25 &
 MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep15 &
 sleep 0.5
 MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini main5 &
 sleep 0.5
-MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep26 &
+MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep23 &
+MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep13 &
 sleep 0.5
-MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep16 &
+MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini main3 &
 sleep 0.5
-MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini main6 &
+MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep14 &
+MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep24 &
+sleep 0.5
+MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini main4 &
 sleep 0.5
 MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep17 &
 MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep27 &
 sleep 0.5
 MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini main7 &
 sleep 0.5
-MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep23 &
-MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep13 &
+MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep26 &
 sleep 0.5
-MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini main3 &
+MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep16 &
+sleep 0.5
+MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini main6 &
 sleep 0.5
 MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep22 &
 MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep12 &
@@ -38,11 +43,6 @@ MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep11 &
 MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep21 &
 sleep 0.5
 MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini main1 &
-sleep 0.5
-MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep14 &
-MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep24 &
-sleep 0.5
-MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini main4 &
 
 
 # MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini background2 &
