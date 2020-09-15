@@ -4,7 +4,6 @@ killall -q polybar
 
 MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini background2 &
 sleep 0.2
-sleep 0.2
 MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep99 &
 sleep 0.5
 MONITOR="HDMI1" polybar -c ~/.config/polybar/config.ini sep25 &

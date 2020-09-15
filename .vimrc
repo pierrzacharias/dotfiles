@@ -1,10 +1,7 @@
 " TODO
-"    debuguer python
 "   - generation de tags à chaque enrengistrment
 "   - ameliorer chemin tags pour fichers differents
 "   - voir config tagbar avec latex
-"
-"
 " ░██████╗░  ███████╗  ███╗░░██╗  ███████╗  ██████╗░  ░█████╗░  ██╗░░░░░
 " ██╔════╝░  ██╔════╝  ████╗░██║  ██╔════╝  ██╔══██╗  ██╔══██╗  ██║░░░░░
 " ██║░░██╗░  █████╗░░  ██╔██╗██║  █████╗░░  ██████╔╝  ███████║  ██║░░░░░
@@ -12,7 +9,7 @@
 " ╚██████╔╝  ███████╗  ██║░╚███║  ███████╗  ██║░░██║  ██║░░██║  ███████╗
 " ░╚════╝░  ╚══════╝  ╚═╝░░╚══╝  ╚══════╝  ╚═╝░░╚═╝  ╚═╝░░╚═╝  ╚══════╝
 " scriptencoding utf-8
-set paste                         " auto-indent paste
+" set paste                         " auto-indent paste
 set backspace=indent,eol,start
 set spelllang=en
 setglobal helplang=en,fr
@@ -23,7 +20,7 @@ set hls
 set scrolloff=5
 set showtabline=2
 set encoding=utf-8
-set incsearch
+set incsearch                     " Show search result while typing
 filetype plugin indent on         " Enable filetype detection for plugins and indentation options
 " No swap files for unmodified buffers
 set noswapfile
@@ -59,22 +56,11 @@ set wildignore+=*/__pycache__/* " compiled python files
 
 set wildignore+=*/*.egg-info/*  " setuptools droppings
 "
-if empty(glob('~/.vim/autoload/plug.vim'))
-    silent execute "!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-    autocmd VimEnter * PlugInstall | source $MYVIMRC
-endif
-"
-" Make cursor go to the line edited line when opening a file
-if has("autocmd")
-    augroup redhat
-        autocmd!
-        " When editing a file, always jump to the last cursor position
-        autocmd BufReadPost *
-                    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-                    \   exe "normal! g'\"" |
-                    \ endif
-    augroup END
-endif
+" When editing a file, always jump to the last cursor position
+autocmd BufReadPost *
+            \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+            \   exe "normal! g'\"" |
+            \ endif
 "
 " ██████╗░  ██╗░░░░░  ██╗░░░██╗  ░██████╗░
 " ██╔══██╗  ██║░░░░░  ██║░░░██║  ██╔════╝░
@@ -87,7 +73,7 @@ call plug#begin('~/.vim/plugged')
 " New
 "
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'https://github.com/junegunn/vimloclisteasy-align'
+Plug 'https://github.com/junegunn/loclisteasy-align'
 Plug 'https://github.com/romainl/vim-qf'              " help with the quickfix lists
 Plug 'https://github.com/tpope/vim-fugitive'
 "
@@ -377,7 +363,7 @@ hi Normal guibg=NONE ctermbg=NONE
 hi Terminal guibg=NONE ctermbg=NONE
 hi SignColumn guifg=#ebdbb2 guibg=NONE ctermbg=NONE
 highlight VertSplit ctermbg=NONE
-" hi! StatusLine ctermbg=120 gui=NONE
+hi! StatusLine cterm=NONE gui=NONE
 " let &colorcolumn="81,140"                   | " Add indicator for 80 and 120
 set foldtext=clean_fold#fold_text_minimal() | " Clean folds
 set noshowmode                              | " Don't show mode changes
@@ -387,6 +373,9 @@ set noshowmode                              | " Don't show mode changes
 "
 highlight Comment gui=italic            | " Make comments italic
 highlight Keyword cterm=italic ctermfg=5
+" hi Search cterm=NONE ctermfg=118  ctermbg=18
+hi Search cterm=NONE ctermfg=118  ctermbg=18
+hi IncSearch cterm=NONE ctermfg=18  ctermbg=76
 "
 " ██╗  ███╗░░██╗  ██████╗░  ███████╗  ███╗░░██╗  ████████╗
 " ██║  ████╗░██║  ██╔══██╗  ██╔════╝  ████╗░██║  ╚══██╔══╝
@@ -585,7 +574,7 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+" set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 "
 " Novigate in floating windows https://github.com/neoclide/coc.nvim/issues/1405
 function! s:coc_float_scroll(forward) abort
@@ -875,25 +864,26 @@ nnoremap <C-h> <C-w>h
 " ╚═╝░░╚═╝  ╚═╝  ╚═╝░░╚═╝  ╚══════╝  ╚═╝  ╚═╝░░╚══╝  ╚══════╝
 
 " let g:airline_theme='monochrome'
-let g:airline_theme='bubblegum'
+" let g:airline_theme='bubblegum'
+" hi airline_c  ctermbg=NONE guibg=NONE
+" hi airline_tabfill ctermbg=NONE guibg=NONE
+
+let g:airline_theme = 'base16color'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+
 "
 " let g:airline#extensions#fugitiveline#enabled = 0
 " let g:airline_theme='raven'
 " let g:airline_theme='orbital'
 " let g:airline_theme = 'minimalist'
-" let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '>'
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#whitespace#checks = ['']
-let g:airline#extensions#tabline#enabled = 1
-hi airline_c  ctermbg=NONE guibg=NONE
-hi airline_tabfill ctermbg=NONE guibg=NONE
-let g:airline_powerline_fonts = 0
+" let g:airline#extensions#tabline#enabled = 1
 let g:airline#themes#clean#palette = 1
 call airline#parts#define_raw('linenr', '%l')
 call airline#parts#define_accent('linenr', 'bold')
-let g:airline_section_z = airline#section#create(['%3p%%  ',
-            \ g:airline_symbols.linenr .' ', 'linenr', ':%c '])
 let g:airline_section_warning = ''
 let g:airline_section_error = ''
 let g:airline#extensions#tabline#buffer_min_count = 1   " show tabline only if there is more than 1 buffer

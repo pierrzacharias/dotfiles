@@ -4,6 +4,8 @@
 "
 " general
 "
+nnoremap qb <Esc>:bd!<CR>                                    " close a buffer
+inoremap qb <Esc>:bd!<CR>                                    " close a buffer
 execute "set <M-f>=\ef"
 inoremap <M-f> <Esc>:update<CR>
 nnoremap <M-f> <Esc><Esc>:update<CR>
