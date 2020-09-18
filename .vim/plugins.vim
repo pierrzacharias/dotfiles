@@ -10,7 +10,7 @@ if has('win32')
     let g:plug_install_files = '$HOME\vimfiles\plugged'
 endif
 if has('unix')
-    let g:plug_install_files = '$HOME\vimfiles\plugged'
+    let g:plug_install_files = '$HOME/.vim/plugged'
 endif
 call plug#begin(g:plug_install_files)
 "
