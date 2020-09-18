@@ -1,0 +1,16 @@
+{
+    "diagnostic.infoSign": "i-",
+    "diagnostic.hintSign": "➤",
+    "diagnostic.warningSign": "⚠",
+    "diagnostic.errorSign": "✖",
+    "diagnostic.enableSign":true,
+    "suggest.enablePreview": true,
+    "diagnostic.maxWindowWidth": 800,
+    "diagnostic.messageTarget":"echo",
+    "diagnostic.virtualTextPrefix":"coc.diag",
+    "diagnostic.maxWindowHeight": 400,
+    "suggest.maxPreviewWidth":800,
+    "diagnostic.messageDelay":1,
+    "coc.preferences.jumpCommand": "jump",
+    "npm.binPath": "C:\Program Files (x86)\Yarn\bin"
+}
