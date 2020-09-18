@@ -3,6 +3,8 @@
 "   - ameliorer chemin tags pour fichers differents
 "   - voir config tagbar avec latex
 "
+" Full featured compiled vim for Windows https://tuxproject.de/projects/vim/auto
+"
 " set paste                       " auto-indent paste
 set backspace=indent,eol,start    " remove space in indent and end of line
 set spelllang=en                  " syntax check
@@ -25,38 +27,53 @@ set laststatus=2
 set lazyredraw
 set ai
 set showcmd
-set cmdheight=1                 " Better display for messages
-set updatetime=30               " Smaller updatetime for CursorHold & CursorHoldI
-set shortmess+=c
-set mouse=a                     " enbable mouse functionnalities
+set cmdheight=1                   " Better display for messages
+set updatetime=30                 " Smaller updatetime for CursorHold & CursorHoldI
+set mouse=a                       " enbable mouse functionnalities
 set tags=tags
 set expandtab
-set tabstop=5                   " show existing tab with 4 spaces width
-set shiftwidth=4                " when indenting with '>', use 4 spaces width
-set autoindent                  " autoindent files
-set smartindent                 " auto indent while editing
-set splitbelow splitright       " new split view appaer verticqly splitted
+set tabstop=5                     " show existing tab with 4 spaces width
+set shiftwidth=4                  " when indenting with '>', use 4 spaces width
+set autoindent                    " autoindent files
+set smartindent                   " auto indent while editing
+set splitbelow splitright         " new split view appaer verticqly splitted
+set nobackup
+set nowritebackup
 " When editing a file, always jump to the last cursor position
 autocmd BufReadPost *
             \ if line("'\"") > 0 && line ("'\"") <= line("$") |
             \   exe "normal! g'\"" |
             \ endif
-set noswapfile                  " No swap files for unmodified buffers
+set noswapfile                    " No swap files for unmodified buffers
 augroup Swap
     autocmd CursorHold,BufWritePost,BufReadPost,BufLeave *
                 \ if isdirectory(expand("<amatch>:h")) | let &swapfile = &modified | endif
 augroup END
 syntax on
-set incsearch                     " Show search result while typing
 set number relativenumber
-set fillchars=vert:│,fold:+    " split separation character
+set fillchars=vert:│,fold:+       " split separation character
 "
-set suffixes+=.pyc,.pyo         " ignore compiled Python files
-set suffixes+=.egg-info         " ignore compiled Python files
-set suffixes+=.png              " don't edit .png files please
-set wildignore+=*.pyc,*.pyo     " same as 'suffixes', but for tab completion
-set wildignore+=*/__pycache__/* " compiled python files
-set wildignore+=*/*.egg-info/*  " setuptools droppings
+set suffixes+=.pyc,.pyo           " ignore compiled Python files
+set suffixes+=.egg-info           " ignore compiled Python files
+set suffixes+=.png                " don't edit .png files please
+set wildignore+=*.pyc,*.pyo       " same as 'suffixes', but for tab completion
+set wildignore+=*/__pycache__/*   " compiled python files
+set wildignore+=*/*.egg-info/*    " setuptools droppings
+"
+if has('unix')
+    set incsearch                     " Show search result while typing
+endif
+" if has('win32')
+" endif
+if has('win32')
+    " set guifont=Source\ Code\ Pro\ Regular\ 20
+    set lazyredraw
+    " set regexpengine=1
+    " set ttyfast
+    " set novisualbell
+endif
+
+"
 " ██████╗░  ░█████╗░  ████████╗  ██╗░░██╗
 " ██╔══██╗  ██╔══██╗  ╚══██╔══╝  ██║░░██║
 " ██████╔╝  ███████║  ░░░██║░░░  ███████║
@@ -91,10 +108,10 @@ if has('win32')
     let g:dotfiles_path = $HOME
     let g:dotvim_path = $HOME . '\vimfiles'
     function! VimrcPath(path)                     " Get path relative to .vimrc file
-    return g:dotfiles_path . '\vimfiles\' . a:path
+        return g:dotfiles_path . '\vimfiles\' . a:path
     endfunction
     function! DotVimPath(path)                    " Get path relative to .vim directory
-    return g:dotvim_path . '\' . a:path
+        return g:dotvim_path . '\' . a:path
     endfunction
     " Vimrc related paths for autocmds
     let g:vimrc_related_paths = [
@@ -109,9 +126,14 @@ endif
 " ░╚═══██╗  ██║░░██║  ██║░░░██║  ██╔══██╗  ██║░░██╗  ██║  ██║╚████║  ██║░░╚██╗
 " ██████╔╝  ╚█████╔╝  ╚██████╔╝  ██║░░██║  ╚█████╔╝  ██║  ██║░╚███║  ╚██████╔╝
 " ╚═════╝░░   ╚════╝░  ░╚═════╝░  ╚═╝░░╚═╝  ░╚════╝░  ╚═╝  ╚═╝░░╚══╝  ░╚════╝░
-execute 'source ' VimrcPath('mappings.vim')
-execute 'source ' VimrcPath('plugins.vim')
-execute 'source ' VimrcPath('colors/colors.vim')
+" list of keymap
+execute 'source ' VimrcPath('mappings.vim')          
+" load and config plugins
+execute 'source ' VimrcPath('plugins.vim')           
+" colors settings
+execute 'source ' VimrcPath('colors/colors.vim')     
+" configs for the coc extensions
+" execute 'source ' VimrcPath('coc.vim')               
 "
 " ████████╗  ░█████╗░  ░██████╗░  ░██████╗
 " ╚══██╔══╝  ██╔══██╗  ██╔════╝░  ██╔════╝
@@ -121,7 +143,7 @@ execute 'source ' VimrcPath('colors/colors.vim')
 " ░░╚═╝░░░  ╚═╝░░╚═╝  ░╚════╝░  ╚═════╝░░
 let g:tagbar_compact = 1
 let g:tagbar_show_linenumbers = 2
-let g:tagbar_iconchars = ['▸', '▾']
+" letg:tagbar_iconchars = ['▸', '▾']
 let g:tagbar_autoshowtag = 1
 " let g:tagbar_previewwin_pos = "aboveleft"
 command! MakeTags !ctags -R .
