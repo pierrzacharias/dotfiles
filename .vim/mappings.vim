@@ -44,6 +44,8 @@ nnoremap <C-w>p :lopen<CR>                  " open loclist
 nnoremap <C-p> :lcl<CR>                     " close loclist
 execute "set <M-u>=\eu"
 nnoremap <M-u> :lla <CR>                    " navigate to last item in list
+
+nnoremap <silent> <F2> :call ToggleQuickFix()<cr>"
 "
 " compile with :make
 "
@@ -142,6 +144,10 @@ vnoremap  <M-i> :QuickRun -mode v<CR>
 nnoremap mh :SidewaysLeft<cr>
 nnoremap ml :SidewaysRight<cr>
 
+"
+" Tags
+"
+nnoremap <C-W><C-]> :call FollowTag()<CR>zt   " Follow tag in a vertical window
 "
 " Fzf
 "
