@@ -1,4 +1,10 @@
-colorscheme gruvbox                        | " Sets theme to gruvbox
+if has('unix') "specific options for linux
+    colorscheme gruvbox                        | " Sets theme to gruvbox
+endif
+if has('win32') "specific options for windows
+    colorscheme industry                        | " Sets theme to gruvbox
+endif
+" colorscheme gruvbox                        | " Sets theme to gruvbox
 " colorscheme gruvbit
 let g:gruvbox_italic=1
 " let g:gruvbox_contrast_dark = 'soft'
@@ -19,7 +25,6 @@ highlight Keyword cterm=italic ctermfg=5
 set background=dark
 hi Normal guibg=NONE ctermbg=NONE
 hi Terminal guibg=NONE ctermbg=NONE cterm=None
-" highlight VertSplit ctermbg=NONE
 hi SignColumn guifg=#ebdbb2 guibg=NONE ctermbg=NONE
 " Statusline
 if has('unix') "specific options for linux
@@ -40,6 +45,7 @@ if has('win32') "specific options for windows
     hi Search cterm=NONE ctermfg=0  ctermbg=10
     hi IncSearch cterm=NONE ctermfg=0  ctermbg=110
     " hi Search cterm=NONE ctermfg=190  ctermbg=26
+    highlight VertSplit guibg=NONE ctermbg=NONE cterm=NONE
 endif
 "
 " ██████╗░  ░█████╗░  ███╗░░██╗  ░█████╗░  ██╗░░░░░  ██╗  ███╗░░██╗  ███████╗

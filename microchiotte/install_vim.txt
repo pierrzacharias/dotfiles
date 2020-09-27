@@ -1,0 +1,5 @@
+- vim bins are in C:\tools\vim
+- .vimrc is in $HOME
+- other vim config files in $HOME\vimfiles\
+    hi! StatusLine cterm=NONE gui=NONE
+- install Plug in $HOME\vimfiles\autoload
