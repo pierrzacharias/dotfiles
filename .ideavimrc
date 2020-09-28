@@ -1,0 +1,50 @@
+set ignorecase
+set incsearch
+set number
+set relativenumber
+set showmode
+set smartcase
+set novisualbell
+
+set ideamarks
+set ideajoin
+set easymotion      " Emulate vim-easymotion
+set set surround    " Emulate vim-surround
+set set multiple-cursors
+set set commentary
+set ReplaceWithRegister  " with gr, grr
+set argtextobj            " Emulate https://www.vim.org/scripts/script.php?script_id=2699
+set exchange              " Emulate vim-exchange
+set textobj-entire         " text object of entire buffer
+map \f :action ReformatCode<CR> "ReformatCode
+source ~/.vimrc
+source ~/vimfiles/mappings.vim
+source ~/vimfiles/plugin.vim
+source ~/vimfiles/mapppings_plugin.vim
+source ~/vimfiles/colors/colors.vim
+
+"
+" Actions
+"
+nnoremap ,e :action SearchEverywhere<CR>
+nnoremap ,g :action FindInPath<CR>
+nnoremap ,s :action FileStructurePopup<CR>
+
+nnoremap gd :action GotoDeclaration<CR>
+nnoremap gs :action GotoSuperMethod<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gb :action JumpToLastChange<CR>
+
+nnoremap U :action FindUsages<CR>
+nnoremap R :action RenameElement<CR>
+
+nnoremap == :action ReformatCode<CR>
+vnoremap == :action ReformatCode<CR>
+
+" nnoremap cc :action CommentByLineComment<CR>
+" vnoremap cc :action CommentByLineComment<CR>
+
+nnoremap <C-CR> :action ShowIntentionActions<CR>
+
+nnoremap ,a :action GotoAction<CR>
+vnoremap ,a :action GotoAction<CR>
