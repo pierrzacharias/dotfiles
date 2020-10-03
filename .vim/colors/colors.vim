@@ -2,15 +2,14 @@ if has('unix') "specific options for linux
     colorscheme gruvbox                        | " Sets theme to gruvbox
 endif
 if has('win32') "specific options for windows
-    colorscheme industry                        | " Sets theme to gruvbox
+    colorscheme solarized                        | " Sets theme to gruvbox
 endif
-" colorscheme gruvbox                        | " Sets theme to gruvbox
-" colorscheme gruvbit
-let g:gruvbox_italic=1
+set background=dark
+" let g:gruvbox_italic=1
 " let g:gruvbox_contrast_dark = 'soft'
-let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_undercurl=0
-" set cursorline                               " Highlight current line
+" let g:gruvbox_contrast_dark = 'hard'
+" let g:gruvbox_undercurl=0
+set cursorline                               " Highlight current line
 " let base16colorspace=256                    | " Access colors present in 256 colorspace
 " let &colorcolumn="81,140"                   | " Add indicator for 80 and 120
 set foldtext=clean_fold#fold_text_minimal() | " Clean folds
@@ -20,12 +19,10 @@ set noshowmode                              | " Don't show mode changes
 " set showmatch                               | " Show matching braces
 "
 highlight Comment gui=italic            | " Make comments italic
-highlight Keyword cterm=italic ctermfg=5
+" highlight Keyword cterm=italic ctermfg=5
 "
-set background=dark
 hi Normal guibg=NONE ctermbg=NONE
 hi Terminal guibg=NONE ctermbg=NONE cterm=None
-hi SignColumn guifg=#ebdbb2 guibg=NONE ctermbg=NONE
 " Statusline
 if has('unix') "specific options for linux
     hi! StatusLine cterm=NONE gui=NONE
@@ -38,14 +35,14 @@ if has('unix') "specific options for linux
     hi Search cterm=NONE ctermfg=118  ctermbg=18
     hi IncSearch cterm=NONE ctermfg=18  ctermbg=76
     " hi Search cterm=NONE ctermfg=190  ctermbg=26
+    hi SignColumn guifg=#ebdbb2 guibg=NONE ctermbg=NONE
 endif
 "
 if has('win32') "specific options for windows
     " set termuicolors                           | " Enables 24bit colors
     hi Search cterm=NONE ctermfg=0  ctermbg=10
     hi IncSearch cterm=NONE ctermfg=0  ctermbg=110
-    " hi Search cterm=NONE ctermfg=190  ctermbg=26
-    highlight VertSplit guibg=NONE ctermbg=NONE cterm=NONE
+    " highlight VertSplit guibg=NONE ctermbg=NONE cterm=NONE
 endif
 "
 " ██████╗░  ░█████╗░  ███╗░░██╗  ░█████╗░  ██╗░░░░░  ██╗  ███╗░░██╗  ███████╗

@@ -16,13 +16,17 @@ call plug#begin(g:plug_install_files)
 "
 " New
 "
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'https://github.com/junegunn/loclisteasy-align'
-Plug 'https://github.com/romainl/vim-qf'              " help with the quickfix lists
 Plug 'https://github.com/tpope/vim-fugitive'
+"
+" microchiotte
+"
+"
+Plug 'https://github.com/mattn/vimtweak'              " transparency on gvim
 "
 " Navigation
 "
+Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 Plug 'https://github.com/mattn/vim-findroot'           " Find root of project
 Plug 'https://github.com/tpope/vim-surround'           " add object with (, {, {, ...
 Plug 'https://github.com/tpope/vim-commentary'         " comment out
@@ -34,19 +38,22 @@ Plug 'jlanzarotta/bufexplorer'                         " help to manage opened b
 "
 " IDE masterrace
 "
+Plug 'https://github.com/romainl/vim-qf'              " help with the quickfix lists
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'https://github.com/gotcha/vimpdb'
 Plug 'https://github.com/puremourning/vimspector'      " A debugger in vim for multiples languages
 Plug 'https://github.com/tpope/vim-endwise'            " end certain structures automatically
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}        " new community driven completion engine
-" Plug 'antoinemadec/coc-fzf'                            " integrate fzf with coc.vim
 Plug 'dense-analysis/ale'                              " syntax checking and semantic errors
 Plug 'preservim/nerdtree'                              " file explorer
 Plug 'https://github.com/thinca/vim-quickrun'          " Run python and others easely
+" Plug 'antoinemadec/coc-fzf'                            " integrate fzf with coc.vim
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}        " new community driven completion engine
 " Plug 'https://github.com/tpope/vim-dispatch'           " could be an alternative to quickrun
 " Plug 'https://github.com/mattboehm/vim-unstack'      " open trace, don't  work :(
 "
 " Python
 "
+Plug 'https://github.com/jmcantrell/vim-virtualenv'
 Plug 'https://github.com/ColinKennedy/vim-textobj-block-party' " text objects and motions for Python required +python
 Plug 'mgedmin/python-imports.vim'                       " Insert Python import statements computed from tags, bound to <F5>
 Plug 'mgedmin/pytag.vim'                               " better tags for python TODO
@@ -72,9 +79,9 @@ Plug 'https://github.com/universal-ctags/ctags'        " help to generate tags
 " Theming
 "
 "
-Plug 'habamax/vim-gruvbit'
-Plug 'habamax/vim-gruvbit'
-Plug 'morhetz/gruvbox'                                 " color theme
+" Piiug 'habamax/vim-gruvbit'
+" Plug 'morhetz/gruvbox'                                 " color theme
+Plug 'https://github.com/altercation/vim-colors-solarized'                                 " color theme
 Plug 'https://github.com/miyakogi/conoline.vim'        " highlights the line of the cursor
 Plug 'ryanoasis/vim-devicons'                          " add icon
 Plug 'vim-airline/vim-airline'                         " add visual line
@@ -115,7 +122,6 @@ Plug 'https://github.com/Yggdroot/indentLine'          " help with indent TODO: 
 "
 " TOTEST
 " Plug 'https://github.com/Shougo/denite.nvim'        " file , buffers manager
-" Plug 'airblade/vim-rooter'                           " place search at project root, look for .gitingore
 " Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'https://github.com/AndrewRadev/sideways.vim'   " move func args
 " Plug 'https://github.com/tpope/vim-vinegar'
@@ -130,15 +136,20 @@ Plug 'https://github.com/Yggdroot/indentLine'          " help with indent TODO: 
 " REMOVED
 "
 "Plug 'https://github.com/airblade/vim-gitgutter'      " git helper TODO : configure
-"Plug 'https://github.com/jmcantrell/vim-virtualenv'
-"Plug 'https://github.com/jmcantrell/vim-virtualenv'
 "Plug 'https://github.com/ervandew/supertab'
 "Plug 'skywind3000/vim-auto-popmenu'
 "Plug 'liuchengxu/vim-clap'
-"Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 "
 "
 call plug#end() "run :PlugInstall
+"
+" vimtweak
+"
+if has('win32')
+    autocmd BufReadPost * call libcallnr("vimtweak64.dll", "SetAlpha", 225)
+    autocmd BufReadPost * call libcallnr("vimtweak64.dll", "EnableMaximize", 1)
+endif
+
 "
 " ██╗░░░██╗  ██╗  ███╗░░░███╗  ░██████╗  ██████╗░  ███████╗  ██████╗░  ████████╗  ░█████╗░  ██████╗░
 " ██║░░░██║  ██║  ████╗░████║  ██╔════╝  ██╔══██╗  ██╔════╝  ██╔══██╗  ╚══██╔══╝  ██╔══██╗  ██╔══██╗
@@ -359,7 +370,11 @@ map <C-n> :NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen=1
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-let g:NERDTreeWinSize=20
+let g:NERDTreeWinSize=40
+let g:NERDTreeAutoCenter=1
+let g:NERDTreeHighlightCursorline=1
+let g:NERDTreeShowBookmarks=1
+let g:NERDTreeShowHidden=1
 let NERDTreeMinimalUI=1
 let g:NERDTreeDirArrowExpandable='>'
 let g:NERDTreeDirArrowCollapsible='>'
@@ -378,9 +393,9 @@ let g:NERDTreeIndicatorMapCustom = {
     \ }
 let NERDTreeStatusline=""
 " Git gutter custom signs
-let g:gitgutter_sign_added = '█'
-let g:gitgutter_sign_modified = '█'
-let g:gitgutter_sign_removed = '█'
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = 'm'
+let g:gitgutter_sign_removed = '-'
 let g:NERDTreeGitStatusIndicatorMapCustom = {
                 \ 'Modified'  :'+',
                 \ 'Staged'    :'s',
@@ -456,27 +471,28 @@ let g:ale_python_pylint_options = "--disable=C0301"  " Remove pylint error usele
 " let g:airline_theme='bubblegum'
 " hi airline_c  ctermbg=NONE guibg=NONE
 " hi airline_tabfill ctermbg=NONE guibg=NONE
-
-let g:airline_theme = 'base16color'
+if has('unix')
+    let g:airline_theme = 'base16color'
+endif
+if has('win32')
+    let g:airline_theme = 'solarized_flood'
+endif
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-
 "
 " let g:airline#extensions#fugitiveline#enabled = 0
-" let g:airline_theme='raven'
-" let g:airline_theme='orbital'
-" let g:airline_theme = 'minimalist'
 let g:airline#extensions#tabline#left_alt_sep = '>'
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#whitespace#checks = ['']
-" let g:airline#extensions#tabline#enabled = 1
 let g:airline#themes#clean#palette = 1
 call airline#parts#define_raw('linenr', '%l')
-call airline#parts#define_accent('linenr', 'bold')
+" call airline#parts#define_accent('linenr', 'bold')
 let g:airline_section_warning = ''
 let g:airline_section_error = ''
 let g:airline#extensions#tabline#buffer_min_count = 1   " show tabline only if there is more than 1 buffer
 " let g:airline#extensions#tabline#fnamemod = ':t'        " show only file name on tabs
+let g:airline#extensions#virtualenv#enabled = 1         " Enable virtualenv plugin
+let g:airline#extensions#ctrlspace#enabled = 1
 
 " ██╗░░░░░  ░█████╗░  ████████╗  ███████╗  ██╗░░██╗
 " ██║░░░░░  ██╔══██╗  ╚══██╔══╝  ██╔════╝  ╚██╗██╔╝

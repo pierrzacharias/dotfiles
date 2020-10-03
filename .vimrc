@@ -6,6 +6,7 @@
 " Full featured compiled vim for Windows https://tuxproject.de/projects/vim/auto
 "
 " set paste                       " auto-indent paste
+autocmd FileType text setlocal textwidth=79
 set backspace=indent,eol,start    " remove space in indent and end of line
 set spelllang=en                  " syntax check
 setglobal helplang=en,fr          " syntax check
@@ -24,7 +25,6 @@ set path+=**
 set diffopt+=indent-heuristic
 set wildmenu
 set laststatus=2
-set lazyredraw
 set ai
 set showcmd
 set cmdheight=1                   " Better display for messages
@@ -50,7 +50,9 @@ augroup Swap
                 \ if isdirectory(expand("<amatch>:h")) | let &swapfile = &modified | endif
 augroup END
 syntax on
-set number relativenumber
+set virtualedit=onemore
+set relativenumber
+set nonumber
 set fillchars=vert:│,fold:+       " split separation character
 "
 set suffixes+=.pyc,.pyo           " ignore compiled Python files
@@ -67,7 +69,6 @@ endif
 " endif
 if has('win32')
     " set guifont=Source\ Code\ Pro\ Regular\ 20
-    set lazyredraw
     " set regexpengine=1
     " set ttyfast
     " set novisualbell
@@ -127,13 +128,16 @@ endif
 " ██████╔╝  ╚█████╔╝  ╚██████╔╝  ██║░░██║  ╚█████╔╝  ██║  ██║░╚███║  ╚██████╔╝
 " ╚═════╝░░   ╚════╝░  ░╚═════╝░  ╚═╝░░╚═╝  ░╚════╝░  ╚═╝  ╚═╝░░╚══╝  ░╚════╝░
 " list of keymap
-execute 'source ' VimrcPath('mappings.vim')          
+execute 'source ' VimrcPath('mappings.vim')
 " load and config plugins
-execute 'source ' VimrcPath('plugins.vim')           
+execute 'source ' VimrcPath('plugins.vim')
+execute 'source ' VimrcPath('mapping_plugin.vim')
+" if gvim running
+execute 'source ' VimrcPath('gvim.vim')
 " colors settings
-execute 'source ' VimrcPath('colors/colors.vim')     
+execute 'source ' VimrcPath('colors/colors.vim')
 " configs for the coc extensions
-" execute 'source ' VimrcPath('coc.vim')               
+" execute 'source ' VimrcPath('coc.vim')
 "
 " ████████╗  ░█████╗░  ░██████╗░  ░██████╗
 " ╚══██╔══╝  ██╔══██╗  ██╔════╝░  ██╔════╝

@@ -4,8 +4,9 @@
 "
 " general
 "
-nnoremap L $
+map M <Nop>
 nnoremap H ^
+nnoremap L g_<CR>
 nnoremap qb <Esc>:bd!<CR>                                    " close a buffer
 inoremap qb <Esc>:bd!<CR>                                    " close a buffer
 execute "set <M-f>=\ef"
@@ -16,11 +17,11 @@ nnoremap qq :qa!<CR>
 " nnoremap <leader>f :cd %:p:h<CR>                          " change to the directory of the currently open files
 execute 'set <M-p>=\ep'
 nnoremap <M-p> "+p
+
 " execute 'set <M-n>=\en'
 " nnoremap <M-n> <C-n>
 " execute 'set <M-m>=\em'
 " nnoremap <M-m> <C-p>
-" nnoremap L g_<CR>
 " nnoremap H ^<CR>
 nnoremap K a<cr><esc>
 " map <C-l> :set rnu<CR>
@@ -33,14 +34,19 @@ nnoremap <space> i<space><Esc>
 " noremap j gj
 noremap k gk
 nnoremap <Leader>h :vert terminal<CR>
-nnoremap <silent>db m`:silent +g/\m^\s*$/d<CR>``:noh<CR>  " delete line below if blanck
-nnoremap <silent>da m`:silent -g/\m^\s*$/d<CR>``:noh<CR>  " delete line above if blank
+" nnoremap <silent>db m`:silent +g/\m^\s*$/d<CR>``:noh<CR>           " delete line below if blanck
+nnoremap <silent>db jddk                                             " delete line below if blanck
+nnoremap <silent>da m`:silent -g/\m^\s*$/d<CR>``:noh<CR>             " delete line above if blank
 execute 'set <M-o>=\eo'
-nnoremap <silent><M-o> :set paste<CR>m`o<Esc>``:set nopaste<CR> " insert blank line below
-nnoremap <Leader>l :let &scrolloff=100-&scrolloff<CR>          " make edit line always centered
+nnoremap <silent><M-o> :set paste<CR>m`o<Esc>``:set nopaste<CR>      " insert blank line below
+nnoremap <Leader>l :let &scrolloff=100-&scrolloff<CR>                " make edit line always centered
 nnoremap <silent><Leader>t :TagbarToggle<CR>
 "
 " Loclist
+"
+
+
+
 "
 nnoremap <C-w>p :lopen<CR>                  " open loclist
 nnoremap <C-p> :lcl<CR>                     " close loclist

@@ -1,4 +1,23 @@
-
+"
+" vimtweak
+"
+" Window transparency shortcuts
+let g:dll = globpath(&rtp, 'vimtweak.dll')
+function Transparency(v)
+  call libcallnr("vimtweak64.dll", "SetAlpha", 255-a:v)
+endfunction
+nnoremap <silent> <leader>a0 :call Transparency(0)<CR>
+nnoremap <silent> <leader>a1 :call Transparency(10)<CR>
+nnoremap <silent> <leader>a2 :call Transparency(20)<CR>
+nnoremap <silent> <leader>a3 :call Transparency(30)<CR>
+nnoremap <silent> <leader>a4 :call Transparency(40)<CR>
+nnoremap <silent> <leader>a5 :call Transparency(50)<CR>
+nnoremap <silent> <leader>a6 :call Transparency(60)<CR>
+nnoremap <silent> <leader>a7 :call Transparency(70)<CR>
+nnoremap <silent> <leader>mm :call libcallnr("vimtweak64.dll", "EnableMaximize", 1)<CR>
+nnoremap <silent> <leader>ms :call libcallnr("vimtweak64.dll", "EnableMaximize", 0)<CR>
+nnoremap <silent> <leader>mt :call libcallnr("vimtweak64.dll", "EnableTopMost", 1)<CR>
+nnoremap <silent> <leader>mp :call libcallnr("vimtweak64.dll", "EnableTopMost", 0)<CR>
 
 " submersive
 "
@@ -14,7 +33,6 @@ nmap <leader>s <plug>(SubversiveSubstituteWordRange)
 nmap <leader>cs <plug>(SubversiveSubstituteRangeConfirm)
 xmap <leader>cs <plug>(SubversiveSubstituteRangeConfirm)
 nmap <leader>css <plug>(SubversiveSubstituteWordRangeConfirm)
-
 "
 " latex
 "
@@ -110,7 +128,7 @@ let g:fzf_action = {
 nnoremap mr :Rg<CR>
 nnoremap mt :Tags<CR>
 nnoremap mm :Marks<CR>
-nnoremap <C-f> :BLines<CR>
+nnoremap <C-n> :BLines<CR>
 " nnoremap <C-o> :FzfPreviewProjectFiles<CR>
 nmap <C-D> :Files<CR>
 nmap <C-b> :Buffers<CR>
@@ -119,7 +137,7 @@ inoremap <silent><expr> <M-g> coc#refresh()
 nmap <Leader>y :PHistory<CR>
 nmap <Leader>H :History<CR>
 nmap <Leader>: :History:<CR>
-nmap <Leader>M :Maps<CR>
+nmap <Leader>gm :Maps<CR>
 
 "
 " coc
@@ -162,7 +180,7 @@ xmap ic <Plug>(coc-classobj-i)
 omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
-nnoremap <silent> D :call <SID>show_documentation()<CR> " show Documentation
+nnoremap <silent> gr :call <SID>show_documentation()<CR> " show Documentation
 nnoremap <silent><nowait> ma  :<C-u>CocList diagnostics<cr> " Show all diagnostics.
 nnoremap <silent><nowait> <Leader>u  :<C-u>CocList extensions<cr> " Manage extensions.
 nnoremap <silent><nowait> mc  :<C-u>CocList commands<cr> " Show commands.

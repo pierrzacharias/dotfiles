@@ -7,6 +7,11 @@
 * COMPOSITOR : picom
 * BAR : polybar
 
+Config for GVim in Windows:
+![](windows.png)
+
+
+Config for Unix:
 ![](polybar.png)
 
 To compile vim in python mode:
