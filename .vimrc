@@ -52,7 +52,8 @@ augroup END
 syntax on
 set virtualedit=onemore
 set relativenumber
-set nonumber
+" set nonumber
+" set signcolumn=number
 set fillchars=vert:│,fold:+       " split separation character
 "
 set suffixes+=.pyc,.pyo           " ignore compiled Python files
@@ -137,7 +138,7 @@ execute 'source ' VimrcPath('gvim.vim')
 " colors settings
 execute 'source ' VimrcPath('colors/colors.vim')
 " configs for the coc extensions
-" execute 'source ' VimrcPath('coc.vim')
+execute 'source ' VimrcPath('coc.vim')
 "
 " ████████╗  ░█████╗░  ░██████╗░  ░██████╗
 " ╚══██╔══╝  ██╔══██╗  ██╔════╝░  ██╔════╝
@@ -145,6 +146,7 @@ execute 'source ' VimrcPath('colors/colors.vim')
 " ░░░██║░░░  ██╔══██║  ██║░░╚██╗  ░╚═══██╗
 " ░░░██║░░░  ██║░░██║  ╚██████╔╝  ██████╔╝
 " ░░╚═╝░░░  ╚═╝░░╚═╝  ░╚════╝░  ╚═════╝░░
+
 let g:tagbar_compact = 1
 let g:tagbar_show_linenumbers = 2
 " letg:tagbar_iconchars = ['▸', '▾']
@@ -152,6 +154,10 @@ let g:tagbar_autoshowtag = 1
 " let g:tagbar_previewwin_pos = "aboveleft"
 command! MakeTags !ctags -R .
 "set statusline+=%{gutentags#statusline()}
+" generate databases in my cache directory, prevent gtags files polluting my project
+let g:gutentags_cache_dir = expand('~/.cache/tags')
+let g:gutentags_ctags_exclude = ["*.min.js", "*.min.css", "build", "vendor",
+                                 \ ".git", "node_modules", "*.vim/bundle/*"]
 let g:gutentags_modules = ['ctags', 'gtags_cscope'] "enable gtags module
 let g:gutentags_project_root = ['.root']   " config project root markers.
 " generate datebases in my cache directory, prevent gtags files polluting my project
