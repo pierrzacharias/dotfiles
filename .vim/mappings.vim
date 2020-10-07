@@ -23,7 +23,7 @@ nnoremap <M-p> "+p
 " execute 'set <M-m>=\em'
 " nnoremap <M-m> <C-p>
 " nnoremap H ^<CR>
-nnoremap K a<cr><esc>
+nnoremap K i<cr><esc>
 " map <C-l> :set rnu<CR>
 " map <C-a> :set nornu<CR>
 " nnoremap <leader> <c-w>
@@ -65,8 +65,6 @@ nnoremap <silent> <F2> :call ToggleQuickFix()<cr>"
 nnoremap <silent> ff :nohlsearch<Bar>:echo<CR> " Press ff to turn off highlighting and clear any message already displayed.
 " noremap <F2> :set hlsearch! hlsearch?<CR> " Press F6 to toggle high lighting on/off, and show  current value.
 nnoremap <F6> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR> " F8 will highlight all occurrences of the current word
-nnoremap * /\<<C-R>=expand('<cword>')<CR>\><CR>
-nnoremap # ?\<<C-R>=expand('<cword>')<CR>\><CR>
 
 "
 " registers
@@ -81,7 +79,7 @@ nnoremap <M-'> :WipeReg<cr>
 "
 " Tags
 "
-nnoremap <C-W><C-]> :call FollowTag()<CR>zt   " Follow tag in a vertical window
+nnoremap <C-W>[ :call FollowTag()<CR>zt   " Follow tag in a vertical window
 "
 " signcolumn_on
 "

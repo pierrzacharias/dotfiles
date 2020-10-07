@@ -1,7 +1,9 @@
 " #002b36
 colorscheme solarized                        | " Sets theme to gruvbox
-set guifont=Delugia\ Nerd\ Font:h14:cANSI
+" set guifont=Delugia\ Nerd\ Font:h11:cANSI
+set guifont=Delugia\ Nerd\ Font:h12:cANSI
 " set guifont=Inconsolata-g:h14:cANSI
+set textwidth=79
 set guioptions-=T " Removes top toolbar
 set guioptions-=r " Removes right hand scroll bar
 set guioptions-=m  "remove menu bar
@@ -16,6 +18,11 @@ hi VertSplit guibg=NONE guifg=#6c71c4
 hi! Pmenu guibg=#b58900 guifg=#073642
 " hi TabLineSel cterm=bold ctermbg=black ctermfg=7
 hi TabLine guibg=#b58900 guifg=#073642
+highlight! link SignColumn LineNr
+highlight! SignColumn cterm=bold
+set colorcolumn=80
+highlight ColorColumn guibg=#073642
+set guicursor+=a:blinkon0
 " ---------------------------------------------------------------
 "  Functions
 "  --------------------------------------------------------------

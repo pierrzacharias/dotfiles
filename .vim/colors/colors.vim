@@ -18,7 +18,7 @@ set noshowmode                              | " Don't show mode changes
 " set nowrap                                  | " Don't wrap lines
 " set showmatch                               | " Show matching braces
 "
-highlight Comment gui=italic            | " Make comments italic
+" highlight Comment gui=italic            | " Make comments italic
 " highlight Keyword cterm=italic ctermfg=5
 "
 hi Normal guibg=NONE ctermbg=NONE
@@ -60,14 +60,14 @@ endif
 " endif
 if has('win32') "specific options for windows
     " let g:conoline_use_colorscheme_default_normal=0
-    let g:conoline_color_normal_nr_dark = 'guibg=#333333 guifg=#dddddd gui=None '
-                            \. 'ctermbg=8 ctermfg=NONE'
-    let g:conoline_color_insert_nr_dark = 'guibg=#333333 guifg=#dddddd gui=None '
-                            \. 'ctermbg=65 ctermfg=NONE'
-    let g:conoline_color_normal_dark = 'guibg=#333333 guifg=#dddddd gui=None '
-                            \. 'ctermbg=0 ctermfg=NONE'
-    let g:conoline_color_insert_dark = 'guibg=#333333 guifg=#dddddd gui=None '
-                            \. 'ctermbg=0 ctermfg=NONE'
+    " let g:conoline_color_normal_nr_dark = 'guibg=#333333 guifg=#dddddd gui=None '
+    "                         \. 'ctermbg=8 ctermfg=NONE'
+    " let g:conoline_color_insert_nr_dark = 'guibg=#333333 guifg=#dddddd gui=None '
+    "                         \. 'ctermbg=65 ctermfg=NONE'
+    " let g:conoline_color_normal_dark = 'guibg=#333333 guifg=#dddddd gui=None '
+    "                         \. 'ctermbg=0 ctermfg=NONE'
+    " let g:conoline_color_insert_dark = 'guibg=#333333 guifg=#dddddd gui=None '
+    "                         \. 'ctermbg=0 ctermfg=NONE'
     " set cursorline                               " Highlight current line
     " hi! CursorLine   cterm=NONE ctermbg=darkblue ctermfg=NONE guibg=darkred guifg=NONE
     " hi! CursorColumn cterm=NONE ctermbg=darkblue ctermfg=NONE guibg=darkred guifg=NONE

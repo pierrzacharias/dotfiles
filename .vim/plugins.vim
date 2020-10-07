@@ -16,8 +16,9 @@ call plug#begin(g:plug_install_files)
 "
 " New
 "
-Plug 'https://github.com/junegunn/loclisteasy-align'
+" Plug 'https://github.com/junegunn/loclisteasy-align'
 Plug 'https://github.com/tpope/vim-fugitive'
+Plug 'luochen1990/rainbow'
 "
 " microchiotte
 "
@@ -45,15 +46,16 @@ Plug 'https://github.com/puremourning/vimspector'      " A debugger in vim for m
 Plug 'https://github.com/tpope/vim-endwise'            " end certain structures automatically
 Plug 'dense-analysis/ale'                              " syntax checking and semantic errors
 Plug 'preservim/nerdtree'                              " file explorer
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'https://github.com/thinca/vim-quickrun'          " Run python and others easely
-" Plug 'antoinemadec/coc-fzf'                            " integrate fzf with coc.vim
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}        " new community driven completion engine
-" Plug 'https://github.com/tpope/vim-dispatch'           " could be an alternative to quickrun
-" Plug 'https://github.com/mattboehm/vim-unstack'      " open trace, don't  work :(
+" Plug 'https://github.com/airblade/vim-gitgutter'      " git helper TODO : configure
+" " Plug 'antoinemadec/coc-fzf'                            " integrate fzf with coc.vim
+Plug 'neoclide/coc.nvim', {'branch': 'release'}        " new community driven completion engine
 "
 " Python
 "
-Plug 'https://github.com/jmcantrell/vim-virtualenv'
+Plug 'https://github.com/jmcantrell/vim-virtualenv'    " Tool for python venv
+" Plug 'https://github.com/westurner/venv.vim'
 Plug 'https://github.com/ColinKennedy/vim-textobj-block-party' " text objects and motions for Python required +python
 Plug 'mgedmin/python-imports.vim'                       " Insert Python import statements computed from tags, bound to <F5>
 Plug 'mgedmin/pytag.vim'                               " better tags for python TODO
@@ -61,6 +63,7 @@ Plug 'https://github.com/sillybun/vim-repl'            " python terminal
 Plug 'mgedmin/python_open_module.vim'                  " Python standard library source code
 Plug 'https://github.com/tell-k/vim-autopep8'          " autoformat python code to pep8
 " https://www.reddit.com/r/vim/comments/83iwc1/is_there_a_vim_plugin_for_generating_python/ " python doc ?
+Plug 'https://github.com/wincent/terminus' "send text to as windows
 "
 " mappings
 "
@@ -73,21 +76,21 @@ Plug 'https://github.com/kana/vim-textobj-user'        " add new text objects
 "
 " Tags
 "
-Plug 'skywind3000/gutentags_plus'                      " help to generate tags
-Plug 'https://github.com/universal-ctags/ctags'        " help to generate tags
+Plug 'skywind3000/gutentags_plus'                          " help to generate tags
+Plug 'https://github.com/universal-ctags/ctags'            " help to generate tags
 "
 " Theming
 "
 "
 " Piiug 'habamax/vim-gruvbit'
-" Plug 'morhetz/gruvbox'                                 " color theme
-Plug 'https://github.com/altercation/vim-colors-solarized'                                 " color theme
-Plug 'https://github.com/miyakogi/conoline.vim'        " highlights the line of the cursor
-Plug 'ryanoasis/vim-devicons'                          " add icon
-Plug 'vim-airline/vim-airline'                         " add visual line
-Plug 'vim-airline/vim-airline-themes'                  " theme for airline
-Plug 'https://github.com/camspiers/animate.vim'        " windows move animation
-" Plug 'vim/killersheep'                                " absolutely essential
+" Plug 'morhetz/gruvbox'                                   " color theme
+Plug 'https://github.com/altercation/vim-colors-solarized' " color theme
+Plug 'https://github.com/miyakogi/conoline.vim'            " highlights the line of the cursor
+Plug 'ryanoasis/vim-devicons'                              " add icon
+Plug 'vim-airline/vim-airline'                             " add visual line
+Plug 'vim-airline/vim-airline-themes'                      " theme for airline
+Plug 'https://github.com/camspiers/animate.vim'            " windows move animation
+" Plug 'vim/killersheep'                                     " absolutely essential
 "
 " Latex
 "
@@ -122,10 +125,8 @@ Plug 'https://github.com/Yggdroot/indentLine'          " help with indent TODO: 
 "
 " TOTEST
 " Plug 'https://github.com/Shougo/denite.nvim'        " file , buffers manager
-" Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'https://github.com/AndrewRadev/sideways.vim'   " move func args
 " Plug 'https://github.com/tpope/vim-vinegar'
-" Plug 'https://github.com/wincent/terminus' "send text to as windows
 " Plug 'https://github.com/ncm2/float-preview.nvim/'
 " https://github.com/mileszs/ack.vim                   " wrap grep tools in vim
 " Plug 'vim-vdebug/vdebug'                             "TODO : configure  https://github.com/camspiers/dotfiles/blob/master/files/.config/nvim/init.VimtexCompile
@@ -135,7 +136,9 @@ Plug 'https://github.com/Yggdroot/indentLine'          " help with indent TODO: 
 "
 " REMOVED
 "
-"Plug 'https://github.com/airblade/vim-gitgutter'      " git helper TODO : configure
+"
+" Plug 'https://github.com/mattboehm/vim-unstack'      " open trace, don't  work :(
+" Plug 'https://github.com/tpope/vim-dispatch'           " could be an alternative to quickrun
 "Plug 'https://github.com/ervandew/supertab'
 "Plug 'skywind3000/vim-auto-popmenu'
 "Plug 'liuchengxu/vim-clap'
@@ -145,12 +148,23 @@ call plug#end() "run :PlugInstall
 "
 " vimtweak
 "
-if has('win32')
-    autocmd BufReadPost * call libcallnr("vimtweak64.dll", "SetAlpha", 225)
-    autocmd BufReadPost * call libcallnr("vimtweak64.dll", "EnableMaximize", 1)
-endif
+" if has('win32')
+"     autocmd BufReadPost * call libcallnr("vimtweak64.dll", "SetAlpha", 225)
+"     autocmd BufReadPost * call libcallnr("vimtweak64.dll", "EnableMaximize", 1)
+" endif
 
 "
+" rainbow
+"
+let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
+"
+" gitgutter
+"
+"
+let g:gitgutter_signs = 0
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '~'
+let g:gitgutter_sign_removed = '-'
 " ██╗░░░██╗  ██╗  ███╗░░░███╗  ░██████╗  ██████╗░  ███████╗  ██████╗░  ████████╗  ░█████╗░  ██████╗░
 " ██║░░░██║  ██║  ████╗░████║  ██╔════╝  ██╔══██╗  ██╔════╝  ██╔══██╗  ╚══██╔══╝  ██╔══██╗  ██╔══██╗
 " ╚██╗░██╔╝  ██║  ██╔████╔██║  ╚█████╗░  ██████╔╝  █████╗░░  ██║░░╚═╝  ░░░██║░░░  ██║░░██║  ██████╔╝
@@ -289,14 +303,14 @@ let g:sendtowindow_use_defaults=0
 " CTRL-N and CTRL-P will be automatically bound to next-history and
 " previous-history instead of down and up. If you don't like the change,
 " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
-let g:fzf_history_dir = '~/.local/share/fzf-history'
+" let g:fzf_history_dir = '~/.local/share/fzf-history'
 " map <Leader>h :Files<CR>
 "
 let g:fzf_tags_command = 'ctags -R'
 let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline '
 " let $FZF_DEFAULT_OPTS=' --color=dark --color=fg:5,bg:-1,hl:0,bg+:-1,hl+:-1 --color=info:0,prompt:0,pointer:-1,marker:-1,spinner:-1,header:-1 --layout=reverse  --margin=1,4'
 " let $FZF_DEFAULT_COMMAND="rg --files --hidden"
-let g:fzf_layout = { 'up': '20%' }
+let g:fzf_layout = { 'down': '30%' }
 " let g:fzf_layout = { 'window': '-tabnew' }
 let g:fzf_commands_expect = 'alt-enter'
 " let g:fzf_preview_window = 'right:50%:noborder:hidden'
@@ -379,7 +393,7 @@ let NERDTreeMinimalUI=1
 let g:NERDTreeDirArrowExpandable='>'
 let g:NERDTreeDirArrowCollapsible='>'
 let NERDTreeStatusline="%{matchstr(getline('.'), '\\s\\zs\\w\\(.*\\)')}"
-let g:NERDTreeIndicatorMapCustom = {
+let g:NERDTreeGitStatusIndicatorMapCustom = {
     \ "Modified"  : "Ξ",
     \ "Staged"    : "Λ",
     \ "Untracked" : "Φ",
@@ -405,7 +419,7 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
                 \ 'Deleted'   :'d',
                 \ 'Dirty'     :'✗',
                 \ 'Ignored'   :'☒',
-                \ 'Clean'     :'✔︎',
+                \ 'Clean'     :'C',
                 \ 'Unknown'   :'?',
                 \ }"
 " open a NERDTree automatically when vim starts up if no files were specified

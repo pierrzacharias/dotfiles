@@ -128,16 +128,15 @@ let g:fzf_action = {
 nnoremap mr :Rg<CR>
 nnoremap mt :Tags<CR>
 nnoremap mm :Marks<CR>
-nnoremap <C-n> :BLines<CR>
+" nnoremap <C-n> :BLines<CR>
 " nnoremap <C-o> :FzfPreviewProjectFiles<CR>
 nmap <C-D> :Files<CR>
 nmap <C-b> :Buffers<CR>
 execute "set <M-g>=\en"
 inoremap <silent><expr> <M-g> coc#refresh()
-nmap <Leader>y :PHistory<CR>
 nmap <Leader>H :History<CR>
-nmap <Leader>: :History:<CR>
-nmap <Leader>gm :Maps<CR>
+" nmap <Leader>: :History:<CR>
+" nmap <Leader>gm :Maps<CR>
 
 "
 " coc
@@ -180,7 +179,8 @@ xmap ic <Plug>(coc-classobj-i)
 omap ic <Plug>(coc-classobj-i)
 xmap ac <Plug>(coc-classobj-a)
 omap ac <Plug>(coc-classobj-a)
-nnoremap <silent> gr :call <SID>show_documentation()<CR> " show Documentation
+" nnoremap <silent> gr :call <SID>show_documentation()<CR> " show Documentation
+nnoremap <silent> gr :call :<C-u>show_documentation<CR> " show Documentation
 nnoremap <silent><nowait> ma  :<C-u>CocList diagnostics<cr> " Show all diagnostics.
 nnoremap <silent><nowait> <Leader>u  :<C-u>CocList extensions<cr> " Manage extensions.
 nnoremap <silent><nowait> mc  :<C-u>CocList commands<cr> " Show commands.
@@ -192,15 +192,15 @@ nmap <C-n> : " CocCommand explorer<CR> " Explorer
 
 " cocfzflist
 "
-" nnoremap <silent> <Leader>a  :<C-u>CocFzfList diagnostics<CR>
-nnoremap <silent> <Leader>b  :<C-u>CocFzfList diagnostics --current-buf<CR>
-nnoremap <silent> <Leader>c  :<C-u>CocFzfList commands<CR>
-" nnoremap <silent> <Leader>e  :<C-u>CocFzfList extensions<CR>
-nnoremap <silent> <Leader>l  :<C-u>CocFzfList location<CR>
-nnoremap <silent> <Leader>o  :<C-u>CocFzfList outline<CR>
-nnoremap <silent> <Leader>s  :<C-u>CocFzfList symbols<CR>
-nnoremap <silent> <Leader>S  :<C-u>CocFzfList services<CR>
-nnoremap <silent> <Leader>p  :<C-u>CocFzfListResume<CR>
+" " nnoremap <silent> <Leader>a  :<C-u>CocFzfList diagnostics<CR>
+" nnoremap <silent> <Leader>b  :<C-u>CocFzfList diagnostics --current-buf<CR>
+" nnoremap <silent> <Leader>c  :<C-u>CocFzfList commands<CR>
+" " nnoremap <silent> <Leader>e  :<C-u>CocFzfList extensions<CR>
+" nnoremap <silent> <Leader>l  :<C-u>CocFzfList location<CR>
+" nnoremap <silent> <Leader>o  :<C-u>CocFzfList outline<CR>
+" nnoremap <silent> <Leader>s  :<C-u>CocFzfList symbols<CR>
+" nnoremap <silent> <Leader>S  :<C-u>CocFzfList services<CR>
+" nnoremap <silent> <Leader>p  :<C-u>CocFzfListResume<CR>
 
 "
 " NERDTree
