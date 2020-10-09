@@ -7,7 +7,7 @@
 "
 " set paste                       " auto-indent paste
 set backspace=indent,eol,start    " remove space in indent and end of line
-set spelllang=en                  " syntax check
+setZspelllang=en                  " syntax check
 setglobal helplang=en,fr          " syntax check
 set nostartofline                 " don't jump to start of line
 set shiftround                    " Snap indents via > or < to multiples of w
