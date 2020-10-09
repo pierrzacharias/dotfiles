@@ -6,14 +6,26 @@
 " Full featured compiled vim for Windows https://tuxproject.de/projects/vim/auto
 "
 " set paste                       " auto-indent paste
+autocmd FileType text setlocal textwidth=79
 set backspace=indent,eol,start    " remove space in indent and end of line
 setZspelllang=en                  " syntax check
 setglobal helplang=en,fr          " syntax check
 set nostartofline                 " don't jump to start of line
-set shiftround                    " Snap indents via > or < to multiples of w
-set expandtab                     " Prefer spaces over tabs
+" set expandtab                     " Prefer spaces over tabs
 set hls
-set scrolloff=5                   " limit of line to scroll
+"
+set autoindent                    " autoindent files
+set smartindent                   " auto indent while editing
+set noexpandtab
+set copyindent
+set preserveindent
+set softtabstop=0
+set shiftwidth=2
+set tabstop=2
+" set softtabstop=2                 " Number of spaces for a tab
+" set shiftround                    " Snap indents via > or < to multiples of w
+"
+set scrolloff=10                   " limit of line to scroll
 set showtabline=2
 set encoding=utf-8
 filetype plugin indent on         " Enable filetype detection for plugins and indentation options
@@ -24,18 +36,12 @@ set path+=**
 set diffopt+=indent-heuristic
 set wildmenu
 set laststatus=2
-set lazyredraw
 set ai
 set showcmd
 set cmdheight=1                   " Better display for messages
 set updatetime=30                 " Smaller updatetime for CursorHold & CursorHoldI
 set mouse=a                       " enbable mouse functionnalities
 set tags=tags
-set expandtab
-set tabstop=5                     " show existing tab with 4 spaces width
-set shiftwidth=4                  " when indenting with '>', use 4 spaces width
-set autoindent                    " autoindent files
-set smartindent                   " auto indent while editing
 set splitbelow splitright         " new split view appaer verticqly splitted
 set nobackup
 set nowritebackup
@@ -50,7 +56,10 @@ augroup Swap
                 \ if isdirectory(expand("<amatch>:h")) | let &swapfile = &modified | endif
 augroup END
 syntax on
-set number relativenumber
+set virtualedit=onemore
+set relativenumber
+" set nonumber
+" set signcolumn=number
 set fillchars=vert:│,fold:+       " split separation character
 "
 set suffixes+=.pyc,.pyo           " ignore compiled Python files
@@ -67,7 +76,6 @@ endif
 " endif
 if has('win32')
     " set guifont=Source\ Code\ Pro\ Regular\ 20
-    set lazyredraw
     " set regexpengine=1
     " set ttyfast
     " set novisualbell
@@ -127,13 +135,16 @@ endif
 " ██████╔╝  ╚█████╔╝  ╚██████╔╝  ██║░░██║  ╚█████╔╝  ██║  ██║░╚███║  ╚██████╔╝
 " ╚═════╝░░   ╚════╝░  ░╚═════╝░  ╚═╝░░╚═╝  ░╚════╝░  ╚═╝  ╚═╝░░╚══╝  ░╚════╝░
 " list of keymap
-execute 'source ' VimrcPath('mappings.vim')          
+execute 'source ' VimrcPath('mappings.vim')
 " load and config plugins
-execute 'source ' VimrcPath('plugins.vim')           
+execute 'source ' VimrcPath('plugins.vim')
+execute 'source ' VimrcPath('mapping_plugin.vim')
+" if gvim running
+execute 'source ' VimrcPath('gvim.vim')
 " colors settings
-execute 'source ' VimrcPath('colors/colors.vim')     
+execute 'source ' VimrcPath('colors/colors.vim')
 " configs for the coc extensions
-" execute 'source ' VimrcPath('coc.vim')               
+execute 'source ' VimrcPath('coc.vim')
 "
 " ████████╗  ░█████╗░  ░██████╗░  ░██████╗
 " ╚══██╔══╝  ██╔══██╗  ██╔════╝░  ██╔════╝
@@ -141,6 +152,7 @@ execute 'source ' VimrcPath('colors/colors.vim')
 " ░░░██║░░░  ██╔══██║  ██║░░╚██╗  ░╚═══██╗
 " ░░░██║░░░  ██║░░██║  ╚██████╔╝  ██████╔╝
 " ░░╚═╝░░░  ╚═╝░░╚═╝  ░╚════╝░  ╚═════╝░░
+
 let g:tagbar_compact = 1
 let g:tagbar_show_linenumbers = 2
 " letg:tagbar_iconchars = ['▸', '▾']
@@ -148,6 +160,10 @@ let g:tagbar_autoshowtag = 1
 " let g:tagbar_previewwin_pos = "aboveleft"
 command! MakeTags !ctags -R .
 "set statusline+=%{gutentags#statusline()}
+" generate databases in my cache directory, prevent gtags files polluting my project
+let g:gutentags_cache_dir = expand('~/.cache/tags')
+let g:gutentags_ctags_exclude = ["*.min.js", "*.min.css", "build", "vendor",
+                                 \ ".git", "node_modules", "*.vim/bundle/*"]
 let g:gutentags_modules = ['ctags', 'gtags_cscope'] "enable gtags module
 let g:gutentags_project_root = ['.root']   " config project root markers.
 " generate datebases in my cache directory, prevent gtags files polluting my project

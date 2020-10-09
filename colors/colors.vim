@@ -18,7 +18,7 @@ set noshowmode                              | " Don't show mode changes
 " set nowrap                                  | " Don't wrap lines
 " set showmatch                               | " Show matching braces
 "
-" highlight Comment gui=italic            | " Make comments italic
+highlight Comment gui=italic            | " Make comments italic
 " highlight Keyword cterm=italic ctermfg=5
 "
 hi Normal guibg=NONE ctermbg=NONE
@@ -45,6 +45,7 @@ if has('win32') "specific options for windows
     " highlight VertSplit guibg=NONE ctermbg=NONE cterm=NONE
 endif
 "
+"
 " ██████╗░  ░█████╗░  ███╗░░██╗  ░█████╗░  ██╗░░░░░  ██╗  ███╗░░██╗  ███████╗
 " ██╔══██╗  ██╔══██╗  ████╗░██║  ██╔══██╗  ██║░░░░░  ██║  ████╗░██║  ██╔════╝
 " ██║░░╚═╝  ██║░░██║  ██╔██╗██║  ██║░░██║  ██║░░░░░  ██║  ██╔██╗██║  █████╗░░
@@ -60,15 +61,23 @@ endif
 " endif
 if has('win32') "specific options for windows
     " let g:conoline_use_colorscheme_default_normal=0
-    " let g:conoline_color_normal_nr_dark = 'guibg=#333333 guifg=#dddddd gui=None '
-    "                         \. 'ctermbg=8 ctermfg=NONE'
-    " let g:conoline_color_insert_nr_dark = 'guibg=#333333 guifg=#dddddd gui=None '
-    "                         \. 'ctermbg=65 ctermfg=NONE'
-    " let g:conoline_color_normal_dark = 'guibg=#333333 guifg=#dddddd gui=None '
-    "                         \. 'ctermbg=0 ctermfg=NONE'
-    " let g:conoline_color_insert_dark = 'guibg=#333333 guifg=#dddddd gui=None '
-    "                         \. 'ctermbg=0 ctermfg=NONE'
+    let g:conoline_color_normal_nr_dark = 'guibg=#333333 guifg=#dddddd gui=None '
+                            \. 'ctermbg=8 ctermfg=NONE'
+    let g:conoline_color_insert_nr_dark = 'guibg=#333333 guifg=#dddddd gui=None '
+                            \. 'ctermbg=65 ctermfg=NONE'
+    let g:conoline_color_normal_dark = 'guibg=#333333 guifg=#dddddd gui=None '
+                            \. 'ctermbg=0 ctermfg=NONE'
+    let g:conoline_color_insert_dark = 'guibg=#333333 guifg=#dddddd gui=None '
+                            \. 'ctermbg=0 ctermfg=NONE'
     " set cursorline                               " Highlight current line
     " hi! CursorLine   cterm=NONE ctermbg=darkblue ctermfg=NONE guibg=darkred guifg=NONE
     " hi! CursorColumn cterm=NONE ctermbg=darkblue ctermfg=NONE guibg=darkred guifg=NONE
 endif
+
+"
+" gitgutter
+"
+hi! GitGutterAddLineNr guifg=#eee8d5 guibg=#6c71c4
+hi! GitGutterChangeLineNr guifg=#6c71c4 guibg=NONE
+hi! GitGutterDeleteLineNr guifg=#d33682 guibg=NONE cterm=standout
+hi! GitGutterChangeDeleteLineNr guifg=#d33682 guibg=NONE cterm=standout

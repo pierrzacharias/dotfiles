@@ -8,33 +8,23 @@
 if has('win32') "specific options for windows
     let g:coc_node_path = 'C:\Program Files\nodejs\node'
 endif
-set shortmess+=c                                             " Remove messages from in-completion menus
+" set shortmess+=c                                             " Remove messages from in-completion menus
 let g:coc_global_extensions = [
   \ 'coc-tsserver', 'coc-json', 'coc-snippets', 'coc-prettier', 'coc-python', 'coc-vimtex',
   \ 'coc-vimlsp', 'coc-sql', 'coc-eslint', 'coc-reason', 'coc-tslint','coc-stylelint',
-  \ 'coc-sh', 'coc-css', 'coc-highlight', 'coc-pairs'
-\ ]
-  " \ 'coc-html',  'coc-yaml',
-" 'coc-explorer'
-  " \ 'coc-lists', , 'coc-phpls',
+  \ 'coc-sh', 'coc-css', 'coc-highlight', 'coc-pairs', 'coc-lists', 'coc-html']
+
 " See coc config in "coc-settings.json" with :CocConfig
     "diagnostic.enable":,
 " Map Alt-n to trigger completion: >
-function! s:check_back_space() abort
-    let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
- " 'coc-git',
- " 'coc-spell-checker',
+" function! s:check_back_space() abort
+"     let col = col('.') - 1
+"     return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
 "
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
-"
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
 "
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -49,7 +39,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 "
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
-" Formatting selected code.
 xmap <leader>f  <Plug>(coc-format-selected)
 nmap <leader>f  <Plug>(coc-format-selected)
 "
