@@ -1,4 +1,8 @@
+" <buffer><Leader>cf :Yapf<CR>"
 "
+" wrap
+"
+nnoremap <silent> <leader>a :ArgWrap<CR>
 " vimtweak
 "
 " Window transparency shortcuts
@@ -22,7 +26,8 @@ nnoremap <silent> <leader>mp :call libcallnr("vimtweak64.dll", "EnableTopMost", 
 " submersive
 "
 " s for substitute
-nmap s <plug>(SubversiveSubstitute)
+nmap s *``<plug>(SubversiveSubstitute)
+nmap cs <plug>(SubversiveSubstitute)
 nmap ss <plug>(SubversiveSubstituteLine)
 nmap S <plug>(SubversiveSubstituteToEndOfLine)
 " Substitute Over Range Motion
@@ -189,6 +194,12 @@ nnoremap <silent><nowait> ms  :<C-u>CocList -I symbols<cr> " Search workspace sy
 nnoremap <silent><nowait> mp  :<C-u>CocListResume<CR> " Resume latest coc list.
 execute "set <M-n>=\en"
 nmap <C-n> : " CocCommand explorer<CR> " Explorer
+
+ "
+ " pep8
+ "
+autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
+vnoremap <silent>= :'<,'>Autopep8<CR>
 
 " cocfzflist
 "

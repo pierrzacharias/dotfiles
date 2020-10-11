@@ -1,51 +1,70 @@
 " ------------------------------------------------------------------------------
 " # Mappings
 " ------------------------------------------------------------------------------
-"
-" general
-"
+map <space> y
 map M <Nop>
 nnoremap H ^
-nnoremap L g_<CR>
-nnoremap qb <Esc>:bd!<CR>                                    " close a buffer
-inoremap qb <Esc>:bd!<CR>                                    " close a buffer
+nnoremap L $_
 execute "set <M-f>=\ef"
 inoremap <M-f> <Esc>:update<CR>
 nnoremap <M-f> <Esc><Esc>:update<CR>
-nnoremap qq :qa!<CR>
-" inoremap <C-E> <End>
-" nnoremap <leader>f :cd %:p:h<CR>                          " change to the directory of the currently open files
+nnoremap qa :qa!<CR>
 execute 'set <M-p>=\ep'
-nnoremap <M-p> "+p
-
-" execute 'set <M-n>=\en'
-" nnoremap <M-n> <C-n>
-" execute 'set <M-m>=\em'
-" nnoremap <M-m> <C-p>
-" nnoremap H ^<CR>
+nnoremap <M-p> "+pkJK
 nnoremap K i<cr><esc>
-" map <C-l> :set rnu<CR>
-" map <C-a> :set nornu<CR>
-" nnoremap <leader> <c-w>
-" Save the file if there is any changes
-nnoremap <space> i<space><Esc>
-" execute 'set <M-c>=\ec'
-" Move between rows in wrapped lines
-" noremap j gj
+nnoremap c<space> i<space><Esc>
+
+" ---- e.g press 1 to go to buffer 1 -----------
+nnoremap <silent> <leader>gt :exe "tabn" nr2char(getchar())<cr> " e.g press 1 to go to tab1
+
+" ---- reload config -----------
+nnoremap <leader>vo :vsp $MYVIMRC<CR>
+nnoremap <leader>vs :source $MYVIMRC<CR>
+
+" from right windows copy current word in register s, go replace with it to the left windows and search the replaced word to reppeat
+nnoremap s, "syiw<CR><C-w>h*``cgn<C-R>s<Esc><Esc>
+nnoremap s, "syiw<CR><C-w>l*``cgn<C-R>s<Esc><Esc>         " from left windows ...
+nnoremap s, "syiw<CR><C-w>j*``cgn<C-R>s<Esc><Esc>         " from bottom windows ...
+nnoremap s, "syiw<CR><C-w>k*``cgn<C-R>s<Esc><Esc>         " from top windows ...
+
+" ----- switch tabs -----------
+nnoremap <Tab> :bnext<cr>
+nnoremap <S-Tab> :bprev<cr>
+
+" ---- close buffers on left, rigth, ..
+nnoremap ql <C-w>l:wq<CR>
+nnoremap qh <C-w>h:wq<CR>
+nnoremap qj <C-w>j:wq<CR>
+nnoremap qk <C-w>k:wq<CR>
+nnoremap qq :bp\|bd #<CR>
+
+# ------ replace inner word and search replace word to reapeat -------
+replace c* *``cgn
+nnoremap c# #``cgN
+
+" ----- close buffer
+nnoremap qb <Esc>:bd!<CR>
+inoremap qb <Esc>:bd!<CR>
+
+noremap j gj
 noremap k gk
+
 nnoremap <Leader>h :vert terminal<CR>
+
 " nnoremap <silent>db m`:silent +g/\m^\s*$/d<CR>``:noh<CR>           " delete line below if blanck
 nnoremap <silent>db jddk                                             " delete line below if blanck
 nnoremap <silent>da m`:silent -g/\m^\s*$/d<CR>``:noh<CR>             " delete line above if blank
 execute 'set <M-o>=\eo'
-nnoremap <silent><M-o> :set paste<CR>m`o<Esc>``:set nopaste<CR>      " insert blank line below
+nnoremap <silent><M-o> o<esc><esc>      " insert blank line below
+
 nnoremap <Leader>l :let &scrolloff=100-&scrolloff<CR>                " make edit line always centered
 nnoremap <silent><Leader>t :TagbarToggle<CR>
+
 "
 " Loclist
 "
-
-
+nnoremap <silent> <F3> :call LNext(0)<CR>
+nnoremap <silent> <F4> :call LNext(1)<CR>
 
 "
 nnoremap <C-w>p :lopen<CR>                  " open loclist
@@ -53,7 +72,7 @@ nnoremap <C-p> :lcl<CR>                     " close loclist
 execute "set <M-u>=\eu"
 nnoremap <M-u> :lla <CR>                    " navigate to last item in list
 
-nnoremap <silent> <F2> :call ToggleQuickFix()<cr>"
+nnoremap <silent> <F5> :call ToggleQuickFix()<cr>"
 "
 " compile with :make
 "
@@ -64,7 +83,6 @@ nnoremap <silent> <F2> :call ToggleQuickFix()<cr>"
 "
 nnoremap <silent> ff :nohlsearch<Bar>:echo<CR> " Press ff to turn off highlighting and clear any message already displayed.
 " noremap <F2> :set hlsearch! hlsearch?<CR> " Press F6 to toggle high lighting on/off, and show  current value.
-nnoremap <F6> :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR> " F8 will highlight all occurrences of the current word
 
 "
 " registers
@@ -93,8 +111,6 @@ nnoremap <Leader>2 :call ToggleSignColumn()<CR>            " Toggle signcolumn. 
 nnoremap  <Leader>e :call SaveAndExecutePython()<CR>
 vnoremap  <Leader>e :<C-u>call SaveAndExecutePython()<CR>
 "
-autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
-vnoremap <silent>= :'<,'>Autopep8<CR>
 "
 " python pdb
 "

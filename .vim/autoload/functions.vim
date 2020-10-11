@@ -25,3 +25,18 @@ function! ToggleSignColumn()                               "https://stackoverflo
         let b:signcolumn_on=1
     endif
 endfunction
+
+"
+" Loclist
+"
+fun! LNext(prev)
+	try
+		try
+			if a:prev | lprev | else | lnext | endif
+		catch /^Vim\%((\a\+)\)\=:E553/
+			if a:prev | llast | else | lfirst | endif
+		catch /^Vim\%((\a\+)\)\=:E776/
+		endtry
+	catch /^Vim\%((\a\+)\)\=:E42/
+	endtry
+endfun

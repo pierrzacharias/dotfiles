@@ -8,7 +8,6 @@
 " set paste                       " auto-indent paste
 autocmd FileType text setlocal textwidth=79
 set backspace=indent,eol,start    " remove space in indent and end of line
-setZspelllang=en                  " syntax check
 setglobal helplang=en,fr          " syntax check
 set nostartofline                 " don't jump to start of line
 " set expandtab                     " Prefer spaces over tabs

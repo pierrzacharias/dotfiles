@@ -22,7 +22,6 @@ Plug 'luochen1990/rainbow'
 "
 " microchiotte
 "
-"
 Plug 'https://github.com/mattn/vimtweak'              " transparency on gvim
 "
 " Navigation
@@ -40,7 +39,7 @@ Plug 'jlanzarotta/bufexplorer'                         " help to manage opened b
 " IDE masterrace
 "
 Plug 'https://github.com/romainl/vim-qf'              " help with the quickfix lists
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}             " async executions
 Plug 'https://github.com/gotcha/vimpdb'
 Plug 'https://github.com/puremourning/vimspector'      " A debugger in vim for multiples languages
 Plug 'https://github.com/tpope/vim-endwise'            " end certain structures automatically
@@ -61,9 +60,10 @@ Plug 'mgedmin/python-imports.vim'                       " Insert Python import s
 Plug 'mgedmin/pytag.vim'                               " better tags for python TODO
 Plug 'https://github.com/sillybun/vim-repl'            " python terminal
 Plug 'mgedmin/python_open_module.vim'                  " Python standard library source code
-Plug 'https://github.com/tell-k/vim-autopep8'          " autoformat python code to pep8
+Plug 'https://github.com/tell-k/vim-autopep8'          " autoformat python
 " https://www.reddit.com/r/vim/comments/83iwc1/is_there_a_vim_plugin_for_generating_python/ " python doc ?
 Plug 'https://github.com/wincent/terminus' "send text to as windows
+Plug 'https://github.com/FooSoft/vim-argwrap'          " wrap functions args
 "
 " mappings
 "
