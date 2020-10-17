@@ -11,7 +11,13 @@ au BufNewFile,BufRead *.py
     \ if !exists("current_compiler")
     \     compiler python              " assign compiler to custom python compiler
     \ endif
-    \ set makeprg=python3\ %
+
+augroup python
+    autocmd!
+    autocmd FileType python
+                \   syn keyword PythonSelf self
+                \ | highlight def link PythonSelf Special
+augroup end   \ set makeprg=python3\ %
 "
 let g:pymode_python = 1
 let g:ale_python_autopep8_use_global = 1
