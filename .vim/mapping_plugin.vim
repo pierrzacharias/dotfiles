@@ -149,20 +149,19 @@ nmap <Leader>H :History<CR>
 execute "set <M-g>=\en"
 inoremap <silent><expr> <M-g> coc#refresh()
 " execute "set <M-i>=\ei"        " <CR> to confirm completion, use: Alt-
-" inoremap <expr> <M-i> pumvisible() ? "\<C-y>" : "\<CR>"
-" inoremap <expr> <Enter> pumvisible() ? "\<C-y>" : "\<CR>"
-" Map <tab> for trigger completion, completion confirm, snippet expand and jump like VSCode. >
-" inoremap <silent><expr> <TAB>
-"       \ pumvisible() ? "\<C-n>" :
-"       \ <SID>check_back_space() ? "\<TAB>" :
-"       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-let g:coc_snippet_next = '<TAB>'
+" Make <tab> used for trigger completion, completion confirm, snippet expand and jump like VSCode
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
+      \ pumvisible() ? coc#_select_confirm() :
+      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+let g:coc_snippet_next = '<TAB>'
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 " nmap  <silent><C-c> :CocEnable<CR>
 nmap <silent> mg <Plug>(coc-diagnostic-info)
 nmap <silent> mb <Plug>(coc-diagnostic-prev)
@@ -170,10 +169,10 @@ nmap <silent> mn <Plug>(coc-diagnostic-next)
 nmap <silent> me <Plug>(coc-diagnostic-error)
 nmap <silent> md <Plug>(coc-definition)
 nmap <silent> gd <Plug>(coc-declaration)
-" nnoremap <silent> gd :call CocAction('jumpDefinition', 'drop')<CR>
 nmap <silent> my <Plug>(coc-type-definition)
 nmap <silent> mi <Plug>(coc-implementation)
 " nmap <silent> mr <Plug>(coc-references)
+" nnoremap <silent> gd :call CocAction('jumpDefinition', 'drop')<CR>
 " Select inside function
 xmap if <Plug>(coc-funcobj-i)
 omap if <Plug>(coc-funcobj-i)
@@ -194,7 +193,17 @@ nnoremap <silent><nowait> ms  :<C-u>CocList -I symbols<cr> " Search workspace sy
 nnoremap <silent><nowait> mp  :<C-u>CocListResume<CR> " Resume latest coc list.
 execute "set <M-n>=\en"
 nmap <C-n> : " CocCommand explorer<CR> " Explorer
-
+" Symbol renaming.
+nmap <leader>rn <Plug>(coc-rename)
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+" moving in coc windows
+nnoremap <silent><expr> <down> coc#util#has_float() ? coc#util#float_scroll(1) : "\<down>"
+nnoremap <silent><expr> <up> coc#util#has_float() ? coc#util#float_scroll(0) : "\<up>"
+inoremap <silent><expr> <down> coc#util#has_float() ? <SID>coc_float_scroll(1) : "\<down>"
+inoremap <silent><expr> <up> coc#util#has_float() ? <SID>coc_float_scroll(0) : "\<up>"
+vnoremap <silent><expr> <down> coc#util#has_float() ? <SID>coc_float_scroll(1) : "\<down>"
+vnoremap <silent><expr> <up> coc#util#has_float() ? <SID>coc_float_scroll(0) : "\<up>"/
  "
  " pep8
  "

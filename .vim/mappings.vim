@@ -38,7 +38,7 @@ nnoremap qj <C-w>j:wq<CR>
 nnoremap qk <C-w>k:wq<CR>
 nnoremap qq :bp\|bd #<CR>
 
-# ------ replace inner word and search replace word to reapeat -------
+" ------ replace inner word and search replace word to reapeat -------
 replace c* *``cgn
 nnoremap c# #``cgN
 

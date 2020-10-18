@@ -17,15 +17,12 @@ call plug#begin(g:plug_install_files)
 " New
 "
 " Plug 'https://github.com/junegunn/loclisteasy-align'
-"
-" microchiotte
-"
+" Plug 'https://github.com/ctrlpvim/ctrlp.vim'
 "
 " Navigation
 "
 Plug 'https://github.com/dahu/vim-fanfingtastic'       " Extend search with f,t, ...
-Plug 'https://github.com/tpope/vim-speeddating'
-" Plug 'https://github.com/ctrlpvim/ctrlp.vim'
+Plug 'https://github.com/tpope/vim-speeddating'        " Alloz incrementing date lie int
 Plug 'https://github.com/mattn/vim-findroot'           " Find root of project
 Plug 'https://github.com/tpope/vim-surround'           " add object with (, {, {, ...
 Plug 'https://github.com/tpope/vim-commentary'         " comment out
@@ -38,12 +35,14 @@ Plug 'https://github.com/tpope/vim-endwise'            " end certain structures 
 Plug  'https://github.com/tpope/vim-repeat'            " Allow to repeat with . some plugins actions
 Plug 'https://github.com/osyo-manga/vim-anzu'          " add count when searching
 Plug 'https://github.com/svermeulen/vim-subversive'    " replace content with register
+Plug 'sjl/gundo.vim'                                   " add undo tree
+Plug 'https://github.com/tpope/vim-unimpaired'         " exchange lines relativvely
 "
 " IDE masterrace
 "
 Plug 'mhinz/vim-startify'                              " start page for vim
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}             " async executions
-Plug 'https://github.com/romainl/vim-qf'              " help with the quickfix lists
+Plug 'https://github.com/romainl/vim-qf'               " help with the quickfix lists
 Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 Plug 'https://github.com/gotcha/vimpdb'
 Plug 'https://github.com/puremourning/vimspector'      " A debugger in vim for multiples languages
@@ -64,19 +63,20 @@ Plug 'https://github.com/tpope/vim-fugitive'
 "
 Plug 'https://github.com/puremourning/vimspector'      " A debugger in vim for multiples languages
 Plug 'https://github.com/romainl/vim-qf'               " help with the quickfix lists
-Plug 'https://github.com/wincent/terminus'             "send text to as windows
+Plug 'https://github.com/wincent/terminus'             " send text to as windows
 Plug 'https://github.com/sillybun/vim-repl'            " python terminal
 " Plug 'https://github.com/gotcha/vimpdb'
 "
 " Python
 "
-Plug 'https://github.com/jmcantrell/vim-virtualenv'    " Tool for python venv
+Plug 'https://github.com/jmcantrell/vim-virtualenv'                  " Tool for python venv
 " Plug 'https://github.com/westurner/venv.vim'
-Plug 'https://github.com/ColinKennedy/vim-textobj-block-party' " text objects and motions for Python required +python
-Plug 'mgedmin/python_open_module.vim'                  " Python standard library source code
-Plug 'https://github.com/tell-k/vim-autopep8'          " autoformat python
+Plug 'https://github.com/ColinKennedy/vim-textobj-block-party'       " text objects and motions for Python required +python
+Plug 'mgedmin/python_open_module.vim'                                " Python standard library source code
+Plug 'https://github.com/tell-k/vim-autopep8'                        " autoformat python
+Plug 'https://github.com/FooSoft/vim-argwrap'                        " wrap functions args
+Plug 'https://github.com/Vimjas/vim-python-pep8-indent'              " better indent style
 " https://www.reddit.com/r/vim/comments/83iwc1/is_there_a_vim_plugin_for_generating_python/ " python doc ?
-Plug 'https://github.com/FooSoft/vim-argwrap'          " wrap functions args
 "
 " mappings
 "
@@ -89,31 +89,31 @@ Plug 'https://github.com/kana/vim-textobj-user'        " add new text objects
 "
 " Tags
 "
-Plug 'mgedmin/pytag.vim'                               " better tags for python TODO
+Plug 'mgedmin/pytag.vim'                               " better tags for python
 Plug 'mgedmin/python-imports.vim'                      " Insert Python import statements computed from tags, bound to <F5>
-Plug 'skywind3000/gutentags_plus'                          " help to generate tags
-Plug 'https://github.com/universal-ctags/ctags'            " help to generate tags
+Plug 'skywind3000/gutentags_plus'                      " help to generate tags
+Plug 'https://github.com/universal-ctags/ctags'        " help to generate tags
 "
 " Theming
 "
 " Piiug 'habamax/vim-gruvbit'
-Plug 'morhetz/gruvbox'                                   " color theme
+Plug 'morhetz/gruvbox'                                     " color theme
 Plug 'https://github.com/altercation/vim-colors-solarized' " color theme
 Plug 'https://github.com/miyakogi/conoline.vim'            " highlights the line of the cursor
 Plug 'ryanoasis/vim-devicons'                              " add icon
 Plug 'vim-airline/vim-airline'                             " add visual line
 Plug 'vim-airline/vim-airline-themes'                      " theme for airline
 Plug 'https://github.com/camspiers/animate.vim'            " windows move animation
-" Plug 'vim/killersheep'                                     " absolutely essential
-Plug 'https://github.com/mattn/vimtweak'              " transparency on gvim
-Plug 'luochen1990/rainbow'                             " rainbow parenthesis
+" Plug 'vim/killersheep'                                   " absolutely essential
+Plug 'https://github.com/mattn/vimtweak'                   " transparency on gvim
+Plug 'luochen1990/rainbow'                                 " rainbow parenthesis
 "
 " Latex
 "
 Plug 'lervag/vimtex'                                   " Latex plugin
 Plug 'https://github.com/Yggdroot/indentLine'          " help with indent TODO: Configure
-" Plug 'https://vimawesome.com/plugin/tex-fold'          " add-on for latex TODO
-" Plug 'vim-grammarous'                                  " Grammar corrections
+" Plug 'https://vimawesome.com/plugin/tex-fold'        " add-on for latex TODO
+" Plug 'vim-grammarous'                                " Grammar corrections
 "
 " Jupyter
 "
@@ -161,6 +161,10 @@ Plug 'https://github.com/Yggdroot/indentLine'          " help with indent TODO: 
 "
 "
 call plug#end() "run :PlugInstall
+"
+" gundo
+"
+let g:gundo_prefer_python3 = has('python3')  " Unbreak broken default config
 "
 " anzu
 "
