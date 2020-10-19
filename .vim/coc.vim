@@ -14,10 +14,18 @@ if has("patch-8.1.1564")
   set signcolumn=number
 else
   set signcolumn=yes
-endif
 let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-snippets', 'coc-prettier', 'coc-python', 'coc-vimtex', 'coc-vimlsp', 'coc-sql', 'coc-eslint', 'coc-tslint', 'coc-stylelint', 'coc-sh', 'coc-css', 'coc-highlight', 'coc-pairs', 'coc-lists', 'coc-html', 'coc-tag', 'coc-syntax']
 " See coc config in "coc-settings.json" with :CocConfig
     "diagnostic.enable":,
+" Map Alt-n to trigger completion: >
+" function! s:check_back_space() abort
+"     let col = col('.') - 1
+"     return !col || getline('.')[col - 1]  =~# '\s'
+" endfunction
+"
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
 "
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)

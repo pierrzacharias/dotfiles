@@ -28,8 +28,8 @@ nnoremap s, "syiw<CR><C-w>j*``cgn<C-R>s<Esc><Esc>         " from bottom windows 
 nnoremap s, "syiw<CR><C-w>k*``cgn<C-R>s<Esc><Esc>         " from top windows ...
 
 " ----- switch tabs -----------
-nnoremap <Tab> :bnext<cr>
-nnoremap <S-Tab> :bprev<cr>
+nnoremap ] :bnext<cr>
+nnoremap [ :bprev<cr>
 
 " ---- close buffers on left, rigth, ..
 nnoremap ql <C-w>l:wq<CR>
@@ -39,7 +39,7 @@ nnoremap qk <C-w>k:wq<CR>
 nnoremap qq :bp\|bd #<CR>
 
 " ------ replace inner word and search replace word to reapeat -------
-replace c* *``cgn
+nnoremap c* *``cgn
 nnoremap c# #``cgN
 
 " ----- close buffer

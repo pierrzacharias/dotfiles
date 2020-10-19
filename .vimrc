@@ -11,11 +11,23 @@ set backspace=indent,eol,start    " remove space in indent and end of line
 set spelllang=en                  " syntax check
 setglobal helplang=en,fr          " syntax check
 set nostartofline                 " don't jump to start of line
-set shiftround                    " Snap indents via > or < to multiples of w
-set expandtab                     " Prefer spaces over tabs
+" set expandtab                     " Prefer spaces over tabs
 set hls
-set scrolloff=5                   " limit of line to scroll
+"
+set autoindent                    " autoindent files
+set smartindent                   " auto indent while editing
+set noexpandtab
+set copyindent
+set preserveindent
+set softtabstop=0
+set shiftwidth=2
+set tabstop=2
+" set softtabstop=2                 " Number of spaces for a tab
+" set shiftround                    " Snap indents via > or < to multiples of w
+"
+set scrolloff=10                   " limit of line to scroll
 set showtabline=2
+set incsearch                     " Show search result while typing
 set encoding=utf-8
 filetype plugin indent on         " Enable filetype detection for plugins and indentation options
 set nocompatible
@@ -31,18 +43,9 @@ set cmdheight=2                   " Better display for messages
 set updatetime=100                 " Smaller updatetime for CursorHold & CursorHoldI
 set mouse=a                       " enbable mouse functionnalities
 set tags=tags
-set expandtab
-set tabstop=5                     " show existing tab with 4 spaces width
-set shiftwidth=4                  " when indenting with '>', use 4 spaces width
-set autoindent                    " autoindent files
-set nosmartindent                   " auto indent while editing
 set splitbelow splitright         " new split view appaer verticqly splitted
 set nobackup
 set nowritebackup
-set incsearch                     " Show search result while typing
-set hidden
-set autoread                    " automatically reload files changed on disk
-set switchbuf=useopen           " quickfix reuses open windows
 " When editing a file, always jump to the last cursor position
 autocmd BufReadPost *
             \ if line("'\"") > 0 && line ("'\"") <= line("$") |

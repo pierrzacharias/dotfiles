@@ -16,8 +16,9 @@ call plug#begin(g:plug_install_files)
 "
 " New
 "
-" Plug 'https://github.com/junegunn/loclisteasy-align'
 " Plug 'https://github.com/ctrlpvim/ctrlp.vim'
+" Plug 'https://github.com/junegunn/loclisteasy-align'
+Plug 'https://github.com/tpope/vim-fugitive'
 "
 " Navigation
 "
@@ -69,14 +70,18 @@ Plug 'https://github.com/sillybun/vim-repl'            " python terminal
 "
 " Python
 "
-Plug 'https://github.com/jmcantrell/vim-virtualenv'                  " Tool for python venv
+Plug 'https://github.com/jmcantrell/vim-virtualenv'    " Tool for python venv
 " Plug 'https://github.com/westurner/venv.vim'
-Plug 'https://github.com/ColinKennedy/vim-textobj-block-party'       " text objects and motions for Python required +python
+Plug 'https://github.com/ColinKennedy/vim-textobj-block-party' " text objects and motions for Python required +python
 Plug 'mgedmin/python_open_module.vim'                                " Python standard library source code
 Plug 'https://github.com/tell-k/vim-autopep8'                        " autoformat python
-Plug 'https://github.com/FooSoft/vim-argwrap'                        " wrap functions args
 Plug 'https://github.com/Vimjas/vim-python-pep8-indent'              " better indent style
+Plug 'https://github.com/FooSoft/vim-argwrap'          " wrap functions args
+Plug 'mgedmin/python-imports.vim'                       " Insert Python import statements computed from tags, bound to <F5>
+Plug 'https://github.com/sillybun/vim-repl'            " python terminal
+Plug 'mgedmin/python_open_module.vim'                  " Python standard library source code
 " https://www.reddit.com/r/vim/comments/83iwc1/is_there_a_vim_plugin_for_generating_python/ " python doc ?
+Plug 'https://github.com/wincent/terminus' "send text to as windows
 "
 " mappings
 "
@@ -96,8 +101,9 @@ Plug 'https://github.com/universal-ctags/ctags'        " help to generate tags
 "
 " Theming
 "
+"
 " Piiug 'habamax/vim-gruvbit'
-Plug 'morhetz/gruvbox'                                     " color theme
+" Plug 'morhetz/gruvbox'                                   " color theme
 Plug 'https://github.com/altercation/vim-colors-solarized' " color theme
 Plug 'https://github.com/miyakogi/conoline.vim'            " highlights the line of the cursor
 Plug 'ryanoasis/vim-devicons'                              " add icon
@@ -105,15 +111,14 @@ Plug 'vim-airline/vim-airline'                             " add visual line
 Plug 'vim-airline/vim-airline-themes'                      " theme for airline
 Plug 'https://github.com/camspiers/animate.vim'            " windows move animation
 " Plug 'vim/killersheep'                                   " absolutely essential
-Plug 'https://github.com/mattn/vimtweak'                   " transparency on gvim
 Plug 'luochen1990/rainbow'                                 " rainbow parenthesis
 "
 " Latex
 "
 Plug 'lervag/vimtex'                                   " Latex plugin
 Plug 'https://github.com/Yggdroot/indentLine'          " help with indent TODO: Configure
-" Plug 'https://vimawesome.com/plugin/tex-fold'        " add-on for latex TODO
-" Plug 'vim-grammarous'                                " Grammar corrections
+" Plug 'https://vimawesome.com/plugin/tex-fold'          " add-on for latex TODO
+" Plug 'vim-grammarous'                                  " Grammar corrections
 "
 " Jupyter
 "
@@ -162,20 +167,13 @@ Plug 'https://github.com/Yggdroot/indentLine'          " help with indent TODO: 
 "
 call plug#end() "run :PlugInstall
 "
+"
 " gundo
 "
 let g:gundo_prefer_python3 = has('python3')  " Unbreak broken default config
 "
 " anzu
 "
-" mapping
-nmap n <Plug>(anzu-n-with-echo)
-nmap N <Plug>(anzu-N-with-echo)
-nmap * <Plug>(anzu-star-with-echo)
-nmap # <Plug>(anzu-sharp-with-echo)
-" clear status
-nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
-" statusline
 set statusline=%{anzu#search_status()}"
 "
 " startify
@@ -200,6 +198,10 @@ let g:gutentags_ctags_exclude = ["*.min.js", "*.min.css", "build", "vendor",
 " endif
 
 "
+" Doge
+"
+let g:doge_doc_standard_python = 'sphinx'
+"
 " rainbow
 "
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
@@ -211,7 +213,6 @@ let g:gitgutter_signs = 0
 let g:gitgutter_sign_added = '+'
 let g:gitgutter_sign_modified = '~'
 let g:gitgutter_sign_removed = '-'
-"
 " ██╗░░░██╗  ██╗  ███╗░░░███╗  ░██████╗  ██████╗░  ███████╗  ██████╗░  ████████╗  ░█████╗░  ██████╗░
 " ██║░░░██║  ██║  ████╗░████║  ██╔════╝  ██╔══██╗  ██╔════╝  ██╔══██╗  ╚══██╔══╝  ██╔══██╗  ██╔══██╗
 " ╚██╗░██╔╝  ██║  ██╔████╔██║  ╚█████╗░  ██████╔╝  █████╗░░  ██║░░╚═╝  ░░░██║░░░  ██║░░██║  ██████╔╝
@@ -313,8 +314,9 @@ let g:autopep8_max_line_length=79
 " ██║  ██║░╚███║  ██████╔╝  ███████╗  ██║░╚███║  ░░░██║░░░
 " ╚═╝  ╚═╝░░╚══╝  ╚═════╝░  ╚══════╝  ╚═╝░░╚══╝  ░░╚═╝░░░
 let g:indentLine_color_term =22
-let g:indentLine_char = ">"
-let g:indentLine_leadingSpaceChar = '—'
+let g:indentLine_char = "|"
+" let g:indentLine_char = "»"
+let g:indentLine_leadingSpaceChar = ' '
 let g:indentLine_leadingSpaceEnabled=1
 let g:indentLine_showFirstIndentLevel=0
 "

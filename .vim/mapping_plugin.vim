@@ -1,3 +1,13 @@
+"
+" anzu
+"
+" mapping
+nmap n <Plug>(anzu-n-with-echo)
+nmap N <Plug>(anzu-N-with-echo)
+nmap * <Plug>(anzu-star-with-echo)
+nmap # <Plug>(anzu-sharp-with-echo)
+" clear status
+nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
 " <buffer><Leader>cf :Yapf<CR>"
 "
 " wrap
@@ -26,8 +36,7 @@ nnoremap <silent> <leader>mp :call libcallnr("vimtweak64.dll", "EnableTopMost", 
 " submersive
 "
 " s for substitute
-nmap s *``<plug>(SubversiveSubstitute)
-nmap cs <plug>(SubversiveSubstitute)
+nmap s <plug>(SubversiveSubstitute)
 nmap ss <plug>(SubversiveSubstituteLine)
 nmap S <plug>(SubversiveSubstituteToEndOfLine)
 " Substitute Over Range Motion
@@ -85,8 +94,8 @@ nnoremap <silent> <leader>da :call vimspector#ClearBreakpoints()<CR>
 "
 " animate
 "
-nnoremap <silent> <Up>    :call animate#window_delta_height(10)<CR>
-nnoremap <silent> <Down>  :call animate#window_delta_height(-10)<CR>
+" nnoremap <silent> <Up>    :call animate#window_delta_height(10)<CR>
+" nnoremap <silent> <Down>  :call animate#window_delta_height(-10)<CR>
 nnoremap <silent> <Left>  :call animate#window_delta_width(10)<CR>
 nnoremap <silent> <Right> :call animate#window_delta_width(-10)<CR>
 
@@ -150,7 +159,7 @@ execute "set <M-g>=\en"
 inoremap <silent><expr> <M-g> coc#refresh()
 " execute "set <M-i>=\ei"        " <CR> to confirm completion, use: Alt-
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-" Make <tab> used for trigger completion, completion confirm, snippet expand and jump like VSCode
+let g:coc_snippet_next = '<TAB>'
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? coc#_select_confirm() :
       \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
@@ -169,10 +178,10 @@ nmap <silent> mn <Plug>(coc-diagnostic-next)
 nmap <silent> me <Plug>(coc-diagnostic-error)
 nmap <silent> md <Plug>(coc-definition)
 nmap <silent> gd <Plug>(coc-declaration)
+nnoremap <silent> gd :call CocAction('jumpDefinition', 'drop')<CR>
 nmap <silent> my <Plug>(coc-type-definition)
 nmap <silent> mi <Plug>(coc-implementation)
 " nmap <silent> mr <Plug>(coc-references)
-" nnoremap <silent> gd :call CocAction('jumpDefinition', 'drop')<CR>
 " Select inside function
 xmap if <Plug>(coc-funcobj-i)
 omap if <Plug>(coc-funcobj-i)
@@ -204,6 +213,7 @@ inoremap <silent><expr> <down> coc#util#has_float() ? <SID>coc_float_scroll(1) :
 inoremap <silent><expr> <up> coc#util#has_float() ? <SID>coc_float_scroll(0) : "\<up>"
 vnoremap <silent><expr> <down> coc#util#has_float() ? <SID>coc_float_scroll(1) : "\<down>"
 vnoremap <silent><expr> <up> coc#util#has_float() ? <SID>coc_float_scroll(0) : "\<up>"/
+
  "
  " pep8
  "

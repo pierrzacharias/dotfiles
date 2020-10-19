@@ -1,13 +1,13 @@
 {
     "diagnostic.infoSign": "i-",
-    "diagnostic.hintSign": -"i",
-    "diagnostic.warningSign": -"w",
-    "diagnostic.errorSign": -"e",
+		"diagnostic.hintSign": "Ξ",
+    "diagnostic.warningSign": "Δ",
+    "diagnostic.errorSign": "Χ",
     "diagnostic.enableSign":true,
     "suggest.enablePreview": true,
     "suggest.triggerAfterInsertEnter": true,
     "suggest.detailMaxLength": 200,
-    "suggest.triggerCompletionWait": 1
+    "suggest.triggerCompletionWait": 30,
     "suggest.removeDuplicateItems": true,
     "diagnostic.enableMessage": "always",
     "diagnostic.maxWindowWidth": 800,
@@ -18,7 +18,5 @@
     "diagnostic.messageDelay": 3,
     "list.maxPreviewHeight": 30,
     "coc.preferences.hoverTarget": "preview",
-    "python.autoComplete.extraPaths": 1,
-    "coc.preferences.jumpCommand": "jump",
-    "npm.binPath": "C:\Program Files (x86)\Yarn\bin"
+    "python.autoComplete.extraPaths": "true"
 }
