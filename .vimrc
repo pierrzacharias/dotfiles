@@ -6,6 +6,7 @@
 " Full featured compiled vim for Windows https://tuxproject.de/projects/vim/auto
 "
 " set paste                       " auto-indent paste
+set noerrorbells
 autocmd FileType text setlocal textwidth=79
 set backspace=indent,eol,start    " remove space in indent and end of line
 set spelllang=en                  " syntax check
@@ -17,8 +18,8 @@ set hls
 set autoindent                    " autoindent files
 set smartindent                   " auto indent while editing
 set noexpandtab
-set copyindent
-set preserveindent
+" set copyindent
+" set preserveindent
 set softtabstop=0
 set shiftwidth=2
 set tabstop=2
@@ -39,13 +40,17 @@ set wildmenu
 set laststatus=2
 set ai
 set showcmd
-set cmdheight=2                   " Better display for messages
+" set cmdheight=2                   " Better display for messages
 set updatetime=100                 " Smaller updatetime for CursorHold & CursorHoldI
 set mouse=a                       " enbable mouse functionnalities
-set tags=tags
+" set tags=tags
 set splitbelow splitright         " new split view appaer verticqly splitted
 set nobackup
 set nowritebackup
+set incsearch                     " Show search result while typing
+set hidden
+set autoread                    " automatically reload files changed on disk
+set switchbuf=useopen           " quickfix reuses open windows
 " When editing a file, always jump to the last cursor position
 autocmd BufReadPost *
             \ if line("'\"") > 0 && line ("'\"") <= line("$") |
@@ -58,7 +63,10 @@ augroup Swap
 augroup END
 syntax on
 set virtualedit=onemore
-set relativenumber
+" set relative numbers
+set nu
+set rnu
+" set relativenumber
 " set nonumber
 " set signcolumn=number
 set fillchars=vert:│,fold:+       " split separation character
@@ -146,29 +154,4 @@ execute 'source ' VimrcPath('gvim.vim')
 " colors settings
 execute 'source ' VimrcPath('colors/colors.vim')
 " configs for the coc extensions
-execute 'source ' VimrcPath('coc.vim')
-"
-" ████████╗  ░█████╗░  ░██████╗░  ░██████╗
-" ╚══██╔══╝  ██╔══██╗  ██╔════╝░  ██╔════╝
-" ░░░██║░░░  ███████║  ██║░░██╗░  ╚█████╗░
-" ░░░██║░░░  ██╔══██║  ██║░░╚██╗  ░╚═══██╗
-" ░░░██║░░░  ██║░░██║  ╚██████╔╝  ██████╔╝
-" ░░╚═╝░░░  ╚═╝░░╚═╝  ░╚════╝░  ╚═════╝░░
-
-let g:tagbar_compact = 1
-let g:tagbar_show_linenumbers = 2
-" letg:tagbar_iconchars = ['▸', '▾']
-let g:tagbar_autoshowtag = 1
-" let g:tagbar_previewwin_pos = "aboveleft"
-command! MakeTags !ctags -R .
-"set statusline+=%{gutentags#statusline()}
-" generate databases in my cache directory, prevent gtags files polluting my project
-let g:gutentags_cache_dir = expand('~/.cache/tags')
-let g:gutentags_ctags_exclude = ["*.min.js", "*.min.css", "build", "vendor",
-                                 \ ".git", "node_modules", "*.vim/bundle/*"]
-let g:gutentags_modules = ['ctags', 'gtags_cscope'] "enable gtags module
-let g:gutentags_project_root = ['.root']   " config project root markers.
-" generate datebases in my cache directory, prevent gtags files polluting my project
-let g:gutentags_cache_dir = expand('~/.cache/tags')
-let g:gutentags_plus_switch = 1      " change focus to quickfix window after search
-set previewheight=60                 " remap tag open in new split windows
+" execute 'source ' VimrcPath('coc.vim')

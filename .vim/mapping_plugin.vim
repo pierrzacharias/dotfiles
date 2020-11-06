@@ -1,13 +1,58 @@
 "
+" workspace
+"
+nnoremap <leader>w :ToggleWorkspace<CR>
+nnoremap <leader>bc :CloseHiddenBuffers<CR>
+nnoremap <leader>a :ToggleAutosave<CR>
+"
+" indentwise
+"
+" map [- <Plug>(IndentWisePreviousLesserIndent)
+" map [= <Plug>(IndentWisePreviousEqualIndent)
+" map [+ <Plug>(IndentWisePreviousGreaterIndent)
+" map ]- <Plug>(IndentWiseNextLesserIndent)
+" map ]= <Plug>(IndentWiseNextEqualIndent)
+" map ]+ <Plug>(IndentWiseNextGreaterIndent)
+" map [_ <Plug>(IndentWisePreviousAbsoluteIndent)
+" map ]_ <Plug>(IndentWiseNextAbsoluteIndent)
+" map [% <Plug>(IndentWiseBlockScopeBoundaryBegin)
+" map ]% <Plug>(IndentWiseBlockScopeBoundaryEnd)"
+"
+" pythonsense
+"
+" map <buffer> ac <Plug>(PythonsenseOuterClassTextObject)
+" map <buffer> ic <Plug>(PythonsenseInnerClassTextObject)
+" map <buffer> af <Plug>(PythonsenseOuterFunctionTextObject)
+" map <buffer> if <Plug>(PythonsenseInnerFunctionTextObject)
+" map <buffer> ad <Plug>(PythonsenseOuterDocStringTextObject)
+" map <buffer> id <Plug>(PythonsenseInnerDocStringTextObject)
+" map <buffer> ]] <Plug>(PythonsenseStartOfNextPythonClass)
+" map <buffer> ][ <Plug>(PythonsenseEndOfPythonClass)
+" map <buffer> [[ <Plug>(PythonsenseStartOfPythonClass)
+" map <buffer> [] <Plug>(PythonsenseEndOfPreviousPythonClass)
+" map <buffer> ]m <Plug>(PythonsenseStartOfNextPythonFunction)
+" map <buffer> ]M <Plug>(PythonsenseEndOfPythonFunction)
+" map <buffer> [m <Plug>(PythonsenseStartOfPythonFunction)
+" map <buffer> [M <Plug>(PythonsenseEndOfPreviousPythonFunction)
+" map <buffer> g: <Plug>(PythonsensePyWhere)" easy-align
+"
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)"
+"
+" Sideway
+"
+" to stay in container
+" https://github.com/jeetsukumaran/vim-argwrap/commit/30edd6ba0a654d22db62359e4bca9d174f1eead5
+nnoremap <Leader>h :SidewaysLeft<cr>
+nnoremap <Leader>l :SidewaysRight<cr>
+nmap <leader>si <Plug>SidewaysArgumentInsertBefore
+nmap <leader>sa <Plug>SidewaysArgumentAppendAfter
+nmap <leader>sI <Plug>SidewaysArgumentInsertFirst
+nmap <leader>sA <Plug>SidewaysArgumentAppendLast
 " anzu
 "
-" mapping
-nmap n <Plug>(anzu-n-with-echo)
-nmap N <Plug>(anzu-N-with-echo)
-nmap * <Plug>(anzu-star-with-echo)
-nmap # <Plug>(anzu-sharp-with-echo)
-" clear status
-nmap <Esc><Esc> <Plug>(anzu-clear-search-status)
 " <buffer><Leader>cf :Yapf<CR>"
 "
 " wrap
@@ -126,12 +171,6 @@ execute "set <M-i>=\ei"
 nnoremap <M-i> :QuickRun -mode n<CR>
 vnoremap  <M-i> :QuickRun -mode v<CR>
 "
-" sideway
-"
-nnoremap mh :SidewaysLeft<cr>
-nnoremap ml :SidewaysRight<cr>
-
-"
 " Fzf
 "
 nnoremap <Leader> <C-w>
@@ -183,15 +222,15 @@ nmap <silent> my <Plug>(coc-type-definition)
 nmap <silent> mi <Plug>(coc-implementation)
 " nmap <silent> mr <Plug>(coc-references)
 " Select inside function
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
+" xmap if <Plug>(coc-funcobj-i)
+" omap if <Plug>(coc-funcobj-i)
+" xmap af <Plug>(coc-funcobj-a)
+" omap af <Plug>(coc-funcobj-a)
 " Select inside class/struct/interface. Recommended mapping:
-xmap ic <Plug>(coc-classobj-i)
-omap ic <Plug>(coc-classobj-i)
-xmap ac <Plug>(coc-classobj-a)
-omap ac <Plug>(coc-classobj-a)
+" xmap ic <Plug>(coc-classobj-i)
+" omap ic <Plug>(coc-classobj-i)
+" xmap ac <Plug>(coc-classobj-a)
+" omap ac <Plug>(coc-classobj-a)
 " nnoremap <silent> gr :call <SID>show_documentation()<CR> " show Documentation
 nnoremap <silent> gr :call :<C-u>show_documentation<CR> " show Documentation
 nnoremap <silent><nowait> ma  :<C-u>CocList diagnostics<cr> " Show all diagnostics.

@@ -18,7 +18,7 @@ set noshowmode                              | " Don't show mode changes
 " set nowrap                                  | " Don't wrap lines
 " set showmatch                               | " Show matching braces
 "
-" highlight Comment gui=italic            | " Make comments italic
+highlight Comment cterm=None           
 " highlight Keyword cterm=italic ctermfg=5
 "
 hi Normal guibg=NONE ctermbg=NONE

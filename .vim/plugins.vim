@@ -14,90 +14,91 @@ if has('unix')
 endif
 call plug#begin(g:plug_install_files)
 "
+" TOTEST
+"
 " New
 "
+Plug 'https://github.com/troydm/zoomwintab.vim'
+Plug 'https://github.com/thaerkh/vim-workspace'        " save workspace
+Plug 'https://github.com/psliwka/vim-smoothie'         " Better scroll ?
 " Plug 'https://github.com/ctrlpvim/ctrlp.vim'
+" Plug 'https://github.com/jeetsukumaran/ctrlp-pythonic.vim'
 " Plug 'https://github.com/junegunn/loclisteasy-align'
-Plug 'https://github.com/tpope/vim-fugitive'
 "
 " Navigation
 "
+Plug 'https://github.com/KKPMW/vim-sendtowindow'       " send text to as windows
 Plug 'https://github.com/dahu/vim-fanfingtastic'       " Extend search with f,t, ...
-Plug 'https://github.com/tpope/vim-speeddating'        " Alloz incrementing date lie int
+Plug 'https://github.com/tpope/vim-speeddating'        " Allow incrementing date like int
 Plug 'https://github.com/mattn/vim-findroot'           " Find root of project
 Plug 'https://github.com/tpope/vim-surround'           " add object with (, {, {, ...
 Plug 'https://github.com/tpope/vim-commentary'         " comment out
-Plug 'https://github.com/KKPMW/vim-sendtowindow'       " send text to as windows
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }    " fuzzy finder
-Plug 'junegunn/fzf.vim'                                " fuzzy finder Plug 'junegunn/fzf.vim'
 Plug 'https://github.com/majutsushi/tagbar'            " show tabs
-Plug 'jlanzarotta/bufexplorer'                         " help to manage opened buffers
 Plug 'https://github.com/tpope/vim-endwise'            " end certain structures automatically
-Plug  'https://github.com/tpope/vim-repeat'            " Allow to repeat with . some plugins actions
-Plug 'https://github.com/osyo-manga/vim-anzu'          " add count when searching
+Plug 'https://github.com/tpope/vim-repeat'             " Allow to repeat with . some plugins actions
 Plug 'https://github.com/svermeulen/vim-subversive'    " replace content with register
-Plug 'sjl/gundo.vim'                                   " add undo tree
 Plug 'https://github.com/tpope/vim-unimpaired'         " exchange lines relativvely
+Plug 'https://github.com/AndrewRadev/sideways.vim'     " move func args
+Plug 'jeetsukumaran/vim-indentwise'                    " motions based on indent
+" Plug 'junegunn/vim-easy-align'                         " Helps alignment TODO: LEARN
+" Plug 'sjl/gundo.vim'                                   " add undo tree
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }    " fuzzy finder
+" Plug 'junegunn/fzf.vim'                                " fuzzy finder Plug 'junegunn/fzf.vim'
 "
 " IDE masterrace
 "
 Plug 'mhinz/vim-startify'                              " start page for vim
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}             " async executions
-Plug 'https://github.com/romainl/vim-qf'               " help with the quickfix lists
-Plug 'Shougo/vimproc.vim', {'do' : 'make'}
-Plug 'https://github.com/gotcha/vimpdb'
-Plug 'https://github.com/puremourning/vimspector'      " A debugger in vim for multiples languages
-Plug 'https://github.com/tpope/vim-endwise'            " end certain structures automatically
-Plug 'dense-analysis/ale'                              " syntax checking and semantic errors
 Plug 'preservim/nerdtree'                              " file explorer
-Plug 'neoclide/coc.nvim', {'branch': 'release'}        " new community driven completion engine
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}        " new community driven completion engine
+" Plug 'dense-analysis/ale'                              " syntax checking and semantic errors
+" Plug 'https://github.com/tpope/vim-endwise'            " end certain structures automatically
+" Plug 'Shougo/vimproc.vim', {'do' : 'make'}             " async executions
+" Plug 'https://github.com/romainl/vim-qf'               " help with the quickfix lists
+" Plug 'https://github.com/gotcha/vimpdb'
+" Plug 'https://github.com/puremourning/vimspector'      " A debugger in vim for multiples languages
+" Plug 'https://github.com/thinca/vim-quickrun'          " Run python and others easely
 " Plug 'antoinemadec/coc-fzf'                          " integrate fzf with coc.vim
 "
 " git
 "
-Plug 'https://github.com/thinca/vim-quickrun'          " Run python and others easely
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'https://github.com/tpope/vim-fugitive'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
+" Plug 'https://github.com/tpope/vim-fugitive'
 " Plug 'https://github.com/airblade/vim-gitgutter'      " git helper TODO : configure
 "
 " run in vim
 "
-Plug 'https://github.com/puremourning/vimspector'      " A debugger in vim for multiples languages
-Plug 'https://github.com/romainl/vim-qf'               " help with the quickfix lists
-Plug 'https://github.com/wincent/terminus'             " send text to as windows
-Plug 'https://github.com/sillybun/vim-repl'            " python terminal
-" Plug 'https://github.com/gotcha/vimpdb'
+" Plug 'https://github.com/puremourning/vimspector'      " A debugger in vim for multiples languages
+" Plug 'https://github.com/romainl/vim-qf'               " help with the quickfix lists
+" Plug 'https://github.com/wincent/terminus'             " send text to as windows
+" Plug 'https://github.com/sillybun/vim-repl'            " python terminal
 "
 " Python
 "
-Plug 'https://github.com/jmcantrell/vim-virtualenv'    " Tool for python venv
-" Plug 'https://github.com/westurner/venv.vim'
-Plug 'https://github.com/ColinKennedy/vim-textobj-block-party' " text objects and motions for Python required +python
+Plug 'https://github.com/jmcantrell/vim-virtualenv'                  " Tool for python venv
 Plug 'mgedmin/python_open_module.vim'                                " Python standard library source code
-Plug 'https://github.com/tell-k/vim-autopep8'                        " autoformat python
-Plug 'https://github.com/Vimjas/vim-python-pep8-indent'              " better indent style
-Plug 'https://github.com/FooSoft/vim-argwrap'          " wrap functions args
-Plug 'mgedmin/python-imports.vim'                       " Insert Python import statements computed from tags, bound to <F5>
-Plug 'https://github.com/sillybun/vim-repl'            " python terminal
-Plug 'mgedmin/python_open_module.vim'                  " Python standard library source code
+Plug 'https://github.com/FooSoft/vim-argwrap'                        " wrap functions args
+" Plug 'https://github.com/sillybun/vim-repl'                          " python terminal
+" Plug 'https://github.com/tell-k/vim-autopep8'                        " autoformat python
 " https://www.reddit.com/r/vim/comments/83iwc1/is_there_a_vim_plugin_for_generating_python/ " python doc ?
-Plug 'https://github.com/wincent/terminus' "send text to as windows
+" Plug 'https://github.com/wincent/terminus'                           "send text to as windows
+" Plug 'https://github.com/MathSquared/vim-python-sql'
+" Plug 'https://github.com/westurner/venv.vim'
 "
 " mappings
 "
-Plug 'junegunn/vim-easy-align'                         " Helps alignment TODO: LEARN
-Plug 'michaeljsmith/vim-indent-object'                 " New text object, based on indentation levels.
 Plug 'maxboisvert/vim-simple-complete'                 " as-you-type keyword completion
-Plug 'https://github.com/svermeulen/vim-subversive'    " replace content with register
-Plug 'https://github.com/kana/vim-textobj-entire'      " text object for the all buffer
+Plug 'michaeljsmith/vim-indent-object'                 " text object based on indentation levels.
+" Plug 'jeetsukumaran/vim-pythonsense'                                 " add python objects
+" Plug 'https://github.com/ColinKennedy/vim-textobj-block-party'       " text objects and motions for Python required +python
 Plug 'https://github.com/kana/vim-textobj-user'        " add new text objects
+" Plug 'https://github.com/kana/vim-textobj-entire'      " text object for the all buffer
 "
 " Tags
 "
-Plug 'mgedmin/pytag.vim'                               " better tags for python
-Plug 'mgedmin/python-imports.vim'                      " Insert Python import statements computed from tags, bound to <F5>
 Plug 'skywind3000/gutentags_plus'                      " help to generate tags
-Plug 'https://github.com/universal-ctags/ctags'        " help to generate tags
+" Plug 'mgedmin/pytag.vim'                               " better tags for python
+" Plug 'mgedmin/python-imports.vim'                      " Insert Python import statements computed from tags, bound to <F5>
+" Plug 'https://github.com/universal-ctags/ctags'        " help to generate tags
 "
 " Theming
 "
@@ -112,11 +113,11 @@ Plug 'vim-airline/vim-airline-themes'                      " theme for airline
 Plug 'https://github.com/camspiers/animate.vim'            " windows move animation
 " Plug 'vim/killersheep'                                   " absolutely essential
 Plug 'luochen1990/rainbow'                                 " rainbow parenthesis
+Plug 'Yggdroot/indentLine'         
 "
 " Latex
 "
-Plug 'lervag/vimtex'                                   " Latex plugin
-Plug 'https://github.com/Yggdroot/indentLine'          " help with indent TODO: Configure
+" Plug 'lervag/vimtex'                                   " Latex plugin
 " Plug 'https://vimawesome.com/plugin/tex-fold'          " add-on for latex TODO
 " Plug 'vim-grammarous'                                  " Grammar corrections
 "
@@ -141,12 +142,9 @@ Plug 'https://github.com/Yggdroot/indentLine'          " help with indent TODO: 
 "
 " Databases
 "
-" Plug 'https://github.com/MathSquared/vim-python-sql'
 " https://github.com/tpope/vim-dadbod
 "
-" TOTEST
 " Plug 'https://github.com/Shougo/denite.nvim'        " file , buffers manager
-" Plug 'https://github.com/AndrewRadev/sideways.vim'   " move func args
 " Plug 'https://github.com/tpope/vim-vinegar'
 " Plug 'https://github.com/ncm2/float-preview.nvim/'
 " https://github.com/mileszs/ack.vim                   " wrap grep tools in vim
@@ -158,6 +156,7 @@ Plug 'https://github.com/Yggdroot/indentLine'          " help with indent TODO: 
 " REMOVED
 "
 "
+" Plug 'https://github.com/gotcha/vimpdb'
 " Plug 'https://github.com/mattboehm/vim-unstack'      " open trace, don't  work :(
 " Plug 'https://github.com/tpope/vim-dispatch'           " could be an alternative to quickrun
 "Plug 'https://github.com/ervandew/supertab'
@@ -167,30 +166,87 @@ Plug 'https://github.com/Yggdroot/indentLine'          " help with indent TODO: 
 "
 call plug#end() "run :PlugInstall
 "
+" Workspace
 "
-" gundo
+" let g:workspace_create_new_tabs = 0  " enabled = 1 (default), disabled = 0
+let g:workspace_autosave_always = 1    " autosave to be always on
+let g:workspace_autocreate =1
+"
+" ░██████╗░██╗░░░██╗███╗░░██╗██████╗░░█████╗░
+" ██╔════╝░██║░░░██║████╗░██║██╔══██╗██╔══██╗
+" ██║░░██╗░██║░░░██║██╔██╗██║██║░░██║██║░░██║
+" ██║░░╚██╗██║░░░██║██║╚████║██║░░██║██║░░██║
+" ╚██████╔╝╚██████╔╝██║░╚███║██████╔╝╚█████╔╝
+" ░╚═════╝░░╚═════╝░╚═╝░░╚══╝╚═════╝░░╚════╝░
 "
 let g:gundo_prefer_python3 = has('python3')  " Unbreak broken default config
 "
-" anzu
+" ░██████╗████████╗░█████╗░██████╗░████████╗██╗███████╗██╗░░░██╗
+" ██╔════╝╚══██╔══╝██╔══██╗██╔══██╗╚══██╔══╝██║██╔════╝╚██╗░██╔╝
+" ╚█████╗░░░░██║░░░███████║██████╔╝░░░██║░░░██║█████╗░░░╚████╔╝░
+" ░╚═══██╗░░░██║░░░██╔══██║██╔══██╗░░░██║░░░██║██╔══╝░░░░╚██╔╝░░ 
+" ██████╔╝░░░██║░░░██║░░██║██║░░██║░░░██║░░░██║██║░░░░░░░░██║░░░
+" ╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░╚═╝╚═╝░░░░░░░░╚═╝░░░
 "
-set statusline=%{anzu#search_status()}"
-"
-" startify
-"
+let g:startify_lists = [
+          \ { 'type': 'sessions',  'header': ['   Sessions']       },
+          \ { 'type': 'files',     'header': ['   MRU']            },
+          \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+          \ { 'type': 'commands',  'header': ['   Commands']       },
+          \ ]
+          " \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+let g:startify_session_before_save = [
+        \ 'echo "Cleaning up before saving.."',
+        \ 'silent! NERDTreeTabsClose'
+        \ ]
+let g:startify_files_number = 20
 let g:webdevicons_enable_startify = 1
+" let g:startify_session_autoload = 1
+let g:startify_change_to_dir = 1
+" let g:workspace_session_directory = $HOME . '/.cache/sessions/'
+let g:startify_custom_header = 'startify#pad(startify#fortune#cowsay())'
+let g:startify_custom_header = [
+							\'     ██    ██    ██	   	  	  		██    ██    ██                ██    ██    ██	   	  	  		██    ██    ██ ',
+							\'   ██      ██  ██                ██      ██  ██                ██      ██  ██                ██      ██  ██ ',
+							\'   ██    ██    ██                ██    ██    ██                ██    ██    ██                ██    ██    ██ ',
+							\'     ██  ██      ██                ██  ██      ██                ██  ██      ██                ██  ██      ██ ',
+							\'     ██    ██    ██                ██    ██    ██                ██    ██    ██                ██    ██    ██ ',
+							\'                                                                                                                   ',
+							\'  ████████████████████         	████████████████████          ████████████████████         	████████████████████ ',
+							\'  ██                ██████      ██                ██████      ██                ██████      ██                ██████ ',
+							\'  ██                ██  ██      ██                ██  ██      ██                ██  ██      ██                ██  ██ ',
+							\'  ██                ██  ██      ██                ██  ██      ██                ██  ██      ██                ██  ██ ',
+							\'  ██                ██████      ██                ██████      ██                ██████      ██                ██████ ',
+							\'    ██            ██             ██            ██               ██            ██             ██            ██ ',
+							\'████████████████████████       ████████████████████████      ████████████████████████       ████████████████████████ ',
+							\'██                    ██       ██                    ██      ██                    ██       ██                    ██ ',
+							\'  ████████████████████           ████████████████████          ████████████████████           ████████████████████ ',
+				\ ]
+let g:startify_custom_footer = 'startify#pad(startify#fortune#cowsay())'
+let g:startify_custom_footer = [
+							\'     ██    ██    ██	   	  	  		██    ██    ██                ██    ██    ██	   	  	  		██    ██    ██ ',
+							\'   ██      ██  ██                ██      ██  ██                ██      ██  ██                ██      ██  ██ ',
+							\'   ██    ██    ██                ██    ██    ██                ██    ██    ██                ██    ██    ██ ',
+							\'     ██  ██      ██                ██  ██      ██                ██  ██      ██                ██  ██      ██ ',
+							\'     ██    ██    ██                ██    ██    ██                ██    ██    ██                ██    ██    ██ ',
+							\'                                                                                                                   ',
+							\'  ████████████████████         	████████████████████          ████████████████████         	████████████████████ ',
+							\'  ██                ██████      ██                ██████      ██                ██████      ██                ██████ ',
+							\'  ██                ██  ██      ██                ██  ██      ██                ██  ██      ██                ██  ██ ',
+							\'  ██                ██  ██      ██                ██  ██      ██                ██  ██      ██                ██  ██ ',
+							\'  ██                ██████      ██                ██████      ██                ██████      ██                ██████ ',
+							\'    ██            ██             ██            ██               ██            ██             ██            ██ ',
+							\'████████████████████████       ████████████████████████      ████████████████████████       ████████████████████████ ',
+							\'██                    ██       ██                    ██      ██                    ██       ██                    ██ ',
+							\'  ████████████████████           ████████████████████          ████████████████████           ████████████████████ ',
+            \ ]
 "
-" tag
-"
-" config project root markers.
-let g:gutentags_project_root = ['.root']
-" generate databases in my cache directory, prevent gtags files polluting
-" my project
-" let g:gutentags_cache_dir = expand('~/.cache/tags')
-let g:gutentags_ctags_exclude = ["*.min.js", "*.min.css", "build", "vendor",
-            \ ".git", "node_modules", "*.vim/bundle/*", ".idea/*"]
-"
-" vimtweak
+" ██╗░░░██╗██╗███╗░░░███╗████████╗░██╗░░░░░░░██╗███████╗░█████╗░██╗░░██╗
+" ██║░░░██║██║████╗░████║╚══██╔══╝░██║░░██╗░░██║██╔════╝██╔══██╗██║░██╔╝
+" ╚██╗░██╔╝██║██╔████╔██║░░░██║░░░░╚██╗████╗██╔╝█████╗░░███████║█████═╝░
+" ░╚████╔╝░██║██║╚██╔╝██║░░░██║░░░░░████╔═████║░██╔══╝░░██╔══██║██╔═██╗░
+" ░░╚██╔╝░░██║██║░╚═╝░██║░░░██║░░░░░╚██╔╝░╚██╔╝░███████╗██║░░██║██║░╚██╗
+" ░░░╚═╝░░░╚═╝╚═╝░░░░░╚═╝░░░╚═╝░░░░░░╚═╝░░░╚═╝░░╚══════╝╚═╝░░╚═╝╚═╝░░╚═╝
 "
 " if has('win32')
 "     autocmd BufReadPost * call libcallnr("vimtweak64.dll", "SetAlpha", 225)
@@ -198,21 +254,76 @@ let g:gutentags_ctags_exclude = ["*.min.js", "*.min.css", "build", "vendor",
 " endif
 
 "
-" Doge
+" ██████╗░░█████╗░░██████╗░███████╗
+" ██╔══██╗██╔══██╗██╔════╝░██╔════╝
+" ██║░░██║██║░░██║██║░░██╗░█████╗░░
+" ██║░░██║██║░░██║██║░░╚██╗██╔══╝░░
+" ██████╔╝╚█████╔╝╚██████╔╝███████╗
+" ╚═════╝░░╚════╝░░╚═════╝░╚══════╝
 "
 let g:doge_doc_standard_python = 'sphinx'
 "
-" rainbow
+" ██████╗░░█████╗░██╗███╗░░██╗██████╗░░█████╗░░██╗░░░░░░░██╗
+" ██╔══██╗██╔══██╗██║████╗░██║██╔══██╗██╔══██╗░██║░░██╗░░██║
+" ██████╔╝███████║██║██╔██╗██║██████╦╝██║░░██║░╚██╗████╗██╔╝
+" ██╔══██╗██╔══██║██║██║╚████║██╔══██╗██║░░██║░░████╔═████║░
+" ██║░░██║██║░░██║██║██║░╚███║██████╦╝╚█████╔╝░░╚██╔╝░╚██╔╝░
+" ╚═╝░░╚═╝╚═╝░░╚═╝╚═╝╚═╝░░╚══╝╚═════╝░░╚════╝░░░░╚═╝░░░╚═╝░░
 "
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
 "
-" gitgutter
-"
+" ░██████╗░██╗████████╗░██████╗░██╗░░░██╗████████╗████████╗███████╗██████╗░
+" ██╔════╝░██║╚══██╔══╝██╔════╝░██║░░░██║╚══██╔══╝╚══██╔══╝██╔════╝██╔══██╗
+" ██║░░██╗░██║░░░██║░░░██║░░██╗░██║░░░██║░░░██║░░░░░░██║░░░█████╗░░██████╔╝
+" ██║░░╚██╗██║░░░██║░░░██║░░╚██╗██║░░░██║░░░██║░░░░░░██║░░░██╔══╝░░██╔══██╗
+" ╚██████╔╝██║░░░██║░░░╚██████╔╝╚██████╔╝░░░██║░░░░░░██║░░░███████╗██║░░██║
+" ░╚═════╝░╚═╝░░░╚═╝░░░░╚═════╝░░╚═════╝░░░░╚═╝░░░░░░╚═╝░░░╚══════╝╚═╝░░╚═╝
 "
 let g:gitgutter_signs = 0
 let g:gitgutter_sign_added = '+'
 let g:gitgutter_sign_modified = '~'
 let g:gitgutter_sign_removed = '-'
+"
+" ████████╗  ░█████╗░  ░██████╗░  ░██████╗
+" ╚══██╔══╝  ██╔══██╗  ██╔════╝░  ██╔════╝
+" ░░░██║░░░  ███████║  ██║░░██╗░  ╚█████╗░
+" ░░░██║░░░  ██╔══██║  ██║░░╚██╗  ░╚═══██╗
+" ░░░██║░░░  ██║░░██║  ╚██████╔╝  ██████╔╝
+" ░░╚═╝░░░  ╚═╝░░╚═╝  ░╚════╝░  ╚═════╝░░
+" https://www.reddit.com/r/vim/comments/d77t6j/guide_how_to_setup_ctags_with_gutentags_properly/
+" let g:gutentags_modules = ['ctags', 'gtags_cscope'] "enable gtags module
+let g:gutentags_modules = ['ctags'] "enable gtags module
+let g:gutentags_project_root = ['.root']   " config project root markers.
+let g:gutentags_cache_dir = expand('~/.cache/tags')
+let g:tagbar_compact = 1
+let g:tagbar_show_linenumbers = 2
+let g:gutentags_generate_on_write = 1
+let g:gutentags_generate_on_new = 1
+let g:gutentags_generate_on_missing = 1
+let g:gutentags_generate_on_write = 1
+let g:gutentags_generate_on_empty_buffer = 0
+let g:gutentags_ctags_extra_args = [
+      \ '--tag-relative=yes',
+      \ '--fields=+ailmnS',
+      \ ]
+let g:tagbar_autoshowtag = 1
+" let g:tagbar_previewwin_pos = "aboveleft"
+command! MakeTags !ctags -R .
+"set statusline+=%{gutentags#statusline()}
+" generate databases in my cache directory, prevent gtags files polluting my project
+let g:gutentags_ctags_exclude = [
+			\ "*.min.js", "*.min.css", "build", "vendor", ".git",
+			\ '*.tmp', '*.csproj.user', '*.cache', '*.pdb', '*.pyc',
+			\ '*.class', '*.sln', "node_modules", '*.less', '*.scss',
+			\ '*.exe', '*.dll', '*.mp3',  '*.ogg', '*.swp',
+			\ '*.swo', '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png',
+      \ '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz',
+			\ '*.tar.bz2', '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx',
+      \ "*.vim/bundle/*", "tags*" , "*.idea/*"]
+" generate datebases in my cache directory, prevent gtags files polluting my project
+let g:gutentags_plus_switch = 1      " change focus to quickfix window after search
+set previewheight=60                 " remap tag open in new split windows
+"
 " ██╗░░░██╗  ██╗  ███╗░░░███╗  ░██████╗  ██████╗░  ███████╗  ██████╗░  ████████╗  ░█████╗░  ██████╗░
 " ██║░░░██║  ██║  ████╗░████║  ██╔════╝  ██╔══██╗  ██╔════╝  ██╔══██╗  ╚══██╔══╝  ██╔══██╗  ██╔══██╗
 " ╚██╗░██╔╝  ██║  ██╔████╔██║  ╚█████╗░  ██████╔╝  █████╗░░  ██║░░╚═╝  ░░░██║░░░  ██║░░██║  ██████╔╝
@@ -314,7 +425,8 @@ let g:autopep8_max_line_length=79
 " ██║  ██║░╚███║  ██████╔╝  ███████╗  ██║░╚███║  ░░░██║░░░
 " ╚═╝  ╚═╝░░╚══╝  ╚═════╝░  ╚══════╝  ╚═╝░░╚══╝  ░░╚═╝░░░
 let g:indentLine_color_term =22
-let g:indentLine_char = "|"
+" let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_char = "┊"
 " let g:indentLine_char = "»"
 let g:indentLine_leadingSpaceChar = ' '
 let g:indentLine_leadingSpaceEnabled=1
@@ -341,87 +453,6 @@ let g:animate#easing_func = 'animate#ease_linear'
 let g:sendtowindow_use_defaults=0
 " nnoremap ml :SidewaysJumpRight<cr>
 "
-" ███████╗  ███████╗  ███████╗
-" ██╔════╝  ╚════██║  ██╔════╝
-" █████╗░░  ░░███╔═╝  █████╗░░
-" ██╔══╝░░  ██╔══╝░░  ██╔══╝░░
-" ██║░░░░░  ███████╗  ██║░░░░░
-" ╚═╝░░░░░  ╚══════╝  ╚═╝░░░░░
-
-" Enable per-command history.
-" CTRL-N and CTRL-P will be automatically bound to next-history and
-" previous-history instead of down and up. If you don't like the change,
-" explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
-" let g:fzf_history_dir = '~/.local/share/fzf-history'
-" map <Leader>h :Files<CR>
-"
-let g:fzf_tags_command = 'ctags -R'
-let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline '
-" let $FZF_DEFAULT_OPTS=' --color=dark --color=fg:5,bg:-1,hl:0,bg+:-1,hl+:-1 --color=info:0,prompt:0,pointer:-1,marker:-1,spinner:-1,header:-1 --layout=reverse  --margin=1,4'
-" let $FZF_DEFAULT_COMMAND="rg --files --hidden"
-let g:fzf_layout = { 'down': '30%' }
-" let g:fzf_layout = { 'window': '-tabnew' }
-let g:fzf_commands_expect = 'alt-enter'
-" let g:fzf_preview_window = 'right:50%:noborder:hidden'
-" let g:coc_fzf_opts = []
-" let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo'} }
-" \ 'bg':      ['bg', '#201a14'],
-command! -bang -nargs=? -complete=dir Files
-    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
-" Get text in files with Rg
-command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview(), <bang>0)
-" Ripgrep advanced
-function! RipgrepFzf(query, fullscreen)
-  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
-  let initial_command = printf(command_fmt, shellescape(a:query))
-  let reload_command = printf(command_fmt, '{q}')
-  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-endfunction
-"
-command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
-"
-" Git grep
-command! -bang -nargs=* GGrep \ call fzf#vim#grep( \   'git grep --line-number '.shellescape(<q-args>), 0, \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
-"
-" # Scoped History Finders  https://github.com/jesseleite/dotfiles/blob/master/vim/plugin-config/fzf.vim
-command! -bang PHistory call fzf#run(fzf#wrap(s:preview(<bang>0, {
-  \ 'source': s:file_history_from_directory(s:get_git_root()),
-  \ 'options': [
-  \   '--prompt', 'ProjectHistory> ',
-  \   '--multi',
-  \ ]}), <bang>0))
-command! -bang CwdHistory call fzf#run(fzf#wrap(s:preview(<bang>0, {
-  \ 'source': s:file_history_from_directory(getcwd()),
-  \ 'options': [
-  \   '--prompt', 'CwdHistory> ',
-  \   '--multi',
-  \ ]}), <bang>0))
-function! s:file_history_from_directory(directory)
-  return fzf#vim#_uniq(filter(fzf#vim#_recent_files(), "s:file_is_in_directory(fnamemodify(v:val, ':p'), a:directory)"))
-endfunction
-function! s:file_is_in_directory(file, directory)
-  return filereadable(a:file) && match(a:file, a:directory . '/') == 0
-endfunction
-"
-" ░██████╗  ██╗  ░██████╗░  ███╗░░██╗
-" ██╔════╝  ██║  ██╔════╝░  ████╗░██║
-" ╚█████╗░  ██║  ██║░░██╗░  ██╔██╗██
-" ░╚═══██╗  ██║  ██║░░╚██╗  ██║╚████║
-" ██████╔╝  ██║  ╚██████╔╝  ██║░╚███║
-" ╚═════╝░░  ╚═╝  ░╚════╝░  ╚═╝░░╚══╝
-" always show signcolumns
-" set signcolumn=yes
-" autocmd FileType list setl signcolumn=no
-" autocmd BufRead,BufNewFile * setlocal signcolumn=yes
-" autocmd FileType tagbar,nerdtree setlocal signcolumn=no
-"
-
-
-"
 " ███╗░░██╗  ███████╗  ██████╗░  ██████╗░  ████████╗  ██████╗░  ███████╗  ███████╗
 " ████╗░██║  ██╔════╝  ██╔══██╗  ██╔══██╗  ╚══██╔══╝  ██╔══██╗  ██╔════╝  ██╔════╝
 " ██╔██╗██║  █████╗░░  ██████╔╝  ██║░░██║  ░░░██║░░░  ██████╔╝  █████╗░░  █████╗░░
@@ -430,47 +461,58 @@ endfunction
 " ╚═╝░░╚══╝  ╚══════╝  ╚═╝░░╚═╝  ╚═════╝░  ░░╚═╝░░░  ╚═╝░░╚═╝  ╚══════╝  ╚══════╝
 
 map <C-n> :NERDTreeToggle<CR>
-let NERDTreeQuitOnOpen=1
+let NERDTreeQuitOnOpen=0
 let NERDTreeIgnore = ['\.pyc$', '__pycache__']
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-let g:NERDTreeWinSize=40
-let g:NERDTreeAutoCenter=1
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" let g:NERDTreeWinSize=40
+" let g:NERDTreeAutoCenter=1
 let g:NERDTreeHighlightCursorline=1
 let g:NERDTreeShowBookmarks=1
 let g:NERDTreeShowHidden=1
-let NERDTreeMinimalUI=1
-let g:NERDTreeDirArrowExpandable='>'
-let g:NERDTreeDirArrowCollapsible='>'
-let NERDTreeStatusline="%{matchstr(getline('.'), '\\s\\zs\\w\\(.*\\)')}"
-let g:NERDTreeGitStatusIndicatorMapCustom = {
-    \ "Modified"  : "Ξ",
-    \ "Staged"    : "Λ",
-    \ "Untracked" : "Φ",
-    \ "Renamed"   : "ρ",
-    \ "Unmerged"  : "Θ",
-    \ "Deleted"   : "Χ",
-    \ "Dirty"     : "Δ",
-    \ "Clean"     : "Γ",
-    \ 'Ignored'   : "Ι",
-    \ "Unknown"   : "?"
-    \ }
-let NERDTreeStatusline=""
+let g:NERDTreeShowLineNumbers=1   " display line number
+let g:NERDTreeAutoDeleteBuffer=1
+" let NERDTreeMinimalUI=1
+let g:NERDTreeDirArrowExpandable='▸'
+let g:NERDTreeDirArrowCollapsible='▾_'
+let g:webdevicons_enable_nerdtree = 1
+  let g:webdevicons_conceal_nerdtree_brackets = 0
+" let g:NERDTreeNodeDelimiter="😀"       "smiley face
+" let NERDTreeStatusline="%{matchstr(getline('.'), '\\s\\zs\\w\\(.*\\)')}"
+" let NERDTreeStatusline=""
+" let g:webdeviscons_conceal_nerdtree_breackets = 1
+" let g:WebDevIconsUnicodeDecorateFolderNodes = 1
+" let g:WebDevIconsNerdTreeGitPluginForceVAling = 1
+" let g:WebDevIconsNerdTreeBeforeGlyphPadding = ''
+" let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
+" autocmd FileType nerdtree setlocal signcolumn=no
+" let g:NERDTreeGitStatusIndicatorMapCustom = {
+"     \ "Modified"  : "Ξ",
+"     \ "Staged"    : "Λ",
+"     \ "Untracked" : "Φ",
+"     \ "Renamed"   : "ρ",
+"     \ "Unmerged"  : "Θ",
+"     \ "Deleted"   : "Χ",
+"     \ "Dirty"     : "Δ",
+"     \ "Clean"     : "Γ",
+"     \ 'Ignored'   : "Ι",
+"     \ "Unknown"   : "?"
+"     \ }
 " Git gutter custom signs
-let g:gitgutter_sign_added = '+'
-let g:gitgutter_sign_modified = 'm'
-let g:gitgutter_sign_removed = '-'
-let g:NERDTreeGitStatusIndicatorMapCustom = {
-                \ 'Modified'  :'+',
-                \ 'Staged'    :'s',
-                \ 'Untracked' :'u',
-                \ 'Renamed'   :'r',
-                \ 'Unmerged'  :'═',
-                \ 'Deleted'   :'d',
-                \ 'Dirty'     :'✗',
-                \ 'Ignored'   :'☒',
-                \ 'Clean'     :'C',
-                \ 'Unknown'   :'?',
-                \ }"
+" let g:gitgutter_sign_added = '+'
+" let g:gitgutter_sign_modified = 'm'
+" let g:gitgutter_sign_removed = '-'
+" let g:NERDTreeGitStatusIndicatorMapCustom = {
+                " \ 'Modified'  :'+',
+                " \ 'Staged'    :'s',
+                " \ 'Untracked' :'u',
+                " \ 'Renamed'   :'r',
+                " \ 'Unmerged'  :'═',
+                " \ 'Deleted'   :'d',
+                " \ 'Dirty'     :'✗',
+                " \ 'Ignored'   :'☒',
+                " \ 'Clean'     :'C',
+                " \ 'Unknown'   :'?',
+                " \ }"
 " open a NERDTree automatically when vim starts up if no files were specified
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -530,10 +572,6 @@ let g:ale_python_pylint_options = "--disable=C0301"  " Remove pylint error usele
 " ██║░░██║  ██║  ██║░░██║  ███████╗  ██║  ██║░╚███║  ███████╗
 " ╚═╝░░╚═╝  ╚═╝  ╚═╝░░╚═╝  ╚══════╝  ╚═╝  ╚═╝░░╚══╝  ╚══════╝
 
-" let g:airline_theme='monochrome'
-" let g:airline_theme='bubblegum'
-" hi airline_c  ctermbg=NONE guibg=NONE
-" hi airline_tabfill ctermbg=NONE guibg=NONE
 if has('unix')
     let g:airline_theme = 'base16color'
 endif
@@ -548,14 +586,14 @@ let g:airline#extensions#tabline#left_alt_sep = '>'
 let g:airline#extensions#tabline#formatter = 'unique_tail'
 let g:airline#extensions#whitespace#checks = ['']
 let g:airline#themes#clean#palette = 1
-call airline#parts#define_raw('linenr', '%l')
+" call airline#parts#define_raw('linenr', '%l')
 " call airline#parts#define_accent('linenr', 'bold')
 let g:airline_section_warning = ''
 let g:airline_section_error = ''
-let g:airline#extensions#tabline#buffer_min_count = 1   " show tabline only if there is more than 1 buffer
-" let g:airline#extensions#tabline#fnamemod = ':t'        " show only file name on tabs
-let g:airline#extensions#virtualenv#enabled = 1         " Enable virtualenv plugin
-let g:airline#extensions#ctrlspace#enabled = 1
+" let g:airline#extensions#tabline#buffer_min_count = 1   " show tabline only if there is more than 1 buffer
+let g:airline#extensions#tabline#fnamemod = ':t'        " show only file name on tabs
+" let g:airline#extensions#virtualenv#enabled = 1         " Enable virtualenv plugin
+" let g:airline#extensions#ctrlspace#enabled = 1
 
 " ██╗░░░░░  ░█████╗░  ████████╗  ███████╗  ██╗░░██╗
 " ██║░░░░░  ██╔══██╗  ╚══██╔══╝  ██╔════╝  ╚██╗██╔╝
@@ -601,3 +639,84 @@ let g:tex_flavor = 'latex'
 "   \ |   exe "normal! g`\""
 "   \ | end
 "
+"
+" ███████╗  ███████╗  ███████╗
+" ██╔════╝  ╚════██║  ██╔════╝
+" █████╗░░  ░░███╔═╝  █████╗░░
+" ██╔══╝░░  ██╔══╝░░  ██╔══╝░░
+" ██║░░░░░  ███████╗  ██║░░░░░
+" ╚═╝░░░░░  ╚══════╝  ╚═╝░░░░░
+
+" Enable per-command history.
+" CTRL-N and CTRL-P will be automatically bound to next-history and
+" previous-history instead of down and up. If you don't like the change,
+" explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
+" let g:fzf_history_dir = '~/.local/share/fzf-history'
+" map <Leader>h :Files<CR>
+"
+"let g:fzf_tags_command = 'ctags -R'
+"let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline '
+"" let $FZF_DEFAULT_OPTS=' --color=dark --color=fg:5,bg:-1,hl:0,bg+:-1,hl+:-1 --color=info:0,prompt:0,pointer:-1,marker:-1,spinner:-1,header:-1 --layout=reverse  --margin=1,4'
+"" let $FZF_DEFAULT_COMMAND="rg --files --hidden"
+"let g:fzf_layout = { 'down': '30%' }
+"" let g:fzf_layout = { 'window': '-tabnew' }
+"let g:fzf_commands_expect = 'alt-enter'
+"" let g:fzf_preview_window = 'right:50%:noborder:hidden'
+"" let g:coc_fzf_opts = []
+"" let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo'} }
+"" \ 'bg':      ['bg', '#201a14'],
+"command! -bang -nargs=? -complete=dir Files
+"    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+"" Get text in files with Rg
+"command! -bang -nargs=* Rg
+"  \ call fzf#vim#grep(
+"  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+"  \   fzf#vim#with_preview(), <bang>0)
+"" Ripgrep advanced
+"function! RipgrepFzf(query, fullscreen)
+"  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+"  let initial_command = printf(command_fmt, shellescape(a:query))
+"  let reload_command = printf(command_fmt, '{q}')
+"  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+"  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+"endfunction
+""
+"command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+""
+"" Git grep
+"command! -bang -nargs=* GGrep \ call fzf#vim#grep( \   'git grep --line-number '.shellescape(<q-args>), 0, \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+""
+"" # Scoped History Finders  https://github.com/jesseleite/dotfiles/blob/master/vim/plugin-config/fzf.vim
+"command! -bang PHistory call fzf#run(fzf#wrap(s:preview(<bang>0, {
+"  \ 'source': s:file_history_from_directory(s:get_git_root()),
+"  \ 'options': [
+"  \   '--prompt', 'ProjectHistory> ',
+"  \   '--multi',
+"  \ ]}), <bang>0))
+"command! -bang CwdHistory call fzf#run(fzf#wrap(s:preview(<bang>0, {
+"  \ 'source': s:file_history_from_directory(getcwd()),
+"  \ 'options': [
+"  \   '--prompt', 'CwdHistory> ',
+"  \   '--multi',
+"  \ ]}), <bang>0))
+"function! s:file_history_from_directory(directory)
+"  return fzf#vim#_uniq(filter(fzf#vim#_recent_files(), "s:file_is_in_directory(fnamemodify(v:val, ':p'), a:directory)"))
+"endfunction
+"function! s:file_is_in_directory(file, directory)
+"  return filereadable(a:file) && match(a:file, a:directory . '/') == 0
+"endfunction
+"
+" ░██████╗  ██╗  ░██████╗░  ███╗░░██╗
+" ██╔════╝  ██║  ██╔════╝░  ████╗░██║
+" ╚█████╗░  ██║  ██║░░██╗░  ██╔██╗██
+" ░╚═══██╗  ██║  ██║░░╚██╗  ██║╚████║
+" ██████╔╝  ██║  ╚██████╔╝  ██║░╚███║
+" ╚═════╝░░  ╚═╝  ░╚════╝░  ╚═╝░░╚══╝
+" always show signcolumns
+" set signcolumn=yes
+" autocmd FileType list setl signcolumn=no
+" autocmd BufRead,BufNewFile * setlocal signcolumn=yes
+" autocmd FileType tagbar,nerdtree setlocal signcolumn=no
+"
+
+

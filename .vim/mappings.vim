@@ -1,16 +1,17 @@
 " ------------------------------------------------------------------------------
 " # Mappings
 " ------------------------------------------------------------------------------
+nnoremap sf *``
 map <space> y
 map M <Nop>
 nnoremap H ^
-nnoremap L $_
+nnoremap L g_
 execute "set <M-f>=\ef"
 inoremap <M-f> <Esc>:update<CR>
 nnoremap <M-f> <Esc><Esc>:update<CR>
 nnoremap qa :qa!<CR>
-execute 'set <M-p>=\ep'
-nnoremap <M-p> "+pkJK
+execute "set <M-p>=\ep"
+nnoremap <C-p> "+pkJK 
 nnoremap K i<cr><esc>
 nnoremap c<space> i<space><Esc>
 
@@ -54,8 +55,6 @@ nnoremap <Leader>h :vert terminal<CR>
 " nnoremap <silent>db m`:silent +g/\m^\s*$/d<CR>``:noh<CR>           " delete line below if blanck
 nnoremap <silent>db jddk                                             " delete line below if blanck
 nnoremap <silent>da m`:silent -g/\m^\s*$/d<CR>``:noh<CR>             " delete line above if blank
-execute 'set <M-o>=\eo'
-nnoremap <silent><M-o> o<esc><esc>      " insert blank line below
 
 nnoremap <Leader>l :let &scrolloff=100-&scrolloff<CR>                " make edit line always centered
 nnoremap <silent><Leader>t :TagbarToggle<CR>
