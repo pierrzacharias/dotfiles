@@ -1,11 +1,5 @@
 " Containe plugins to add and config
 "
-" ██████╗░  ██╗░░░░░  ██╗░░░██╗  ░██████╗░
-" ██╔══██╗  ██║░░░░░  ██║░░░██║  ██╔════╝░
-" ██████╔╝  ██║░░░░░  ██║░░░██║  ██║░░██╗░
-" ██╔═══╝░  ██║░░░░░  ██║░░░██║  ██║░░╚██╗
-" ██║░░░░░  ███████╗  ╚██████╔╝  ╚██████╔╝
-" ╚═╝░░░░░  ╚══════╝  ░╚═════╝░  ░╚════╝░
 if has('win32')
     let g:plug_install_files = '$HOME\vimfiles\plugged'
 endif
@@ -13,126 +7,155 @@ if has('unix')
     let g:plug_install_files = '$HOME/.vim/plugged'
 endif
 call plug#begin(g:plug_install_files)
+
+" ██████╗░  ██╗░░░░░  ██╗░░░██╗  ░██████╗░
+" ██╔══██╗  ██║░░░░░  ██║░░░██║  ██╔════╝░
+" ██████╔╝  ██║░░░░░  ██║░░░██║  ██║░░██╗░
+" ██╔═══╝░  ██║░░░░░  ██║░░░██║  ██║░░╚██╗
+" ██║░░░░░  ███████╗  ╚██████╔╝  ╚██████╔╝
+" ╚═╝░░░░░  ╚══════╝  ░╚═════╝░  ░╚════╝░
+" --------------------------------------------------------------
+" ---------------------- New -----------------------------------
+" --------------------------------------------------------------
+" Plug 'thaerkh/vim-workspace'        " save workspace
+" Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'jeetsukumaran/ctrlp-pythonic.vim'
+" Plug 'junegunn/loclisteasy-align'
 "
-" TOTEST
+" --------------------------------------------------------------
+" ---------------------- Navigation ----------------------------
+" --------------------------------------------------------------
 "
-" New
+Plug 'KKPMW/vim-sendtowindow'                          " send text to as windows
+Plug 'dahu/vim-fanfingtastic'                          " Extend search with f,t, ...
+Plug 'tpope/vim-speeddating'                           " Allow incrementing date like int
+Plug 'mattn/vim-findroot'                              " Find root of project
+Plug 'tpope/vim-surround'                              " add object with (, {, {, ...
+Plug 'tpope/vim-commentary'                            " comment out
+Plug 'majutsushi/tagbar'                               " show tabs
+Plug 'tpope/vim-endwise'                               " end certain structures automatically
+Plug 'tpope/vim-repeat'                                " Allow to repeat with . some plugins actions
+Plug 'svermeulen/vim-subversive'                       " replace content with register
+Plug 'tpope/vim-unimpaired'                            " exchange lines relativvely
+Plug 'AndrewRadev/sideways.vim'                        " move func args
+" Plug 'indentwise'                                       " motions based on indent
+" Plug 'junegunn/vim-easy-align'                       " Helps alignment TODO: LEARN
+" Plug 'sjl/gundo.vim'                                 " add undo tree
+" Plug 'junegunn/fzf.vim'                              " fuzzy finder Plug 'junegunn/fzf.vim'
+" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 "
-Plug 'https://github.com/troydm/zoomwintab.vim'
-Plug 'https://github.com/thaerkh/vim-workspace'        " save workspace
-Plug 'https://github.com/psliwka/vim-smoothie'         " Better scroll ?
-" Plug 'https://github.com/ctrlpvim/ctrlp.vim'
-" Plug 'https://github.com/jeetsukumaran/ctrlp-pythonic.vim'
-" Plug 'https://github.com/junegunn/loclisteasy-align'
-"
-" Navigation
-"
-Plug 'https://github.com/KKPMW/vim-sendtowindow'       " send text to as windows
-Plug 'https://github.com/dahu/vim-fanfingtastic'       " Extend search with f,t, ...
-Plug 'https://github.com/tpope/vim-speeddating'        " Allow incrementing date like int
-Plug 'https://github.com/mattn/vim-findroot'           " Find root of project
-Plug 'https://github.com/tpope/vim-surround'           " add object with (, {, {, ...
-Plug 'https://github.com/tpope/vim-commentary'         " comment out
-Plug 'https://github.com/majutsushi/tagbar'            " show tabs
-Plug 'https://github.com/tpope/vim-endwise'            " end certain structures automatically
-Plug 'https://github.com/tpope/vim-repeat'             " Allow to repeat with . some plugins actions
-Plug 'https://github.com/svermeulen/vim-subversive'    " replace content with register
-Plug 'https://github.com/tpope/vim-unimpaired'         " exchange lines relativvely
-Plug 'https://github.com/AndrewRadev/sideways.vim'     " move func args
-Plug 'jeetsukumaran/vim-indentwise'                    " motions based on indent
-" Plug 'junegunn/vim-easy-align'                         " Helps alignment TODO: LEARN
-" Plug 'sjl/gundo.vim'                                   " add undo tree
-" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }    " fuzzy finder
-" Plug 'junegunn/fzf.vim'                                " fuzzy finder Plug 'junegunn/fzf.vim'
-"
-" IDE masterrace
+" --------------------------------------------------------------
+" ---------------------- IDE masterrace ------------------------
+" --------------------------------------------------------------
 "
 Plug 'mhinz/vim-startify'                              " start page for vim
 Plug 'preservim/nerdtree'                              " file explorer
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}        " new community driven completion engine
-" Plug 'dense-analysis/ale'                              " syntax checking and semantic errors
-" Plug 'https://github.com/tpope/vim-endwise'            " end certain structures automatically
-" Plug 'Shougo/vimproc.vim', {'do' : 'make'}             " async executions
-" Plug 'https://github.com/romainl/vim-qf'               " help with the quickfix lists
+Plug 'maxboisvert/vim-simple-complete'                 " as-you-type keyword completion
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}      " new community driven completion engine
+" Plug 'dense-analysis/ale'                            " syntax checking and semantic errors
+" Plug 'https://github.com/tpope/vim-endwise'          " end certain structures automatically
+" Plug 'Shougo/vimproc.vim', {'do' : 'make'}           " async executions
+" Plug 'https://github.com/romainl/vim-qf'             " help with the quickfix lists
 " Plug 'https://github.com/gotcha/vimpdb'
-" Plug 'https://github.com/puremourning/vimspector'      " A debugger in vim for multiples languages
-" Plug 'https://github.com/thinca/vim-quickrun'          " Run python and others easely
+" Plug 'https://github.com/puremourning/vimspector'    " A debugger in vim for multiples languages
+" Plug 'https://github.com/thinca/vim-quickrun'        " Run python and others easely
 " Plug 'antoinemadec/coc-fzf'                          " integrate fzf with coc.vim
 "
-" git
+" --------------------------------------------------------------
+" ---------------------- git -----------------------------------
+" --------------------------------------------------------------
 "
 " Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'https://github.com/tpope/vim-fugitive'
-" Plug 'https://github.com/airblade/vim-gitgutter'      " git helper TODO : configure
+" Plug 'https://github.com/airblade/vim-gitgutter'
+" Plug 'rbong/vim-flog'             " Commit viewer
 "
-" run in vim
+" --------------------------------------------------------------
+" ---------------------- run in vim ----------------------------
+" --------------------------------------------------------------
 "
-" Plug 'https://github.com/puremourning/vimspector'      " A debugger in vim for multiples languages
-" Plug 'https://github.com/romainl/vim-qf'               " help with the quickfix lists
-" Plug 'https://github.com/wincent/terminus'             " send text to as windows
-" Plug 'https://github.com/sillybun/vim-repl'            " python terminal
+" Plug 'puremourning/vimspector'                       " A debugger in vim for multiples languages
+" Plug 'romainl/vim-qf'                                " help with the quickfix lists
+" Plug 'wincent/terminus'                              " send text to as windows
+" Plug 'sillybun/vim-repl'                             " python terminal
 "
-" Python
+" --------------------------------------------------------------
+"- ---------------------- Python -------------------------------
+" --------------------------------------------------------------
 "
-Plug 'https://github.com/jmcantrell/vim-virtualenv'                  " Tool for python venv
-Plug 'mgedmin/python_open_module.vim'                                " Python standard library source code
-Plug 'https://github.com/FooSoft/vim-argwrap'                        " wrap functions args
-" Plug 'https://github.com/sillybun/vim-repl'                          " python terminal
-" Plug 'https://github.com/tell-k/vim-autopep8'                        " autoformat python
-" https://www.reddit.com/r/vim/comments/83iwc1/is_there_a_vim_plugin_for_generating_python/ " python doc ?
-" Plug 'https://github.com/wincent/terminus'                           "send text to as windows
-" Plug 'https://github.com/MathSquared/vim-python-sql'
-" Plug 'https://github.com/westurner/venv.vim'
+Plug 'jmcantrell/vim-virtualenv'                       " Tool for python venv
+Plug 'mgedmin/python_open_module.vim'                  " Python standard library source code
+Plug 'FooSoft/vim-argwrap'                             " wrap functions args
+" Plug 'MathSquared/vim-python-sql'
+" Plug 'kkoomen/vim-doge'           " Docblock generator
+" Plug 'sillybun/vim-repl'                             " python terminal
+" Plug 'tell-k/vim-autopep8'                           " autoformat python
+" Plug 'wincent/terminus'                              " send text to as windows
+" Plug 'westurner/venv.vim'
 "
-" mappings
+" --------------------------------------------------------------
+" ---------------------- Objects -------------------------------
+" --------------------------------------------------------------
 "
-Plug 'maxboisvert/vim-simple-complete'                 " as-you-type keyword completion
 Plug 'michaeljsmith/vim-indent-object'                 " text object based on indentation levels.
-" Plug 'jeetsukumaran/vim-pythonsense'                                 " add python objects
-" Plug 'https://github.com/ColinKennedy/vim-textobj-block-party'       " text objects and motions for Python required +python
-Plug 'https://github.com/kana/vim-textobj-user'        " add new text objects
-" Plug 'https://github.com/kana/vim-textobj-entire'      " text object for the all buffer
+Plug 'kana/vim-textobj-user'                           " add new text objects
+" Plug 'kana/vim-textobj-entire'                       " text object for the all buffer
+" Plug 'jeetsukumaran/vim-pythonsense'                 " add python objects
+" Plug 'ColinKennedy/vim-textobj-block-party'          " text objects and motions for Python required +python
 "
-" Tags
+" --------------------------------------------------------------
+" ---------------------- Tags ----------------------------------
+" --------------------------------------------------------------
 "
 Plug 'skywind3000/gutentags_plus'                      " help to generate tags
-" Plug 'mgedmin/pytag.vim'                               " better tags for python
-" Plug 'mgedmin/python-imports.vim'                      " Insert Python import statements computed from tags, bound to <F5>
-" Plug 'https://github.com/universal-ctags/ctags'        " help to generate tags
+" Plug 'mgedmin/pytag.vim'                             " better tags for python
+" Plug 'mgedmin/python-imports.vim'                    " Insert Python import statements computed from tags, bound to <F5>
+" Plug 'universal-ctags/ctags'                         " help to generate tags
 "
-" Theming
+" --------------------------------------------------------------
+" ---------------------- Theming -------------------------------
+" --------------------------------------------------------------
 "
-"
-" Piiug 'habamax/vim-gruvbit'
+Plug 'altercation/vim-colors-solarized'                " color theme
+Plug 'miyakogi/conoline.vim'                           " highlights the line of the cursor
+Plug 'ryanoasis/vim-devicons'                          " add icon
+Plug 'vim-airline/vim-airline'                         " add visual line
+Plug 'vim-airline/vim-airline-themes'                  " theme for airline
+Plug 'camspiers/animate.vim'                           " windows move animation
+Plug 'luochen1990/rainbow'                             " rainbow parenthesis
+Plug 'Yggdroot/indentLine'                             " add visual indent
+Plug 'troydm/zoomwintab.vim'                           " zoom on a tab
+Plug 'psliwka/vim-smoothie'                            " Better scroll
+Plug 'vim/killersheep'                                 " absolutely essential
+" Plug 'habamax/vim-gruvbit'
 " Plug 'morhetz/gruvbox'                                   " color theme
-Plug 'https://github.com/altercation/vim-colors-solarized' " color theme
-Plug 'https://github.com/miyakogi/conoline.vim'            " highlights the line of the cursor
-Plug 'ryanoasis/vim-devicons'                              " add icon
-Plug 'vim-airline/vim-airline'                             " add visual line
-Plug 'vim-airline/vim-airline-themes'                      " theme for airline
-Plug 'https://github.com/camspiers/animate.vim'            " windows move animation
-" Plug 'vim/killersheep'                                   " absolutely essential
-Plug 'luochen1990/rainbow'                                 " rainbow parenthesis
-Plug 'Yggdroot/indentLine'         
-"
-" Latex
-"
-" Plug 'lervag/vimtex'                                   " Latex plugin
-" Plug 'https://vimawesome.com/plugin/tex-fold'          " add-on for latex TODO
-" Plug 'vim-grammarous'                                  " Grammar corrections
-"
-" Jupyter
-"
-" Plug 'https://github.com/mattn/vim_kernel'
-"
-" Snippets
+" --------------------------------------------------------------
+" ---------------------- Snippets ------------------------------
+" --------------------------------------------------------------
 "
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
 "
-" Markdown file
+" --------------------------------------------------------------
+" ---------------------- Latex ---------------------------------
+" --------------------------------------------------------------
 "
-" https://github.com/tyru/vim-markdown
+" Plug 'lervag/vimtex'                                 " Latex plugin
+" Plug 'https://vimawesome.com/plugin/tex-fold'        " add-on for latex TODO
+" Plug 'vim-grammarous'                                " Grammar corrections
+"
+" --------------------------------------------------------------
+" ---------------------- Jupyter -------------------------------
+" --------------------------------------------------------------
+"
+" Plug 'https://github.com/mattn/vim_kernel'
+"
+"
+" --------------------------------------------------------------
+" ---------------------- Markdown file -------------------------
+" --------------------------------------------------------------
+"
+" tyru/vim-markdown
 " https://github.com/superbrothers/vim-quickrun-markdown-gfm/blob/ea8c26c4980eb84ae2bdbc99c753fcbaad557395/README.md
 " Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " preview for markdown files
 "
@@ -140,37 +163,39 @@ Plug 'Yggdroot/indentLine'
 "
 " https://github.com/tyru/R-Vim-runtime
 "
-" Databases
+" --------------------------------------------------------------
+" ---------------------- Databases -----------------------------
+" --------------------------------------------------------------
 "
 " https://github.com/tpope/vim-dadbod
 "
-" Plug 'https://github.com/Shougo/denite.nvim'        " file , buffers manager
-" Plug 'https://github.com/tpope/vim-vinegar'
-" Plug 'https://github.com/ncm2/float-preview.nvim/'
-" https://github.com/mileszs/ack.vim                   " wrap grep tools in vim
-" Plug 'vim-vdebug/vdebug'                             "TODO : configure  https://github.com/camspiers/dotfiles/blob/master/files/.config/nvim/init.VimtexCompile
-" Plug 'kkoomen/vim-doge'                              " Docblock generator
-" Plug 'rbong/vim-flog'                                " Commit viewer
-" Plug 'bkad/CamelCaseMotion'                          " Motions for inside camel case
+" Plug 'Shougo/denite.nvim'        " file , buffers manager
+" Plug 'tpope/vim-vinegar'
+" Plug 'ncm2/float-preview.nvim/'
+" mileszs/ack.vim                   " wrap grep tools in vim
+" Plug 'vim-vdebug/vdebug'          "TODO : configure  https://github.com/camspiers/dotfiles/blob/master/files/.config/nvim/init.VimtexCompile
+" Plug 'bkad/CamelCaseMotion'       " Motions for inside camel case
 "
-" REMOVED
+" --------------------------------------------------------------
+" ---------------------- REMOVED -------------------------------
+" --------------------------------------------------------------
 "
 "
-" Plug 'https://github.com/gotcha/vimpdb'
-" Plug 'https://github.com/mattboehm/vim-unstack'      " open trace, don't  work :(
-" Plug 'https://github.com/tpope/vim-dispatch'           " could be an alternative to quickrun
-"Plug 'https://github.com/ervandew/supertab'
+" Plug 'gotcha/vimpdb'
+" Plug 'mattboehm/vim-unstack'      " open trace, don't  work :(
+" Plug 'tpope/vim-dispatch'           " could be an alternative to quickrun
+"Plug 'ervandew/supertab'
 "Plug 'skywind3000/vim-auto-popmenu'
 "Plug 'liuchengxu/vim-clap'
 "
 "
-call plug#end() "run :PlugInstall
+call plug#end() 
 "
 " Workspace
 "
 " let g:workspace_create_new_tabs = 0  " enabled = 1 (default), disabled = 0
-let g:workspace_autosave_always = 1    " autosave to be always on
-let g:workspace_autocreate =1
+" let g:workspace_autosave_always = 1    " autosave to be always on
+" let g:workspace_autocreate =1
 "
 " ░██████╗░██╗░░░██╗███╗░░██╗██████╗░░█████╗░
 " ██╔════╝░██║░░░██║████╗░██║██╔══██╗██╔══██╗
@@ -180,66 +205,6 @@ let g:workspace_autocreate =1
 " ░╚═════╝░░╚═════╝░╚═╝░░╚══╝╚═════╝░░╚════╝░
 "
 let g:gundo_prefer_python3 = has('python3')  " Unbreak broken default config
-"
-" ░██████╗████████╗░█████╗░██████╗░████████╗██╗███████╗██╗░░░██╗
-" ██╔════╝╚══██╔══╝██╔══██╗██╔══██╗╚══██╔══╝██║██╔════╝╚██╗░██╔╝
-" ╚█████╗░░░░██║░░░███████║██████╔╝░░░██║░░░██║█████╗░░░╚████╔╝░
-" ░╚═══██╗░░░██║░░░██╔══██║██╔══██╗░░░██║░░░██║██╔══╝░░░░╚██╔╝░░ 
-" ██████╔╝░░░██║░░░██║░░██║██║░░██║░░░██║░░░██║██║░░░░░░░░██║░░░
-" ╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░╚═╝╚═╝░░░░░░░░╚═╝░░░
-"
-let g:startify_lists = [
-          \ { 'type': 'sessions',  'header': ['   Sessions']       },
-          \ { 'type': 'files',     'header': ['   MRU']            },
-          \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-          \ { 'type': 'commands',  'header': ['   Commands']       },
-          \ ]
-          " \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
-let g:startify_session_before_save = [
-        \ 'echo "Cleaning up before saving.."',
-        \ 'silent! NERDTreeTabsClose'
-        \ ]
-let g:startify_files_number = 20
-let g:webdevicons_enable_startify = 1
-" let g:startify_session_autoload = 1
-let g:startify_change_to_dir = 1
-" let g:workspace_session_directory = $HOME . '/.cache/sessions/'
-let g:startify_custom_header = 'startify#pad(startify#fortune#cowsay())'
-let g:startify_custom_header = [
-							\'     ██    ██    ██	   	  	  		██    ██    ██                ██    ██    ██	   	  	  		██    ██    ██ ',
-							\'   ██      ██  ██                ██      ██  ██                ██      ██  ██                ██      ██  ██ ',
-							\'   ██    ██    ██                ██    ██    ██                ██    ██    ██                ██    ██    ██ ',
-							\'     ██  ██      ██                ██  ██      ██                ██  ██      ██                ██  ██      ██ ',
-							\'     ██    ██    ██                ██    ██    ██                ██    ██    ██                ██    ██    ██ ',
-							\'                                                                                                                   ',
-							\'  ████████████████████         	████████████████████          ████████████████████         	████████████████████ ',
-							\'  ██                ██████      ██                ██████      ██                ██████      ██                ██████ ',
-							\'  ██                ██  ██      ██                ██  ██      ██                ██  ██      ██                ██  ██ ',
-							\'  ██                ██  ██      ██                ██  ██      ██                ██  ██      ██                ██  ██ ',
-							\'  ██                ██████      ██                ██████      ██                ██████      ██                ██████ ',
-							\'    ██            ██             ██            ██               ██            ██             ██            ██ ',
-							\'████████████████████████       ████████████████████████      ████████████████████████       ████████████████████████ ',
-							\'██                    ██       ██                    ██      ██                    ██       ██                    ██ ',
-							\'  ████████████████████           ████████████████████          ████████████████████           ████████████████████ ',
-				\ ]
-let g:startify_custom_footer = 'startify#pad(startify#fortune#cowsay())'
-let g:startify_custom_footer = [
-							\'     ██    ██    ██	   	  	  		██    ██    ██                ██    ██    ██	   	  	  		██    ██    ██ ',
-							\'   ██      ██  ██                ██      ██  ██                ██      ██  ██                ██      ██  ██ ',
-							\'   ██    ██    ██                ██    ██    ██                ██    ██    ██                ██    ██    ██ ',
-							\'     ██  ██      ██                ██  ██      ██                ██  ██      ██                ██  ██      ██ ',
-							\'     ██    ██    ██                ██    ██    ██                ██    ██    ██                ██    ██    ██ ',
-							\'                                                                                                                   ',
-							\'  ████████████████████         	████████████████████          ████████████████████         	████████████████████ ',
-							\'  ██                ██████      ██                ██████      ██                ██████      ██                ██████ ',
-							\'  ██                ██  ██      ██                ██  ██      ██                ██  ██      ██                ██  ██ ',
-							\'  ██                ██  ██      ██                ██  ██      ██                ██  ██      ██                ██  ██ ',
-							\'  ██                ██████      ██                ██████      ██                ██████      ██                ██████ ',
-							\'    ██            ██             ██            ██               ██            ██             ██            ██ ',
-							\'████████████████████████       ████████████████████████      ████████████████████████       ████████████████████████ ',
-							\'██                    ██       ██                    ██      ██                    ██       ██                    ██ ',
-							\'  ████████████████████           ████████████████████          ████████████████████           ████████████████████ ',
-            \ ]
 "
 " ██╗░░░██╗██╗███╗░░░███╗████████╗░██╗░░░░░░░██╗███████╗░█████╗░██╗░░██╗
 " ██║░░░██║██║████╗░████║╚══██╔══╝░██║░░██╗░░██║██╔════╝██╔══██╗██║░██╔╝
@@ -324,90 +289,6 @@ let g:gutentags_ctags_exclude = [
 let g:gutentags_plus_switch = 1      " change focus to quickfix window after search
 set previewheight=60                 " remap tag open in new split windows
 "
-" ██╗░░░██╗  ██╗  ███╗░░░███╗  ░██████╗  ██████╗░  ███████╗  ██████╗░  ████████╗  ░█████╗░  ██████╗░
-" ██║░░░██║  ██║  ████╗░████║  ██╔════╝  ██╔══██╗  ██╔════╝  ██╔══██╗  ╚══██╔══╝  ██╔══██╗  ██╔══██╗
-" ╚██╗░██╔╝  ██║  ██╔████╔██║  ╚█████╗░  ██████╔╝  █████╗░░  ██║░░╚═╝  ░░░██║░░░  ██║░░██║  ██████╔╝
-" ░╚████╔╝░  ██║  ██║╚██╔╝██║  ░╚═══██╗  ██╔═══╝░  ██╔══╝░░  ██║░░██╗  ░░░██║░░░  ██║░░██║  ██╔══██╗
-" ░░╚██╔╝░░  ██║  ██║░╚═╝░██║  ██████╔╝  ██║░░░░░  ███████╗  ╚█████╔╝  ░░░██║░░░  ╚█████╔╝  ██║░░██║
-" ░░░╚═╝░░░  ╚═╝  ╚═╝░░░░░╚═╝  ╚═════╝░░  ╚═╝░░░░░  ╚══════╝  ░╚════╝░  ░░╚═╝░░░   ╚════╝░  ╚═╝░░╚═╝
-" packadd! vimspector
-" sign define vimspectorBP         text=\ ● texthl=WarningMsg
-" sign define vimspectorBPCond     text=\ ◆ texthl=WarningMsg
-" sign define vimspectorBPDisabled text=\ ● texthl=LineNr
-" sign define vimspectorPC         text=\ ▶ texthl=MatchParen linehl=CursorLine"
-"
-" nnoremenu WinBar.■\ Stop :call vimspector#Stop()<CR>
-" nnoremenu WinBar.▶\ Cont :call vimspector#Continue()<CR>
-" nnoremenu WinBar.▷\ Pause :call vimspector#Pause()<CR>
-" nnoremenu WinBar.↷\ Next :call vimspector#StepOver()<CR>
-" nnoremenu WinBar.→\ Step :call vimspector#StepInto()<CR>
-" nnoremenu WinBar.←\ Out :call vimspector#StepOut()<CR>
-" nnoremenu WinBar.⟲: :call vimspector#Restart()<CR>
-" nnoremenu WinBar.✕ :call vimspector#Reset()<CR>"
-"
-" hi default WinBar guibg=NONE ctermbg=NONE
-" hi default link VimspectorDone  DiffAdd
-" hi default link VimspectorSkip  DiffAdd
-" hi default link VimspectorError WarningMsg
-" hi default link VimspectorGadget String
-" hi default link VimspectorGadgetVersion Identifier"
-"
-"
-"  ██████╗░  ██╗░░░██╗  ██╗  ██████╗░  ██╗░░██╗  ██████╗░  ██╗░░░██╗  ███╗░░██╗
-" ██╔═══██╗  ██║░░░██║  ██║  ██╔══██╗  ██║░██╔╝  ██╔══██╗  ██║░░░██║  ████╗░██║
-" ██║██╗██║  ██║░░░██║  ██║  ██║░░╚═╝  █████═╝░  ██████╔╝  ██║░░░██║  ██╔██╗██║
-" ╚██████╔╝  ██║░░░██║  ██║  ██║░░██╗  ██╔═██╗░  ██╔══██╗  ██║░░░██║  ██║╚████║
-" ░╚═██╔═╝░  ╚██████╔╝  ██║  ╚█████╔╝  ██║░╚██╗  ██║░░██║  ╚██████╔╝  ██║░╚███║
-"  ░░╚═╝░░░  ░╚═════╝░  ╚═╝  ░╚════╝░  ╚═╝░░╚═╝  ╚═╝░░╚═╝  ░╚═════╝░  ╚═╝░░╚══╝
-" outputter/message/log = the output don't capture logging
-            " \ 'runner':'terminal',
-            " \ 'runner/terminal/into':1,
-            " \ 'outputter/buffer/close_on_empty' : 1,
-            " \ 'outputter/loclist/into':1
-
-            " \ 'runner': 'vimproc',
-            " \ 'runner':'terminal',
-            " \ 'runner/terminal/into':1,
-let b:quickrun_config = {
-            \ 'outputter':'error',
-            \ 'outputter/error/success':'buffer',
-            \ 'outputter/error/error':'loclist',
-            \  }
-
-"             \ 'outputter/loclist/errorformat':'&errorformat',
-            " \ 'outputter/buffer/close_on_empty' : 1,
-
-            " \ "hook/close_unite_quickfix/enable_hook_loaded" : 1,
-            " \ "hook/unite_quickfix/enable_failure" : 1,
-            " \ "hook/close_quickfix/enable_exit" : 1,
-            " \ "hook/close_buffer/enable_failure" : 1,
-            " \ "hook/close_buffer/enable_empty_data" : 1,
-            " \ "outputter/buffer/split" : ":botright 8sp",
-            " \ "outputter" : "multi:buffer:quickfix",
-            " \	"outputter/buffer/append":0,
-            " \	"outputter":"buffered",
-            " \	"outputter/buffered/target":"buffer",
-            " \	"outputter/buffer/split":"Uniqtab",
-            " \	"runner/vimproc/updatetime":0,
-            " \ 'outputter/buffer/close_on_empty' : 1,
-            " \ 'outputter/message/log':0,
-            " \ 'runner/terminal/into':1,
-            " \ 'outputter/loclist/into':1
-            " \ 'outputter': 'quickfix'
-            " \ 'outputter/quickfix/into':1
-" 'tex': {
-"         \    'command': 'platex',
-"         \    'exec': ['%c -output-directory %s:h %s', 'dvipdfmx -o %s:r.pdf %s:r.dvi', 'open %s:r.pdf']
-"         \   },
-" let g:quickrun_config['sql'] = {
-" 		\ 'command': 'psql',
-" 		\ 'exec': ['%c %o < %s'],
-" 		\ 'cmdopt': '%{MakepgsqlCommandOptions()}',
-" 		\ }
-
-" let g:quickrun_config['R'] = {'command': 'R', 'exec': ['%c -s --no-save -f %s', ':%s/.\b//g']}
-" stop quickrun with <Ctrl-c>
-"
 " ░█████╗░  ██╗░░░██╗  ████████╗  ░█████╗░  ██████╗░  ███████╗  ██████╗░
 " ██╔══██╗  ██║░░░██║  ╚══██╔══╝  ██╔══██╗  ██╔══██╗  ██╔════╝  ██╔══██╗
 " ███████║  ██║░░░██║  ░░░██║░░░  ██║░░██║  ██████╔╝  █████╗░░  ██████╔╝
@@ -426,8 +307,9 @@ let g:autopep8_max_line_length=79
 " ╚═╝  ╚═╝░░╚══╝  ╚═════╝░  ╚══════╝  ╚═╝░░╚══╝  ░░╚═╝░░░
 let g:indentLine_color_term =22
 " let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-let g:indentLine_char = "┊"
-" let g:indentLine_char = "»"
+let g:indentLine_char = "|"
+" let g:indentLine_char = "-"
+" let g:indentLine_char = ">"
 let g:indentLine_leadingSpaceChar = ' '
 let g:indentLine_leadingSpaceEnabled=1
 let g:indentLine_showFirstIndentLevel=0
@@ -640,6 +522,128 @@ let g:tex_flavor = 'latex'
 "   \ | end
 "
 "
+" ░██████╗████████╗░█████╗░██████╗░████████╗██╗███████╗██╗░░░██╗
+" ██╔════╝╚══██╔══╝██╔══██╗██╔══██╗╚══██╔══╝██║██╔════╝╚██╗░██╔╝
+" ╚█████╗░░░░██║░░░███████║██████╔╝░░░██║░░░██║█████╗░░░╚████╔╝░
+" ░╚═══██╗░░░██║░░░██╔══██║██╔══██╗░░░██║░░░██║██╔══╝░░░░╚██╔╝░░ 
+" ██████╔╝░░░██║░░░██║░░██║██║░░██║░░░██║░░░██║██║░░░░░░░░██║░░░
+" ╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░╚═╝╚═╝░░░░░░░░╚═╝░░░
+"
+let g:startify_lists = [
+          \ { 'type': 'sessions',  'header': ['   Sessions']       },
+          \ { 'type': 'files',     'header': ['   MRU']            },
+          \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+          \ { 'type': 'commands',  'header': ['   Commands']       },
+          \ ]
+          " \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+let g:startify_session_before_save = [
+        \ 'echo "Cleaning up before saving.."',
+        \ 'silent! NERDTreeTabsClose'
+        \ ]
+let g:startify_files_number = 2
+let g:webdevicons_enable_startify = 1
+" let g:startify_session_autoload = 1
+let g:startify_change_to_dir = 1
+" let g:workspace_session_directory = $HOME . '/.cache/sessions/'
+
+let g:startify_custom_footer = 'startify#pad(startify#fortune#cowsay())'
+let g:startify_custom_footer = [
+			\ '  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░',
+			\ '  ░░░░░░░░░░░░░░░░░░░░░░▄▄░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▄▄░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▄▄░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▄▄░░░░░░░░░░░░░░░░░░░░░░░░',
+			\ '  ░░░░░░░░░░░░▄▄▄▀▀▀███▀▀▀█▄▄░░░░░░░░░░░░░░░░░░░░░░░░░░▄▄▄▀▀▀███▀▀▀█▄▄░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▄▄█▀▀▀███▀▀▀▄▄▄░░░░░░░░░░░░░░░░░░░░░░░░░░▄▄█▀▀▀███▀▀▀▄▄▄░░░░░░░░░░░░░░',
+			\ '  ░░░░░░▀▀████░░▄▄██▄▄▄▄▄▄▄▄▄▀▀▄▄░░░░░░░░░░░░░░░░▀▀████░░▄▄██▄▄▄▄▄▄▄▄▄▀▀▄▄░░░░░░░░░+=====================================+░░░░░░░░▄▄▀▀▄▄▄▄▄▄▄▄▄██▄▄░░████▀▀░░░░░░░░░░░░░░░░▄▄▀▀▄▄▄▄▄▄▄▄▄██▄▄░░████▀▀░░░░░░░░',
+			\ '  ░░░░░▄▄▀▄▄██▀░░░▀██▀░░░░▄█▀░░░░▀▄░░░░░░░░░░░░░▄▄▀▄▄██▀░░░▀██▀░░░░▄█▀░░░░▀▄░░░░░░░||░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░||░░░░░░▄▀░░░░▀█▄░░░░▀██▀░░░▀██▄▄▀▄▄░░░░░░░░░░░░░▄▀░░░░▀█▄░░░░▀██▀░░░▀██▄▄▀▄▄░░░░░░░',
+			\ '  ░░░░████▀░▄▀░░░░░░▀▀▀▀▀▀░░░░░░░░░▀▄░░░░░░░░░░████▀░▄▀░░░░░░▀▀▀▀▀▀░░░░░░░░░▀▄░░░░░||░░░░░░░________░++░░░░░________░░░░||░░░░▄▀░░░░░░░░░▀▀▀▀▀▀░░░░░░▀▄░▀████░░░░░░░░░░▄▀░░░░░░░░░▀▀▀▀▀▀░░░░░░▀▄░▀████░░░░░░',
+			\ '  ░░▄█░▀▀▀▀▀░▄▄▄▀▀▀▀▀▀▀▄▄▄▄░█▄░░░░░░▀▄░░░░░░░▄█░▀▀▀▀▀░▄▄▄▀▀▀▀▀▀▀▄▄▄▄░█▄░░░░░░▀▄░░░░||░░░░░░/        \++++░░/        \░░░||░░░▄▀░░░░░░▄█░▄▄▄▄▀▀▀▀▀▀▀▄▄▄░▀▀▀▀▀░█▄░░░░░░░▄▀░░░░░░▄█░▄▄▄▄▀▀▀▀▀▀▀▄▄▄░▀▀▀▀▀░█▄░░░░',
+			\ '  ░░█░░░░░▄█▀▄▄▄▀▀▀▀░░░░░░░▄█░░░░░░░░▀▄░░░░░░█░░░░░▄█▀▄▄▄▀▀▀▀░░░░░░░▄█░░░░░░░░▀▄░░░||░░░░░░\        /++++++\        /░░░||░░▄▀░░░░░░░░█▄░░░░░░░▀▀▀▀▄▄▄▀█▄░░░░░█░░░░░░▄▀░░░░░░░░█▄░░░░░░░▀▀▀▀▄▄▄▀█▄░░░░░█░░░░',
+			\ '  ░█░░░░░█▀░▀░░░░░░░░░░░░░░░░░░░░░░░░░█░░░░░█░░░░░█▀░▀░░░░░░░░░░░░░░░░░░░░░░░░░█░░░||░░░░░░░|      |++++++++/     /|░░░░||░░█░░░░░░░░░░░░░░░░░░░░░░░░░▀░▀█░░░░░█░░░░░█░░░░░░░░░░░░░░░░░░░░░░░░░▀░▀█░░░░░█░░░',
+			\ '  ░█░░░░█▀░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░░░░░█░░░░█▀░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░░░||░░░░░░░|      |++++++/     /|░░░░░░||░░█░░░░░░░░░░░░░░░░░░░░░░░░░░░░▀█░░░░█░░░░░█░░░░░░░░░░░░░░░░░░░░░░░░░░░░▀█░░░░█░░░',
+			\ '  ░█▄░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▄▀░░░░░█▄░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▄▀░░░||░░░░░░+|      |++++/     /|+░░░░░░░||░░▀▄░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▄█░░░░░▀▄░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▄█░░░',
+			\ '  ░░█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▄█░░░░░░░█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▄█░░░░||░░░░+++|      |++/     /|+++++░░░░░||░░░█▄░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░░░░░░░█▄░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░░░░',
+			\ '  ░░░█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▄▀░░░░░░░░░█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▄▀░░░░░||░░+++++|      |/   ___++++++++++░░░||░░░░▀▄░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░░░░░░░░░▀▄░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░░░░░',
+			\ '  ░░░░▀▄░░░░░░░░░░░░░░░░░░░░░░░░░▄█▀░░░░░░░░░░░▀▄░░░░░░░░░░░░░░░░░░░░░░░░░▄█▀░░░░░░||░░░░+++|          /  /░+_+_+_+_░░░░||░░░░░▀█▄░░░░░░░░░░░░░░░░░░░░░░░░░▄▀░░░░░░░░░░░▀█▄░░░░░░░░░░░░░░░░░░░░░░░░░▄▀░░░░░░',
+			\ '  ░░░░░░▀▄▄░░░░░░░░░░░░░░░░░░░▄▄▀░░░░░░░░░░░░░░░░▀▄▄░░░░░░░░░░░░░░░░░░░▄▄▀░░░░░░░░░||░░░░░░+|         ___░+/ _ , _ ,\░░░||░░░░░░░░▀▄▄░░░░░░░░░░░░░░░░░░░▄▄▀░░░░░░░░░░░░░░░░▀▄▄░░░░░░░░░░░░░░░░░░░▄▄▀░░░░░░░░',
+			\ '  ░░░░░░░░░▀▀▄▄▄░░░░░░░░░▄▄▄▀▀░░░░░░░░░░░░░░░░░░░░░░▀▀▄▄▄░░░░░░░░░▄▄▄▀▀░░░░░░░░░░░░||░░░░░░░|       //  /+/ /+/ /|/ /░░░||░░░░░░░░░░░▀▀▄▄▄░░░░░░░░░▄▄▄▀▀░░░░░░░░░░░░░░░░░░░░░░▀▀▄▄▄░░░░░░░░░▄▄▄▀▀░░░░░░░░░░░',
+			\ '  ░░░░░░░░░░░░░░░▀▀▀█▀▀▀▀▀░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▀▀▀█▀▀▀▀▀░░░░░░░░░░░░░░░░||░░░░░░░|     /|+/ /+/ /+/ /░/ /░░░░||░░░░░░░░░░░░░░░▀▀▀▀▀█▀▀▀░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▀▀▀▀▀█▀▀▀░░░░░░░░░░░░░░░░░',
+			\ '  ░░░░░░░░░░░░░░░█████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█████░░░░░░░░░░░░░░░░░░░░||░░░░░░░|   /|++/ /+/ /░/ /░/ /░░░░░||░░░░░░░░░░░░░░░░░░█████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█████░░░░░░░░░░░░░░░░░░',
+			\ '  ░░░░░░░░░░░░░██░░░█░█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░██░░░█░█░░░░░░░░░░░░░░░░░░░||░░░░░░░| /|░░/  //  //  //   /░░░░░||░░░░░░░░░░░░░░░░░█░█░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░█░░░██░░░░░░░░░░░░░░░░',
+			\ '  ░░░░░░░░░░░░░█░░░░██░░█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░░░░██░░█░░░░░░░░░░░░░░░░░||░░░░░░░░░░░░░░░░++░░░░░░░░░░░░░░░░░||░░░░░░░░░░░░░░░░█░░██░░░░█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░░██░░░░█░░░░░░░░░░░░░░░',
+			\ '  ░░░░░░░░░░░░█░░░░██░░░░█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░░░░██░░░░█░░░░░░░░░░░░░░░░||░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░||░░░░░░░░░░░░░░░█░░░░██░░░░█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░█░░░░██░░░░█░░░░░░░░░░░░░░',
+			\ '  ░░░░░░░░░░██░░░░██░░░░░░█░░░░░░░░░░░░░░░░░░░░░░░░░░██░░░░██░░░░░░█░░░░░░░░░░░░░░░+=====================================+░░░░░░░░░░░░░░█░░░░░░██░░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░█░░░░░░██░░░░██░░░░░░░░░░░░',
+			\ '  ░░░░░░░░░▄█░░░░██░░░░░░░░██▄░░░░░░░░░░░░░░░░░░░░░░▄█░░░░██░░░░░░░░██▄░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▄██░░░░░░░░██░░░░█▄░░░░░░░░░░░░░░░░░░░░░░▄██░░░░░░░░██░░░░█▄░░░░░░░░░░░',
+			\ '  ░░░░░░░░▄█░░░░██░░░░░░░░░░█▄░░░░░░░░░░░░░░░░░░░░░▄█░░░░██░░░░░░░░░░█▄░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░▄█░░░░░░░░░░██░░░░█▄░░░░░░░░░░░░░░░░░░░░░▄█░░░░░░░░░░██░░░░█▄░░░░░░░░░░',
+			\ '  ░░░░░░░░░░░░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░██░░░░░░░░░░░░░░░░',
+			\ ]
+let g:startify_custom_header = 'startify#center(startify#fortune#cowsay())'
+let g:startify_custom_header = [
+			\ '  ░░░░░░░░░░░░░░░░▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄░░░░░░░░░░░░░░░░░░░▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄░░░░░░░░░░░░░░/        \++++░░/        \░░░░░░░░░░▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄░░░░░░░░░░░░░░░░░░░▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄░░░░░░░░░░░░░░░░░░ ',
+			\ '  ░░░░░░░░░░░░░░▄▀░░░░░░░░░░░░▄░░░░░░░▀▄░░░░░░░░░░░░░░░▄▀░░░░░░░░░░░░▄░░░░░░░▀▄░░░░░░░░░░░░\        /++++++\        /░░░░░░░░▄▀░░░░░░░░░░░░▄░░░░░░░▀▄░░░░░░░░░░░░░░░▄▀░░░░░░░░░░░░▄░░░░░░░▀▄░░░░░░░░░░░░░░░░ ',
+			\ '  ░░░░░░░░░░░░░░█░░░░░░░░░░░░▄█▄▄░░▄░░░█░▄▄▄░░░░░░░░░░░█░░░░░░░░░░░░▄█▄▄░░▄░░░█░▄▄▄░░░░░░░░░|      |++++++/     /|░░░░░░░░░░░█░░░░░░░░░░░░▄█▄▄░░▄░░░█░▄▄▄░░░░░░░░░░░█░░░░░░░░░░░░▄█▄▄░░▄░░░█░▄▄▄░░░░░░░░░░░░ ',
+			\ '  ░░░░░░░▄▄▄▄▄░░█░░░░░░▀░░░░▀█░░▀▄░░░░░█▀▀░██░░░▄▄▄▄▄░░█░░░░░░▀░░░░▀█░░▀▄░░░░░█▀▀░██░░░░░░░+|      |++++/     /|+░░░░░▄▄▄▄▄░░█░░░░░░▀░░░░▀█░░▀▄░░░░░█▀▀░██░░░▄▄▄▄▄░░█░░░░░░▀░░░░▀█░░▀▄░░░░░█▀▀░██░░░░░░░░░░░ ',
+			\ '  ░░░░░░░██▄▀██▄█░░░▄░░░░░░░██░░░░▀▀▀▀▀░░░░██░░░██▄▀██▄█░░░▄░░░░░░░██░░░░▀▀▀▀▀░░░░██░░░░░+++|      |++/     /|+++++░░░██▄▀██▄█░░░▄░░░░░░░██░░░░▀▀▀▀▀░░░░██░░░██▄▀██▄█░░░▄░░░░░░░██░░░░▀▀▀▀▀░░░░██░░░░░░░░░░░ ',
+			\ '  ░░░░░░░░▀██▄▀██░░░░░░░░▀░██▀░░░░░░░░░░░░░▀██░░░▀██▄▀██░░░░░░░░▀░██▀░░░░░░░░░░░░░▀██░░+++++|      |/   ___++++++++++░░▀██▄▀██░░░░░░░░▀░██▀░░░░░░░░░░░░░▀██░░░▀██▄▀██░░░░░░░░▀░██▀░░░░░░░░░░░░░▀██░░░░░░░░░░ ',
+			\ '  ░░░░░░░░░░▀████░▀░░░░▄░░░██░░░▄█░░░░▄░▄█░░██░░░░░▀████░▀░░░░▄░░░██░░░▄█░░░░▄░▄█░░██░░░░+++|          /  /░+_+_+_+_░░░░░▀████░▀░░░░▄░░░██░░░▄█░░░░▄░▄█░░██░░░░░▀████░▀░░░░▄░░░██░░░▄█░░░░▄░▄█░░██░░░░░░░░░░ ',
+			\ '  ░░░░░░░░░░░░░▀█░░░░▄░░░░░██░░░░▄░░░▄░░▄░░░██░░░░░░░░▀█░░░░▄░░░░░██░░░░▄░░░▄░░▄░░░██░░░░░░+|         ___░+/ _ , _ ,\░░░░░░░▀█░░░░▄░░░░░██░░░░▄░░░▄░░▄░░░██░░░░░░░░▀█░░░░▄░░░░░██░░░░▄░░░▄░░▄░░░██░░░░░░░░░░ ',
+			\ '  ░░░░░░░░░░░░░▄█▄░░░░░░░░░░░▀▄░░▀▀▀▀▀▀▀▀░░▄▀░░░░░░░░░▄█▄░░░░░░░░░░░▀▄░░▀▀▀▀▀▀▀▀░░▄▀░░░░░░░░|       //  /+/ /+/ /|/ /░░░░░░░▄█▄░░░░░░░░░░░▀▄░░▀▀▀▀▀▀▀▀░░▄▀░░░░░░░░░▄█▄░░░░░░░░░░░▀▄░░▀▀▀▀▀▀▀▀░░▄▀░░░░░░░░░░░ ',
+			\ '  ░░░░░░░░░░░░█▀▀█████████▀▀▀▀████████████▀░░░░░░░░░░█▀▀█████████▀▀▀▀████████████▀░░░░░░░░░░|     /|+/ /+/ /+/ /░/ /░░░░░░░█▀▀█████████▀▀▀▀████████████▀░░░░░░░░░░█▀▀█████████▀▀▀▀████████████▀░░░░░░░░░░░░░ ',
+			\ '  ░░░░░░░░░░░░████▀░░███▀░░░░░░▀███░░▀██▀░░░░░░░░░░░░████▀░░███▀░░░░░░▀███░░▀██▀░░░░░░░░░░░░|   /|++/ /+/ /░/ /░/ /░░░░░░░░████▀░░███▀░░░░░░▀███░░▀██▀░░░░░░░░░░░░████▀░░███▀░░░░░░▀███░░▀██▀░░░░░░░░░░░░░░░ ',
+			\ ]
+"
+"  ██████╗   ██╗░░░██╗  ██╗  ██████╗░  ██╗░░██╗  ██████╗░  ██╗░░░██╗  ███╗░░██╗
+" ██╔═══██   ██║░░░██║  ██║  ██╔══██╗  ██║░██╔╝  ██╔══██╗  ██║░░░██║  ████╗░██║
+" ██║██╗██   ██║░░░██║  ██║  ██║░░╚═╝  █████═╝░  ██████╔╝  ██║░░░██║  ██╔██╗██║
+" ╚██████╔   ██║░░░██║  ██║  ██║░░██╗  ██╔═██╗░  ██╔══██╗  ██║░░░██║  ██║╚████║
+" ░╚═██╔═╝   ╚██████╔╝  ██║  ╚█████╔╝  ██║░╚██╗  ██║░░██║  ╚██████╔╝  ██║░╚███║
+"  ░░╚═╝░░   ░╚═════╝░  ╚═╝  ░╚════╝░  ╚═╝░░╚═╝  ╚═╝░░╚═╝  ░╚═════╝░  ╚═╝░░╚══╝
+" outputte /message/log = the output don't capture logging
+            " \ 'runner':'terminal',
+            " \ 'runner/terminal/into':1,
+            " \ 'outputter/buffer/close_on_empty' : 1,
+            " \ 'outputter/loclist/into':1
+
+            " \ 'runner': 'vimproc',
+            " \ 'runner':'terminal',
+            " \ 'runner/terminal/into':1,
+let b:quickrun_config = {
+            \ 'outputter':'error',
+            \ 'outputter/error/success':'buffer',
+            \ 'outputter/error/error':'loclist',
+            \  }
+
+"             \ 'outputter/loclist/errorformat':'&errorformat',
+            " \ 'outputter/buffer/close_on_empty' : 1,
+
+            " \ "hook/close_unite_quickfix/enable_hook_loaded" : 1,
+            " \ "hook/unite_quickfix/enable_failure" : 1,
+            " \ "hook/close_quickfix/enable_exit" : 1,
+            " \ "hook/close_buffer/enable_failure" : 1,
+            " \ "hook/close_buffer/enable_empty_data" : 1,
+            " \ "outputter/buffer/split" : ":botright 8sp",
+            " \ "outputter" : "multi:buffer:quickfix",
+            " \	"outputter/buffer/append":0,
+            " \	"outputter":"buffered",
+            " \	"outputter/buffered/target":"buffer",
+            " \	"outputter/buffer/split":"Uniqtab",
+            " \	"runner/vimproc/updatetime":0,
+            " \ 'outputter/buffer/close_on_empty' : 1,
+            " \ 'outputter/message/log':0,
+            " \ 'runner/terminal/into':1,
+            " \ 'outputter/loclist/into':1
+            " \ 'outputter': 'quickfix'
+            " \ 'outputter/quickfix/into':1
+" 'tex': {
+"         \    'command': 'platex',
+"         \    'exec': ['%c -output-directory %s:h %s', 'dvipdfmx -o %s:r.pdf %s:r.dvi', 'open %s:r.pdf']
+"         \   },
+" let g:quickrun_config['sql'] = {
+" 		\ 'command': 'psql',
+" 		\ 'exec': ['%c %o < %s'],
+" 		\ 'cmdopt': '%{MakepgsqlCommandOptions()}',
+" 		\ }
+
+" let g:quickrun_config['R'] = {'command': 'R', 'exec': ['%c -s --no-save -f %s', ':%s/.\b//g']}
+" stop quickrun with <Ctrl-c>
+"
 " ███████╗  ███████╗  ███████╗
 " ██╔════╝  ╚════██║  ██╔════╝
 " █████╗░░  ░░███╔═╝  █████╗░░
@@ -718,5 +722,32 @@ let g:tex_flavor = 'latex'
 " autocmd BufRead,BufNewFile * setlocal signcolumn=yes
 " autocmd FileType tagbar,nerdtree setlocal signcolumn=no
 "
-
-
+"
+" ██╗░░░██╗  ██╗  ███╗░░░███╗  ░██████╗  ██████╗░  ███████╗  ██████╗░  ████████╗  ░█████╗░  ██████╗░
+" ██║░░░██║  ██║  ████╗░████║  ██╔════╝  ██╔══██╗  ██╔════╝  ██╔══██╗  ╚══██╔══╝  ██╔══██╗  ██╔══██╗
+" ╚██╗░██╔╝  ██║  ██╔████╔██║  ╚█████╗░  ██████╔╝  █████╗░░  ██║░░╚═╝  ░░░██║░░░  ██║░░██║  ██████╔╝
+" ░╚████╔╝░  ██║  ██║╚██╔╝██║  ░╚═══██╗  ██╔═══╝░  ██╔══╝░░  ██║░░██╗  ░░░██║░░░  ██║░░██║  ██╔══██╗
+" ░░╚██╔╝░░  ██║  ██║░╚═╝░██║  ██████╔╝  ██║░░░░░  ███████╗  ╚█████╔╝  ░░░██║░░░  ╚█████╔╝  ██║░░██║
+" ░░░╚═╝░░░  ╚═╝  ╚═╝░░░░░╚═╝  ╚═════╝░░  ╚═╝░░░░░  ╚══════╝  ░╚════╝░  ░░╚═╝░░░   ╚════╝░  ╚═╝░░╚═╝
+" packadd! vimspector
+" sign define vimspectorBP         text=\ ● texthl=WarningMsg
+" sign define vimspectorBPCond     text=\ ◆ texthl=WarningMsg
+" sign define vimspectorBPDisabled text=\ ● texthl=LineNr
+" sign define vimspectorPC         text=\ ▶ texthl=MatchParen linehl=CursorLine"
+"
+" nnoremenu WinBar.■\ Stop :call vimspector#Stop()<CR>
+" nnoremenu WinBar.▶\ Cont :call vimspector#Continue()<CR>
+" nnoremenu WinBar.▷\ Pause :call vimspector#Pause()<CR>
+" nnoremenu WinBar.↷\ Next :call vimspector#StepOver()<CR>
+" nnoremenu WinBar.→\ Step :call vimspector#StepInto()<CR>
+" nnoremenu WinBar.←\ Out :call vimspector#StepOut()<CR>
+" nnoremenu WinBar.⟲: :call vimspector#Restart()<CR>
+" nnoremenu WinBar.✕ :call vimspector#Reset()<CR>"
+"
+" hi default WinBar guibg=NONE ctermbg=NONE
+" hi default link VimspectorDone  DiffAdd
+" hi default link VimspectorSkip  DiffAdd
+" hi default link VimspectorError WarningMsg
+" hi default link VimspectorGadget String
+" hi default link VimspectorGadgetVersion Identifier"
+"

@@ -8,6 +8,7 @@
 * BAR : polybar
 
 Config for GVim in Windows:
+![](windows_startify.png)
 ![](windows.png)
 
 

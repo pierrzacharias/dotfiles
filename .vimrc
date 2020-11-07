@@ -150,7 +150,7 @@ execute 'source ' VimrcPath('mappings.vim')
 execute 'source ' VimrcPath('plugins.vim')
 execute 'source ' VimrcPath('mapping_plugin.vim')
 " if gvim running
-execute 'source ' VimrcPath('gvim.vim')
+" execute 'source ' VimrcPath('gvim.vim')
 " colors settings
 execute 'source ' VimrcPath('colors/colors.vim')
 " configs for the coc extensions
