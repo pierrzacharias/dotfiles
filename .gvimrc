@@ -1,12 +1,12 @@
 " #002b36
 colorscheme solarized                        | " Sets theme to gruvbox
 set guifont=Delugia\ Nerd\ Font:h10:cANSI
-" set guifont=Victor\ Mono:h10:cANSI
+" set guifont=EffectsEighty\ 10,Medium\ cANSI
 set textwidth=79
-set guioptions-=T " Removes top toolbar
-set guioptions-=r " Removes right hand scroll bar
-set guioptions-=m  "remove menu bar
-set go-=L " Removes left hand scroll bar
+set guioptions-=T                          " Removes top toolbar
+set guioptions-=r                          " Removes right hand scroll bar
+set guioptions-=m                          "remove menu bar
+set go-=L                                  " Removes left hand scroll bar
 set guioptions-=M
 autocmd User Rails let b:surround_{char2nr('-')} = "<% \r %>" " displays <%%> correctly
 autocmd FileType text setlocal textwidth=79
@@ -23,12 +23,11 @@ set colorcolumn=80
 highlight ColorColumn guibg=#073642
 set guicursor+=a:blinkon0
 " highlight! Cursor guibg=#d33682 guifg=#fdf6e3
-" highlight! Cursor guibg=#abbec4 guifg=#000000
-" highlight! Cursor guibg=#cfabbc guifg=#000000
 highlight! Cursor guibg=#d4b6c4 guifg=#012830
 set winaltkeys=no                                      " prevent alt opening menu nnoremap <A-j> :m .+1<CR>==
-highlight! Comment cterm=NONE
 highlight! Comment gui=NONE
+set conceallevel=3
+
 " --------- startify color ---------------------------------------
  highlight! StartifyHeader guifg=#2aa198
  highlight! StartifyFooter guifg=#2aa198

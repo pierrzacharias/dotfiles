@@ -15,7 +15,7 @@ if has("patch-8.1.1564")
 else
   set signcolumn=yes
 endif
-let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-snippets', 'coc-prettier', 'coc-python', 'coc-vimtex', 'coc-vimlsp', 'coc-sql', 'coc-eslint', 'coc-tslint', 'coc-stylelint', 'coc-sh', 'coc-css', 'coc-highlight', 'coc-pairs', 'coc-lists', 'coc-html', 'coc-tag', 'coc-syntax']
+let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-snippets', 'coc-prettier', 'coc-python', 'coc-vimtex', 'coc-sql', 'coc-eslint', 'coc-tslint', 'coc-stylelint', 'coc-sh', 'coc-css', 'coc-highlight', 'coc-lists', 'coc-html', 'coc-tag', 'coc-syntax']
 " See coc config in "coc-settings.json" with :CocConfig
     "diagnostic.enable":,
 " Map Alt-n to trigger completion: >

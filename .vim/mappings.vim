@@ -3,6 +3,7 @@
 " ------------------------------------------------------------------------------
 nnoremap sf *``
 map <space> y
+map mk i\<CR><ESC>
 map M <Nop>
 nnoremap H ^
 nnoremap L g_
@@ -28,10 +29,6 @@ nnoremap s, "syiw<CR><C-w>l*``cgn<C-R>s<Esc><Esc>         " from left windows ..
 nnoremap s, "syiw<CR><C-w>j*``cgn<C-R>s<Esc><Esc>         " from bottom windows ...
 nnoremap s, "syiw<CR><C-w>k*``cgn<C-R>s<Esc><Esc>         " from top windows ...
 
-" ----- switch tabs -----------
-nnoremap ] :bnext<cr>
-nnoremap [ :bprev<cr>
-
 " ---- close buffers on left, rigth, ..
 nnoremap ql <C-w>l:wq<CR>
 nnoremap qh <C-w>h:wq<CR>
@@ -51,10 +48,6 @@ noremap j gj
 noremap k gk
 
 nnoremap <Leader>h :vert terminal<CR>
-
-" nnoremap <silent>db m`:silent +g/\m^\s*$/d<CR>``:noh<CR>           " delete line below if blanck
-nnoremap <silent>db jddk                                             " delete line below if blanck
-nnoremap <silent>da m`:silent -g/\m^\s*$/d<CR>``:noh<CR>             " delete line above if blank
 
 nnoremap <Leader>l :let &scrolloff=100-&scrolloff<CR>                " make edit line always centered
 nnoremap <silent><Leader>t :TagbarToggle<CR>

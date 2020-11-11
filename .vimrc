@@ -6,6 +6,7 @@
 " Full featured compiled vim for Windows https://tuxproject.de/projects/vim/auto
 "
 " set paste                       " auto-indent paste
+set conceallevel=3
 set noerrorbells
 autocmd FileType text setlocal textwidth=79
 set backspace=indent,eol,start    " remove space in indent and end of line
@@ -69,8 +70,7 @@ set rnu
 " set relativenumber
 " set nonumber
 " set signcolumn=number
-set fillchars=vert:│,fold:+       " split separation character
-"
+set fillchars=vert:│,fold:🡲       " split separation character
 set suffixes+=.pyc,.pyo           " ignore compiled Python files
 set suffixes+=.egg-info           " ignore compiled Python files
 set suffixes+=.png                " don't edit .png files please
@@ -79,7 +79,12 @@ set wildignore+=*/__pycache__/*   " compiled python files
 set wildignore+=*/*.egg-info/*    " setuptools droppings
 set wildignore+=*/.venv         " virtualenv
 set wildignore+=*/local         " virtualenv
+
+set undodir       =~/.cache/undo   " backup directory location
+set undolevels    =10000                 " remember last 10000 changes
+" set whichwrap     =b,s,h,l,~,[,],<,>     " all movement keys wrap
 "
+set ttyfast                        " more smoothness
 if has('unix')
 endif
 " if has('win32')
@@ -87,10 +92,24 @@ endif
 if has('win32')
     " set guifont=Source\ Code\ Pro\ Regular\ 20
     " set regexpengine=1
-    " set ttyfast
     " set novisualbell
 endif
+" --------- change mksession ----------------------------------------------- "
+set sessionoptions+=tabpages    " register tab
+set sessionoptions-=blank       " dont't register blank pages
 
+" -------- wrap lines ------------------------------------------------------ "
+" set breakindent
+" set breakindentopt=sbr
+" I use a unicode curly array with a <backslash><space>
+" set showbreak=\
+"
+" ------------- autoformat options ----------------------------------------- "
+set formatoptions-=o " dont inser comment leader when pressing <o> or <O>
+set formatoptions+=n " recognize number list form formating
+set formatoptions+=j " join comment when join lines
+set formatoptions+=] " Respect textwidth rigorously
+"
 "
 " ██████╗░  ░█████╗░  ████████╗  ██╗░░██╗
 " ██╔══██╗  ██╔══██╗  ╚══██╔══╝  ██║░░██║
@@ -154,4 +173,4 @@ execute 'source ' VimrcPath('mapping_plugin.vim')
 " colors settings
 execute 'source ' VimrcPath('colors/colors.vim')
 " configs for the coc extensions
-" execute 'source ' VimrcPath('coc.vim')
+execute 'source ' VimrcPath('coc.vim')
