@@ -1,7 +1,6 @@
 " TODO
-"   - generation de tags à chaque enrengistrment
-"   - ameliorer chemin tags pour fichers differents
-"   - voir config tagbar avec latex
+" mettre fg research en blue
+" reduire info airline
 "
 " Full featured compiled vim for Windows https://tuxproject.de/projects/vim/auto
 "
@@ -9,7 +8,17 @@
 set conceallevel=3
 set noerrorbells
 autocmd FileType text setlocal textwidth=79
+
 set backspace=indent,eol,start    " remove space in indent and end of line
+" --------- remove fking trailing whitespaces ------------------------------- "
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    keepp %s/\s\+$//e
+    call cursor(l, c)
+endfun
+autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
+
 set spelllang=en                  " syntax check
 setglobal helplang=en,fr          " syntax check
 set nostartofline                 " don't jump to start of line
@@ -70,7 +79,7 @@ set rnu
 " set relativenumber
 " set nonumber
 " set signcolumn=number
-set fillchars=vert:│,fold:🡲       " split separation character
+set fillchars=vert:│,fold:       " split separation character
 set suffixes+=.pyc,.pyo           " ignore compiled Python files
 set suffixes+=.egg-info           " ignore compiled Python files
 set suffixes+=.png                " don't edit .png files please
@@ -113,7 +122,7 @@ set formatoptions+=] " Respect textwidth rigorously
 "
 " ██████╗░  ░█████╗░  ████████╗  ██╗░░██╗
 " ██╔══██╗  ██╔══██╗  ╚══██╔══╝  ██║░░██║
-" ██████╔╝  ███████║  ░░░██║░░░  ███████║
+" ██████╔╝  ███████║  ░░░██║░░░  ███████
 " ██╔═══╝░  ██╔══██║  ░░░██║░░░  ██╔══██║
 " ██║░░░░░  ██║░░██║  ░░░██║░░░  ██║░░██║
 " ╚═╝░░░░░  ╚═╝░░╚═╝  ░░╚═╝░░░  ░╚═╝░░╚═╝
