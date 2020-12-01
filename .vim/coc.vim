@@ -1,10 +1,3 @@
-" ██████╗░  ░█████╗░  ██████╗░
-" ██╔══██╗  ██╔══██╗  ██╔══██╗
-" ██║░░╚═╝  ██║░░██║  ██║░░╚═╝
-" ██║░░██╗  ██║░░██║  ██║░░██╗
-" ╚█████╔╝  ╚█████╔╝  ╚█████╔╝
-" ░╚════╝░   ╚════╝░
-"
 if has('win32') "specific options for windows
     let g:coc_node_path = 'C:\Program Files\nodejs\node'
 endif
@@ -15,7 +8,31 @@ if has("patch-8.1.1564")
 else
   set signcolumn=yes
 endif
-let g:coc_global_extensions = ['coc-tsserver', 'coc-json', 'coc-snippets', 'coc-prettier', 'coc-python', 'coc-vimtex', 'coc-sql', 'coc-eslint', 'coc-tslint', 'coc-stylelint', 'coc-sh', 'coc-css', 'coc-highlight', 'coc-lists', 'coc-html', 'coc-tag', 'coc-syntax']
+
+" hi default  CocWarningHighlight guibg=#000000 guifg=#b16286 gui=italic cterm=italic
+" hi default  CocErrorHighlight guibg=#000000 guifg=#fb4934 gui=bold cterm=italic
+" hi default  CocInfoHighlight  guibg=#000000 guifg=#cc241d gui=italic cterm=italic
+" hi default  CocHintHighlight guibg=#000000 guifg=#cc241d gui=italic cterm=italic
+
+highlight CocWarningHighlight ctermfg=Red  guibg=#000000 guifg=#ff0000
+
+let g:coc_global_extensions = [
+			\ 'coc-lists',
+			\ 'coc-python',
+			\ 'coc-json',
+			\ 'coc-sql',
+			\ 'coc-snippets',
+			\ 'coc-css',
+			\ 'coc-html',
+			\ 'coc-tag',
+			\ 'coc-diagnostic',
+			\ 'coc-highlight',
+			\ 'coc-syntax'
+			\ ]
+			" \ 'coc-tsserver',
+			" \ 'coc-vimtex',
+			" \ 'coc-sh',
+			" \ 'coc-prettier',
 " See coc config in "coc-settings.json" with :CocConfig
     "diagnostic.enable":,
 " Map Alt-n to trigger completion: >

@@ -17,11 +17,11 @@ call plug#begin(g:plug_install_files)
 " --------------------------------------------------------------
 " ---------------------- To config -----------------------------
 " --------------------------------------------------------------
-Plug 'mhinz/vim-mix-format'                           " efficient way to close buffers
 Plug 'mhinz/vim-grepper'                              " grep tool
-Plug 't9md/vim-textmanip'                             " move blocks of text easy
-Plug 't9md/vim-choosewin'
-Plug 'tyru/open-browser.vim'
+" Plug 'mhinz/vim-mix-format'
+" Plug 't9md/vim-textmanip'                             " move blocks of text easy
+" Plug 't9md/vim-choosewin'
+" Plug 'tyru/open-browser.vim'
 " Plug 'saaguero/vim-textobj-pastedtext '       " a register with the last pasted text
 " --------------------------------------------------------------
 " ---------------------- New -----------------------------------
@@ -34,6 +34,10 @@ Plug 'tyru/open-browser.vim'
 " ---------------------- Navigation ----------------------------
 " --------------------------------------------------------------
 "
+Plug 'Shougo/echodoc.vim'                              " echo funcitons doc
+" Plug 'tmhedberg/SimpylFold'
+Plug 'chrisbra/NrrwRgn'                                " edit selection 
+Plug 'moll/vim-bbye'                                   " quit buffers properly
 Plug 'KKPMW/vim-sendtowindow'                          " send text to as windows
 Plug 'dahu/vim-fanfingtastic'                          " Extend search with f,t, ...
 Plug 'tpope/vim-speeddating'                           " Allow incrementing date like int
@@ -52,16 +56,20 @@ Plug 'AndrewRadev/sideways.vim'                        " move func args
 " Plug 'junegunn/fzf.vim'                              " fuzzy finder Plug 'junegunn/fzf.vim'
 " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 "
-" --------------------------------------------------------------
-" ---------------------- IDE masterrace ------------------------
-" --------------------------------------------------------------
+" --------------------------------------------------------------------------- "
+" --------------------- Session Management ---------------------------------- "
+" --------------------------------------------------------------------------- "
+" Plug 'vim-scripts/restore_view.vim'                 " replaced by vim-stay
+" Plug 'mhinz/vim-startify'                              " start page for vim
+" --------------------------------------------------------------------------- "
+" ---------------------- IDE masterrace ------------------------------------- "
+" --------------------------------------------------------------------------- "
 "
-Plug 'mhinz/vim-startify'                              " start page for vim
 Plug 'preservim/nerdtree'                              " file explorer
 Plug 'maxboisvert/vim-simple-complete'                 " as-you-type keyword completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}        " new community driven completion engine
 " Plug 'Shougo/vimproc.vim', {'do' : 'make'}           " async executions
-Plug 'dense-analysis/ale'                            " syntax checking and semantic errors
+" Plug 'dense-analysis/ale'                            " syntax checking and semantic errors
 " Plug 'https://github.com/tpope/vim-endwise'          " end certain structures automatically
 " Plug 'https://github.com/romainl/vim-qf'             " help with the quickfix lists
 " Plug 'https://github.com/thinca/vim-quickrun'          " Run python and others easely
@@ -73,9 +81,10 @@ Plug 'dense-analysis/ale'                            " syntax checking and seman
 " ---------------------- git -----------------------------------
 " --------------------------------------------------------------
 "
+Plug 'tpope/vim-fugitive'
+Plug 'rbong/vim-flog'                                  " See git branches
 " Plug 'https://github.com/airblade/vim-gitgutter'
 " Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'https://github.com/tpope/vim-fugitive'
 " Plug 'rbong/vim-flog'             " Commit viewer
 "
 " --------------------------------------------------------------
@@ -94,8 +103,8 @@ Plug 'https://github.com/tpope/vim-fugitive'
 Plug 'jmcantrell/vim-virtualenv'                       " Tool for python venv
 Plug 'mgedmin/python_open_module.vim'                  " Python standard library source code
 Plug 'FooSoft/vim-argwrap'                             " wrap functions args
+Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }  " Docstring generator
 " Plug 'MathSquared/vim-python-sql'
-" Plug 'kkoomen/vim-doge'           " Docblock generator
 " Plug 'sillybun/vim-repl'                             " python terminal
 " Plug 'tell-k/vim-autopep8'                           " autoformat python
 " Plug 'wincent/terminus'                              " send text to as windows
@@ -124,7 +133,15 @@ Plug 'skywind3000/gutentags_plus'                      " help to generate tags
 " --------------------------------------------------------------
 " ---------------------- Theming -------------------------------
 " --------------------------------------------------------------
-"
+Plug 'https://github.com/fcpg/vim-fahrenheit'
+Plug 'https://github.com/ogdenwebb/emacs-kaolin-themes'
+Plug 'https://github.com/fcpg/vim-orbital'
+Plug 'ayu-theme/ayu-vim'
+Plug 'https://github.com/nonetallt/vim-neon-dark'
+Plug 'morhetz/gruvbox'                                 " color theme
+" Plug 'RRethy/vim-illuminate'                           " highlihgt word under cursor
+Plug 'hrsh7th/vim-unmatchparen'                        " highlight unmatch surrounding
+Plug 'ipod825/war.vim'
 Plug 'altercation/vim-colors-solarized'                " color theme
 Plug 'miyakogi/conoline.vim'                           " highlights the line of the cursor
 Plug 'ryanoasis/vim-devicons'                          " add icon
@@ -134,11 +151,11 @@ Plug 'camspiers/animate.vim'                           " windows move animation
 Plug 'luochen1990/rainbow'                             " rainbow parenthesis
 Plug 'Yggdroot/indentLine'                             " add visual indent
 Plug 'psliwka/vim-smoothie'                            " Better scroll
+" Plug 'camspiers/lens.vim'                              " resize windows
 " Plug 'https://github.com/vim-scripts/fontzoom.vim'     " change font with +/-
 " Plug 'troydm/zoomwintab.vim'                           " zoom on a tab
 " Plug 'bluz71/vim-moonfly-statusline'                          " Minimal status bar
 " Plug 'vim/killersheep'                                 " absolutely essential
-" Plug 'morhetz/gruvbox'                                   " color theme
 " --------------------------------------------------------------
 " ---------------------- Snippets ------------------------------
 " --------------------------------------------------------------
@@ -187,7 +204,21 @@ Plug 'psliwka/vim-smoothie'                            " Better scroll
 " --------------------------------------------------------------
 " ---------------------- REMOVED -------------------------------
 " --------------------------------------------------------------
+
+ let g:gruvbox_contrast_light='hard'
 "
+" echo doc
+"
+let g:echodoc#enable_at_startup=1
+"  
+"  SimpylFold
+"
+let g:SimpylFold_docstring_preview=1
+let g:SimpylFold_fold_docstring=0
+nnoremap zs :SimpylFoldDocstrings<CR>
+nnoremap ze :SimpylFoldDocstrings!<CR>
+"
+" War 
 "
 " Plug 'gotcha/vimpdb'
 " Plug 'mattboehm/vim-unstack'      " open trace, don't  work :(
@@ -235,6 +266,8 @@ let g:gundo_prefer_python3 = has('python3')  " Unbreak broken default config
 " ╚═════╝░░╚════╝░░╚═════╝░╚══════╝
 "
 let g:doge_doc_standard_python = 'sphinx'
+let g:doge_enable_mappings = 0
+let g:doge_mapping = '<Leader>do'
 "
 " ██████╗░░█████╗░██╗███╗░░██╗██████╗░░█████╗░░██╗░░░░░░░██╗
 " ██╔══██╗██╔══██╗██║████╗░██║██╔══██╗██╔══██╗░██║░░██╗░░██║
@@ -305,7 +338,6 @@ let g:gutentags_ctags_extra_args = [
 let g:tagbar_autoshowtag = 1
 " let g:tagbar_previewwin_pos = "aboveleft"
 command! MakeTags !ctags -R .
-"set statusline+=%{gutentags#statusline()}
 " generate databases in my cache directory, prevent gtags files polluting my project
 let g:gutentags_ctags_exclude = [
 			\ "*.min.js", "*.min.css", "build", "vendor", ".git",
@@ -338,11 +370,11 @@ let g:autopep8_max_line_length=79
 " ╚═╝  ╚═╝░░╚══╝  ╚═════╝░  ╚══════╝  ╚═╝░░╚══╝  ░░╚═╝░░░
 let g:indentLine_color_term =22
 " let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-let g:indentLine_char = "|"
+" let g:indentLine_char = "|"
 " let g:indentLine_char = "-"
 " let g:indentLine_char = ">"
-let g:indentLine_leadingSpaceChar = ' '
-let g:indentLine_leadingSpaceEnabled=1
+" let g:indentLine_leadingSpaceChar = ' '
+" let g:indentLine_leadingSpaceEnabled=1
 let g:indentLine_showFirstIndentLevel=0
 "
 "
@@ -372,7 +404,7 @@ let g:sendtowindow_use_defaults=0
 " ██║╚████║  ██╔══╝░░  ██╔══██╗  ██║░░██║  ░░░██║░░░  ██╔══██╗  ██╔══╝░░  ██╔══╝░░
 " ██║░╚███║  ███████╗  ██║░░██║  ██████╔╝  ░░░██║░░░  ██║░░██║  ███████╗  ███████╗
 " ╚═╝░░╚══╝  ╚══════╝  ╚═╝░░╚═╝  ╚═════╝░  ░░╚═╝░░░  ╚═╝░░╚═╝  ╚══════╝  ╚══════╝
-
+" let g:miniBufExplMapWindowNavVim = 1
 let g:webdevicons_enable_nerdtree = 0
 " let g:WebDevIconsNerdTreeBeforeGlyphPadding = ''
 " let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
@@ -380,7 +412,6 @@ let g:webdevicons_enable_nerdtree = 0
 " let g:webdeviscons_conceal_nerdtree_breackets = 1
 " let g:WebDevIconsUnicodeDecorateFolderNodes = 1
 " let g:WebDevIconsNerdTreeGitPluginForceVAling = 1
-let g:WebDevIconsUnicodeDecorateFolderNodes = v:true
 
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen=0
@@ -394,8 +425,8 @@ let g:NERDTreeShowHidden=1
 let g:NERDTreeShowLineNumbers=1   " display line number
 let g:NERDTreeAutoDeleteBuffer=1
 " let NERDTreeMinimalUI=1
-let g:NERDTreeDirArrowExpandable='🡲'
-let g:NERDTreeDirArrowCollapsible='🡳'
+let g:NERDTreeDirArrowExpandable='⮞'
+let g:NERDTreeDirArrowCollapsible='⮟'
 let NERDTreeStatusline=""
 " autocmd FileType nerdtree setlocal signcolumn=no
 " let g:NERDTreeGitStatusIndicatorMapCustom = {
@@ -487,9 +518,13 @@ let g:ale_python_pylint_options = "--disable=C0301"  " Remove pylint error usele
 " -------------------- theme ------------------------------------------------ "
 " let g:airline_theme = 'solarized_flood'
 " let g:airline_theme = 'violet'
-let g:airline_theme = 'wombat'
+" let g:airline_theme = 'wombat'
+" let g:airline_theme = 'gruvbox_undercurl'
+let g:airline_theme = 'powerlineish'
 
 " -------------------- general options -------------------------------------- "
+let g:airline_inactive_collapse=0
+let g:airline_inactive_alt_sep=1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
@@ -531,16 +566,20 @@ let airline#extensions#coc#warning_symbol = 'W:'
 let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
 let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
 " let g:airline#extensions#ctrlspace#enabled = 1
+let g:airline#extensions#localsearch#enabled = 0
+let g:airline#extensions#searchcount#enabled = 0
 "
-" ---------------------- symbols -------------------------------------------- "
+
+	" ---------------------- symbols -------------------------------------------- "
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
   endif
-let g:airline_left_sep = "\uE0BC"
-let g:airline_right_sep = "\uE0BA"
-let g:airline_left_alt_sep = "\uE0BD"  " 
-let g:airline_right_alt_sep = "\uE0BD" " 
-let g:airline_symbols.linenr=""
+" let g:airline_left_sep = "\uE0BC"
+let g:airline_left_sep = " "
+let g:airline_right_sep = " "
+let g:airline_left_alt_sep = " | "  " 
+let g:airline_right_alt_sep = "" " 
+let g:airline_symbols.linenr= " "
   let g:airline_symbols.maxlinenr=''
 let g:airline_symbols.dirty= ''
   let g:airline_symbols.maxlinenr = ''
@@ -552,16 +591,17 @@ let g:airline_section_c = airline#section#create([
 			\ 'file',
 			\ 'readonly'
 			\ ])
+let g:filetype=''
 let g:airline_section_z = airline#section#create([
-			\ 'line ' . '%l',
-			\ '%{(" ")}' . "\uE0BD" . " ",
-			\ '%p' . ' percent',
-			\ '%{(" ")}' . "\uE0BD" . " ",
-			\ 'char ' . '%c'
+			\ '%l',
+			\ '%{(" ")}' . "│" . " ",
+			\ '%p',
+			\ '%{(" ")}' . "│" . " ",
+			\ '%c'
 			\ ])
 " \ 'maxlinenr',
 let g:airline_section_y = airline#section#create([
-			\ '%{("")}' . "\uE0BD" . "",
+			\ '%{("")}' . "│" . "",
 			\ ])
 let g:airline_section_warning = ''
 " let g:airline_section_error = ''
@@ -572,6 +612,17 @@ let g:airline#extensions#default#layout = [
 " replace with that in airline/theme.vim
 " let a:palette[mode]['airline_error'] = [ '#d33682', '#002b36', 232, 160 ]
 "
+function! MyPlugin(...)
+    if &filetype == 'MyPluginFileType'
+      let w:airline_section_a = airline#section#create(['-------------------'])
+      let w:airline_section_b = airline#section#create(['-------------------'])
+      let w:airline_section_y = airline#section#create(['-------------------'])
+      let w:airline_section_x = airline#section#create(['-------------------'])
+      let w:airline_section_z = airline#section#create(['-------------------'])
+      let g:airline_variable_referenced_in_statusline = 'foo'
+    endif
+  endfunction
+  call add_inactive_statusline_func('MyPlugin')
 " ---------------- mapping tab ---------------------------------------------- "
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
@@ -696,12 +747,12 @@ let g:startify_custom_header = [
 			\ '              ████▀  ███▀      ▀███  ▀██▀            ████▀  ███▀      ▀███  ▀██▀            |░░░/|++/░/+/░/ /░/ /░/        ████▀  ███▀      ▀███  ▀██▀            ████▀  ███▀      ▀███  ▀██▀               ',
 			\ ]
 " -------------- make nerdtree work at startup ------------------------------ "
-autocmd VimEnter *
-                \   if !argc()
-                \ |   Startify
-                \ |   NERDTree
-                \ |   wincmd w
-                \ | endif
+" autocmd VimEnter *
+"                 \   if !argc()
+"                 \ |   Startify
+"                 \ |   NERDTree
+"                 \ |   wincmd w
+"                 \ | endif
 "
 "  ██████╗   ██╗░░░██╗  ██╗  ██████╗░  ██╗░░██╗  ██████╗░  ██╗░░░██╗  ███╗░░██╗
 " ██╔═══██   ██║░░░██║  ██║  ██╔══██╗  ██║░██╔╝  ██╔══██╗  ██║░░░██║  ████╗░██║

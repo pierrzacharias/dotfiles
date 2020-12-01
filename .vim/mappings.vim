@@ -1,6 +1,8 @@
 " ------------------------------------------------------------------------------
 " # Mappings
 " ------------------------------------------------------------------------------
+map co :call FillLine('-', '#')<CR>    " for comment line
+map cp :call FillLine('-', '")')<CR>    " for print line
 nnoremap sf *``
 map <space> y
 map mk i\<CR><ESC>
@@ -10,14 +12,38 @@ nnoremap L g_
 execute "set <M-f>=\ef"
 inoremap <M-f> <Esc>:update<CR>
 nnoremap <M-f> <Esc><Esc>:update<CR>
-nnoremap qa :qa!<CR>
 execute "set <M-p>=\ep"
 nnoremap <C-p> "+pkJK 
 nnoremap K i<cr><esc>
 nnoremap c<space> i<space><Esc>
+nnoremap qa :qa!<CR>
+
+" -------- autoformat files ------------------------------------------------- "
+" nnoremap <silent> <F9> :r! python -m black expand('%:p') -l 79
 
 " ---- e.g press 1 to go to buffer 1 -----------
-nnoremap <silent> <leader>gt :exe "tabn" nr2char(getchar())<cr> " e.g press 1 to go to tab1
+" nnoremap <silent> <leader>gt :exe 'tabn' nr2char(getchar())<cr> "e.g press 1 to go to tab1
+"
+execute "set <M-q>=\eq"
+map <M-q> :tabn1<CR>
+execute "set <M-w>=\ew"
+map <M-w> :tabn2<CR>
+execute "set <M-e>=\ee"
+map <M-e> :tabn3<CR>
+execute "set <M-r>=\er"
+map <M-r> :tabn4<CR>
+execute "set <M-r>=\et"
+map <M-q> :tabn5<CR>
+execute "set <M-r>=\ey"
+map <M-q> :tabn6<CR>
+execute "set <M-r>=\eu"
+map  <M-q> :tabn7<CR>
+execute "set <M-r>=\ei"
+map <M-q> :tabn8<CR>
+execute "set <M-r>=\eo"
+map <M-q> :tabn9<CR>
+execute "set <M-r>=\ep"
+map <M-q> :tabn10<CR>
 
 " ---- reload config -----------
 nnoremap <leader>vo :vsp $MYVIMRC<CR>
@@ -115,6 +141,7 @@ tnoremap <silent><Esc> <C-[><C-[> <C-\><C-n>
 "
 " split
 "
+noremap <C-w>f :vertical resize 84<CR>
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k

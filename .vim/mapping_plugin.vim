@@ -1,4 +1,8 @@
 "
+" Sayanora
+"
+" map <silent>ZZ :Sayanora<CR>
+"
 " smoothie
 "
 nmap <Down> :call  smoothie#downwards()<CR>
@@ -16,16 +20,16 @@ nnoremap <leader>a :ToggleAutosave<CR>
 "
 " indentwise
 "
-" map [- <Plug>(IndentWisePreviousLesserIndent)
-" map [= <Plug>(IndentWisePreviousEqualIndent)
-" map [+ <Plug>(IndentWisePreviousGreaterIndent)
-" map ]- <Plug>(IndentWiseNextLesserIndent)
-" map ]= <Plug>(IndentWiseNextEqualIndent)
-" map ]+ <Plug>(IndentWiseNextGreaterIndent)
-" map [_ <Plug>(IndentWisePreviousAbsoluteIndent)
-" map ]_ <Plug>(IndentWiseNextAbsoluteIndent)
-" map [% <Plug>(IndentWiseBlockScopeBoundaryBegin)
-" map ]% <Plug>(IndentWiseBlockScopeBoundaryEnd)"
+map [- <Plug>(IndentWisePreviousLesserIndent)
+map [= <Plug>(IndentWisePreviousEqualIndent)
+map [+ <Plug>(IndentWisePreviousGreaterIndent)
+map ]- <Plug>(IndentWiseNextLesserIndent)
+map ]= <Plug>(IndentWiseNextEqualIndent)
+map ]+ <Plug>(IndentWiseNextGreaterIndent)
+map [_ <Plug>(IndentWisePreviousAbsoluteIndent)
+map ]_ <Plug>(IndentWiseNextAbsoluteIndent)
+map [% <Plug>(IndentWiseBlockScopeBoundaryBegin)
+map ]% <Plug>(IndentWiseBlockScopeBoundaryEnd)"
 "
 " pythonsense
 "
@@ -66,26 +70,26 @@ nmap <leader>sA <Plug>SidewaysArgumentAppendLast
 "
 " wrap
 "
-nnoremap <silent> <leader>a :ArgWrap<CR>
+nnoremap <silent> <leader>a :ArgWrap<CR><Esc>
 " vimtweak
 "
 " Window transparency shortcuts
-let g:dll = globpath(&rtp, 'vimtweak.dll')
-function Transparency(v)
-  call libcallnr("vimtweak64.dll", "SetAlpha", 255-a:v)
-endfunction
-nnoremap <silent> <leader>a0 :call Transparency(0)<CR>
-nnoremap <silent> <leader>a1 :call Transparency(10)<CR>
-nnoremap <silent> <leader>a2 :call Transparency(20)<CR>
-nnoremap <silent> <leader>a3 :call Transparency(30)<CR>
-nnoremap <silent> <leader>a4 :call Transparency(40)<CR>
-nnoremap <silent> <leader>a5 :call Transparency(50)<CR>
-nnoremap <silent> <leader>a6 :call Transparency(60)<CR>
-nnoremap <silent> <leader>a7 :call Transparency(70)<CR>
-nnoremap <silent> <leader>mm :call libcallnr("vimtweak64.dll", "EnableMaximize", 1)<CR>
-nnoremap <silent> <leader>ms :call libcallnr("vimtweak64.dll", "EnableMaximize", 0)<CR>
-nnoremap <silent> <leader>mt :call libcallnr("vimtweak64.dll", "EnableTopMost", 1)<CR>
-nnoremap <silent> <leader>mp :call libcallnr("vimtweak64.dll", "EnableTopMost", 0)<CR>
+" let g:dll = globpath(&rtp, 'vimtweak.dll')
+" function Transparency(v)
+"   call libcallnr("vimtweak64.dll", "SetAlpha", 255-a:v)
+" endfunction
+" nnoremap <silent> <leader>a0 :call Transparency(0)<CR>
+" nnoremap <silent> <leader>a1 :call Transparency(10)<CR>
+" nnoremap <silent> <leader>a2 :call Transparency(20)<CR>
+" nnoremap <silent> <leader>a3 :call Transparency(30)<CR>
+" nnoremap <silent> <leader>a4 :call Transparency(40)<CR>
+" nnoremap <silent> <leader>a5 :call Transparency(50)<CR>
+" nnoremap <silent> <leader>a6 :call Transparency(60)<CR>
+" nnoremap <silent> <leader>a7 :call Transparency(70)<CR>
+" nnoremap <silent> <leader>mm :call libcallnr("vimtweak64.dll", "EnableMaximize", 1)<CR>
+" nnoremap <silent> <leader>ms :call libcallnr("vimtweak64.dll", "EnableMaximize", 0)<CR>
+" nnoremap <silent> <leader>mt :call libcallnr("vimtweak64.dll", "EnableTopMost", 1)<CR>
+" nnoremap <silent> <leader>mp :call libcallnr("vimtweak64.dll", "EnableTopMost", 0)<CR>
 
 " submersive
 "
@@ -246,8 +250,8 @@ nnoremap <silent><nowait> ma  :<C-u>CocList diagnostics<cr> " Show all diagnosti
 nnoremap <silent><nowait> <Leader>u  :<C-u>CocList extensions<cr> " Manage extensions.
 nnoremap <silent><nowait> mc  :<C-u>CocList commands<cr> " Show commands.
 nnoremap <silent><nowait> mo  :<C-u>CocList outline<cr> " Find symbol of current document.
-nnoremap <silent><nowait> ms  :<C-u>CocList -I symbols<cr> " Search workspace symbols.
-nnoremap <silent><nowait> mp  :<C-u>CocListResume<CR> " Resume latest coc list.
+" nnoremap <silent><nowait> ms  :<C-u>CocList -I symbols<cr> " Search workspace symbols.
+" nnoremap <silent><nowait> mp  :<C-u>CocListResume<CR> " Resume latest coc list.
 execute "set <M-n>=\en"
 nmap <C-n> : " CocCommand explorer<CR> " Explorer
 " Symbol renaming.
@@ -285,3 +289,24 @@ vnoremap <silent>= :'<,'>Autopep8<CR>
 "
 execute "set <M-b>=\en"
 map <C-n> :NERDTreeToggle<CR>
+
+call NERDTreeAddKeyMap({
+        \ 'key': 'yy',
+        \ 'callback': 'NERDTreeYankCurrentNode',
+        \ 'quickhelpText': 'put full path of current node into the default register' })
+
+function! NERDTreeYankCurrentNode()
+    let n = g:NERDTreeFileNode.GetSelected()
+    if n != {}
+        call setreg('"', n.path.str())
+    endif
+endfunction
+
+
+
+
+
+
+
+
+
