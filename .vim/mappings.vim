@@ -1,9 +1,14 @@
-" ------------------------------------------------------------------------------
+" ----------------- Leader key ---------------------------------------------- "
+" let mapleader="<TAB>"
+
+" --------------------------------------------------------------------------- "
 " # Mappings
-" ------------------------------------------------------------------------------
+" --------------------------------------------------------------------------- "
+nnoremap <silent> "" "+yiw
+nnoremap <silent> "<space> "+yy
 map co :call FillLine('-', '#')<CR>    " for comment line
 map cp :call FillLine('-', '")')<CR>    " for print line
-nnoremap sf *``
+nnoremap sv *``
 map <space> y
 map mk i\<CR><ESC>
 map M <Nop>
@@ -18,12 +23,21 @@ nnoremap K i<cr><esc>
 nnoremap c<space> i<space><Esc>
 nnoremap qa :qa!<CR>
 
+" -------------------- next error quickfix list ----------------------------- #
+nnoremap ]c :cnext<CR>
+nnoremap [c :cprev<CR>
+nnoremap ]l :lnext<CR>
+nnoremap [l :lprev<CR>
+
+" -------------------- buffergator ------------------------------------------ "
+map <M-q> :tabn1<CR>
 " -------- autoformat files ------------------------------------------------- "
 " nnoremap <silent> <F9> :r! python -m black expand('%:p') -l 79
 
 " ---- e.g press 1 to go to buffer 1 -----------
 " nnoremap <silent> <leader>gt :exe 'tabn' nr2char(getchar())<cr> "e.g press 1 to go to tab1
 "
+autocmd BufReadPost * map <M-q> :tabn1<CR>
 execute "set <M-q>=\eq"
 map <M-q> :tabn1<CR>
 execute "set <M-w>=\ew"
@@ -32,18 +46,18 @@ execute "set <M-e>=\ee"
 map <M-e> :tabn3<CR>
 execute "set <M-r>=\er"
 map <M-r> :tabn4<CR>
-execute "set <M-r>=\et"
-map <M-q> :tabn5<CR>
-execute "set <M-r>=\ey"
-map <M-q> :tabn6<CR>
-execute "set <M-r>=\eu"
-map  <M-q> :tabn7<CR>
-execute "set <M-r>=\ei"
-map <M-q> :tabn8<CR>
-execute "set <M-r>=\eo"
-map <M-q> :tabn9<CR>
-execute "set <M-r>=\ep"
-map <M-q> :tabn10<CR>
+execute "set <M-t>=\et"
+map <M-t> :tabn5<CR>
+execute "set <M-y>=\ey"
+map <M-y> :tabn6<CR>
+execute "set <M-u>=\eu"
+map <M-u> :tabn7<CR>
+" execute "set <M-r>=\ei"
+" map <M-q> :tabn8<CR>
+" execute "set <M-r>=\eo"
+" map <M-q> :tabn9<CR>
+" execute "set <M-r>=\ep"
+" map <M-q> :tabn10<CR>
 
 " ---- reload config -----------
 nnoremap <leader>vo :vsp $MYVIMRC<CR>
@@ -67,8 +81,7 @@ nnoremap c* *``cgn
 nnoremap c# #``cgN
 
 " ----- close buffer
-nnoremap qb <Esc>:bd!<CR>
-inoremap qb <Esc>:bd!<CR>
+" nnoremap qb <Esc>:bd!<CR>
 
 noremap j gj
 noremap k gk
@@ -106,7 +119,7 @@ nnoremap <silent> ff :nohlsearch<Bar>:echo<CR> " Press ff to turn off highlighti
 " registers
 "
 " List contents of all registers
-nnoremap <silent> "" :registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>
+" nnoremap <silent> "" :registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>
 command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
 " Clean Registers
 execute "set <M-'>=\e'"

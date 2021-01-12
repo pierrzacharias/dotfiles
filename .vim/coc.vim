@@ -9,13 +9,6 @@ else
   set signcolumn=yes
 endif
 
-" hi default  CocWarningHighlight guibg=#000000 guifg=#b16286 gui=italic cterm=italic
-" hi default  CocErrorHighlight guibg=#000000 guifg=#fb4934 gui=bold cterm=italic
-" hi default  CocInfoHighlight  guibg=#000000 guifg=#cc241d gui=italic cterm=italic
-" hi default  CocHintHighlight guibg=#000000 guifg=#cc241d gui=italic cterm=italic
-
-highlight CocWarningHighlight ctermfg=Red  guibg=#000000 guifg=#ff0000
-
 let g:coc_global_extensions = [
 			\ 'coc-lists',
 			\ 'coc-python',

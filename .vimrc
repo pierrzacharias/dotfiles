@@ -12,6 +12,12 @@ set noequalalways
 set splitright
 " set eadirection
 set columns=85
+
+" ---------------- highlight cursor column ---------------------------------- "
+set cursorcolumn          " highlight cursor column
+" au WinLeave * set nocursorline nocursorcolumn
+" au WinEnter * set cursorline cursorcolumn
+
 set conceallevel=3
 set noerrorbells
 autocmd FileType text setlocal textwidth=79
@@ -85,7 +91,7 @@ set rnu
 " set relativenumber
 " set nonumber
 " set signcolumn=number
-set fillchars=vert:|,fold:       " split separation character
+set fillchars=vert:|,fold:+       " split separation character
 
 set suffixes+=.pyc,.pyo           " ignore compiled Python files
 set suffixes+=.egg-info           " ignore compiled Python files

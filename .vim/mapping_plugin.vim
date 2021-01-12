@@ -1,8 +1,7 @@
-"
-" Sayanora
-"
-" map <silent>ZZ :Sayanora<CR>
-"
+
+" -------------------- buffergator ------------------------------------------ "
+map <C-b> :BuffergatorOpen<CR>
+ 
 " smoothie
 "
 nmap <Down> :call  smoothie#downwards()<CR>
@@ -191,13 +190,13 @@ let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-h': 'split',
   \ 'ctrl-v': 'vsplit' }
-nnoremap mr :Rg<CR>
-nnoremap mt :Tags<CR>
-nnoremap mm :Marks<CR>
+" nnoremap mr :Rg<CR>
+" nnoremap mt :Tags<CR>
+" nnoremap mm :Marks<CR>
 " nnoremap <C-n> :BLines<CR>
 " nnoremap <C-o> :FzfPreviewProjectFiles<CR>
-nmap <C-D> :Files<CR>
-nmap <C-b> :Buffers<CR>
+" nmap <C-D> :Files<CR>
+" nmap <C-b> :Buffers<CR>
 execute "set <M-g>=\en"
 inoremap <silent><expr> <M-g> coc#refresh()
 nmap <Leader>H :History<CR>
@@ -224,15 +223,15 @@ endfunction
 let g:coc_snippet_next = '<TAB>'
 " inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 " nmap  <silent><C-c> :CocEnable<CR>
-nmap <silent> mg <Plug>(coc-diagnostic-info)
-nmap <silent> mb <Plug>(coc-diagnostic-prev)
-nmap <silent> mn <Plug>(coc-diagnostic-next)
-nmap <silent> me <Plug>(coc-diagnostic-error)
-nmap <silent> md <Plug>(coc-definition)
-nmap <silent> gd <Plug>(coc-declaration)
-nnoremap <silent> gd :call CocAction('jumpDefinition', 'drop')<CR>
-nmap <silent> my <Plug>(coc-type-definition)
-nmap <silent> mi <Plug>(coc-implementation)
+nmap <silent> gi <Plug>(coc-diagnostic-info)
+nmap <silent> gb <Plug>(coc-diagnostic-prev)
+nmap <silent> gn <Plug>(coc-diagnostic-next)
+" nmap <silent> me <Plug>(coc-diagnostic-error)
+nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gd <Plug>(coc-declaration)
+" nnoremap <silent> gd :call CocAction('jumpDefinition', 'drop')<CR>
+" nmap <silent> my <Plug>(coc-type-definition)
+" nmap <silent> mi <Plug>(coc-implementation)
 " nmap <silent> mr <Plug>(coc-references)
 " Select inside function
 " xmap if <Plug>(coc-funcobj-i)
@@ -246,14 +245,14 @@ nmap <silent> mi <Plug>(coc-implementation)
 " omap ac <Plug>(coc-classobj-a)
 " nnoremap <silent> gr :call <SID>show_documentation()<CR> " show Documentation
 nnoremap <silent> gr :call :<C-u>show_documentation<CR> " show Documentation
-nnoremap <silent><nowait> ma  :<C-u>CocList diagnostics<cr> " Show all diagnostics.
+nnoremap <silent><nowait> ga  :<C-u>CocList diagnostics<cr> " Show all diagnostics.
 nnoremap <silent><nowait> <Leader>u  :<C-u>CocList extensions<cr> " Manage extensions.
-nnoremap <silent><nowait> mc  :<C-u>CocList commands<cr> " Show commands.
-nnoremap <silent><nowait> mo  :<C-u>CocList outline<cr> " Find symbol of current document.
+" nnoremap <silent><nowait> mc  :<C-u>CocList commands<cr> " Show commands.
+" nnoremap <silent><nowait> mo  :<C-u>CocList outline<cr> " Find symbol of current document.
 " nnoremap <silent><nowait> ms  :<C-u>CocList -I symbols<cr> " Search workspace symbols.
 " nnoremap <silent><nowait> mp  :<C-u>CocListResume<CR> " Resume latest coc list.
-execute "set <M-n>=\en"
-nmap <C-n> : " CocCommand explorer<CR> " Explorer
+" execute "set <M-n>=\en"
+" nmap <C-n> : " CocCommand explorer<CR> " Explorer
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 xmap <leader>f  <Plug>(coc-format-selected)
@@ -290,10 +289,10 @@ vnoremap <silent>= :'<,'>Autopep8<CR>
 execute "set <M-b>=\en"
 map <C-n> :NERDTreeToggle<CR>
 
-call NERDTreeAddKeyMap({
-        \ 'key': 'yy',
-        \ 'callback': 'NERDTreeYankCurrentNode',
-        \ 'quickhelpText': 'put full path of current node into the default register' })
+" call NERDTreeAddKeyMap({
+"         \ 'key': 'yy',
+"         \ 'callback': 'NERDTreeYankCurrentNode',
+"         \ 'quickhelpText': 'put full path of current node into the default register' })
 
 function! NERDTreeYankCurrentNode()
     let n = g:NERDTreeFileNode.GetSelected()

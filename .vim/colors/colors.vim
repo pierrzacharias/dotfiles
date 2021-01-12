@@ -35,14 +35,12 @@ if has('unix') "specific options for linux
     hi Search cterm=NONE ctermfg=118  ctermbg=18
     hi IncSearch cterm=NONE ctermfg=18  ctermbg=76
     " hi Search cterm=NONE ctermfg=190  ctermbg=26
-    hi SignColumn guifg=#ebdbb2 guibg=NONE ctermbg=NONE
+    " hi SignColumn guifg=#ebdbb2 guibg=NONE ctermbg=NONE
 endif
 "
 if has('win32') "specific options for windows
-    " set termuicolors                           | " Enables 24bit colors
     hi Search cterm=NONE ctermfg=0  ctermbg=10
     hi IncSearch cterm=NONE ctermfg=0  ctermbg=110
-    " highlight VertSplit guibg=NONE ctermbg=NONE cterm=NONE
 endif
 
 " ---------- overide theme highlight ----------------------------------------
@@ -53,7 +51,8 @@ endif
 " ██║░░██╗  ██║░░██║  ██║╚████║  ██║░░██║  ██║░░░░░  ██║  ██║╚████║  ██╔══╝░░
 " ╚█████╔╝  ╚█████╔╝  ██║░╚███║  ╚█████╔╝  ███████╗  ██║  ██║░╚███║  ███████╗
 " ░╚════╝░   ╚════╝░  ╚═╝░░╚══╝   ╚════╝░  ╚══════╝  ╚═╝  ╚═╝░░╚══╝  ╚══════╝
-let g:conoline_color_normal_dark = 'guibg=#1d2021'
+let g:conoline_color_normal_dark = 'guibg=#000000'
+" let g:conoline_color_normal_dark = 'guibg=#1d2021'
 " if has('unix') "specific options for linux
 "     let g:conoline_color_insert_dark = 'guibg=#333333 guifg=NONE gui=None '
 "                             \. 'ctermbg=232 ctermfg=NONE'

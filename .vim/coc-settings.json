@@ -17,7 +17,7 @@
 		"diagnostic.checkCurrentLine":true,
     "list.maxPreviewHeight": 30,
 		"coc.preferences.bracketEnterImprove":false,
-		"python.formatting.provider": "black",
+		"python.formatting.provider": "autopep8",
 		"python.analysis.diagnosticEnabled":true,
 		"python.linting.pep8Enabled":false,
 		"signature.maxWindowWidth":200,

@@ -26,6 +26,7 @@ Plug 'mhinz/vim-grepper'                              " grep tool
 " --------------------------------------------------------------
 " ---------------------- New -----------------------------------
 " --------------------------------------------------------------
+Plug 'jeetsukumaran/vim-buffergator'                   " buffer list
 " Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'jeetsukumaran/ctrlp-pythonic.vim'
 " Plug 'junegunn/loclisteasy-align'
@@ -143,7 +144,7 @@ Plug 'morhetz/gruvbox'                                 " color theme
 Plug 'hrsh7th/vim-unmatchparen'                        " highlight unmatch surrounding
 Plug 'ipod825/war.vim'
 Plug 'altercation/vim-colors-solarized'                " color theme
-Plug 'miyakogi/conoline.vim'                           " highlights the line of the cursor
+" Plug 'miyakogi/conoline.vim'                           " highlights the line of the cursor
 Plug 'ryanoasis/vim-devicons'                          " add icon
 Plug 'vim-airline/vim-airline'                         " add visual line
 Plug 'vim-airline/vim-airline-themes'                  " theme for airline
@@ -205,7 +206,10 @@ Plug 'psliwka/vim-smoothie'                            " Better scroll
 " ---------------------- REMOVED -------------------------------
 " --------------------------------------------------------------
 
- let g:gruvbox_contrast_light='hard'
+" -------------------- buffergator ------------------------------------------ "
+let g:buffergator_viewport_split_policy='B'
+let g:buffergator_autoexpand_on_split = 0
+
 "
 " echo doc
 "
@@ -612,17 +616,18 @@ let g:airline#extensions#default#layout = [
 " replace with that in airline/theme.vim
 " let a:palette[mode]['airline_error'] = [ '#d33682', '#002b36', 232, 160 ]
 "
-function! MyPlugin(...)
-    if &filetype == 'MyPluginFileType'
-      let w:airline_section_a = airline#section#create(['-------------------'])
-      let w:airline_section_b = airline#section#create(['-------------------'])
-      let w:airline_section_y = airline#section#create(['-------------------'])
-      let w:airline_section_x = airline#section#create(['-------------------'])
-      let w:airline_section_z = airline#section#create(['-------------------'])
-      let g:airline_variable_referenced_in_statusline = 'foo'
-    endif
-  endfunction
-  call add_inactive_statusline_func('MyPlugin')
+" function! MyPlugin(...)
+"     if &filetype == 'MyPluginFileType'
+"       let w:airline_section_a = airline#section#create(['-------------------'])
+"       let w:airline_section_b = airline#section#create(['-------------------'])
+"       let w:airline_section_y = airline#section#create(['-------------------'])
+"       let w:airline_section_x = airline#section#create(['-------------------'])
+"       let w:airline_section_z = airline#section#create(['-------------------'])
+"       let g:airline_variable_referenced_in_statusline = 'foo'
+"     endif
+"   endfunction
+"   call add_inactive_statusline_func('MyPlugin')
+
 " ---------------- mapping tab ---------------------------------------------- "
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
