@@ -52,10 +52,10 @@ execute "set <M-y>=\ey"
 map <M-y> :tabn6<CR>
 execute "set <M-u>=\eu"
 map <M-u> :tabn7<CR>
-" execute "set <M-r>=\ei"
-" map <M-q> :tabn8<CR>
-" execute "set <M-r>=\eo"
-" map <M-q> :tabn9<CR>
+execute "set <M-i>=\ei"
+map <M-i> :tabn8<CR>
+execute "set <M-o>=\eo"
+map <M-o> :tabn9<CR>
 " execute "set <M-r>=\ep"
 " map <M-q> :tabn10<CR>
 
@@ -100,8 +100,8 @@ nnoremap <silent> <F4> :call LNext(1)<CR>
 "
 nnoremap <C-w>p :lopen<CR>                  " open loclist
 nnoremap <C-p> :lcl<CR>                     " close loclist
-execute "set <M-u>=\eu"
-nnoremap <M-u> :lla <CR>                    " navigate to last item in list
+" execute "set <M-u>=\eu"
+" nnoremap <M-u> :lla <CR>                    " navigate to last item in list
 
 nnoremap <silent> <F5> :call ToggleQuickFix()<cr>"
 "

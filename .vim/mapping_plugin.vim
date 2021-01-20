@@ -176,12 +176,13 @@ xmap (j <Plug>SendDownV
 " autocmd Filetype python nnoremap <F10> <Esc>:REPLPDBN<Cr>
 " autocmd Filetype python nnoremap <F11> <Esc>:REPLPDBS<Cr>
 
-"
-" QuickRun
-"
-execute "set <M-i>=\ei"
-nnoremap <M-i> :QuickRun -mode n<CR>
-vnoremap  <M-i> :QuickRun -mode v<CR>
+""
+"" QuickRun
+""
+"execute "set <M-i>=\ei"
+"nnoremap <M-i> :QuickRun -mode n<CR>
+"vnoremap  <M-i> :QuickRun -mode v<CR>
+
 "
 " Fzf
 "
