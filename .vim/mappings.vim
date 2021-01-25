@@ -11,7 +11,7 @@ map cp :call FillLine('-', '")')<CR>    " for print line
 nnoremap sv *``
 map <space> y
 map mk i\<CR><ESC>
-map M <Nop>
+" map M <Nop>
 nnoremap H ^
 nnoremap L g_
 execute "set <M-f>=\ef"

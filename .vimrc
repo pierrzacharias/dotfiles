@@ -91,8 +91,7 @@ set rnu
 " set relativenumber
 " set nonumber
 " set signcolumn=number
-set fillchars=vert:|,fold:+       " split separation character
-
+set fillchars=vert:\|,fold:>,diff:-
 set suffixes+=.pyc,.pyo           " ignore compiled Python files
 set suffixes+=.egg-info           " ignore compiled Python files
 set suffixes+=.png                " don't edit .png files please

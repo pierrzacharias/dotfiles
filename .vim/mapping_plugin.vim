@@ -1,37 +1,42 @@
 
-" -------------------- buffergator ------------------------------------------ "
+" -------------------- buffergator ----------------------------------------- "
 map <C-b> :BuffergatorOpen<CR>
  
+" -------------------------------------------------------------------------- "
 " smoothie
-"
+" -------------------------------------------------------------------------- "
 nmap <Down> :call  smoothie#downwards()<CR>
 nmap <Up> :call  smoothie#upwards()<CR>"
-"
+
+" -------------------------------------------------------------------------- "
 " TagBar
-"
+" -------------------------------------------------------------------------- "
 nnoremap <leader>p :TagbarTogglePause<CR> "Freezes/Unfreezes the Tagbar Windowsf
-"
+
+" -------------------------------------------------------------------------- "
 " workspace
-"
+" -------------------------------------------------------------------------- "
 nnoremap <leader>w :ToggleWorkspace<CR>
 nnoremap <leader>bc :CloseHiddenBuffers<CR>
 nnoremap <leader>a :ToggleAutosave<CR>
-"
+
+" -------------------------------------------------------------------------- "
 " indentwise
-"
-map [- <Plug>(IndentWisePreviousLesserIndent)
+" -------------------------------------------------------------------------- "
 map [= <Plug>(IndentWisePreviousEqualIndent)
-map [+ <Plug>(IndentWisePreviousGreaterIndent)
-map ]- <Plug>(IndentWiseNextLesserIndent)
 map ]= <Plug>(IndentWiseNextEqualIndent)
+map [+ <Plug>(IndentWisePreviousGreaterIndent)
+map [- <Plug>(IndentWisePreviousLesserIndent)
+map ]- <Plug>(IndentWiseNextLesserIndent)
 map ]+ <Plug>(IndentWiseNextGreaterIndent)
 map [_ <Plug>(IndentWisePreviousAbsoluteIndent)
 map ]_ <Plug>(IndentWiseNextAbsoluteIndent)
 map [% <Plug>(IndentWiseBlockScopeBoundaryBegin)
 map ]% <Plug>(IndentWiseBlockScopeBoundaryEnd)"
-"
+
+" -------------------------------------------------------------------------- "
 " pythonsense
-"
+" -------------------------------------------------------------------------- "
 " map <buffer> ac <Plug>(PythonsenseOuterClassTextObject)
 " map <buffer> ic <Plug>(PythonsenseInnerClassTextObject)
 " map <buffer> af <Plug>(PythonsenseOuterFunctionTextObject)
@@ -47,14 +52,14 @@ map ]% <Plug>(IndentWiseBlockScopeBoundaryEnd)"
 " map <buffer> [m <Plug>(PythonsenseStartOfPythonFunction)
 " map <buffer> [M <Plug>(PythonsenseEndOfPreviousPythonFunction)
 " map <buffer> g: <Plug>(PythonsensePyWhere)" easy-align
-"
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)"
-"
+
+" -------------------------------------------------------------------------- "
 " Sideway
-"
+" -------------------------------------------------------------------------- "
 " to stay in container
 " https://github.com/jeetsukumaran/vim-argwrap/commit/30edd6ba0a654d22db62359e4bca9d174f1eead5
 nnoremap <Leader>h :SidewaysLeft<cr>
@@ -63,15 +68,20 @@ nmap <leader>si <Plug>SidewaysArgumentInsertBefore
 nmap <leader>sa <Plug>SidewaysArgumentAppendAfter
 nmap <leader>sI <Plug>SidewaysArgumentInsertFirst
 nmap <leader>sA <Plug>SidewaysArgumentAppendLast
+
+" -------------------------------------------------------------------------- "
 " anzu
-"
+" -------------------------------------------------------------------------- "
 " <buffer><Leader>cf :Yapf<CR>"
-"
+
+" -------------------------------------------------------------------------- "
 " wrap
-"
+" -------------------------------------------------------------------------- "
 nnoremap <silent> <leader>a :ArgWrap<CR><Esc>
+
+" -------------------------------------------------------------------------- "
 " vimtweak
-"
+" -------------------------------------------------------------------------- "
 " Window transparency shortcuts
 " let g:dll = globpath(&rtp, 'vimtweak.dll')
 " function Transparency(v)
@@ -90,8 +100,9 @@ nnoremap <silent> <leader>a :ArgWrap<CR><Esc>
 " nnoremap <silent> <leader>mt :call libcallnr("vimtweak64.dll", "EnableTopMost", 1)<CR>
 " nnoremap <silent> <leader>mp :call libcallnr("vimtweak64.dll", "EnableTopMost", 0)<CR>
 
+" -------------------------------------------------------------------------- "
 " submersive
-"
+" -------------------------------------------------------------------------- "
 " s for substitute
 nmap s <plug>(SubversiveSubstitute)
 nmap ss <plug>(SubversiveSubstituteLine)
@@ -104,9 +115,10 @@ nmap <leader>s <plug>(SubversiveSubstituteWordRange)
 nmap <leader>cs <plug>(SubversiveSubstituteRangeConfirm)
 xmap <leader>cs <plug>(SubversiveSubstituteRangeConfirm)
 nmap <leader>css <plug>(SubversiveSubstituteWordRangeConfirm)
-"
+
+" -------------------------------------------------------------------------- "
 " latex
-"
+" -------------------------------------------------------------------------- "
 " map <C-s> :call Synctex()<cr>
 execute "set <M-c>=\e3"
 nnoremap <M-c> :VimtexCompile<cr>
@@ -114,9 +126,9 @@ execute "set <M-3>=\e3"
 " :copen to see error
 nnoremap <M-3> :copen<cr>
 
-"
+" -------------------------------------------------------------------------- "
 " vimspector
-"
+" -------------------------------------------------------------------------- "
 " nmap <silent><F5> <Plug>VimspectorContinue
 " let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
 " F5 	          When debugging, continue.  	                              vimspector#Continue()
@@ -148,17 +160,18 @@ nnoremap <silent> <leader>da :call vimspector#ClearBreakpoints()<CR>
 " :VimspectorShowOutput <category> " see an output in WinBar
 " VimspectorWatch <expression>     " Track a variable
 " :VimspectorToggleLog               " See logs
-"
+
+" -------------------------------------------------------------------------- "
 " animate
-"
+" -------------------------------------------------------------------------- "
 " nnoremap <silent> <Up>    :call animate#window_delta_height(10)<CR>
 " nnoremap <silent> <Down>  :call animate#window_delta_height(-10)<CR>
 nnoremap <silent> <Left>  :call animate#window_delta_width(10)<CR>
 nnoremap <silent> <Right> :call animate#window_delta_width(-10)<CR>
 
-"
+" -------------------------------------------------------------------------- "
 " sendto
-"
+" -------------------------------------------------------------------------- "
 nmap (l <Plug>SendRight
 xmap (l <Plug>SendRightV
 nmap (h <Plug>SendLeft
@@ -168,24 +181,24 @@ xmap (k <Plug>SendUpV
 nmap (j <Plug>SendDown
 xmap (j <Plug>SendDownV
 
-"
+" -------------------------------------------------------------------------- "
 " repl
-"
+" -------------------------------------------------------------------------- "
 " nnoremap <leader>r :REPLToggle<CR>
 " autocmd Filetype python nnoremap <F12> <Esc>:REPLDebugStopAtCurrentLine<Cr>
 " autocmd Filetype python nnoremap <F10> <Esc>:REPLPDBN<Cr>
 " autocmd Filetype python nnoremap <F11> <Esc>:REPLPDBS<Cr>
 
-""
+" -------------------------------------------------------------------------- "
 "" QuickRun
-""
+" -------------------------------------------------------------------------- "
 "execute "set <M-i>=\ei"
 "nnoremap <M-i> :QuickRun -mode n<CR>
 "vnoremap  <M-i> :QuickRun -mode v<CR>
 
-"
+" -------------------------------------------------------------------------- "
 " Fzf
-"
+" -------------------------------------------------------------------------- "
 nnoremap <Leader> <C-w>
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
@@ -204,9 +217,9 @@ nmap <Leader>H :History<CR>
 " nmap <Leader>: :History:<CR>
 " nmap <Leader>gm :Maps<CR>
 
-"
+" -------------------------------------------------------------------------- "
 " coc
-"
+" -------------------------------------------------------------------------- "
 execute "set <M-g>=\en"
 inoremap <silent><expr> <M-g> coc#refresh()
 " execute "set <M-i>=\ei"        " <CR> to confirm completion, use: Alt-
@@ -266,14 +279,15 @@ nmap <leader>f  <Plug>(coc-format-selected)
 " vnoremap <silent><expr> <down> coc#util#has_float() ? <SID>coc_float_scroll(1) : "\<down>"
 " vnoremap <silent><expr> <up> coc#util#has_float() ? <SID>coc_float_scroll(0) : "\<up>"/
 
- "
+" -------------------------------------------------------------------------- "
  " pep8
- "
+" -------------------------------------------------------------------------- "
 autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 vnoremap <silent>= :'<,'>Autopep8<CR>
 
+" -------------------------------------------------------------------------- "
 " cocfzflist
-"
+" -------------------------------------------------------------------------- "
 " " nnoremap <silent> <Leader>a  :<C-u>CocFzfList diagnostics<CR>
 " nnoremap <silent> <Leader>b  :<C-u>CocFzfList diagnostics --current-buf<CR>
 " nnoremap <silent> <Leader>c  :<C-u>CocFzfList commands<CR>
@@ -284,9 +298,9 @@ vnoremap <silent>= :'<,'>Autopep8<CR>
 " nnoremap <silent> <Leader>S  :<C-u>CocFzfList services<CR>
 " nnoremap <silent> <Leader>p  :<C-u>CocFzfListResume<CR>
 
-"
+" -------------------------------------------------------------------------- "
 " NERDTree
-"
+" -------------------------------------------------------------------------- "
 execute "set <M-b>=\en"
 map <C-n> :NERDTreeToggle<CR>
 

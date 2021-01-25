@@ -1,9 +1,9 @@
-if has('unix') "specific options for linux
-    colorscheme gruvbox                        | " Sets theme to gruvbox
-endif
-if has('win32') "specific options for windows
-    colorscheme solarized                        | " Sets theme to gruvbox
-endif
+" if has('unix') "specific options for linux
+"     colorscheme gruvbox                        | " Sets theme to gruvbox
+" endif
+" if has('win32') "specific options for windows
+"     colorscheme solarized                        | " Sets theme to gruvbox
+" endif
 set background=dark
 " let g:gruvbox_italic=1
 " let g:gruvbox_contrast_dark = 'soft'
