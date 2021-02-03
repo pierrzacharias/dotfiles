@@ -47,15 +47,15 @@ map ]% <Plug>(IndentWiseBlockScopeBoundaryEnd)"
 " map <buffer> ][ <Plug>(PythonsenseEndOfPythonClass)
 " map <buffer> [[ <Plug>(PythonsenseStartOfPythonClass)
 " map <buffer> [] <Plug>(PythonsenseEndOfPreviousPythonClass)
-" map <buffer> ]m <Plug>(PythonsenseStartOfNextPythonFunction)
-" map <buffer> ]M <Plug>(PythonsenseEndOfPythonFunction)
-" map <buffer> [m <Plug>(PythonsenseStartOfPythonFunction)
-" map <buffer> [M <Plug>(PythonsenseEndOfPreviousPythonFunction)
+nnoremap mj <Plug>(PythonsenseStartOfNextPythonFunction)
+nnoremap <buffer> Mj <Plug>(PythonsenseEndOfPythonFunction)
+map <buffer> mk <Plug>(PythonsenseStartOfPythonFunction)
+map <buffer> Mk <Plug>(PythonsenseEndOfPreviousPythonFunction)
 " map <buffer> g: <Plug>(PythonsensePyWhere)" easy-align
 " Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
+" xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)"
+" nmap ga <Plug>(EasyAlign)"
 
 " -------------------------------------------------------------------------- "
 " Sideway

@@ -22,6 +22,10 @@ Plug 'mhinz/vim-grepper'                              " grep tool
 " --------------------------------------------------------------
 " ---------------------- New -----------------------------------
 " --------------------------------------------------------------
+Plug 'https://github.com/kana/vim-metarw'
+Plug 'https://github.com/mattn/vim-metarw-gdrive'
+Plug 'pechorin/any-jump.vim'                           " ripgrep tool
+Plug 'flwyd/vim-conjoin'                               " better join lines
 Plug 'jeetsukumaran/vim-buffergator'                   " buffer list
 " Plug 'jeetsukumaran/ctrlp-pythonic.vim'
 " Plug 'junegunn/loclisteasy-align'

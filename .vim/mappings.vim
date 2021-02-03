@@ -6,11 +6,16 @@
 " --------------------------------------------------------------------------- "
 nnoremap <silent> "" "+yiw
 nnoremap <silent> "<space> "+yy
-map co :call FillLine('-', '#')<CR>    " for comment line
-map cp :call FillLine('-', '")')<CR>    " for print line
+
+" for comment line
+map co :call FillLine('-', '#')<CR>    
+map c' i#<Esc> :call FillLine('-', '#')<CR>    
+" for print line
+map cp :call FillLine('-', '")')<CR>    
+
 nnoremap sv *``
 map <space> y
-map mk i\<CR><ESC>
+map ck i\<CR><ESC>
 " map M <Nop>
 nnoremap H ^
 nnoremap L g_
@@ -165,3 +170,4 @@ noremap <silent> <C-Left> :vertical resize +3<CR>
 noremap <silent> <C-Right> :vertical resize -3<CR>
 noremap <silent> <C-Up>  :resize +3<CR>
 noremap <silent> <C-Down> :resize -3<CR>
+
