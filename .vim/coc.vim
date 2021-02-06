@@ -9,6 +9,17 @@ else
   set signcolumn=yes
 endif
 
+" ---------------- coc color ------------------------------------------------ #
+highlight! CocWarningSign guifg=#859900 guibg=#0F1419	 gui=NONE cterm=NONE
+highlight! CocErrorSign guifg=#859900 guibg=#0F1419	 gui=NONE cterm=NONE
+highlight! CocInfoSign  guifg=#859900 guibg=#0F1419	 gui=NONE cterm=NONE
+highlight! CocHintSign guifg=#859900 guibg=#0F1419	 gui=NONE cterm=NONE
+
+highlight! CocWarningHighlight guibg=NONE gui=NONE cterm=NONE 
+highlight! CocErrorHighlight guibg=NONE gui=NONE cterm=NONE 
+highlight! CocInfoHighlight  guibg=NONE gui=NONE cterm=NONE 
+highlight! CocHintHighlight guibg=NONE gui=NONE cterm=NONE 
+
 let g:coc_global_extensions = [
 			\ 'coc-lists',
 			\ 'coc-python',
@@ -17,11 +28,11 @@ let g:coc_global_extensions = [
 			\ 'coc-snippets',
 			\ 'coc-css',
 			\ 'coc-html',
-			\ 'coc-tag',
 			\ 'coc-diagnostic',
 			\ 'coc-highlight',
 			\ 'coc-syntax'
 			\ ]
+			" \ 'coc-tag',
 			" \ 'coc-tsserver',
 			" \ 'coc-vimtex',
 			" \ 'coc-sh',

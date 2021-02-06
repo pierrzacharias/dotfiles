@@ -1,19 +1,15 @@
-" if has('unix') "specific options for linux
-"     colorscheme gruvbox                        | " Sets theme to gruvbox
-" endif
-" if has('win32') "specific options for windows
-"     colorscheme solarized                        | " Sets theme to gruvbox
-" endif
+" -------------------------------------------------------------------------- "
+"                         colorscheme 
+" -------------------------------------------------------------------------- "
+colorscheme ayu
+let ayucolor="dark"   " for dark version of theme
 set background=dark
-" let g:gruvbox_italic=1
-" let g:gruvbox_contrast_dark = 'soft'
-" let g:gruvbox_contrast_dark = 'hard'
-" let g:gruvbox_undercurl=0
 set cursorline                               " Highlight current line
+
 " let base16colorspace=256                    | " Access colors present in 256 colorspace
 " let &colorcolumn="81,140"                   | " Add indicator for 80 and 120
-set foldtext=clean_fold#fold_text_minimal() | " Clean folds
-set noshowmode                              | " Don't show mode changes
+set foldtext=clean_fold#fold_text_minimal()   | " Clean folds
+set noshowmode                                | " Don't show mode changes
 " set novisualbell                            | " Don't display visual bell
 " set nowrap                                  | " Don't wrap lines
 " set showmatch                               | " Show matching braces
@@ -24,52 +20,63 @@ highlight! Comment cterm=NONE
 hi Normal guibg=NONE ctermbg=NONE
 hi Terminal guibg=NONE ctermbg=NONE cterm=None
 " Statusline
+
 if has('unix') "specific options for linux
     hi! StatusLine cterm=NONE gui=NONE
 endif
-if has('win32') "specific options for windows
-endif
-" search colors options
+
+" ------------------------------------------------------------------------- "
+" ------------------- column limit ---------------------------------------- "
+" ------------------------------------------------------------------------- "
+highlight ColorColumn guibg=#002b36	 
+" highlight outboundcolumn guibg=#00364a
+" call matchadd('outboundcolumn', '\%84v', 100) "set column nr
+
+" ------------------------------------------------------------------------- "
+" ------------------- folding --------------------------------------------- "
+" ------------------------------------------------------------------------- "
+highlight! Folded guibg=NONE guifg=#6c71c4 gui=underline
+highlight! FoldColumn guibg=darkgrey guifg=#000000
+
+" ------------------------------------------------------------------------- "
+" ---------------- search color ------------------------------------------- "
+" ------------------------------------------------------------------------- "
+" autocmd VimEnter * hi Normal guibg=NONE ctermbg=NONE " transparent bg
+hi! Search gui=NONE guibg=#6c71c4 guifg=#000000
+hi! IncSearch gui=NONE guibg=#98971a guifg=#000000
+
+" ------------------------------------------------------------------------- "
+" ----------------- current line number color ----------------------------- "
+" ------------------------------------------------------------------------- "
+hi! CursorLineNr guifg=#b58900 guibg=#002b36	
+" line numbers color
+hi! LineNr  guifg=#859900 guibg=#0F1419 gui=NONE
+" hi! LineNr  guifg=#859900 guibg=#002b36	
+" hi! SignColumn guifg=#859900  guibg=NONE
+hi SignColumn guifg=#859900 guibg=NONE gui=NONE cterm=NONE
+" hi SignColumn gui=bold guibg=NONE ctermbg=None cterm=None
+
 if has('unix') "specific options for linux
-    autocmd vimenter * hi Normal guibg=NONE ctermbg=NONE " transparent bg
-    hi Search cterm=NONE ctermfg=118  ctermbg=18
-    hi IncSearch cterm=NONE ctermfg=18  ctermbg=76
-    " hi Search cterm=NONE ctermfg=190  ctermbg=26
-    " hi SignColumn guifg=#ebdbb2 guibg=NONE ctermbg=NONE
-endif
-"
-if has('win32') "specific options for windows
-    hi Search cterm=NONE ctermfg=0  ctermbg=10
-    hi IncSearch cterm=NONE ctermfg=0  ctermbg=110
+    " autocmd vimenter * hi Normal guibg=NONE " transparent bg
 endif
 
-" ---------- overide theme highlight ----------------------------------------
-" let g:gruvbox_invert_signs = 0 
-" ██████╗░  ░█████╗░  ███╗░░██╗  ░█████╗░  ██╗░░░░░  ██╗  ███╗░░██╗  ███████╗
-" ██╔══██╗  ██╔══██╗  ████╗░██║  ██╔══██╗  ██║░░░░░  ██║  ████╗░██║  ██╔════╝
-" ██║░░╚═╝  ██║░░██║  ██╔██╗██║  ██║░░██║  ██║░░░░░  ██║  ██╔██╗██║  █████╗░░
-" ██║░░██╗  ██║░░██║  ██║╚████║  ██║░░██║  ██║░░░░░  ██║  ██║╚████║  ██╔══╝░░
-" ╚█████╔╝  ╚█████╔╝  ██║░╚███║  ╚█████╔╝  ███████╗  ██║  ██║░╚███║  ███████╗
-" ░╚════╝░   ╚════╝░  ╚═╝░░╚══╝   ╚════╝░  ╚══════╝  ╚═╝  ╚═╝░░╚══╝  ╚══════╝
+" ------------------------------------------------------------------------- "
+" ---------------------- VertSplit ---------------------------------------- "
+" ------------------------------------------------------------------------- "
+hi VertSplit guibg=NONE guifg=#6c71c4 
+hi TjbLine guibg=#000000 guifg=#073642
+hi! Pmenu guibg=#b58900 guibg=#000000
+
+" -------- indent color ----------------------------------------
+hi IndentGuidesEven guibg=#002b36	
+hi IndentGuidesOdd guibg=#00364a
+
+" ------------------------------------------------------------------------- "
+"                     conoline
+" ------------------------------------------------------------------------- "
 let g:conoline_color_normal_dark = 'guibg=#000000'
-" let g:conoline_color_normal_dark = 'guibg=#1d2021'
-" if has('unix') "specific options for linux
-"     let g:conoline_color_insert_dark = 'guibg=#333333 guifg=NONE gui=None '
-"                             \. 'ctermbg=232 ctermfg=NONE'
-"     let g:conoline_color_normal_dark = 'guibg=#333333 guifg=NONE gui=None '
-"                             \. 'ctermbg=234 ctermfg=NONE'
-" endif
-" if has('win32') "specific options for windows
-    " let g:conoline_use_colorscheme_default_normal=0
-    " let g:conoline_color_normal_nr_dark = 'guibg=#333333 guifg=#dddddd gui=None '
-    "                         \. 'ctermbg=8 ctermfg=NONE'
-    " let g:conoline_color_insert_nr_dark = 'guibg=#333333 guifg=#dddddd gui=None '
-    "                         \. 'ctermbg=65 ctermfg=NONE'
-    " let g:conoline_color_normal_dark = 'guibg=#333333 guifg=#dddddd gui=None '
-    "                         \. 'ctermbg=0 ctermfg=NONE'
-    " let g:conoline_color_insert_dark = 'guibg=#333333 guifg=#dddddd gui=None '
-    "                         \. 'ctermbg=0 ctermfg=NONE'
-    " set cursorline                               " Highlight current line
-    " hi! CursorLine   cterm=NONE ctermbg=darkblue ctermfg=NONE guibg=darkred guifg=NONE
-    " hi! CursorColumn cterm=NONE ctermbg=darkblue ctermfg=NONE guibg=darkred guifg=NONE
-" endif
+
+" --------- startify color ---------------------------------------
+" highlight! StartifyHeader guifg=#2aa198
+" highlight! StartifyFooter guifg=#2aa198
+

@@ -1,23 +1,22 @@
 " TODO
-" mettre fg research en blue
 " reduire info airline
 "
-" Full featured compiled vim for Windows https://tuxproject.de/projects/vim/auto
-"
-" set paste                       " auto-indent paste
 " au BufRead * let &numberwidth = float2nr(log10(line("$"))) + 2
 "           \| let &columns = &numberwidth + 80
-set termguicolors     
+
+set termguicolors      " Use gui color for terminal
+set conceallevel=3
 set noequalalways
 set splitright
 " set eadirection
-set columns=85
 
 set conceallevel=3
 set noerrorbells
 autocmd FileType text setlocal textwidth=79
 
-" --------- remove fking trailing whitespaces ------------------------------- "
+" -------------------------------------------------------------------------- "
+" --------- remove fking trailing whitespaces ------------------------------ "
+" -------------------------------------------------------------------------- "
 fun! <SID>StripTrailingWhitespaces()
     let l = line(".")
     let c = col(".")
@@ -27,7 +26,7 @@ endfun
 autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
 
 set spelllang=en                  " syntax check
-setglobal helplang=en,fr          " syntax check
+setglobal helplang=en             " syntax check
 set nostartofline                 " don't jump to start of line
 " set expandtab                     " Prefer spaces over tabs
 set hls
@@ -43,11 +42,11 @@ set tabstop=2
 " set softtabstop=2                 " Number of spaces for a tab
 " set shiftround                    " Snap indents via > or < to multiples of w
 "
-set scrolloff=10                   " limit of line to scroll
+set scrolloff=10                    " limit of line to scroll
 set showtabline=2
-set incsearch                     " Show search result while typing
+set incsearch                       " Show search result while typing
 set encoding=utf-8
-filetype plugin indent on         " Enable filetype detection for plugins and indentation options
+filetype plugin indent on           " Enable filetype detection for plugins and indentation options
 set nocompatible
 set ignorecase
 set smartcase
@@ -58,16 +57,16 @@ set laststatus=2
 set ai
 set showcmd
 " set cmdheight=2                   " Better display for messages
-set updatetime=100                 " Smaller updatetime for CursorHold & CursorHoldI
-set mouse=a                       " enbable mouse functionnalities
+set updatetime=100                  " Smaller updatetime for CursorHold & CursorHoldI
+set mouse=a                         " enbable mouse functionnalities
 " set tags=tags
 " set splitbelow splitright         " new split view appaer verticqly splitted
 set nobackup
 set nowritebackup
-set incsearch                     " Show search result while typing
+set incsearch                       " Show search result while typing
 set hidden
-set autoread                    " automatically reload files changed on disk
-set switchbuf=useopen           " quickfix reuses open windows
+set autoread                        " automatically reload files changed on disk
+set switchbuf=useopen               " quickfix reuses open windows
 " When editing a file, always jump to the last cursor position
 autocmd BufReadPost *
             \ if line("'\"") > 0 && line ("'\"") <= line("$") |
@@ -93,29 +92,36 @@ set suffixes+=.png                " don't edit .png files please
 set wildignore+=*.pyc,*.pyo       " same as 'suffixes', but for tab completion
 set wildignore+=*/__pycache__/*   " compiled python files
 set wildignore+=*/*.egg-info/*    " setuptools droppings
-set wildignore+=*/.venv         " virtualenv
-set wildignore+=*/local         " virtualenv
+set wildignore+=*/.venv           " virtualenv
+set wildignore+=*/local           " virtualenv
 
-set undodir       =~/.cache/undo   " backup directory location
-set undolevels    =10000                 " remember last 10000 changes
+set undodir=~/.cache/undo   " backup directory location
+set undolevels=10000                 " remember last 10000 changes
 " set whichwrap     =b,s,h,l,~,[,],<,>     " all movement keys wrap
 "
 set ttyfast                        " more smoothness
-if has('unix')
-endif
-" if has('win32')
-" endif
+
 if has('win32')
     " set guifont=Source\ Code\ Pro\ Regular\ 20
     " set regexpengine=1
     " set novisualbell
 endif
+
+" -------------------------------------------------------------------------- "
 " --------- change mksession ----------------------------------------------- "
+" -------------------------------------------------------------------------- "
 set sessionoptions+=tabpages    " register tab
 set sessionoptions-=blank       " dont't register blank pages
 
+" -------------------------------------------------------------------------- "
 " -------- wrap lines ------------------------------------------------------ "
-set textwidth=80
+" -------------------------------------------------------------------------- "
+" set textwidth=79
+" autocmd FileType text setlocal textwidth=79
+" set columns=80
+set colorcolumn=80
+set cc=+0,+1,+2                       " highlight column limit for 3 columns
+
 set backspace=indent,eol,start    " remove space in indent and end of line
 " set breakindent
 " set breakindentopt=sbr
@@ -124,8 +130,10 @@ set backspace=indent,eol,start    " remove space in indent and end of line
 set linebreak
 set breakat="," "choose caracters causing a line break
 set breakat+="." "choose caracters causing a line break
-"
+
+" -------------------------------------------------------------------------- "
 " ------------- autoformat options ----------------------------------------- "
+" -------------------------------------------------------------------------- "
 set formatoptions-=o " dont inser comment leader when pressing <o> or <O>
 set formatoptions+=n " recognize number list form formating
 set formatoptions+=j " join comment when join lines
@@ -135,11 +143,11 @@ set formatoptions+=c " allow auto-wrap comment
 " let formatoptions+="v" "break line on space only
 " set formatexpr       " where to break line
 ":set virtualedit=insert
-" ╚═╝░░░░░  ╚═╝░░╚═╝  ░░╚═╝░░░  ░╚═╝░░╚═╝
+
 if has('unix')
-    " ----------------------------------------
+    " ---------------------------------------------------------------------- "
     "  ------ Unix config -------------------
-    " ---------------------------------------
+    " ---------------------------------------------------------------------- "
     " Parent paths
     let g:dotfiles_path = $HOME
     let g:dotvim_path = $HOME . '/.vim'
@@ -157,9 +165,9 @@ if has('unix')
     \ ]
 endif
 if has('win32')
-    " ----------------------------------------
+    " ---------------------------------------------------------------------- "
     "  ------ Windows config -------------------
-    "  --------------------------------------
+    " ---------------------------------------------------------------------- "
     " Parent paths
     let g:dotfiles_path = $HOME
     let g:dotvim_path = $HOME . '\vimfiles'
@@ -176,38 +184,13 @@ if has('win32')
     \ VimrcPath('*vimfiles')
     \ ]
 endif
-" ░██████╗  ░█████╗░  ██╗░░░██╗  ██████╗░  ██████╗░  ██╗  ███╗░░██╗  ░██████╗░
-" ██╔════╝  ██╔══██╗  ██║░░░██║  ██╔══██╗  ██╔══██╗  ██║  ████╗░██║  ██╔════╝░
-" ╚█████╗░  ██║░░██║  ██║░░░██║  ██████╔╝  ██║░░╚═╝  ██║  ██╔██╗██║  ██║░░██╗░
-" ░╚═══██╗  ██║░░██║  ██║░░░██║  ██╔══██╗  ██║░░██╗  ██║  ██║╚████║  ██║░░╚██╗
-" ██████╔╝  ╚█████╔╝  ╚██████╔╝  ██║░░██║  ╚█████╔╝  ██║  ██║░╚███║  ╚██████╔╝
-" ╚═════╝░░   ╚════╝░  ░╚═════╝░  ╚═╝░░╚═╝  ░╚════╝░  ╚═╝  ╚═╝░░╚══╝  ░╚════╝░
-" list of keymap
+
+" -------------------------------------------------------------------------- "
+"                         sourcing 
+" -------------------------------------------------------------------------- "
 execute 'source ' VimrcPath('mappings.vim')
-" load and config plugins
 execute 'source ' VimrcPath('plugins.vim')
 execute 'source ' VimrcPath('mapping_plugin.vim')
-" if gvim running
-" execute 'source ' VimrcPath('gvim.vim')
-" colors settings
 execute 'source ' VimrcPath('colors/colors.vim')
-" configs for the coc extensions
 execute 'source ' VimrcPath('coc.vim')
-
-function! FillLine( str, str_end )
-    " set tw to the desired total length
-    let tw = 77
-    if tw==0 | let tw = 77 | endif
-    " strip trailing spaces first
-    .s/[[:space:]]*$//
-    " calculate total number of 'str's to insert
-    let reps = (tw - col("$")) / len(a:str)
-    " insert them, if there's room, removing trailing spaces (though forcing
-    " there to be one)
-    if reps > 0
-        .s/$/\=(' '.repeat(a:str, reps))/
-		.s/$/\=(' '.repeat(a:str_end, 1))/
-    endif
-endfunction
-
 

@@ -177,7 +177,6 @@ global_extra_conf.py
 gtkfilechooser.ini
 hist
 images
-init.vim
 jup-command
 kde
 keyboard_config

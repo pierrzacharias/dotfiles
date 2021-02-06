@@ -1,5 +1,5 @@
 " -------------------------------------------------------------------------- "
-" pythonsense custom plugin
+" pythonsense custom mapping plugin
 " -------------------------------------------------------------------------- "
 " map <buffer> ac <Plug>(PythonsenseOuterClassTextObject)
 " map <buffer> ic <Plug>(PythonsenseInnerClassTextObject)

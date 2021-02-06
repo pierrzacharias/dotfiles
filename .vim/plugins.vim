@@ -130,7 +130,7 @@ Plug 'skywind3000/gutentags_plus'                      " help to generate tags
 " --------------------------------------------------------------
 " ---------------------- Theming -------------------------------
 " --------------------------------------------------------------
-Plug 'ayu-theme/ayu-vim'
+Plug 'ayu-theme/ayu-vim'                               " theme
 Plug 'JMcKiern/vim-venter'                             " center a windows
 Plug 'hrsh7th/vim-unmatchparen'                        " highlight unmatch surrounding
 Plug 'altercation/vim-colors-solarized'                " color theme
@@ -165,7 +165,7 @@ Plug 'psliwka/vim-smoothie'                            " Better scroll
 " --------------------------------------------------------------
 " ---------------------- Latex ---------------------------------
 " --------------------------------------------------------------
-" Plug 'lervag/vimtex'                                 " Latex plugin
+Plug 'lervag/vimtex'                                 " Latex plugin
 " Plug 'https://vimawesome.com/plugin/tex-fold'        " add-on for latex TODO
 " Plug 'vim-grammarous'                                " Grammar corrections
 "
@@ -477,25 +477,25 @@ set cpt=.,k,w,b
 " --------------------------------------------------------------
 " ALE
 " --------------------------------------------------------------
-let g:ale_linters = {'python': ['pep8']}
-let g:ale_fixers = {
-    \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\}
-let g:ale_fix_on_save = 1      " Set this variable to 1 to fix files when you save them.
-" let g:ale_sign_error = 'X',
-" let g:ale_sign_warning = "\u0394",
-highlight ALEErrorSign ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
-highlight ALEWarningSign ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
-" :verbose hi ALEErrorSign
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
-nmap <silent> zk <Plug>(ale_previous_wrap)
-nmap <silent> zj <Plug>(ale_next_wrap)
-let g:ale_set_quickfix = 1
-" g:ale_python_auto_pipenv = 1 " Detect whether the file is inside a pipen
-" See https://github.com/dense-analysis/ale/blob/master/doc/ale-python.txt
-let g:ale_python_pylint_options = "--disable=C0301"  " Remove pylint error useless as long line
+" let g:ale_linters = {'python': ['pep8']}
+" let g:ale_fixers = {
+"     \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+" \}
+" let g:ale_fix_on_save = 1      " Set this variable to 1 to fix files when you save them.
+" " let g:ale_sign_error = 'X',
+" " let g:ale_sign_warning = "\u0394",
+" highlight ALEErrorSign ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
+" highlight ALEWarningSign ctermfg=NONE ctermbg=NONE guifg=NONE guibg=NONE
+" " :verbose hi ALEErrorSign
+" let g:ale_echo_msg_error_str = 'E'
+" let g:ale_echo_msg_warning_str = 'W'
+" let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+" nmap <silent> zk <Plug>(ale_previous_wrap)
+" nmap <silent> zj <Plug>(ale_next_wrap)
+" let g:ale_set_quickfix = 1
+" " g:ale_python_auto_pipenv = 1 " Detect whether the file is inside a pipen
+" " See https://github.com/dense-analysis/ale/blob/master/doc/ale-python.txt
+" let g:ale_python_pylint_options = "--disable=C0301"  " Remove pylint error useless as long line
 
 " --------------------------------------------------------------
 " airline
@@ -683,34 +683,6 @@ let g:webdevicons_enable_startify = 1
 let g:startify_change_to_dir = 1
 " let g:workspace_session_directory = $HOME . '/.cache/sessions/'
 
-let g:startify_custom_footer = 'startify#pad(startify#fortune#cowsay())'
-let g:startify_custom_footer = [
-			\ '                                                                                                                                                                                                            ',
-			\ '                        ▄▄                                       ▄▄                                                                      ▄▄                                       ▄▄                        ',
-			\ '              ▄▄▄▀▀▀███▀▀▀█▄▄                          ▄▄▄▀▀▀███▀▀▀█▄▄                                                                ▄▄█▀▀▀███▀▀▀▄▄▄                          ▄▄█▀▀▀███▀▀▀▄▄▄              ',
-			\ '        ▀▀████  ▄▄██▄▄▄▄▄▄▄▄▄▀▀▄▄                ▀▀████  ▄▄██▄▄▄▄▄▄▄▄▄▀▀▄▄                                                        ▄▄▀▀▄▄▄▄▄▄▄▄▄██▄▄  ████▀▀                ▄▄▀▀▄▄▄▄▄▄▄▄▄██▄▄  ████▀▀        ',
-			\ '       ▄▄▀▄▄██▀   ▀██▀    ▄█▀    ▀▄             ▄▄▀▄▄██▀   ▀██▀    ▄█▀    ▀▄                                                    ▄▀    ▀█▄    ▀██▀   ▀██▄▄▀▄▄             ▄▀    ▀█▄    ▀██▀   ▀██▄▄▀▄▄       ',
-			\ '      ████▀ ▄▀      ▀▀▀▀▀▀         ▀▄          ████▀ ▄▀      ▀▀▀▀▀▀         ▀▄                       ++                       ▄▀         ▀▀▀▀▀▀      ▀▄ ▀████          ▄▀         ▀▀▀▀▀▀      ▀▄ ▀████      ',
-			\ '    ▄█ ▀▀▀▀▀ ▄▄▄▀▀▀▀▀▀▀▄▄▄▄ █▄      ▀▄       ▄█ ▀▀▀▀▀ ▄▄▄▀▀▀▀▀▀▀▄▄▄▄ █▄      ▀▄            /░░░░░░░░\++++  /░░░░░░░░\        ▄▀      ▄█ ▄▄▄▄▀▀▀▀▀▀▀▄▄▄ ▀▀▀▀▀ █▄       ▄▀      ▄█ ▄▄▄▄▀▀▀▀▀▀▀▄▄▄ ▀▀▀▀▀ █▄    ',
-			\ '    █     ▄█▀▄▄▄▀▀▀▀       ▄█        ▀▄      █     ▄█▀▄▄▄▀▀▀▀       ▄█        ▀▄           \░░░░░░░░/++++++\░░░░░░░░/       ▄▀        █▄       ▀▀▀▀▄▄▄▀█▄     █      ▄▀        █▄       ▀▀▀▀▄▄▄▀█▄     █    ',
-			\ '   █     █▀ ▀                         █     █     █▀ ▀                         █            |░░░░░░|++++++++/░░░░░/|        █                         ▀ ▀█     █     █                         ▀ ▀█     █   ',
-			\ '   █    █▀                            █     █    █▀                            █            |░░░░░░|++++++/░░░░░/|          █                            ▀█    █     █                            ▀█    █   ',
-			\ '   █▄                                ▄▀     █▄                                ▄▀           +|░░░░░░|++++/░░░░░/|+           ▀▄                                ▄█     ▀▄                                ▄█   ',
-			\ '    █                               ▄█       █                               ▄█          +++|░░░░░░|++/░░░░░/|+++++          █▄                               █       █▄                               █    ',
-			\ '     █                             ▄▀         █                             ▄▀         +++++|░░░░░░|/░░░░░░++++++++++         ▀▄                             █         ▀▄                             █     ',
-			\ '      ▀▄                         ▄█▀           ▀▄                         ▄█▀            +++|░░░░░░░░░░/░░/ +░+░+░+░           ▀█▄                         ▄▀           ▀█▄                         ▄▀      ',
-			\ '        ▀▄▄                   ▄▄▀                ▀▄▄                   ▄▄▀                 +|░░░░░░░░░░░░ +/░░░,░░░,\             ▀▄▄                   ▄▄▀                ▀▄▄                   ▄▄▀        ',
-			\ '           ▀▀▄▄▄         ▄▄▄▀▀                      ▀▀▄▄▄         ▄▄▄▀▀                     |░░░░░░░//░░/+/░/+/░/|/░/                ▀▀▄▄▄         ▄▄▄▀▀                      ▀▀▄▄▄         ▄▄▄▀▀           ',
-			\ '                 ▀▀▀█▀▀▀▀▀                                ▀▀▀█▀▀▀▀▀                         |░░░░░/|+/░/+/░/+/░/ /░/                     ▀▀▀▀▀█▀▀▀                                ▀▀▀▀▀█▀▀▀                 ',
-			\ '                 █████                                    █████                             |░░░/|++/░/+/░/ /░/ /░/                         █████                                    █████                  ',
-			\ '               ██   █ █                                 ██   █ █                            |░/|  /░░//░░//░░//░░░/                        █ █   ██                                 █ █   ██                ',
-			\ '               █    ██  █                               █    ██  █                                   ++                                   █  ██    █                               █  ██    █               ',
-			\ '              █    ██    █                             █    ██    █                                                                      █    ██    █                             █    ██    █              ',
-			\ '            ██    ██      █                          ██    ██      █                                                                    █      ██    ██                          █      ██    ██            ',
-			\ '           ▄█    ██        ██▄                      ▄█    ██        ██▄                                                              ▄██        ██    █▄                      ▄██        ██    █▄           ',
-			\ '          ▄█    ██          █▄                     ▄█    ██          █▄                                                              ▄█          ██    █▄                     ▄█          ██    █▄          ',
-			\ '                ██                                       ██                                                                                      ██                                       ██                ',
-			\ ]
 let g:startify_custom_header = 'startify#center(startify#fortune#cowsay())'
 let g:startify_custom_header = [
 			\ '                  ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄                   ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄              /░░░░░░░░\++++  /░░░░░░░░\          ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄                   ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄                  ',

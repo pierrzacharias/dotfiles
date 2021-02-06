@@ -1,5 +1,3 @@
-set textwidth=80
-set backspace=indent,eol,start    " remove space in indent and end of line
 " set breakindent
 " set breakindentopt=sbr
 " I use a unicode curly array with a <backslash><space>

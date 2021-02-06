@@ -1,4 +1,3 @@
-
 " -------------------- buffergator ----------------------------------------- "
 map <C-b> :BuffergatorOpen<CR>
  
@@ -315,12 +314,3 @@ function! NERDTreeYankCurrentNode()
         call setreg('"', n.path.str())
     endif
 endfunction
-
-
-
-
-
-
-
-
-

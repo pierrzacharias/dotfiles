@@ -7,6 +7,12 @@ Config for GVim in Windows:
 Config for Unix:
 ![](polybar.png)
 
+To obtain full-features vim for windows go to https://tuxproject.de/projects/vim/auto
+```
+https://tuxproject.de/projects/vim/auto
+```
+
+
 To compile vim in python mode:
 ```
 git clone https://github.com/vim/vim & cd vim/
