@@ -1,24 +1,26 @@
-if !exists("current_compiler")
-  compiler python
-endif
-au BufNewFile,BufRead *.py
-    \ set expandtab       |" replace tabs with spaces
-    \ set autoindent      |" copy indent when starting a new line
-    \ set tabstop=4
-    \ set softtabstop=4
-    \ set shiftwidth=4
-    \ set foldmethod=indent
-    \ if !exists("current_compiler")
-    \     compiler python              " assign compiler to custom python compiler
-    \ endif
-
-augroup python
-    autocmd!
-    autocmd FileType python
-                \   syn keyword PythonSelf self
-                \ | highlight def link PythonSelf Special
-augroup end   \ set makeprg=python3\ %
+set textwidth=80
+set backspace=indent,eol,start    " remove space in indent and end of line
+" set breakindent
+" set breakindentopt=sbr
+" I use a unicode curly array with a <backslash><space>
+"'breakat'
+set linebreak
+set breakat="," "choose caracters causing a line break
+set breakat+="." "choose caracters causing a line break
+" if !exists("current_compiler")
+  " compiler python
+" endif
+" au BufNewFile,BufRead *.py
+    " \ if !exists("current_compiler")
+    " \     compiler python              " assign compiler to custom python compiler
+    " \ endif
+    " \ set makeprg=python3\ %
 "
+    " \ set foldmethod=indent
+    " \ set expandtab       |" replace tabs with spaces
+    " \ set shiftwidth=4
+    " \ set softtabstop=4
+    " \ set tabstop=4
 let g:pymode_python = 1
 let g:ale_python_autopep8_use_global = 1
 " let g:syntastic_python_checker = 'flake8 --ignore=E501'
@@ -47,9 +49,6 @@ function! SaveAndExecutePython()
     setlocal nobuflisted
     setlocal winfixheight
     " setlocal cursorline " make it easy to distinguish
-    setlocal nonumber
-    setlocal norelativenumber
-    setlocal showbreak=""
     " clear the buffer
     setlocal noreadonly
     setlocal modifiable

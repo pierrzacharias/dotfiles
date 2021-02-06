@@ -1,9 +1,9 @@
-if has('unix') "specific options for linux
-    colorscheme gruvbox                        | " Sets theme to gruvbox
-endif
-if has('win32') "specific options for windows
-    colorscheme solarized                        | " Sets theme to gruvbox
-endif
+" if has('unix') "specific options for linux
+"     colorscheme gruvbox                        | " Sets theme to gruvbox
+" endif
+" if has('win32') "specific options for windows
+"     colorscheme solarized                        | " Sets theme to gruvbox
+" endif
 set background=dark
 " let g:gruvbox_italic=1
 " let g:gruvbox_contrast_dark = 'soft'
@@ -35,30 +35,31 @@ if has('unix') "specific options for linux
     hi Search cterm=NONE ctermfg=118  ctermbg=18
     hi IncSearch cterm=NONE ctermfg=18  ctermbg=76
     " hi Search cterm=NONE ctermfg=190  ctermbg=26
-    hi SignColumn guifg=#ebdbb2 guibg=NONE ctermbg=NONE
+    " hi SignColumn guifg=#ebdbb2 guibg=NONE ctermbg=NONE
 endif
 "
 if has('win32') "specific options for windows
-    " set termuicolors                           | " Enables 24bit colors
     hi Search cterm=NONE ctermfg=0  ctermbg=10
     hi IncSearch cterm=NONE ctermfg=0  ctermbg=110
-    " highlight VertSplit guibg=NONE ctermbg=NONE cterm=NONE
 endif
-"
+
+" ---------- overide theme highlight ----------------------------------------
+" let g:gruvbox_invert_signs = 0 
 " ██████╗░  ░█████╗░  ███╗░░██╗  ░█████╗░  ██╗░░░░░  ██╗  ███╗░░██╗  ███████╗
 " ██╔══██╗  ██╔══██╗  ████╗░██║  ██╔══██╗  ██║░░░░░  ██║  ████╗░██║  ██╔════╝
 " ██║░░╚═╝  ██║░░██║  ██╔██╗██║  ██║░░██║  ██║░░░░░  ██║  ██╔██╗██║  █████╗░░
 " ██║░░██╗  ██║░░██║  ██║╚████║  ██║░░██║  ██║░░░░░  ██║  ██║╚████║  ██╔══╝░░
 " ╚█████╔╝  ╚█████╔╝  ██║░╚███║  ╚█████╔╝  ███████╗  ██║  ██║░╚███║  ███████╗
 " ░╚════╝░   ╚════╝░  ╚═╝░░╚══╝   ╚════╝░  ╚══════╝  ╚═╝  ╚═╝░░╚══╝  ╚══════╝
-" let g:conoline_color_normal_dark = 'guifg=#3d321e'
+let g:conoline_color_normal_dark = 'guibg=#000000'
+" let g:conoline_color_normal_dark = 'guibg=#1d2021'
 " if has('unix') "specific options for linux
 "     let g:conoline_color_insert_dark = 'guibg=#333333 guifg=NONE gui=None '
 "                             \. 'ctermbg=232 ctermfg=NONE'
 "     let g:conoline_color_normal_dark = 'guibg=#333333 guifg=NONE gui=None '
 "                             \. 'ctermbg=234 ctermfg=NONE'
 " endif
-if has('win32') "specific options for windows
+" if has('win32') "specific options for windows
     " let g:conoline_use_colorscheme_default_normal=0
     " let g:conoline_color_normal_nr_dark = 'guibg=#333333 guifg=#dddddd gui=None '
     "                         \. 'ctermbg=8 ctermfg=NONE'
@@ -71,4 +72,4 @@ if has('win32') "specific options for windows
     " set cursorline                               " Highlight current line
     " hi! CursorLine   cterm=NONE ctermbg=darkblue ctermfg=NONE guibg=darkred guifg=NONE
     " hi! CursorColumn cterm=NONE ctermbg=darkblue ctermfg=NONE guibg=darkred guifg=NONE
-endif
+" endif

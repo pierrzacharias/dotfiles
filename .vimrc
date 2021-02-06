@@ -5,15 +5,18 @@
 " Full featured compiled vim for Windows https://tuxproject.de/projects/vim/auto
 "
 " set paste                       " auto-indent paste
-" --------------- try put symblo on line limit ---------------------"
-set listchars=extends:>,precedes:<
-
+" au BufRead * let &numberwidth = float2nr(log10(line("$"))) + 2
+"           \| let &columns = &numberwidth + 80
+set termguicolors     
+set noequalalways
+set splitright
+" set eadirection
+set columns=85
 
 set conceallevel=3
 set noerrorbells
 autocmd FileType text setlocal textwidth=79
 
-" set backspace=indent,eol,start    " remove space in indent and end of line
 " --------- remove fking trailing whitespaces ------------------------------- "
 fun! <SID>StripTrailingWhitespaces()
     let l = line(".")
@@ -58,7 +61,7 @@ set showcmd
 set updatetime=100                 " Smaller updatetime for CursorHold & CursorHoldI
 set mouse=a                       " enbable mouse functionnalities
 " set tags=tags
-set splitbelow splitright         " new split view appaer verticqly splitted
+" set splitbelow splitright         " new split view appaer verticqly splitted
 set nobackup
 set nowritebackup
 set incsearch                     " Show search result while typing
@@ -83,7 +86,7 @@ set rnu
 " set relativenumber
 " set nonumber
 " set signcolumn=number
-set fillchars=vert:│,fold:       " split separation character
+set fillchars=vert:\|,fold:>,diff:-
 set suffixes+=.pyc,.pyo           " ignore compiled Python files
 set suffixes+=.egg-info           " ignore compiled Python files
 set suffixes+=.png                " don't edit .png files please
@@ -112,23 +115,26 @@ set sessionoptions+=tabpages    " register tab
 set sessionoptions-=blank       " dont't register blank pages
 
 " -------- wrap lines ------------------------------------------------------ "
+set textwidth=80
+set backspace=indent,eol,start    " remove space in indent and end of line
 " set breakindent
 " set breakindentopt=sbr
 " I use a unicode curly array with a <backslash><space>
-" set showbreak=\
+"'breakat'
+set linebreak
+set breakat="," "choose caracters causing a line break
+set breakat+="." "choose caracters causing a line break
 "
 " ------------- autoformat options ----------------------------------------- "
 set formatoptions-=o " dont inser comment leader when pressing <o> or <O>
 set formatoptions+=n " recognize number list form formating
 set formatoptions+=j " join comment when join lines
-set formatoptions+=] " Respect textwidth rigorously
-"
-"
-" ██████╗░  ░█████╗░  ████████╗  ██╗░░██╗
-" ██╔══██╗  ██╔══██╗  ╚══██╔══╝  ██║░░██║
-" ██████╔╝  ███████║  ░░░██║░░░  ███████
-" ██╔═══╝░  ██╔══██║  ░░░██║░░░  ██╔══██║
-" ██║░░░░░  ██║░░██║  ░░░██║░░░  ██║░░██║
+" set formatoptions+=] " Respect textwidth rigorously
+set formatoptions+=t " allow auto-wrap text
+set formatoptions+=c " allow auto-wrap comment
+" let formatoptions+="v" "break line on space only
+" set formatexpr       " where to break line
+":set virtualedit=insert
 " ╚═╝░░░░░  ╚═╝░░╚═╝  ░░╚═╝░░░  ░╚═╝░░╚═╝
 if has('unix')
     " ----------------------------------------
@@ -187,3 +193,21 @@ execute 'source ' VimrcPath('mapping_plugin.vim')
 execute 'source ' VimrcPath('colors/colors.vim')
 " configs for the coc extensions
 execute 'source ' VimrcPath('coc.vim')
+
+function! FillLine( str, str_end )
+    " set tw to the desired total length
+    let tw = 77
+    if tw==0 | let tw = 77 | endif
+    " strip trailing spaces first
+    .s/[[:space:]]*$//
+    " calculate total number of 'str's to insert
+    let reps = (tw - col("$")) / len(a:str)
+    " insert them, if there's room, removing trailing spaces (though forcing
+    " there to be one)
+    if reps > 0
+        .s/$/\=(' '.repeat(a:str, reps))/
+		.s/$/\=(' '.repeat(a:str_end, 1))/
+    endif
+endfunction
+
+

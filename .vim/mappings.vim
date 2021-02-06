@@ -1,23 +1,68 @@
-" ------------------------------------------------------------------------------
+" ----------------- Leader key ---------------------------------------------- "
+" let mapleader="<TAB>"
+
+" --------------------------------------------------------------------------- "
 " # Mappings
-" ------------------------------------------------------------------------------
-nnoremap sf *``
+" --------------------------------------------------------------------------- "
+nnoremap <silent> "" "+yiw
+nnoremap <silent> "<space> "+yy
+
+" for comment line
+map co :call FillLine('-', '#')<CR>    
+map c' i#<Esc> :call FillLine('-', '#')<CR>    
+" for print line
+map cp :call FillLine('-', '")')<CR>    
+
+nnoremap sv *``
 map <space> y
-map mk i\<CR><ESC>
-map M <Nop>
+map ck i\<CR><ESC>
+" map M <Nop>
 nnoremap H ^
 nnoremap L g_
 execute "set <M-f>=\ef"
 inoremap <M-f> <Esc>:update<CR>
 nnoremap <M-f> <Esc><Esc>:update<CR>
-nnoremap qa :qa!<CR>
 execute "set <M-p>=\ep"
 nnoremap <C-p> "+pkJK 
 nnoremap K i<cr><esc>
 nnoremap c<space> i<space><Esc>
+nnoremap qa :qa!<CR>
+
+" -------------------- next error quickfix list ----------------------------- #
+nnoremap ]c :cnext<CR>
+nnoremap [c :cprev<CR>
+nnoremap ]l :lnext<CR>
+nnoremap [l :lprev<CR>
+
+" -------------------- buffergator ------------------------------------------ "
+map <M-q> :tabn1<CR>
+" -------- autoformat files ------------------------------------------------- "
+" nnoremap <silent> <F9> :r! python -m black expand('%:p') -l 79
 
 " ---- e.g press 1 to go to buffer 1 -----------
-nnoremap <silent> <leader>gt :exe "tabn" nr2char(getchar())<cr> " e.g press 1 to go to tab1
+" nnoremap <silent> <leader>gt :exe 'tabn' nr2char(getchar())<cr> "e.g press 1 to go to tab1
+"
+autocmd BufReadPost * map <M-q> :tabn1<CR>
+execute "set <M-q>=\eq"
+map <M-q> :tabn1<CR>
+execute "set <M-w>=\ew"
+map <M-w> :tabn2<CR>
+execute "set <M-e>=\ee"
+map <M-e> :tabn3<CR>
+execute "set <M-r>=\er"
+map <M-r> :tabn4<CR>
+execute "set <M-t>=\et"
+map <M-t> :tabn5<CR>
+execute "set <M-y>=\ey"
+map <M-y> :tabn6<CR>
+execute "set <M-u>=\eu"
+map <M-u> :tabn7<CR>
+execute "set <M-i>=\ei"
+map <M-i> :tabn8<CR>
+execute "set <M-o>=\eo"
+map <M-o> :tabn9<CR>
+" execute "set <M-r>=\ep"
+" map <M-q> :tabn10<CR>
 
 " ---- reload config -----------
 nnoremap <leader>vo :vsp $MYVIMRC<CR>
@@ -41,8 +86,7 @@ nnoremap c* *``cgn
 nnoremap c# #``cgN
 
 " ----- close buffer
-nnoremap qb <Esc>:bd!<CR>
-inoremap qb <Esc>:bd!<CR>
+" nnoremap qb <Esc>:bd!<CR>
 
 noremap j gj
 noremap k gk
@@ -61,8 +105,8 @@ nnoremap <silent> <F4> :call LNext(1)<CR>
 "
 nnoremap <C-w>p :lopen<CR>                  " open loclist
 nnoremap <C-p> :lcl<CR>                     " close loclist
-execute "set <M-u>=\eu"
-nnoremap <M-u> :lla <CR>                    " navigate to last item in list
+" execute "set <M-u>=\eu"
+" nnoremap <M-u> :lla <CR>                    " navigate to last item in list
 
 nnoremap <silent> <F5> :call ToggleQuickFix()<cr>"
 "
@@ -80,7 +124,7 @@ nnoremap <silent> ff :nohlsearch<Bar>:echo<CR> " Press ff to turn off highlighti
 " registers
 "
 " List contents of all registers
-nnoremap <silent> "" :registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>
+" nnoremap <silent> "" :registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>
 command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
 " Clean Registers
 execute "set <M-'>=\e'"
@@ -115,6 +159,7 @@ tnoremap <silent><Esc> <C-[><C-[> <C-\><C-n>
 "
 " split
 "
+noremap <C-w>f :vertical resize 84<CR>
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -125,3 +170,4 @@ noremap <silent> <C-Left> :vertical resize +3<CR>
 noremap <silent> <C-Right> :vertical resize -3<CR>
 noremap <silent> <C-Up>  :resize +3<CR>
 noremap <silent> <C-Down> :resize -3<CR>
+
