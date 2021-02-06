@@ -5,11 +5,15 @@
 " Full featured compiled vim for Windows https://tuxproject.de/projects/vim/auto
 "
 " set paste                       " auto-indent paste
+" --------------- try put symblo on line limit ---------------------"
+set listchars=extends:>,precedes:<
+
+
 set conceallevel=3
 set noerrorbells
 autocmd FileType text setlocal textwidth=79
 
-set backspace=indent,eol,start    " remove space in indent and end of line
+" set backspace=indent,eol,start    " remove space in indent and end of line
 " --------- remove fking trailing whitespaces ------------------------------- "
 fun! <SID>StripTrailingWhitespaces()
     let l = line(".")
