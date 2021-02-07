@@ -60,8 +60,8 @@ Plug 'AndrewRadev/sideways.vim'                        " move func args
 " --------------------------------------------------------------------------- "
 " --------------------- Session Management ---------------------------------- "
 " --------------------------------------------------------------------------- "
+Plug 'mhinz/vim-startify'                              " start page for vim
 " Plug 'vim-scripts/restore_view.vim'                 " replaced by vim-stay
-" Plug 'mhinz/vim-startify'                              " start page for vim
 
 " --------------------------------------------------------------------------- "
 " ---------------------- IDE masterrace ------------------------------------- "
@@ -632,9 +632,9 @@ let g:vimtex_enabled=1
 "let g:vimtex_compiler_enabled=1
 let g:livepreview_previewer = 'zathura'
 let g:vimtex_view_general_viewer = 'zathura'
-"let g:livepreview_engine = 'lualatex'
+" let g:livepreview_engine = 'lualatex'
 let g:vimtex_compiler_method = 'latexmk'
-"let g:vimtex_compiler_latexmk_engines = 'lualatex'
+" let g:vimtex_compiler_latexmk_engines = 'lualatex'
 " See $pdf_mode = 4 in .latexmk for lualatx
 let g:vimtex_compiler_latexmk = {
     \ 'backend' : 'jobs',
@@ -656,7 +656,7 @@ let g:vimtex_compiler_latexmk = {
     "\   '-interaction=nonstopmode',
 "
 " To prevent conceal in LaTeX files
-let g:tex_conceal = ''
+" let g:tex_conceal = ''
 let g:tex_flavor = 'latex'
 " autocmd BufReadPost * " When editing a file, always jump to the last known cursor position.
 "   \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
