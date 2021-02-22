@@ -12,8 +12,8 @@ call plug#begin(g:plug_install_files)
 " ---------------------- To config -----------------------------
 " --------------------------------------------------------------
 Plug 'mhinz/vim-grepper'                              " grep tool
-" Plug 'RRethy/vim-illuminate'                           " highlihgt word under cursor
 " Plug 'ctrlpvim/ctrlp.vim'
+" Plug 'RRethy/vim-illuminate'                           " highlihgt word under cursor
 " Plug 'mhinz/vim-mix-format'
 " Plug 't9md/vim-textmanip'                             " move blocks of text easy
 " Plug 't9md/vim-choosewin'
@@ -24,7 +24,6 @@ Plug 'mhinz/vim-grepper'                              " grep tool
 " --------------------------------------------------------------
 Plug 'https://github.com/kana/vim-metarw'
 Plug 'https://github.com/mattn/vim-metarw-gdrive'
-Plug 'pechorin/any-jump.vim'                           " ripgrep tool
 Plug 'flwyd/vim-conjoin'                               " better join lines
 Plug 'jeetsukumaran/vim-buffergator'                   " buffer list
 " Plug 'jeetsukumaran/ctrlp-pythonic.vim'
@@ -33,8 +32,8 @@ Plug 'jeetsukumaran/vim-buffergator'                   " buffer list
 " -------------------------------------------------------------
 " not working on windows
 " -------------------------------------------------------------
-" Plug 'junegunn/fzf.vim'                              " fuzzy finder Plug 'junegunn/fzf.vim'
 " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Plug 'junegunn/fzf.vim'                              " fuzzy finder Plug 'junegunn/fzf.vim'
 "
 " --------------------------------------------------------------
 " ---------------------- Navigation ----------------------------
@@ -229,6 +228,16 @@ call plug#end()
 " >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
 " >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
 " >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
+"
+" -------------------------------------------------------------
+"  Grepper
+"  ------------------------------------------------------------
+let g:grepper.quickfix=1          " USe location list
+let g:grepper.open=1
+let g:grepper.switch=1              " Go into the location list after a search
+let g:grepper.side=1                " Open a new window and show matches with surrounding contextu
+nmap gs  <plug>(GrepperOperator)
+xmap gs  <plug>(GrepperOperator)
 
 " --------------------------------------------------------------
 "  Venter
@@ -503,9 +512,9 @@ set cpt=.,k,w,b
 " -------------------- theme ------------------------------------------------ "
 " let g:airline_theme = 'solarized_flood'
 " let g:airline_theme = 'violet'
-" let g:airline_theme = 'wombat'
+let g:airline_theme = 'wombat'
 " let g:airline_theme = 'gruvbox_undercurl'
-let g:airline_theme = 'powerlineish'
+" let g:airline_theme = 'powerlineish'
 
 " -------------------- general options -------------------------------------- "
 let g:airline_inactive_collapse=0
@@ -519,7 +528,7 @@ let g:airline#extensions#tabline#show_splits = 0
 let g:airline#extensions#tabline#show_tab_nr = 0
 " enable/disable displaying tab type (e.g. [buffers]/[tabs]) >
 let g:airline#extensions#tabline#show_tab_type = 0
-let g:airline#extensions#tabline#close_symbol = '×'
+let g:airline#extensions#tabline#close_symbol = '>'
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#fnamemod = ':t' " show only file name on tabs
 " let g:airline#extensions#tabline#buffer_min_count = 0   " show tabline only if there is more than 1 buffer
@@ -556,22 +565,20 @@ let g:airline#extensions#searchcount#enabled = 0
 "
 
 	" ---------------------- symbols -------------------------------------------- "
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-  endif
-" let g:airline_left_sep = "\uE0BC"
-let g:airline_left_sep = " "
-let g:airline_right_sep = " "
-let g:airline_left_alt_sep = " | "  " 
-let g:airline_right_alt_sep = "" " 
-let g:airline_symbols.linenr= " "
-  let g:airline_symbols.maxlinenr=''
-let g:airline_symbols.dirty= ''
-  let g:airline_symbols.maxlinenr = ''
+" if !exists('g:airline_symbols')
+"     let g:airline_symbols = {}
+"   endif
+" let g:airline_left_sep = ">"
+" let g:airline_right_sep = ">"
+" let g:airline_left_alt_sep = ">"
+" let g:airline_right_alt_sep = ">"
+" let g:airline_symbols.linenr= " "
+"   let g:airline_symbols.maxlinenr=''
+" let g:airline_symbols.dirty= ''
+"   let g:airline_symbols.maxlinenr = ''
 
 " --------------------- sections -------------------------------------------- "
 let g:airline#parts#ffenc#skip_expected_string=''   "   'utf-8[unix]'
-
 let g:airline_section_c = airline#section#create([
 			\ 'file',
 			\ 'readonly'
@@ -584,31 +591,22 @@ let g:airline_section_z = airline#section#create([
 			\ '%{(" ")}' . "│" . " ",
 			\ '%c'
 			\ ])
-" \ 'maxlinenr',
 let g:airline_section_y = airline#section#create([
 			\ '%{("")}' . "│" . "",
 			\ ])
 let g:airline_section_warning = ''
 " let g:airline_section_error = ''
 let g:airline#extensions#default#layout = [
-			\ ['a', 'b', 'y', 'x', 'c'],
+			\ [
+				'a',
+				'c'
+			],
 			\ ['warning', 'error', 'z']
 			\ ]
-" replace with that in airline/theme.vim
-" let a:palette[mode]['airline_error'] = [ '#d33682', '#002b36', 232, 160 ]
-"
-" function! MyPlugin(...)
-"     if &filetype == 'MyPluginFileType'
-"       let w:airline_section_a = airline#section#create(['-------------------'])
-"       let w:airline_section_b = airline#section#create(['-------------------'])
-"       let w:airline_section_y = airline#section#create(['-------------------'])
-"       let w:airline_section_x = airline#section#create(['-------------------'])
-"       let w:airline_section_z = airline#section#create(['-------------------'])
-"       let g:airline_variable_referenced_in_statusline = 'foo'
-"     endif
-"   endfunction
-"   call add_inactive_statusline_func('MyPlugin')
 
+				" 'b',
+				" 'y',
+				" 'x',
 " ---------------- mapping tab ---------------------------------------------- "
 nmap <leader>1 <Plug>AirlineSelectTab1
 nmap <leader>2 <Plug>AirlineSelectTab2
@@ -768,16 +766,9 @@ let b:quickrun_config = {
 " map <Leader>h :Files<CR>
 "
 "let g:fzf_tags_command = 'ctags -R'
-"let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline '
-"" let $FZF_DEFAULT_OPTS=' --color=dark --color=fg:5,bg:-1,hl:0,bg+:-1,hl+:-1 --color=info:0,prompt:0,pointer:-1,marker:-1,spinner:-1,header:-1 --layout=reverse  --margin=1,4'
-"" let $FZF_DEFAULT_COMMAND="rg --files --hidden"
-"let g:fzf_layout = { 'down': '30%' }
-"" let g:fzf_layout = { 'window': '-tabnew' }
-"let g:fzf_commands_expect = 'alt-enter'
-"" let g:fzf_preview_window = 'right:50%:noborder:hidden'
-"" let g:coc_fzf_opts = []
-"" let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Todo'} }
-"" \ 'bg':      ['bg', '#201a14'],
+let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline '
+let g:fzf_layout = { 'down': '30%' }
+let g:fzf_commands_expect = 'alt-enter'
 "command! -bang -nargs=? -complete=dir Files
 "    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
 "" Get text in files with Rg
@@ -794,31 +785,9 @@ let b:quickrun_config = {
 "  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
 "endfunction
 ""
-"command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
-""
-"" Git grep
-"command! -bang -nargs=* GGrep \ call fzf#vim#grep( \   'git grep --line-number '.shellescape(<q-args>), 0, \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
-""
-"" # Scoped History Finders  https://github.com/jesseleite/dotfiles/blob/master/vim/plugin-config/fzf.vim
-"command! -bang PHistory call fzf#run(fzf#wrap(s:preview(<bang>0, {
-"  \ 'source': s:file_history_from_directory(s:get_git_root()),
-"  \ 'options': [
-"  \   '--prompt', 'ProjectHistory> ',
-"  \   '--multi',
-"  \ ]}), <bang>0))
-"command! -bang CwdHistory call fzf#run(fzf#wrap(s:preview(<bang>0, {
-"  \ 'source': s:file_history_from_directory(getcwd()),
-"  \ 'options': [
-"  \   '--prompt', 'CwdHistory> ',
-"  \   '--multi',
-"  \ ]}), <bang>0))
-"function! s:file_history_from_directory(directory)
-"  return fzf#vim#_uniq(filter(fzf#vim#_recent_files(), "s:file_is_in_directory(fnamemodify(v:val, ':p'), a:directory)"))
-"endfunction
-"function! s:file_is_in_directory(file, directory)
-"  return filereadable(a:file) && match(a:file, a:directory . '/') == 0
-"endfunction
-
+" command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+" command! -bang -nargs=? -complete=dir Files
+" 	\ call fzf#vim#files(<q-args>, {'options': ['--info=inline']}, <bang>0)
 " --------------------------------------------------------------
 " vimspector
 " --------------------------------------------------------------

@@ -119,8 +119,6 @@ set sessionoptions-=blank       " dont't register blank pages
 " set textwidth=79
 " autocmd FileType text setlocal textwidth=79
 " set columns=80
-set colorcolumn=80
-set cc=+0,+1,+2                       " highlight column limit for 3 columns
 
 set backspace=indent,eol,start    " remove space in indent and end of line
 " set breakindent

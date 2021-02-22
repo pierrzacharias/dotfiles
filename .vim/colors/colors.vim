@@ -29,6 +29,8 @@ endif
 " ------------------- column limit ---------------------------------------- "
 " ------------------------------------------------------------------------- "
 highlight ColorColumn guibg=#002b36	 
+set colorcolumn=80
+set cc=+0,+1,+2                       " highlight column limit for 3 columns
 " highlight outboundcolumn guibg=#00364a
 " call matchadd('outboundcolumn', '\%84v', 100) "set column nr
 
@@ -49,12 +51,8 @@ hi! IncSearch gui=NONE guibg=#98971a guifg=#000000
 " ----------------- current line number color ----------------------------- "
 " ------------------------------------------------------------------------- "
 hi! CursorLineNr guifg=#b58900 guibg=#002b36	
-" line numbers color
-hi! LineNr  guifg=#859900 guibg=#0F1419 gui=NONE
-" hi! LineNr  guifg=#859900 guibg=#002b36	
-" hi! SignColumn guifg=#859900  guibg=NONE
-hi SignColumn guifg=#859900 guibg=NONE gui=NONE cterm=NONE
-" hi SignColumn gui=bold guibg=NONE ctermbg=None cterm=None
+hi! LineNr guifg=#859900 guibg=#6c71c4 gui=NONE
+hi! SignColumn guifg=#859900 guibg=#0F1419 gui=NONE 
 
 if has('unix') "specific options for linux
     " autocmd vimenter * hi Normal guibg=NONE " transparent bg
