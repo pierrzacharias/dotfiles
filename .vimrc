@@ -4,6 +4,11 @@
 " au BufRead * let &numberwidth = float2nr(log10(line("$"))) + 2
 "           \| let &columns = &numberwidth + 80
 
+# change end-of-line for windows files
+if has('win32')
+	set fileformat=dos
+endif
+
 set termguicolors      " Use gui color for terminal
 set conceallevel=3
 set noequalalways
@@ -191,4 +196,6 @@ execute 'source ' VimrcPath('plugins.vim')
 execute 'source ' VimrcPath('mapping_plugin.vim')
 execute 'source ' VimrcPath('colors/colors.vim')
 execute 'source ' VimrcPath('coc.vim')
+
+
 

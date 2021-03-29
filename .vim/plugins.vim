@@ -11,7 +11,7 @@ call plug#begin(g:plug_install_files)
 " --------------------------------------------------------------
 " ---------------------- To config -----------------------------
 " --------------------------------------------------------------
-Plug 'mhinz/vim-grepper'                              " grep tool
+Plug 'brooth/far.vim'
 " Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'RRethy/vim-illuminate'                           " highlihgt word under cursor
 " Plug 'mhinz/vim-mix-format'
@@ -38,6 +38,7 @@ Plug 'jeetsukumaran/vim-buffergator'                   " buffer list
 " --------------------------------------------------------------
 " ---------------------- Navigation ----------------------------
 " --------------------------------------------------------------
+Plug 'mhinz/vim-grepper'                              " grep tool
 Plug 'jeetsukumaran/vim-indentwise'                    " motions based on indent
 Plug 'Shougo/echodoc.vim'                              " echo funcitons doc
 Plug 'fcpg/vim-shore'                                  " j/k to first non-blank
@@ -100,7 +101,7 @@ Plug 'rbong/vim-flog'                                  " See git branches
 " --------------------------------------------------------------
 "- ---------------------- Python -------------------------------
 " --------------------------------------------------------------
-Plug 'jmcantrell/vim-virtualenv'                       " Tool for python venv
+" Plug 'jmcantrell/vim-virtualenv'                       " Tool for python venv
 Plug 'mgedmin/python_open_module.vim'                  " Python standard library source code
 Plug 'FooSoft/vim-argwrap'                             " wrap functions args
 Plug 'kkoomen/vim-doge'                                " Docstring generator
@@ -130,16 +131,17 @@ Plug 'skywind3000/gutentags_plus'                      " help to generate tags
 " ---------------------- Theming -------------------------------
 " --------------------------------------------------------------
 Plug 'ayu-theme/ayu-vim'                               " theme
+Plug 'morhetz/gruvbox'                                 " color theme
+Plug 'MTDL9/vim-log-highlighting'                      " highlight .log files
 Plug 'JMcKiern/vim-venter'                             " center a windows
 Plug 'hrsh7th/vim-unmatchparen'                        " highlight unmatch surrounding
-Plug 'altercation/vim-colors-solarized'                " color theme
 Plug 'ryanoasis/vim-devicons'                          " add icon
 Plug 'vim-airline/vim-airline'                         " add visual line
 Plug 'vim-airline/vim-airline-themes'                  " theme for airline
 Plug 'camspiers/animate.vim'                           " windows move animation
 Plug 'luochen1990/rainbow'                             " rainbow parenthesis
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'Yggdroot/indentLine'                             " add visual indent
+" Plug 'Yggdroot/indentLine'                             " add visual indent
 Plug 'psliwka/vim-smoothie'                            " Better scroll
 " Plug 'miyakogi/conoline.vim'                           " highlights the line of the cursor
 " Plug 'ipod825/war.vim'
@@ -147,11 +149,10 @@ Plug 'psliwka/vim-smoothie'                            " Better scroll
 " Plug 'https://github.com/vim-scripts/fontzoom.vim'     " change font with +/-
 " Plug 'troydm/zoomwintab.vim'                           " zoom on a tab
 " Plug 'bluz71/vim-moonfly-statusline'                   " Minimal status bar
+" Plug 'altercation/vim-colors-solarized'                " color theme
+" Plug 'junegunn/seoul256.vim'
 " Plug 'vim/killersheep'                                 " absolutely essential
 " old themes:
-" Plug 'https://github.com/nonetallt/vim-neon-dark'
-" Plug 'morhetz/gruvbox'                                 " color theme
-" Plug 'https://github.com/fcpg/vim-orbital'
 " Plug 'https://github.com/ogdenwebb/emacs-kaolin-themes'
 " Plug 'https://github.com/fcpg/vim-fahrenheit'
 
@@ -229,13 +230,14 @@ call plug#end()
 " >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
 " >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
 "
+
 " -------------------------------------------------------------
 "  Grepper
 "  ------------------------------------------------------------
-let g:grepper.quickfix=1          " USe location list
-let g:grepper.open=1
-let g:grepper.switch=1              " Go into the location list after a search
-let g:grepper.side=1                " Open a new window and show matches with surrounding contextu
+let g:grepper_quickfix=1          " USe location list
+let g:grepper_open=1
+let g:grepper_switch=1              " Go into the location list after a search
+let g:grepper_side=1                " Open a new window and show matches with surrounding contextu
 nmap gs  <plug>(GrepperOperator)
 xmap gs  <plug>(GrepperOperator)
 
@@ -272,10 +274,10 @@ let g:buffergator_autoexpand_on_split = 0
 " ------------------------- Indent  ----------------------------------------- "
 " --------------------------------------------------------------
 let g:indent_guides_enable_on_vim_startup=1
-let g:indent_guides_guide_size=3
-let g:indent_guides_auto_colors=0
-" let g:indent_guides_start_level=2
-
+let g:indent_guides_guide_size=2
+let g:indent_guides_auto_colors=1
+let g:indent_guides_color_change_percent = 8
+let g:indent_guides_start_level = 2
 
 " --------------------------------------------------------------
 " Workspace
@@ -387,14 +389,14 @@ let g:autopep8_max_line_length=79
 " --------------------------------------------------------------
 " indent
 " --------------------------------------------------------------
-let g:indentLine_color_term =22
-" let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-" let g:indentLine_char = "|"
-" let g:indentLine_char = "-"
-" let g:indentLine_char = ">"
-" let g:indentLine_leadingSpaceChar = ' '
-" let g:indentLine_leadingSpaceEnabled=1
-let g:indentLine_showFirstIndentLevel=0
+" let g:indentLine_setColors = 1
+" " let g:indentLine_color_term = 15
+" let g:indentLine_color_gui = '#F29718'
+" " let g:indentLine_bgcolor_gui = '#B8CC52'
+" " let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+" let g:indentLine_char = "¦"
+" " let g:indentLine_leadingSpaceEnabled=1
+" let g:indentLine_showFirstIndentLevel=0
 
 " --------------------------------------------------------------
 " animate
@@ -506,39 +508,41 @@ set cpt=.,k,w,b
 " " See https://github.com/dense-analysis/ale/blob/master/doc/ale-python.txt
 " let g:ale_python_pylint_options = "--disable=C0301"  " Remove pylint error useless as long line
 
+
 " --------------------------------------------------------------
 " airline
 " --------------------------------------------------------------
 " -------------------- theme ------------------------------------------------ "
-" let g:airline_theme = 'solarized_flood'
-" let g:airline_theme = 'violet'
-let g:airline_theme = 'wombat'
-" let g:airline_theme = 'gruvbox_undercurl'
-" let g:airline_theme = 'powerlineish'
+" let g:airline_theme = 'ayu_mirage'
+let g:airline_theme = 'desertink'
 
 " -------------------- general options -------------------------------------- "
-let g:airline_inactive_collapse=0
+let g:airline_inactive_collapse=1
 let g:airline_inactive_alt_sep=1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#show_tabs = 1
-let g:airline#extensions#tabline#show_splits = 0
-"  enable/disable displaying tab number in tabs mode. >
-let g:airline#extensions#tabline#show_tab_nr = 0
 " enable/disable displaying tab type (e.g. [buffers]/[tabs]) >
-let g:airline#extensions#tabline#show_tab_type = 0
-let g:airline#extensions#tabline#close_symbol = '>'
+let g:airline#extensions#tabline#close_symbol = '|'
 let g:airline#extensions#tabline#show_close_button = 0
-let g:airline#extensions#tabline#fnamemod = ':t' " show only file name on tabs
 " let g:airline#extensions#tabline#buffer_min_count = 0   " show tabline only if there is more than 1 buffer
-" let g:airline#extensions#tabline#formatter = 'unique_tail'
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-" Show superindex numbers in tabline
-" let g:airline#extensions#tabline#buffer_idx_mode = 1
 
-let g:airline#extensions#tabline#buffer_nr_format = '%s:'
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#tabline#fnamemod = ':t' " show only file name on tabs
+
 let g:airline#extensions#tabline#show_tab_type = 1
+"  enable/disable displaying tab number in tabs mode. >
+
+" let g:airline#extensions#tabline#show_splits = 0
+let g:airline#extensions#tabline#buffer_idx_mode=0
+let g:airline#extensions#tabline#show_tab_nr=1
+let g:airline#extensions#tabline#tab_nr_type=1
+let g:airline#extensions#tabline#buffer_nr_show=0
+
+" let g:airline#extensions#tabline#buffer_nr_format = '%s:'
+
+" Show superindex numbers in tabline
 
 " let g:airline#themes#clean#palette = 1
 " let g:airline_stl_path_style = 'short'
@@ -552,30 +556,9 @@ let g:airline#extensions#tagbar#enabled = 1
 let g:airline#extensions#tagbar#flags = 'f'
 let g:airline#extensions#gutentags#enabled = 1
 let g:airline#extensions#grepper#enabled = 1
-let g:airline#extensions#virtualenv#enabled = 1         " Enable virtualenv plugin
-" let g:airline#extensions#fugitiveline#enabled = 0
-let g:airline#extensions#coc#enabled = 1
-let airline#extensions#coc#error_symbol = 'coc error:'
-let airline#extensions#coc#warning_symbol = 'W:'
-let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
-let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
-" let g:airline#extensions#ctrlspace#enabled = 1
-let g:airline#extensions#localsearch#enabled = 0
-let g:airline#extensions#searchcount#enabled = 0
+" let g:airline#extensions#virtualenv#enabled = 1         " Enable virtualenv plugin
+let g:airline#extensions#coc#enabled = 0
 "
-
-	" ---------------------- symbols -------------------------------------------- "
-" if !exists('g:airline_symbols')
-"     let g:airline_symbols = {}
-"   endif
-" let g:airline_left_sep = ">"
-" let g:airline_right_sep = ">"
-" let g:airline_left_alt_sep = ">"
-" let g:airline_right_alt_sep = ">"
-" let g:airline_symbols.linenr= " "
-"   let g:airline_symbols.maxlinenr=''
-" let g:airline_symbols.dirty= ''
-"   let g:airline_symbols.maxlinenr = ''
 
 " --------------------- sections -------------------------------------------- "
 let g:airline#parts#ffenc#skip_expected_string=''   "   'utf-8[unix]'
@@ -596,30 +579,21 @@ let g:airline_section_y = airline#section#create([
 			\ ])
 let g:airline_section_warning = ''
 " let g:airline_section_error = ''
-let g:airline#extensions#default#layout = [
-			\ [
-				'a',
-				'c'
-			],
-			\ ['warning', 'error', 'z']
-			\ ]
+let g:airline#extensions#default#layout = [['a', 'c'], ['warning', 'error', 'z']]
 
-				" 'b',
-				" 'y',
-				" 'x',
 " ---------------- mapping tab ---------------------------------------------- "
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
-" nmap <leader>- <Plug>AirlineSelectPrevTab
-" nmap <leader>+ <Plug>AirlineSelectNextTab
-
+let g:airline#extensions#tabline#buffer_idx_format = {
+        \ '0': 'Q',
+        \ '1': 'W',
+        \ '2': 'E',
+        \ '3': 'R',
+        \ '4': 'T',
+        \ '5': 'Y',
+        \ '6': 'U',
+        \ '7': 'I',
+        \ '8': 'O',
+        \ '9': 'P'
+        \}
 " --------------------------------------------------------------
 " vimtex
 " --------------------------------------------------------------
