@@ -44,6 +44,11 @@ hi! SignColumn guibg=#5C6773 guifg=#95E6CB
 " hi! Search gui=NONE guibg=#6c71c4 guifg=#000000
 " hi! IncSearch gui=NONE guibg=#98971a guifg=#000000
 
+" -------------------------------------------------------------
+"  vim signature
+"  ------------------------------------------------------------
+highlight SignatureMarkText guifg=#D9D8D7 guibg=#3E4B59
+
 " ---------------- coc color ---------------------------------------------- #
 highlight! CocWarningSign guifg=#859900 guibg=NONE gui=NONE cterm=NONE
 highlight! CocErrorSign guifg=#859900 guibg=NONE gui=NONE cterm=NONE

@@ -12,9 +12,10 @@ function! ToggleSignColumn()                               "https://stackoverflo
         let b:signcolumn_on=0
     else
         set signcolumn=auto
-        let b:signcolumn_on=1
+        let b:signcolumn_on=0
     endif
 endfunction
+
 function! FillLine( str, str_end )
     " set tw to the desired total length
     let tw = 77

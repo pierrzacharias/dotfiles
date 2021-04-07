@@ -1,0 +1,6 @@
+{
+    "suggest.triggerAfterInsertEnter": true,
+		"coc.preferences.bracketEnterImprove":false,
+		"python.formatting.provider": "black",
+		"python.analysis.diagnosticEnabled":true
+}

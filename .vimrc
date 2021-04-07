@@ -47,7 +47,7 @@ set tabstop=2
 " set softtabstop=2                 " Number of spaces for a tab
 " set shiftround                    " Snap indents via > or < to multiples of w
 "
-set scrolloff=10                    " limit of line to scroll
+set scrolloff=20                    " limit of line to scroll
 set showtabline=2
 set incsearch                       " Show search result while typing
 set encoding=utf-8
@@ -77,13 +77,13 @@ autocmd BufReadPost *
             \ if line("'\"") > 0 && line ("'\"") <= line("$") |
             \   exe "normal! g'\"" |
             \ endif
-set noswapfile                    " No swap files for unmodified buffers
+set noswapfile                      " No swap files for unmodified buffers
 augroup Swap
     autocmd CursorHold,BufWritePost,BufReadPost,BufLeave *
                 \ if isdirectory(expand("<amatch>:h")) | let &swapfile = &modified | endif
 augroup END
 syntax on
-set virtualedit=onemore
+set virtualedit=onemore             " allow the cursor to go one char after end of line
 " set relative numbers
 set nu
 set rnu
@@ -204,25 +204,21 @@ execute 'source ' VimrcPath('coc.vim')
 set guifont=Inconsolata:h16
 highlight! Normal guibg=#0F1419
 let g:neovide_transparency=0.8
+let g:neovide_no_idle=v:true
+let g:neovide_cursor_animation_length=0.05
 " let g:neovide_refresh_rate=140
 " let g:neovide_fullscreen=v:true
-let g:neovide_cursor_vfx_mode = "railgun"
-let g:neovide_cursor_vfx_opacity=90.0
-let g:neovide_cursor_vfx_particle_lifetime=1.2
-let g:neovide_cursor_vfx_particle_density=2.0
-let g:neovide_cursor_vfx_particle_speed=100.0
+" let g:neovide_cursor_vfx_mode = "railgun"
+let g:neovide_cursor_vfx_opacity=200.0
+
+set signcolumn=number
 
 " -------------------------------------------------------------------------- "
 "                         python template 
 " -------------------------------------------------------------------------- "
-
-" if has('unix')
-" 		autocmd BufNewFile *.py 0r ~./vim/templates/template.py
-" endif
-" :pu=strftime("%y/%m/%d %H:%M:%S")
+"  apply a template when creating a python file
 
 autocmd BufNewFile *.py :call CheckPyFile()
-
 function! CheckPyFile()
 		let s:file = "> FILE:      " . expand("%:t:r") . "." . expand("%:t:e")
 		if (getline("1") !~ "# -*- coding: utf-8 -*")

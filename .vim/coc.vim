@@ -10,10 +10,10 @@ else
 endif
 
 " ---------------- coc color ------------------------------------------------ #
-highlight! CocWarningSign guifg=#859900 guibg=#0F1419	 gui=NONE cterm=NONE
-highlight! CocErrorSign guifg=#859900 guibg=#0F1419	 gui=NONE cterm=NONE
-highlight! CocInfoSign  guifg=#859900 guibg=#0F1419	 gui=NONE cterm=NONE
-highlight! CocHintSign guifg=#859900 guibg=#0F1419	 gui=NONE cterm=NONE
+highlight! CocWarningSign guifg=#F07178 guibg=NONE gui=NONE cterm=NONE
+highlight! CocErrorSign guifg=#F07178 guibg=NONE gui=NONE cterm=NONE
+highlight! CocInfoSign  guifg=#F07178 guibg=NONE gui=NONE cterm=NONE
+highlight! CocHintSign guifg=#F07178 guibg=NONE gui=NONE cterm=NONE
 
 highlight! CocWarningHighlight guibg=NONE gui=NONE cterm=NONE 
 highlight! CocErrorHighlight guibg=NONE gui=NONE cterm=NONE 
