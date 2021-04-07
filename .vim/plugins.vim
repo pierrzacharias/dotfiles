@@ -9,6 +9,12 @@ endif
 call plug#begin(g:plug_install_files)
 
 " --------------------------------------------------------------
+" ---------------------- Neovim  ----------------------------
+" --------------------------------------------------------------
+Plug 'lukas-reineke/indent-blankline.nvim'              " show indent on empty line
+" Plug 'akinsho/nvim-bufferline.lua'
+
+" --------------------------------------------------------------
 " ---------------------- To config -----------------------------
 " --------------------------------------------------------------
 Plug 'brooth/far.vim'
@@ -29,9 +35,6 @@ Plug 'jeetsukumaran/vim-buffergator'                   " buffer list
 " Plug 'jeetsukumaran/ctrlp-pythonic.vim'
 " Plug 'junegunn/loclisteasy-align'
 "
-" -------------------------------------------------------------
-" not working on windows
-" -------------------------------------------------------------
 " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Plug 'junegunn/fzf.vim'                              " fuzzy finder Plug 'junegunn/fzf.vim'
 "
@@ -135,13 +138,14 @@ Plug 'morhetz/gruvbox'                                 " color theme
 Plug 'MTDL9/vim-log-highlighting'                      " highlight .log files
 Plug 'JMcKiern/vim-venter'                             " center a windows
 Plug 'hrsh7th/vim-unmatchparen'                        " highlight unmatch surrounding
+Plug 'kyazdani42/nvim-web-devicons' " Recommended (for coloured icons)
 Plug 'ryanoasis/vim-devicons'                          " add icon
 Plug 'vim-airline/vim-airline'                         " add visual line
 Plug 'vim-airline/vim-airline-themes'                  " theme for airline
 Plug 'camspiers/animate.vim'                           " windows move animation
 Plug 'luochen1990/rainbow'                             " rainbow parenthesis
-Plug 'nathanaelkane/vim-indent-guides'
-" Plug 'Yggdroot/indentLine'                             " add visual indent
+" Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Yggdroot/indentLine'                             " add visual indent
 Plug 'psliwka/vim-smoothie'                            " Better scroll
 " Plug 'miyakogi/conoline.vim'                           " highlights the line of the cursor
 " Plug 'ipod825/war.vim'
@@ -414,7 +418,7 @@ let g:sendtowindow_use_defaults=0
 " nerdtree
 " --------------------------------------------------------------
 " let g:miniBufExplMapWindowNavVim = 1
-let g:webdevicons_enable_nerdtree = 0
+let g:webdevicons_enable_nerdtree = 1
 " let g:WebDevIconsNerdTreeBeforeGlyphPadding = ''
 " let g:WebDevIconsNerdTreeGitPluginForceVAlign = 1
 " let g:NERDTreeNodeDelimiter="😀"       "smiley face

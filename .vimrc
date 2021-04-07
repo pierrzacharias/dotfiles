@@ -168,7 +168,7 @@ if has('unix')
     \ ]
 endif
 if has('win32')
-    " ---------------------------------------------------------------------- "
+
     "  ------ Windows config -------------------
     " ---------------------------------------------------------------------- "
     " Parent paths
@@ -197,5 +197,57 @@ execute 'source ' VimrcPath('mapping_plugin.vim')
 execute 'source ' VimrcPath('colors/colors.vim')
 execute 'source ' VimrcPath('coc.vim')
 
+" -------------------------------------------------------------------------- "
+"                         neovide 
+" -------------------------------------------------------------------------- "
 
+set guifont=Inconsolata:h16
+highlight! Normal guibg=#0F1419
+let g:neovide_transparency=0.8
+" let g:neovide_refresh_rate=140
+" let g:neovide_fullscreen=v:true
+let g:neovide_cursor_vfx_mode = "railgun"
+let g:neovide_cursor_vfx_opacity=90.0
+let g:neovide_cursor_vfx_particle_lifetime=1.2
+let g:neovide_cursor_vfx_particle_density=2.0
+let g:neovide_cursor_vfx_particle_speed=100.0
 
+" -------------------------------------------------------------------------- "
+"                         python template 
+" -------------------------------------------------------------------------- "
+
+" if has('unix')
+" 		autocmd BufNewFile *.py 0r ~./vim/templates/template.py
+" endif
+" :pu=strftime("%y/%m/%d %H:%M:%S")
+
+autocmd BufNewFile *.py :call CheckPyFile()
+
+function! CheckPyFile()
+		let s:file = "> FILE:      " . expand("%:t:r") . "." . expand("%:t:e")
+		if (getline("1") !~ "# -*- coding: utf-8 -*")
+				normal!ggO# -*- coding: utf-8 -*
+				normal!o"""
+				call append(2, s:file)
+				normal!o> AUTEUR:    P. GAUTHIER ( TEAM CEA )
+				normal!Go> CREE:      
+				:pu=strftime('%y/%m/%d %T')
+				normal!kJ
+				normal!o> MODIFIE:   
+				:pu=strftime('%y/%m/%d')
+				normal!kJ
+				normal!o
+				normal!o> DESCRIPTION:    
+				normal!o"""
+				normal!<<
+				normal!o
+				normal!o
+				normal!odef main() -> None:
+				normal!o""" Main script's function """
+				normal!oreturn None
+				normal!o
+				normal!o
+				normal!oif '__main__' == __name__:
+				normal!omain()
+		endif
+endfunction
