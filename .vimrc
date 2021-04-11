@@ -20,16 +20,8 @@ set noerrorbells
 autocmd FileType text setlocal textwidth=79
 
 " -------------------------------------------------------------------------- "
-" --------- remove fking trailing whitespaces ------------------------------ "
+" --------- remove trailing whitespaces ------------------------------ "
 " -------------------------------------------------------------------------- "
-fun! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    keepp %s/\s\+$//e
-    call cursor(l, c)
-endfun
-autocmd FileType c,cpp,java,php,ruby,python autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
-
 set spelllang=en                  " syntax check
 setglobal helplang=en             " syntax check
 set nostartofline                 " don't jump to start of line
@@ -84,12 +76,11 @@ augroup Swap
 augroup END
 syntax on
 set virtualedit=onemore             " allow the cursor to go one char after end of line
+
 " set relative numbers
 set nu
 set rnu
-" set relativenumber
-" set nonumber
-" set signcolumn=number
+
 set fillchars=vert:\|,fold:>,diff:-
 set suffixes+=.pyc,.pyo           " ignore compiled Python files
 set suffixes+=.egg-info           " ignore compiled Python files
@@ -105,12 +96,6 @@ set undolevels=10000                 " remember last 10000 changes
 " set whichwrap     =b,s,h,l,~,[,],<,>     " all movement keys wrap
 "
 set ttyfast                        " more smoothness
-
-if has('win32')
-    " set guifont=Source\ Code\ Pro\ Regular\ 20
-    " set regexpengine=1
-    " set novisualbell
-endif
 
 " -------------------------------------------------------------------------- "
 " --------- change mksession ----------------------------------------------- "
@@ -167,8 +152,9 @@ if has('unix')
     \ VimrcPath('*.vim')
     \ ]
 endif
-if has('win32')
 
+if has('win32')
+    " ---------------------------------------------------------------------- "
     "  ------ Windows config -------------------
     " ---------------------------------------------------------------------- "
     " Parent paths
@@ -197,21 +183,21 @@ execute 'source ' VimrcPath('mapping_plugin.vim')
 execute 'source ' VimrcPath('colors/colors.vim')
 execute 'source ' VimrcPath('coc.vim')
 
-" -------------------------------------------------------------------------- "
-"                         neovide 
-" -------------------------------------------------------------------------- "
-
-set guifont=Inconsolata:h16
-highlight! Normal guibg=#0F1419
-let g:neovide_transparency=0.8
-let g:neovide_no_idle=v:true
-let g:neovide_cursor_animation_length=0.05
-" let g:neovide_refresh_rate=140
-" let g:neovide_fullscreen=v:true
-" let g:neovide_cursor_vfx_mode = "railgun"
-let g:neovide_cursor_vfx_opacity=200.0
-
-set signcolumn=number
+if has('nvim')
+	" -------------------------------------------------------------------------- "
+	"                         neovide 
+	" -------------------------------------------------------------------------- "
+	set guifont=Inconsolata:h16
+	highlight! Normal guibg=#0F1419
+	let g:neovide_transparency=0.8
+	let g:neovide_no_idle=v:true
+	let g:neovide_cursor_animation_length=0.05
+	" let g:neovide_refresh_rate=140
+	" let g:neovide_fullscreen=v:true
+	" let g:neovide_cursor_vfx_mode = "railgun"
+	let g:neovide_cursor_vfx_opacity=200.0
+	set signcolumn=number
+endif
 
 " -------------------------------------------------------------------------- "
 "                         python template 
@@ -219,23 +205,21 @@ set signcolumn=number
 "  apply a template when creating a python file
 
 autocmd BufNewFile *.py :call CheckPyFile()
+
 function! CheckPyFile()
-		let s:file = "> FILE:      " . expand("%:t:r") . "." . expand("%:t:e")
+		let s:file = "> FILE:           " . expand("%:t:r") . "." . expand("%:t:e")
 		if (getline("1") !~ "# -*- coding: utf-8 -*")
 				normal!ggO# -*- coding: utf-8 -*
 				normal!o"""
 				call append(2, s:file)
-				normal!o> AUTEUR:    P. GAUTHIER ( TEAM CEA )
-				normal!Go> CREE:      
-				:pu=strftime('%y/%m/%d %T')
-				normal!kJ
-				normal!o> MODIFIE:   
-				:pu=strftime('%y/%m/%d')
-				normal!kJ
-				normal!o
-				normal!o> DESCRIPTION:    
+				normal!o> AUTEUR:         P. GAUTHIER ( CEA TEAM )
+				let created = "> CREATED         " . expand(strftime('%y/%m/%d %T'))
+				call append(5, created)
+				let modif = "> LAST MODIFIED:  " . expand(strftime('%y/%m/%d %T'))
+				call append(6, modif)
+				normal!GGo
+				normal!o> DESCRIPTION:    TODO    
 				normal!o"""
-				normal!<<
 				normal!o
 				normal!o
 				normal!odef main() -> None:
@@ -245,5 +229,17 @@ function! CheckPyFile()
 				normal!o
 				normal!oif '__main__' == __name__:
 				normal!omain()
+				/\<TODO\>
+		endif
+endfunction
+
+" When closing the buffer the 'modified date' is updated
+autocmd BufLeave *.py :call UpdateDatePyFile()
+function! UpdateDatePyFile()
+		if (stridx(getline("7"), "> LAST MODIFIED:  ") !~ -1)
+				:7d
+				let modif = "> LAST MODIFIED:  " . expand(strftime('%y/%m/%d %T'))
+				call append(6, modif)
+				:update
 		endif
 endfunction
