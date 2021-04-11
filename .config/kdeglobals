@@ -121,12 +121,12 @@ XftAntialias=true
 XftHintStyle=hintslight
 XftSubPixel=rgb
 dbfile=/home/pierre/.mozilla/firefox/kivyhyag.default/places.sqlite
-fixed=Hack,12,-1,5,50,0,0,0,0,0
-font=Hack,12,-1,5,50,0,0,0,0,0
-menuFont=Hack,12,-1,5,50,0,0,0,0,0
+fixed=Hack Nerd Font,12,-1,5,50,0,0,0,0,0
+font=Fira Code Retina,12,-1,5,53,0,0,0,0,0,Regular
+menuFont=Fira Code Retina,12,-1,5,53,0,0,0,0,0,Regular
 shadeSortColumn=true
-smallestReadableFont=Hack,10,-1,5,50,0,0,0,0,0
-toolBarFont=Hack,12,-1,5,50,0,0,0,0,0
+smallestReadableFont=Fira Code Retina,10,-1,5,53,0,0,0,0,0,Regular
+toolBarFont=Fira Code Retina,12,-1,5,53,0,0,0,0,0,Regular
 
 [Icons]
 Theme=Gruvbox
@@ -166,7 +166,7 @@ ToolButtonStyleOtherToolbars=TextOnly
 [WM]
 activeBackground=13,12,8
 activeBlend=13,12,8
-activeFont=Hack,12,-1,5,50,0,0,0,0,0
+activeFont=Fira Code Retina,12,-1,5,53,0,0,0,0,0,Regular
 activeForeground=250,151,48
 frame=0,0,0
 inactiveBackground=13,12,8

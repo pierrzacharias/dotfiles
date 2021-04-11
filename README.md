@@ -6,6 +6,7 @@ Config for GVim in Windows:
 
 Config for Unix:
 ![](polybar.png)
+![](screenshot.png)
 
 To obtain full-features vim for windows go to https://tuxproject.de/projects/vim/auto
 ```
