@@ -234,7 +234,7 @@ function! CheckPyFile()
 endfunction
 
 " When closing the buffer the 'modified date' is updated
-autocmd BufLeave *.py :call UpdateDatePyFile()
+autocmd BufWinLeave *.py :call UpdateDatePyFile()
 function! UpdateDatePyFile()
 		if (stridx(getline("7"), "> LAST MODIFIED:  ") !~ -1)
 				:7d

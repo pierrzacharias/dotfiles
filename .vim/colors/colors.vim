@@ -83,7 +83,7 @@ highlight SignatureMarkText guifg=#D9D8D7 guibg=#3E4B59
 " ------------------------------------------------------------------------- "
 " ----------------- current line number color ----------------------------- "
 " ------------------------------------------------------------------------- "
-" hi! SignColumn guifg=#859900 guibg=#5C6773 guifg=#95E6CB
+hi! SignColumn guifg=#859900 guibg=#5C6773 guifg=#95E6CB
 " hi! CursorLineNr guifg=#b58900 guibg=#002b36	
 " hi! LineNr guifg=#859900 guibg=#6c71c4 gui=NONE
 

@@ -1,3 +1,15 @@
+" -------------------------------------------------------------
+"  vim sneak
+"  ------------------------------------------------------------
+nmap z <Plug>Sneak_s
+nmap Z <Plug>Sneak_S
+" visual-mode
+xmap z <Plug>Sneak_s
+xmap Z <Plug>Sneak_S
+" operator-pending-mode
+omap z <Plug>Sneak_s
+omap Z <Plug>Sneak_S
+
 " -------------------- buffergator ----------------------------------------- "
 map <C-b> :BuffergatorOpen<CR>
  
@@ -22,16 +34,22 @@ nnoremap <leader>a :ToggleAutosave<CR>
 " -------------------------------------------------------------------------- "
 " indentwise
 " -------------------------------------------------------------------------- "
-map [= <Plug>(IndentWisePreviousEqualIndent)
-map ]= <Plug>(IndentWiseNextEqualIndent)
-map [+ <Plug>(IndentWisePreviousGreaterIndent)
-map [- <Plug>(IndentWisePreviousLesserIndent)
-map ]- <Plug>(IndentWiseNextLesserIndent)
-map ]+ <Plug>(IndentWiseNextGreaterIndent)
-map [_ <Plug>(IndentWisePreviousAbsoluteIndent)
-map ]_ <Plug>(IndentWiseNextAbsoluteIndent)
-map [% <Plug>(IndentWiseBlockScopeBoundaryBegin)
-map ]% <Plug>(IndentWiseBlockScopeBoundaryEnd)"
+execute "set <M-k>=\ek"
+map <M-k> <Plug>(IndentWisePreviousEqualIndent)
+execute "set <M-j>=\ej"
+map <M-j> <Plug>(IndentWiseNextEqualIndent)
+execute "set <M-L>=\eL"
+map <M-L> <Plug>(IndentWisePreviousGreaterIndent)
+execute "set <M-H>=\eH"
+map <M-H> <Plug>(IndentWisePreviousLesserIndent)
+execute "set <M-h>=\eh"
+map <M-h> <Plug>(IndentWiseNextLesserIndent)
+execute "set <M-l>=\el"
+map <M-l> <Plug>(IndentWiseNextGreaterIndent)
+" map <M-E> <Plug>(IndentWisePreviousAbsoluteIndent)
+" map <M-e> <Plug>(IndentWiseNextAbsoluteIndent)
+" map <M-e> <Plug>(IndentWiseBlockScopeBoundaryBegin)
+" map <M-e> <Plug>(IndentWiseBlockScopeBoundaryEnd)"
 
 " -------------------------------------------------------------------------- "
 " pythonsense
@@ -76,7 +94,8 @@ nmap <leader>sA <Plug>SidewaysArgumentAppendLast
 " -------------------------------------------------------------------------- "
 " wrap
 " -------------------------------------------------------------------------- "
-nnoremap <silent> <leader>a :ArgWrap<CR><Esc>
+execute "set <M-;>=\e;"
+nnoremap <silent> <M-;> :ArgWrap<CR><Esc>
 
 " -------------------------------------------------------------------------- "
 " vimtweak
