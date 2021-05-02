@@ -15,6 +15,9 @@ set $mod Mod4
 # is used in the bar {} block below.
 font pango:Hack 8
 
+# keyboard config
+xset r rate 150 50
+
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
@@ -23,8 +26,8 @@ font pango:Hack 8
 # they are included here as an example. Modify as you see fit.
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-default_border none
-default_border pixel 2
+default_border pixel 20
+
 default_floating_border normal
 
 ###############        Bar         ##################
@@ -33,6 +36,20 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 ###############        picom         ##################
 exec_always --no-startup-id picom -b
 
+###############        focus script         ##################
+bindsym $mod+n exec /usr/bin/i3-winmotion
+
+###############       alt+tab      ##################
+exec_always --no-startup-id i3-cycle-focus.py --history 2
+bindsym $mod+Tab exec --no-startup-id i3-cycle-focus.py --switch
+
+ # NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+exec --no-startup-id nm-applet
+
+# take a screenshot using flameshot
+bindsym $mod+Print exec "flameshot gui"
+
 # -------------------------------------------------------------------------- #
 #         border
 # -------------------------------------------------------------------------- #
@@ -40,16 +57,18 @@ exec_always --no-startup-id picom -b
 hide_edge_borders both
 # change borders
 bindsym $mod+u border none
-bindsym $mod+y border pixel 3
-bindsym $mod+n border normal
+bindsym $mod+y border pixel 20
+# bindsym $mod+n border normal
 
 # -------------------------------------------------------------------------- #
 #         color
 # -------------------------------------------------------------------------- #
 # class                 border  
-client.focused          #efe73c #efe73c #efe73c #efe73c #efe73c  
-client.focused_inactive #efe73c #efe73c #efe73c #efe73c #efe73c
-client.unfocused        #db7340 #db7340 #db7340 #db7340 #db7340
+# client.focused          #efe73c #efe73c #efe73c #efe73c #efe73c  
+# client.focused_inactive #efe73c #efe73c #efe73c #efe73c #efe73c
+client.focused          #212733 #212733 #212733 #212733 #212733
+client.focused_inactive #212733 #212733 #212733 #212733 #212733
+client.unfocused        #0F1419 #0F1419 #0F1419 #0F1419 #0F1419
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
@@ -80,6 +99,14 @@ bindsym $mod++q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id dmenu_run
+# Open the rofi search bar
+# bindsym $mod+d exec rofi -show drun -theme sidebar -show-icons
+
+# Lock the computer with a blur effect (See script)
+# bindsym $mod+c exec sh ~/.config/i3/lock.sh
+bindsym $mod+c exec sh ~/.config/i3/scrlt.sh
+
+
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -210,3 +237,6 @@ bindsym $mod+Mod1+Right workspace next
 # bar {
 #         status_command i3status
 # }
+bar {
+        position bottom
+}

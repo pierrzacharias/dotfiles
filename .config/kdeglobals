@@ -132,7 +132,7 @@ toolBarFont=Fira Code Retina,12,-1,5,53,0,0,0,0,0,Regular
 Theme=Gruvbox
 
 [KDE]
-AnimationDurationFactor=0.5
+AnimationDurationFactor=0.35355339059327373
 LookAndFeelPackage=GruvboxPlasma
 ShowIconsInMenuItems=true
 ShowIconsOnPushButtons=true
