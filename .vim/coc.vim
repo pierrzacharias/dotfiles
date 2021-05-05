@@ -20,6 +20,7 @@ highlight! CocErrorHighlight guibg=NONE gui=NONE cterm=NONE
 highlight! CocInfoHighlight  guibg=NONE gui=NONE cterm=NONE 
 highlight! CocHintHighlight guibg=NONE gui=NONE cterm=NONE 
 
+" use location list
 let g:coc_global_extensions = [
 			\ 'coc-lists',
 			\ 'coc-python',

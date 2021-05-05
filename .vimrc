@@ -4,7 +4,7 @@
 " au BufRead * let &numberwidth = float2nr(log10(line("$"))) + 2
 "           \| let &columns = &numberwidth + 80
 
-# change end-of-line for windows files
+" change end-of-line for windows files
 if has('win32')
 	set fileformat=dos
 endif

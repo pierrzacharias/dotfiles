@@ -22,11 +22,12 @@ nnoremap L g_
 execute "set <M-f>=\ef"
 inoremap <M-f> <Esc>:update<CR>
 nnoremap <M-f> <Esc><Esc>:update<CR>
-execute "set <M-p>=\ep"
-nnoremap <C-p> "+pkJK 
+" nnoremap <M-p> ]<space>"+pkJK 
 nnoremap K i<cr><esc>
 nnoremap c<space> i<space><Esc>
-nnoremap qa :qa!<CR>
+execute "set <M-'>=\e'"
+nnoremap <M-'> i"+\"<Esc>hK
+
 
 " -------------------- next error quickfix list ----------------------------- #
 nnoremap ]c :cnext<CR>
@@ -34,8 +35,6 @@ nnoremap [c :cprev<CR>
 nnoremap ]l :lnext<CR>
 nnoremap [l :lprev<CR>
 
-" -------------------- buffergator ------------------------------------------ "
-map <M-q> :tabn1<CR>
 " -------- autoformat files ------------------------------------------------- "
 " nnoremap <silent> <F9> :r! python -m black expand('%:p') -l 79
 
@@ -79,7 +78,7 @@ nnoremap ql <C-w>l:wq<CR>
 nnoremap qh <C-w>h:wq<CR>
 nnoremap qj <C-w>j:wq<CR>
 nnoremap qk <C-w>k:wq<CR>
-" nnoremap qq :bp\|bd #<CR>
+nnoremap qq :x<CR>
 
 " ------ replace inner word and search replace word to reapeat -------
 nnoremap c* *``cgn
@@ -127,8 +126,6 @@ nnoremap <silent> ff :nohlsearch<Bar>:echo<CR> " Press ff to turn off highlighti
 " nnoremap <silent> "" :registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>
 command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
 " Clean Registers
-execute "set <M-'>=\e'"
-nnoremap <M-'> :WipeReg<cr>
 
 "
 " Tags

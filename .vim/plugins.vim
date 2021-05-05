@@ -11,14 +11,12 @@ call plug#begin(g:plug_install_files)
 " --------------------------------------------------------------
 " ---------------------- Neovim  ----------------------------
 " --------------------------------------------------------------
-Plug 'kshenoy/vim-signature'                            " show mark in sig
-Plug 'lukas-reineke/indent-blankline.nvim'              " show indent on empty line
+" Plug 'lukas-reineke/indent-blankline.nvim'              " show indent on empty line
 " Plug 'akinsho/nvim-bufferline.lua'
 
 " --------------------------------------------------------------
 " ---------------------- To config -----------------------------
 " --------------------------------------------------------------
-Plug 'brooth/far.vim'
 " Plug 'ctrlpvim/ctrlp.vim'
 " Plug 'RRethy/vim-illuminate'                           " highlihgt word under cursor
 " Plug 'mhinz/vim-mix-format'
@@ -26,30 +24,32 @@ Plug 'brooth/far.vim'
 " Plug 't9md/vim-choosewin'
 " Plug 'junegunn/vim-easy-align'                       " Helps alignment TODO: LEARN
 " Plug 'sjl/gundo.vim'                                 " add undo tree
-" --------------------------------------------------------------
-" ---------------------- New -----------------------------------
-" --------------------------------------------------------------
-Plug 'https://github.com/kana/vim-metarw'
-Plug 'https://github.com/mattn/vim-metarw-gdrive'
-Plug 'flwyd/vim-conjoin'                               " better join lines
-Plug 'jeetsukumaran/vim-buffergator'                   " buffer list
+" Plug 'chimay/wheel/'                               " better join lines
 " Plug 'jeetsukumaran/ctrlp-pythonic.vim'
 " Plug 'junegunn/loclisteasy-align'
 "
 " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Plug 'junegunn/fzf.vim'                              " fuzzy finder Plug 'junegunn/fzf.vim'
+" --------------------------------------------------------------
+" ---------------------- New -----------------------------------
+" --------------------------------------------------------------
+Plug 'flwyd/vim-conjoin'                               " better join lines
+Plug 'jeetsukumaran/vim-buffergator'                   " buffer list
 "
 " --------------------------------------------------------------
 " ---------------------- Navigation ----------------------------
 " --------------------------------------------------------------
-Plug 'mhinz/vim-grepper'                              " grep tool
+Plug 'justinmk/vim-sneak'                              " 2 - characters jump
+" Plug 'dahu/vim-fanfingtastic'                          " Extend search with f,t, ...
+Plug 'kshenoy/vim-signature'                           " show mark in sig
+Plug 'mhinz/vim-grepper'                               " grep tool
+Plug 'brooth/far.vim'                                  " find and replace in interactive windows
 Plug 'jeetsukumaran/vim-indentwise'                    " motions based on indent
 Plug 'Shougo/echodoc.vim'                              " echo funcitons doc
 Plug 'fcpg/vim-shore'                                  " j/k to first non-blank
 Plug 'chrisbra/NrrwRgn'                                " edit selection 
 Plug 'moll/vim-bbye'                                   " quit buffers properly
 Plug 'KKPMW/vim-sendtowindow'                          " send text to as windows
-Plug 'dahu/vim-fanfingtastic'                          " Extend search with f,t, ...
 Plug 'tpope/vim-speeddating'                           " Allow incrementing date like int
 Plug 'mattn/vim-findroot'                              " Find root of project
 Plug 'tpope/vim-surround'                              " add object with (, {, {, ...
@@ -74,6 +74,7 @@ Plug 'mhinz/vim-startify'                              " start page for vim
 Plug 'preservim/nerdtree'                              " file explorer
 Plug 'maxboisvert/vim-simple-complete'                 " as-you-type keyword completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}        " new community driven completion engine
+" Plug 'MathSquared/vim-python-sql'
 " Plug 'Shougo/vimproc.vim', {'do' : 'make'}           " async executions
 " Plug 'dense-analysis/ale'                            " syntax checking and semantic errors
 " Plug 'https://github.com/tpope/vim-endwise'          " end certain structures automatically
@@ -105,10 +106,10 @@ Plug 'rbong/vim-flog'                                  " See git branches
 " --------------------------------------------------------------
 "- ---------------------- Python -------------------------------
 " --------------------------------------------------------------
-" Plug 'jmcantrell/vim-virtualenv'                       " Tool for python venv
 Plug 'mgedmin/python_open_module.vim'                  " Python standard library source code
 Plug 'FooSoft/vim-argwrap'                             " wrap functions args
 Plug 'kkoomen/vim-doge'                                " Docstring generator
+" Plug 'jmcantrell/vim-virtualenv'                       " Tool for python venv
 " Plug 'tell-k/vim-autopep8'                           " autoformat python
 " Plug 'wincent/terminus'                              " send text to as windows
 " Plug 'ivanov/vim-ipython' 
@@ -135,7 +136,6 @@ Plug 'skywind3000/gutentags_plus'                      " help to generate tags
 " ---------------------- Theming -------------------------------
 " --------------------------------------------------------------
 Plug 'ayu-theme/ayu-vim'                               " theme
-Plug 'morhetz/gruvbox'                                 " color theme
 Plug 'MTDL9/vim-log-highlighting'                      " highlight .log files
 Plug 'JMcKiern/vim-venter'                             " center a windows
 Plug 'hrsh7th/vim-unmatchparen'                        " highlight unmatch surrounding
@@ -145,9 +145,10 @@ Plug 'vim-airline/vim-airline'                         " add visual line
 Plug 'vim-airline/vim-airline-themes'                  " theme for airline
 Plug 'camspiers/animate.vim'                           " windows move animation
 Plug 'luochen1990/rainbow'                             " rainbow parenthesis
-" Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Yggdroot/indentLine'                             " add visual indent
+" Plug 'nathanaelkane/vim-indent-guides'
 Plug 'psliwka/vim-smoothie'                            " Better scroll
+
 " Plug 'miyakogi/conoline.vim'                           " highlights the line of the cursor
 " Plug 'ipod825/war.vim'
 " Plug 'camspiers/lens.vim'                              " resize windows
@@ -158,6 +159,7 @@ Plug 'psliwka/vim-smoothie'                            " Better scroll
 " Plug 'junegunn/seoul256.vim'
 " Plug 'vim/killersheep'                                 " absolutely essential
 " old themes:
+" Plug 'morhetz/gruvbox'                                 " color theme
 " Plug 'https://github.com/ogdenwebb/emacs-kaolin-themes'
 " Plug 'https://github.com/fcpg/vim-fahrenheit'
 
@@ -236,6 +238,26 @@ call plug#end()
 " >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
 "
 "
+
+" -------------------------------------------------------------
+"  vim sneak
+"  ------------------------------------------------------------
+nmap z <Plug>Sneak_s
+nmap Z <Plug>Sneak_S
+" visual-mode
+xmap z <Plug>Sneak_s
+xmap Z <Plug>Sneak_S
+" operator-pending-mode
+omap z <Plug>Sneak_s
+omap Z <Plug>Sneak_S
+let g:sneak#label = 1
+highlight Sneak guifg=#14191F guibg=#F29718
+highlight SneakScope guifg=#14191F guibg=#F29718
+
+map f <Plug>Sneak_f
+map F <Plug>Sneak_F
+map t <Plug>Sneak_t
+map T <Plug>Sneak_T
 
 " -------------------------------------------------------------
 "  vim signature
@@ -535,7 +557,7 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_buffers = 0
 let g:airline#extensions#tabline#show_tabs = 1
 " enable/disable displaying tab type (e.g. [buffers]/[tabs]) >
-let g:airline#extensions#tabline#close_symbol = '|'
+let g:airline#extensions#tabline#close_symbol = ''
 let g:airline#extensions#tabline#show_close_button = 0
 " let g:airline#extensions#tabline#buffer_min_count = 0   " show tabline only if there is more than 1 buffer
 
@@ -545,10 +567,10 @@ let g:airline#extensions#tabline#fnamemod = ':t' " show only file name on tabs
 let g:airline#extensions#tabline#show_tab_type = 1
 "  enable/disable displaying tab number in tabs mode. >
 
-" let g:airline#extensions#tabline#show_splits = 0
+let g:airline#extensions#tabline#show_splits = 0
 let g:airline#extensions#tabline#buffer_idx_mode=0
 let g:airline#extensions#tabline#show_tab_nr=1
-let g:airline#extensions#tabline#tab_nr_type=1
+let g:airline#extensions#tabline#tab_nr_type=0
 let g:airline#extensions#tabline#buffer_nr_show=0
 
 " let g:airline#extensions#tabline#buffer_nr_format = '%s:'
@@ -560,16 +582,15 @@ let g:airline#extensions#tabline#buffer_nr_show=0
 " let g:airline_detect_paste=1
 " let g:airline_inactive_alt_sep=0
 let g:airline#extensions#whitespace#checks = ['']
-  let g:airline_skip_empty_sections = 1
+let g:airline_skip_empty_sections = 1
 "
 " --------------- extensions ------------------------------------------------
-let g:airline#extensions#tagbar#enabled = 1
+let g:airline#extensions#tagbar#enabled = 0
 let g:airline#extensions#tagbar#flags = 'f'
 let g:airline#extensions#gutentags#enabled = 1
 let g:airline#extensions#grepper#enabled = 1
 " let g:airline#extensions#virtualenv#enabled = 1         " Enable virtualenv plugin
 let g:airline#extensions#coc#enabled = 0
-"
 
 " --------------------- sections -------------------------------------------- "
 let g:airline#parts#ffenc#skip_expected_string=''   "   'utf-8[unix]'

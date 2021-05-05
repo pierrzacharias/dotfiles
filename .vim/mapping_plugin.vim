@@ -10,6 +10,14 @@ xmap Z <Plug>Sneak_S
 omap z <Plug>Sneak_s
 omap Z <Plug>Sneak_S
 
+" --------- Wipe Grep ------------------------------------------------------- #
+execute "set <M-'>=\e'"
+nnoremap <M-'> :WipeReg<cr>
+
+" ------------------- Doge -------------------------------------------------- #
+execute "set <M-d>=\ed"
+nnoremap <M-d> :DogeGenerate<cr>
+
 " -------------------- buffergator ----------------------------------------- "
 map <C-b> :BuffergatorOpen<CR>
  
@@ -138,9 +146,9 @@ nmap <leader>css <plug>(SubversiveSubstituteWordRangeConfirm)
 " latex
 " -------------------------------------------------------------------------- "
 " map <C-s> :call Synctex()<cr>
-execute "set <M-c>=\e3"
-nnoremap <M-c> :VimtexCompile<cr>
-execute "set <M-3>=\e3"
+" execute "set <M-c>=\e3"
+" nnoremap <M-c> :VimtexCompile<cr>
+" execute "set <M-3>=\e3"
 " :copen to see error
 nnoremap <M-3> :copen<cr>
 
@@ -255,27 +263,17 @@ endfunction
 let g:coc_snippet_next = '<TAB>'
 " inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 " nmap  <silent><C-c> :CocEnable<CR>
+execute "set <M-c>=\ep"
+nmap <M-c> :CocDiagnostics<CR>
+execute "set <M-p>=\ep"
+nmap <silent> <M-p> <Plug>(coc-action-diagnosticPreview)
+nmap <silent> gs <Plug>(coc-action-diagnosticToggle)
 nmap <silent> gi <Plug>(coc-diagnostic-info)
 nmap <silent> gb <Plug>(coc-diagnostic-prev)
 nmap <silent> gn <Plug>(coc-diagnostic-next)
 " nmap <silent> me <Plug>(coc-diagnostic-error)
-nmap <silent> gd <Plug>(coc-definition)
-" nmap <silent> gd <Plug>(coc-declaration)
-" nnoremap <silent> gd :call CocAction('jumpDefinition', 'drop')<CR>
-" nmap <silent> my <Plug>(coc-type-definition)
-" nmap <silent> mi <Plug>(coc-implementation)
-" nmap <silent> mr <Plug>(coc-references)
-" Select inside function
-" xmap if <Plug>(coc-funcobj-i)
-" omap if <Plug>(coc-funcobj-i)
-" xmap af <Plug>(coc-funcobj-a)
-" omap af <Plug>(coc-funcobj-a)
-" Select inside class/struct/interface. Recommended mapping:
-" xmap ic <Plug>(coc-classobj-i)
-" omap ic <Plug>(coc-classobj-i)
-" xmap ac <Plug>(coc-classobj-a)
-" omap ac <Plug>(coc-classobj-a)
-" nnoremap <silent> gr :call <SID>show_documentation()<CR> " show Documentation
+nmap <silent> gd <Plug>(coc-action-jumpDefinition)
+nmap <silent> ge <Plug>(coc-action-jumpDeclaration)
 nnoremap <silent> gr :call :<C-u>show_documentation<CR> " show Documentation
 nnoremap <silent><nowait> ga  :<C-u>CocList diagnostics<cr> " Show all diagnostics.
 nnoremap <silent><nowait> <Leader>u  :<C-u>CocList extensions<cr> " Manage extensions.
