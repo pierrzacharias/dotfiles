@@ -4,7 +4,7 @@
 " au BufRead * let &numberwidth = float2nr(log10(line("$"))) + 2
 "           \| let &columns = &numberwidth + 80
 
-# change end-of-line for windows files
+" change end-of-line for windows files
 if has('win32')
 	set fileformat=dos
 endif
@@ -234,7 +234,7 @@ function! CheckPyFile()
 endfunction
 
 " When closing the buffer the 'modified date' is updated
-autocmd BufLeave *.py :call UpdateDatePyFile()
+autocmd BufWinLeave *.py :call UpdateDatePyFile()
 function! UpdateDatePyFile()
 		if (stridx(getline("7"), "> LAST MODIFIED:  ") !~ -1)
 				:7d

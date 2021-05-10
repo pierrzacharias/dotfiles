@@ -2,5 +2,7 @@
     "suggest.triggerAfterInsertEnter": true,
 		"coc.preferences.bracketEnterImprove":false,
 		"python.formatting.provider": "black",
-		"python.analysis.diagnosticEnabled":true
+		"python.analysis.diagnosticEnabled":true,
+		"hover.autoHide":false,
+		"diagnostic.checkCurrentLine":true
 }

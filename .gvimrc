@@ -20,7 +20,7 @@ set guioptions-=M
 " ------------------- cursor color ---------------------------------------- "
 set guicursor+=a:blinkon0
 " highlight! CursorColumn guibg=NONE
-hi! CursorLine guibg=#151A1E
+hi! CursorLine guibg=#14191F
 set cursorline  
 
 " highlight! Comment gui=NONE
@@ -32,17 +32,16 @@ set cursorline
 " ------------------------------------------------------------------------- "
 set colorcolumn=80
 highlight ColorColumn guibg=#242B38
-" hi! CursorLineNr guifg=#000000 guibg=#6c71c4
-" hi! LineNr guifg=#859900 guibg=NONE gui=NONE
-hi! SignColumn guibg=#5C6773 guifg=#95E6CB
+highlight! LineNr guibg=#272D38 guifg=#E6B673
+highlight! CursorLineNr guibg=#E6B673 guifg=#212733
 
 " -------- indent color ----------------------------------------
 " hi IndentGuidesOdd guibg=#002b36	
 " hi IndentGuidesEven guibg=#00364a
 
 " ---------------- search color ------------------------------------------- "
-" hi! Search gui=NONE guibg=#6c71c4 guifg=#000000
-" hi! IncSearch gui=NONE guibg=#98971a guifg=#000000
+hi! Search guibg=#F29718 guifg=#151A1E
+hi! IncSearch guibg=#F07178 guifg=#151A1E
 
 " -------------------------------------------------------------
 "  vim signature
@@ -59,3 +58,9 @@ highlight! CocWarningHighlight guibg=NONE gui=NONE cterm=NONE
 highlight! CocErrorHighlight guibg=NONE gui=NONE cterm=NONE 
 highlight! CocInfoHighlight  guibg=NONE gui=NONE cterm=NONE 
 highlight! CocHintHighlight guibg=NONE gui=NONE cterm=NONE 
+
+" -------------------------------------------------------------
+"  vim sneak
+"  ------------------------------------------------------------
+highlight Sneak guifg=#14191F guibg=#F29718
+highlight SneakScope guifg=#14191F guibg=#F29718
