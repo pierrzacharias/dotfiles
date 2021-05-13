@@ -4,12 +4,12 @@ update_info=filepicker.upd:filepicker-remove-old-previews-entry,fonts_global.upd
 [ColorEffects:Disabled]
 ChangeSelectionColor=
 Color=255,168,17
-ColorAmount=0.07500000000000001
+ColorAmount=0
 ColorEffect=3
-ContrastAmount=0.05
+ContrastAmount=0
 ContrastEffect=1
 Enable=
-IntensityAmount=-0.4
+IntensityAmount=1
 IntensityEffect=2
 
 [ColorEffects:Inactive]
@@ -24,24 +24,24 @@ IntensityAmount=0
 IntensityEffect=0
 
 [Colors:Button]
-BackgroundAlternate=13,12,8
-BackgroundNormal=17,10,4
-DecorationFocus=65,0,4
-DecorationHover=250,151,48
+BackgroundAlternate=88,81,82
+BackgroundNormal=34,25,31
+DecorationFocus=163,90,69
+DecorationHover=15,23,34
 ForegroundActive=250,151,48
-ForegroundInactive=30,88,0
-ForegroundLink=65,149,250
-ForegroundNegative=250,151,48
-ForegroundNeutral=250,151,48
+ForegroundInactive=250,151,48
+ForegroundLink=250,151,48
+ForegroundNegative=255,85,162
+ForegroundNeutral=255,214,83
 ForegroundNormal=250,151,48
 ForegroundPositive=255,85,255
-ForegroundVisited=11,96,255
+ForegroundVisited=169,120,63
 
 [Colors:Complementary]
 BackgroundAlternate=0,11,30
 BackgroundNormal=13,12,8
-DecorationFocus=255,168,17
-DecorationHover=255,168,17
+DecorationFocus=177,194,206
+DecorationHover=39,76,106
 ForegroundActive=245,120,0
 ForegroundInactive=2,175,255
 ForegroundLink=234,0,217
@@ -52,67 +52,67 @@ ForegroundPositive=0,255,0
 ForegroundVisited=113,28,145
 
 [Colors:Selection]
-BackgroundAlternate=43,98,192
-BackgroundNormal=41,41,125
-DecorationFocus=51,67,82
-DecorationHover=250,151,48
+BackgroundAlternate=26,70,192
+BackgroundNormal=11,91,113
+DecorationFocus=163,90,69
+DecorationHover=255,214,83
 ForegroundActive=250,151,48
-ForegroundInactive=255,72,0
-ForegroundLink=65,149,250
-ForegroundNegative=250,151,48
-ForegroundNeutral=250,151,48
-ForegroundNormal=255,124,126
+ForegroundInactive=206,203,183
+ForegroundLink=250,151,48
+ForegroundNegative=255,85,162
+ForegroundNeutral=255,214,83
+ForegroundNormal=205,209,187
 ForegroundPositive=255,85,255
-ForegroundVisited=11,96,255
+ForegroundVisited=169,120,63
 
 [Colors:Tooltip]
-BackgroundAlternate=13,12,8
-BackgroundNormal=13,12,8
-DecorationFocus=51,67,82
-DecorationHover=250,151,48
+BackgroundAlternate=29,34,40
+BackgroundNormal=34,25,31
+DecorationFocus=163,90,69
+DecorationHover=255,214,83
 ForegroundActive=250,151,48
-ForegroundInactive=30,88,0
-ForegroundLink=65,149,250
-ForegroundNegative=250,151,48
-ForegroundNeutral=250,151,48
-ForegroundNormal=13,12,8
-ForegroundPositive=255,85,255
-ForegroundVisited=11,96,255
-
-[Colors:View]
-BackgroundAlternate=17,10,4
-BackgroundNormal=7,8,10
-DecorationFocus=82,2,5
-DecorationHover=250,151,48
-ForegroundActive=250,151,48
-ForegroundInactive=30,88,0
-ForegroundLink=65,149,250
-ForegroundNegative=250,151,48
-ForegroundNeutral=250,151,48
+ForegroundInactive=250,151,48
+ForegroundLink=250,151,48
+ForegroundNegative=255,85,162
+ForegroundNeutral=255,214,83
 ForegroundNormal=250,151,48
 ForegroundPositive=255,85,255
-ForegroundVisited=11,96,255
+ForegroundVisited=169,120,63
+
+[Colors:View]
+BackgroundAlternate=25,30,21
+BackgroundNormal=33,39,51
+DecorationFocus=163,90,69
+DecorationHover=41,79,97
+ForegroundActive=250,151,48
+ForegroundInactive=250,151,48
+ForegroundLink=250,151,48
+ForegroundNegative=255,85,162
+ForegroundNeutral=255,214,83
+ForegroundNormal=250,151,48
+ForegroundPositive=255,163,33
+ForegroundVisited=169,120,63
 
 [Colors:Window]
 BackgroundAlternate=170,85,127
-BackgroundNormal=13,12,8
-DecorationFocus=85,85,255
-DecorationHover=250,151,48
+BackgroundNormal=33,39,51
+DecorationFocus=163,90,69
+DecorationHover=255,214,83
 ForegroundActive=250,151,48
-ForegroundInactive=30,88,0
-ForegroundLink=65,149,250
-ForegroundNegative=250,151,48
-ForegroundNeutral=250,151,48
+ForegroundInactive=250,151,48
+ForegroundLink=250,151,48
+ForegroundNegative=255,85,162
+ForegroundNeutral=255,214,83
 ForegroundNormal=250,151,48
 ForegroundPositive=255,85,255
-ForegroundVisited=11,96,255
+ForegroundVisited=169,120,63
 
 [DirSelect Dialog]
 DirSelectDialog Size=933,606
 History Items[$e]=file:$HOME/Videos,file:$HOME/wallpaper/Jodorowsky's Dune (2013)_files,file:$HOME/wallpaper/Jodorowsky's Dune (2013)_files,file:$HOME/wallpaper/Jodorowsky's Dune (2013)_files,file:$HOME/wallpaper/htoline_chararcters,file:$HOME/wallpaper/htoline_chararcters,file:$HOME/Videos,file:$HOME/wallpaper/iceberg,file:$HOME/Documents/Courses/usefull,file:$HOME/wallpaper,file:///run/media/pierre/Nouveau nom1,file:///run/media/pierre/Nouveau nom,file:$HOME/Music,file:$HOME/Music,file:$HOME/Pictures/druilet,file:$HOME/Pictures/druilet,file:$HOME/Documents/deces_papa,file:$HOME/Documents/CV/new_CV,file:$HOME/Templates/template_latex/presentation/Figures,file:$HOME/Documents/document admin,file:$HOME/Documents/document admin,file:$HOME/Documents/Courses/project_serie_temporelles/time_series_project,file:$HOME/Documents/Courses/2A/Modelisation_des_series_temporelles/TP6,file:$HOME/Documents/Courses/3A,file:$HOME/Documents/Courses/3A,file:$HOME/Documents/Courses/project_serie_temporelles/time_series_project/repport,file:$HOME/Documents/Courses/project_serie_temporelles/time_series_project,file:$HOME/Music/Reaper_theme,file:$HOME/Documents/document admin,file:$HOME,file:$HOME/Music,file:$HOME/Pictures/foncd-crean,file:$HOME/Pictures/foncd-crean
 
 [General]
-ColorScheme=Dune
+ColorScheme=BladeRunner2
 Name=GruvboxColors
 Name[fr_FR]=Brise sombre
 TerminalApplication[$e]=Termite
@@ -129,7 +129,7 @@ smallestReadableFont=Fira Code Retina,10,-1,5,53,0,0,0,0,0,Regular
 toolBarFont=Fira Code Retina,12,-1,5,53,0,0,0,0,0,Regular
 
 [Icons]
-Theme=Gruvbox
+Theme=Memphis98
 
 [KDE]
 AnimationDurationFactor=0.35355339059327373
@@ -164,11 +164,11 @@ ToolButtonStyle=TextOnly
 ToolButtonStyleOtherToolbars=TextOnly
 
 [WM]
-activeBackground=13,12,8
-activeBlend=13,12,8
+activeBackground=187,120,43
+activeBlend=178,139,77
 activeFont=Fira Code Retina,12,-1,5,53,0,0,0,0,0,Regular
 activeForeground=250,151,48
 frame=0,0,0
-inactiveBackground=13,12,8
-inactiveBlend=13,12,8
+inactiveBackground=34,25,31
+inactiveBlend=34,25,31
 inactiveForeground=250,151,48

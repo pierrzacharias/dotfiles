@@ -117,6 +117,7 @@ Plug 'kkoomen/vim-doge'                                " Docstring generator
 " --------------------------------------------------------------
 " ---------------------- Objects -------------------------------
 " --------------------------------------------------------------
+Plug 'christoomey/vim-system-copy'
 Plug 'wellle/targets.vim'                              " Better objects
 Plug 'michaeljsmith/vim-indent-object'                 " text object based on indentation levels.
 Plug 'kana/vim-textobj-user'                           " add new text objects
