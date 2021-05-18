@@ -2,5 +2,9 @@
     "suggest.triggerAfterInsertEnter": true,
 		"coc.preferences.bracketEnterImprove":false,
 		"python.formatting.provider": "black",
-		"python.analysis.diagnosticEnabled":true
+		"python.analysis.diagnosticEnabled":true,
+		"diagnostic.infoSign":"",
+		"diagnostic.hintSign":"",
+		"diagnostic.warningSign":"",
+		"diagnostic.errorSign":
 }

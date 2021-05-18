@@ -1,20 +1,23 @@
 # Saving my dotfiles
 
-Config for GVim in Windows:
-![](windows.png)
+I use arch btw ......
 
+Vim-centerd configuration
 
 Config for Unix:
 ![](polybar.png)
 ![](screenshot.png)
+
+Config for GVim in Windows:
+![](windows.png)
+
 
 To obtain full-features vim for windows go to https://tuxproject.de/projects/vim/auto
 ```
 https://tuxproject.de/projects/vim/auto
 ```
 
-
-To compile vim in python mode:
+To compile vim on unix in python mode:
 ```
 git clone https://github.com/vim/vim & cd vim/
 ./configure --prefix=/usr/local \
