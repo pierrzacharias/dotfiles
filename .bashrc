@@ -148,3 +148,4 @@ if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
 fi
 
 
+source ~/qmk_utils/activate_msys2.sh

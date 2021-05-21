@@ -303,15 +303,15 @@ if has('nvim')
 else
 	execute "set <M-f>=\ef"
 	execute "set <M-'>=\e'"
-	execute "set <M-q>=\eq"
-	execute "set <M-w>=\ew"
-	execute "set <M-e>=\ee"
-	execute "set <M-r>=\er"
-	execute "set <M-t>=\et"
-	execute "set <M-y>=\ey"
-	execute "set <M-u>=\eu"
-	execute "set <M-i>=\ei"
-	execute "set <M-o>=\eo"
+	" execute "set <M-q>=\eq"
+	" execute "set <M-w>=\ew"
+	" execute "set <M-e>=\ee"
+	" execute "set <M-r>=\er"
+	" execute "set <M-t>=\et"
+	" execute "set <M-y>=\ey"
+	" execute "set <M-u>=\eu"
+	" execute "set <M-i>=\ei"
+	" execute "set <M-o>=\eo"
 endif
 
 " --------------------------------------------------------------------------- "
@@ -349,20 +349,19 @@ nnoremap [l :lprev<CR>
 " -------- autoformat files ------------------------------------------------- "
 nnoremap <silent> <F9> :r! python -m black -l 79 expand('%:p') 
 
-" ---- e.g press 1 to go to buffer 1 -----------
-" nnoremap <silent> <leader>gt :exe 'tabn' nr2char(getchar())<cr> "e.g press 1 to go to tab1
-"
-autocmd BufReadPost * map <M-q> :tabn1<CR>
-map <M-q> :tabn1<CR>
-map <M-w> :tabn2<CR>
-map <M-e> :tabn3<CR>
-map <M-r> :tabn4<CR>
-map <M-t> :tabn5<CR>
-map <M-y> :tabn6<CR>
-map <M-u> :tabn7<CR>
-map <M-i> :tabn8<CR>
-map <M-o> :tabn9<CR>
-" map <M-q> :tabn10<CR>
+"" ---- e.g press 1 to go to buffer 1 -----------
+"" nnoremap <silent> <leader>gt :exe 'tabn' nr2char(getchar())<cr> "e.g press 1 to go to tab1
+""
+"autocmd BufReadPost * map <M-q> :tabn1<CR>
+map <M-1> :tabn1<CR>
+map <M-2> :tabn2<CR>
+map <M-3> :tabn3<CR>
+map <M-4> :tabn4<CR>
+map <M-5> :tabn5<CR>
+map <M-6> :tabn6<CR>
+map <M-7> :tabn7<CR>
+map <M-8> :tabn8<CR>
+map <M-9> :tabn9<CR>
 
 " ---- reload config -----------
 nnoremap <leader>vo :vsp $MYVIMRC<CR>
@@ -496,22 +495,21 @@ call plug#begin(g:plug_install_files)
 " --------------------------------------------------------------
 "  if has('nvim')
 Plug 'neovim/nvim-lspconfig'                           " lsp configuration
-Plug 'nvim-treesitter/nvim-treesitter'
-Plug 'nvim-treesitter/completion-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter'                 " nvim treesitter tool
+Plug 'nvim-treesitter/completion-treesitter'           " better use of treesitter for completion
 Plug 'nvim-lua/completion-nvim'                        " completion plugin
 Plug 'kristijanhusak/completion-tags'                  " better using tag in completion
 Plug 'simrat39/symbols-outline.nvim'                   " tree with variables using lsp
 Plug 'folke/trouble.nvim'                              " pretty list for diagnostic, reference, quickfix, ..
 Plug 'folke/lsp-colors.nvim'                           " colorscheme for lsp
 
+Plug 'kyazdani42/nvim-tree.lua'                        " file tree
 Plug 'norcalli/nvim-colorizer.lua'                     " show colors from hex code
 Plug 'kyazdani42/nvim-web-devicons'                    " additionnal icons for neovim
 Plug 'hoob3rt/lualine.nvim'                            " statusbar
-Plug 'mkitt/tabline.vim'                               " minimal tabiline
-" Plug 'romgrk/barbar.nvim'                            " tabbar 
+Plug 'romgrk/barbar.nvim'                            " bufferline 
 " Plug 'glepnir/indent-guides.nvim'                    " indent line
 Plug 'lukas-reineke/indent-blankline.nvim'             " show indent on blankline
-Plug 'Xuyuanp/scrollbar.nvim'                          " add a scrollbar
 
 " Plug 'Shougo/denite.nvim'                            " file , buffers manager
 " Plug 'ncm2/float-preview.nvim/'
@@ -563,7 +561,7 @@ Plug 'AndrewRadev/sideways.vim'                        " move func args
 " --------------------------------------------------------------------------- "
 " --------------------- Session Management ---------------------------------- "
 " --------------------------------------------------------------------------- "
-" Plug 'mhinz/vim-startify'                           " start page for vim
+Plug 'mhinz/vim-startify'                             " start page for vim
 " Plug 'vim-scripts/restore_view.vim'                 " replaced by vim-stay
 
 " --------------------------------------------------------------------------- "
@@ -576,12 +574,13 @@ Plug 'christoomey/vim-tmux-navigator'                  " navigatte between tmux 
 " ---------------------- IDE masterrace ------------------------------------- "
 " --------------------------------------------------------------------------- "
 " Plug 'MathSquared/vim-python-sql'
-Plug 'preservim/nerdtree'                              " file explorer
+" Plug 'preservim/nerdtree'                              " file explorer
 Plug 'maxboisvert/vim-simple-complete'                 " as-you-type keyword completion
 
 " --------------------------------------------------------------------------- "
 " ---------------------- code completion / inspect -------------------------- "
 " --------------------------------------------------------------------------- "
+Plug 'yssl/QFEnter'                                     " open buffers from quickfix list easy
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}        " new community driven completion engine
 " Plug 'dense-analysis/ale'                            " syntax checking and semantic errors
 
@@ -614,6 +613,7 @@ Plug 'rbong/vim-flog'                                  " See git branches
 " ---------------------- buffers -------------------------------
 " --------------------------------------------------------------
 Plug 'jeetsukumaran/vim-buffergator'                   " buffer list
+
 " --------------------------------------------------------------
 "- ---------------------- Python -------------------------------
 " --------------------------------------------------------------
@@ -629,13 +629,13 @@ Plug 'kkoomen/vim-doge'                                " Docstring generator
 " ---------------------- Objects -------------------------------
 " --------------------------------------------------------------
 Plug 'flwyd/vim-conjoin'                               " better join lines
-" Plug 'christoomey/vim-system-copy'                   " mapping for clipoard
 Plug 'wellle/targets.vim'                              " Better objects
 Plug 'michaeljsmith/vim-indent-object'                 " text object based on indentation levels.
 Plug 'kana/vim-textobj-user'                           " add new text objects
 Plug 'jeetsukumaran/vim-pythonsense'                   " add python objects (it works !!)
 " Plug 'kana/vim-textobj-entire'                       " text object for the all buffer
 " Plug 'ColinKennedy/vim-textobj-block-party'          " text objects and motions for Python required +python
+" Plug 'christoomey/vim-system-copy'                   " mapping for clipoard
 "
 " --------------------------------------------------------------
 " ---------------------- Tags ----------------------------------
@@ -649,18 +649,18 @@ Plug 'skywind3000/gutentags_plus'                      " help to generate tags
 " --------------------------------------------------------------
 " ---------------------- Theming -------------------------------
 " --------------------------------------------------------------
-" Plug 'Th3Whit3Wolf/space-nvim'
-Plug 'marko-cerovac/material.nvim'
-" Plug 'ayu-theme/ayu-vim'                               " theme
+Plug 'ayu-theme/ayu-vim'                               " colorscheme
+Plug 'pierrzacharias/material.nvim'                         " colorscheme
+" Plug 'Th3Whit3Wolf/space-nvim'                       " colorscheme
 Plug 'MTDL9/vim-log-highlighting'                      " highlight .log files
 Plug 'JMcKiern/vim-venter'                             " center a windows
 Plug 'hrsh7th/vim-unmatchparen'                        " highlight unmatch surrounding
-Plug 'ryanoasis/vim-devicons'                        " add icon
-" Plug 'vim-airline/vim-airline'                         " add visual line
-" Plug 'vim-airline/vim-airline-themes'                  " theme for airline
+Plug 'ryanoasis/vim-devicons'                          " add icon
+" Plug 'vim-airline/vim-airline'                       " add visual line
+" Plug 'vim-airline/vim-airline-themes'                " theme for airline
 Plug 'camspiers/animate.vim'                           " windows move animation
 Plug 'luochen1990/rainbow'                             " rainbow parenthesis
-" Plug 'Yggdroot/indentLine'                             " add visual indent
+Plug 'Yggdroot/indentLine'                           " add visual indent
 " Plug 'nathanaelkane/vim-indent-guides'
 Plug 'psliwka/vim-smoothie'                            " Better scroll
 
@@ -734,6 +734,7 @@ if has('nvim')
 	" some neovim packges are configured here
 	" lua require('$HOME/.vim/lua/lua_config')
 	lua require('lua_config')
+
 endif
 
 " >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
@@ -741,8 +742,54 @@ endif
 " >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
 
 if has('nvim')
-	" Use completion-nvim in every buffer
-	autocmd BufEnter * lua require'completion'.on_attach()
+	" -------------------------------------------------------------
+	"  barbar
+	"  ------------------------------------------------------------
+	" Move to previous/next execute "set <M-m>=\em"
+	" execute "set <M-n>=\en"
+	" execute "set <M-m>=\em"
+	nnoremap <silent> <A-n> :BufferPrevious<CR>
+	nnoremap <silent> <A-m> :BufferNext<CR>
+	" Re-order to previous/next
+	" execute "set <M-M>=\eM"
+	" execute "set <M-N>=\eN"
+	nnoremap <silent> <A-N> :BufferMovePrevious<CR>
+	nnoremap <silent> <A-M> :BufferMoveNext<CR>
+	" Goto buffer in position...
+	" execute "set <M-q>=\eq"
+	" execute "set <M-w>=\ew"
+	" execute "set <M-e>=\ee"
+	" execute "set <M-r>=\er"
+	" execute "set <M-t>=\et"
+	" execute "set <M-y>=\ey"
+	" execute "set <M-u>=\eu"
+	" execute "set <M-i>=\ei"
+	" execute "set <M-o>=\eo"
+	" execute "set <M-p>=\ep"
+	nnoremap <silent> <A-q> :BufferGoto 1<CR>
+	nnoremap <silent> <A-w> :BufferGoto 2<CR>
+	nnoremap <silent> <A-e> :BufferGoto 3<CR>
+	nnoremap <silent> <A-r> :BufferGoto 4<CR>
+	nnoremap <silent> <A-t> :BufferGoto 5<CR>
+	nnoremap <silent> <A-u> :BufferGoto 6<CR>
+	nnoremap <silent> <A-i> :BufferGoto 7<CR>
+	nnoremap <silent> <A-o> :BufferGoto 8<CR>
+	nnoremap <silent> <A-p> :BufferLast<CR>
+
+	" Close buffer
+	" execute "set <M-c>=\ec"
+	nnoremap <silent> <A-c> :BufferClose<CR>
+	" Wipeout buffer
+	" :BufferWipeout<CR>
+	" Close commands
+	" :BufferCloseAllButCurrent<CR>
+	" :BufferCloseBuffersLeft<CR>
+	" :BufferCloseBuffersRight<CR>
+	" Magic buffer-picking mode
+	nnoremap <silent> <C-s> :BufferPick<CR>
+	" Sort automatically by...
+	" nnoremap <silent> <Space>bd :BufferOrderByDirectory<CR>
+	" nnoremap <silent> <Space>bl :BufferOrderByLanguage<CR>
 endif
 
 " -------------------------------------------------------------
@@ -904,7 +951,7 @@ let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowTo
 " set previewheight=60                 " remap tag open in new split windows
 
 " --------------------------------------------------------------
-" indent
+" blankline inddent
 " --------------------------------------------------------------
 " let g:indentLine_setColors = 1
 " " let g:indentLine_color_term = 15
@@ -912,6 +959,7 @@ let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowTo
 " " let g:indentLine_bgcolor_gui = '#B8CC52'
 " " let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 let g:indentLine_char = "▎"
+let g:indent_blankline_char = "▏"
 " " let g:indentLine_leadingSpaceEnabled=1
 " let g:indentLine_showFirstIndentLevel=0
 
@@ -927,29 +975,62 @@ let g:animate#easing_func = 'animate#ease_linear'
 let g:sendtowindow_use_defaults=0
 " nnoremap ml :SidewaysJumpRight<cr>
 
-" --------------------------------------------------------------
-" nerdtree
-" --------------------------------------------------------------
-" hide brackets arounds icon node
-augroup nerdtree
-  autocmd!
-  autocmd FileType nerdtree syntax clear NERDTreeFlags
-  autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\]" contained conceal containedin=ALL
-  autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\[" contained conceal containedin=ALL
-  autocmd FileType nerdtree setlocal conceallevel=3
-  autocmd FileType nerdtree setlocal concealcursor=nvic
-augroup END
+if has('nvim')
+	" --------------------------------------------------------------
+	" LUA TREE
+	" --------------------------------------------------------------
+	" let g:nvim_tree_side = 'right' "left by default
+	" let g:nvim_tree_width = 40 "30 by default
+	let g:nvim_tree_ignore = ['.git', 'node_modules', '.cache', '.pyc', '__pycache__', '.DS_Store', 'tags', '.idea', '.sass-cache'] "empty by default
+	" let g:nvim_tree_gitignore = 1 "0 by default
+	" let g:nvim_tree_auto_open = 1 "0 by default, opens the tree when typing `vim $DIR` or `vim`
+	" let g:nvim_tree_auto_close = 1 "0 by default, closes the tree when it's the last window
+	let g:nvim_tree_auto_ignore_ft = [ 'startify', 'dashboard' ] "empty by default, don't auto open tree on specific filetypes.
+	" let g:nvim_tree_quit_on_open = 1 "0 by default, closes the tree when you open a file
+	" let g:nvim_tree_follow = 1 "0 by default, this option allows the cursor to be updated when entering a buffer
+	" let g:nvim_tree_indent_markers = 1 "0 by default, this option shows indent markers when folders are open
+	" let g:nvim_tree_hide_dotfiles = 1 "0 by default, this option hides files and folders starting with a dot `.`
+	" let g:nvim_tree_git_hl = 1 "0 by default, will enable file highlight for git attributes (can be used without the icons).
+	" let g:nvim_tree_root_folder_modifier = ':~' "This is the default. See :help filename-modifiers for more options
+	" let g:nvim_tree_tab_open = 1 "0 by default, will open the tree when entering a new tab and the tree was previously open
+	let g:nvim_tree_width_allow_resize  = 1 "0 by default, will not resize the tree when opening a file
+	" let g:nvim_tree_disable_netrw = 0 "1 by default, disables netrw
+	" let g:nvim_tree_hijack_netrw = 0 "1 by default, prevents netrw from automatically opening when opening directories (but lets you keep its other utilities)
+	" let g:nvim_tree_add_trailing = 1 "0 by default, append a trailing slash to folder names
+	" let g:nvim_tree_group_empty = 1 " 0 by default, compact folders that only contain a single folder into one node in the file tree
+	let g:nvim_tree_lsp_diagnostics = 1 "0 by default, will show lsp diagnostics in the signcolumn. See :help nvim_tree_lsp_diagnostics
+	let g:nvim_tree_special_files = [ 'README.md', 'Makefile', 'MAKEFILE' ] " List of filenames that gets highlighted with NvimTreeSpecialFile
+	let g:nvim_tree_show_icons = {
+		\ 'git': 0,
+		\ 'folders': 1,
+		\ 'files': 1,
+		\ }
 
-let NERDTreeQuitOnOpen=0
-let NERDTreeIgnore = ['\.pyc$', '__pycache__', '^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$']
-let g:NERDTreeHighlightCursorline=1
-let g:NERDTreeShowBookmarks=1
-let g:NERDTreeShowHidden=1
-let g:NERDTreeShowLineNumbers=1   " display line number
-let g:NERDTreeAutoDeleteBuffer=1
-let g:NERDTreeDirArrowExpandable='⮞'
-let g:NERDTreeDirArrowCollapsible='⮟'
-let NERDTreeStatusline=""
+else
+	" --------------------------------------------------------------
+	" nerdtree
+	" --------------------------------------------------------------
+	" hide brackets arounds icon node
+	augroup nerdtree
+		autocmd!
+		autocmd FileType nerdtree syntax clear NERDTreeFlags
+		autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\]" contained conceal containedin=ALL
+		autocmd FileType nerdtree syntax match hideBracketsInNerdTree "\[" contained conceal containedin=ALL
+		autocmd FileType nerdtree setlocal conceallevel=3
+		autocmd FileType nerdtree setlocal concealcursor=nvic
+	augroup END
+
+	let NERDTreeQuitOnOpen=0
+	let NERDTreeIgnore = ['\.pyc$', '__pycache__', '^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$']
+	let g:NERDTreeHighlightCursorline=1
+	let g:NERDTreeShowBookmarks=1
+	let g:NERDTreeShowHidden=1
+	let g:NERDTreeShowLineNumbers=1   " display line number
+	let g:NERDTreeAutoDeleteBuffer=1
+	let g:NERDTreeDirArrowExpandable='⮞'
+	let g:NERDTreeDirArrowCollapsible='⮟'
+	let NERDTreeStatusline=""
+endif
 
 " --------------------------------------------------------------
 " submersive
@@ -958,15 +1039,10 @@ let g:subversivePromptWithCurrent=1
 "let g:subversivePreserveCursorPosition=1 "cursor will not move when substitutions are applied
 
 " --------------------------------------------------------------
-" 
-" --------------------------------------------------------------
-let g:apc_enable_ft = {'*':1}
-set cpt=.,k,w,b
-
-" --------------------------------------------------------------
 " airline
 " -------------------- theme ------------------------------------------------ "
 if has('nvim')
+	" we use lualine
 else
 	let g:airline_theme = 'desertink'
 
@@ -1235,6 +1311,59 @@ let g:fzf_commands_expect = 'alt-enter'
 " _____________________________________________________________________________ "
 " _____________________________________________________________________________ "
 
+" --------------------------------------------------------------------------
+" -- QFEnter
+" -- -----------------------------------------------------------------------
+let g:qfenter_keymap = {}
+let g:qfenter_keymap.vopen = ['<C-v>']
+let g:qfenter_keymap.hopen = ['<C-CR>', '<C-s>', '<C-x>']
+let g:qfenter_keymap.topen = ['<C-t>']
+
+if has('nvim')
+
+	" -------------------------------------------------------------
+	"  barbar
+	"  ------------------------------------------------------------
+	let g:barbar_bg='#263238'
+
+endif
+
+if has('nvim')
+	" --------------------------------------------------------------------------
+	" -- LUA TREE
+	" -- -----------------------------------------------------------------------
+	nnoremap <C-n> :NvimTreeToggle<CR>
+	nnoremap <leader>r :NvimTreeRefresh<CR>
+	nnoremap <leader>n :NvimTreeFindFile<CR>
+else
+	" -------------------------------------------------------------------------- "
+	" NERDTree
+	" -------------------------------------------------------------------------- "
+	map <C-n> :NERDTreeToggle<CR>
+	function! NERDTreeYankCurrentNode()
+			let n = g:NERDTreeFileNode.GetSelected()
+			if n != {}
+					call setreg('"', n.path.str())
+			endif
+	endfunction
+endif
+
+" -------------------------------------------------------------------------- "
+" COMPLETION
+" -------------------------------------------------------------------------- "
+
+" if has('nvim')
+"   " Because NeoVim's menu completions are in a vertical pum
+"   cnoremap <expr> <C-k> pumvisible() ? "\<C-p>"       : "\<C-k>"
+"   cnoremap <expr> <C-j> pumvisible() ? "\<C-n>"       : "\<Down>"
+"   cnoremap <expr> <Tab> pumvisible() ? "\<C-y>"       : "\<Tab>"
+"   cnoremap <expr> <C-f> pumvisible() ? "\<C-e>"       : "\<Right>"
+"   cnoremap <expr> <C-p> pumvisible() ? "\<Up><C-p>"   : "\<Up>"
+"   cnoremap <expr> <C-n> pumvisible() ? "\<C-e><Down>" : "\<Down>"
+"   set cpoptions-=_ " Makes cw/cW include the whitespace after the word
+"   set shada=!,'1000,<50,s10,h
+" endif
+
 " -------------------------------------------------------------
 "  Trouble nvim
 "  -----------------------------------------------------------
@@ -1283,15 +1412,14 @@ else
 	execute "set <M-b>=\en"
 	execute "set <M-g>=\en"
 	execute "set <M-g>=\en"
-	execute "set <M-c>=\ep"
+	" execute "set <M-c>=\ep"
 	execute "set <M-p>=\ep"
-	execute "set <M-m>=\em"
 endif
 
 " --------------------------------------------------------------
 "  Venter
 " --------------------------------------------------------------
-map <silent> <M-m> :VenterToggle<cr>
+" map <silent> <M-m> :VenterToggle<cr>
 
 " -------------------------------------------------------------
 "  vim sneak
@@ -1510,7 +1638,7 @@ endfunction
 let g:coc_snippet_next = '<TAB>'
 " inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 " nmap  <silent><C-c> :CocEnable<CR>
-nmap <M-c> :CocDiagnostics<CR>
+" nmap <M-c> :CocDiagnostics<CR>
 nmap <silent> <M-p> <Plug>(coc-action-diagnosticPreview)
 nmap <silent> gs <Plug>(coc-action-diagnosticToggle)
 nmap <silent> gi <Plug>(coc-diagnostic-info)
@@ -1553,34 +1681,12 @@ nmap <leader>f  <Plug>(coc-format-selected)
 " nnoremap <silent> <Leader>p  :<C-u>CocFzfListResume<CR>
 
 " -------------------------------------------------------------------------- "
-" NERDTree
-" -------------------------------------------------------------------------- "
-map <C-n> :NERDTreeToggle<CR>
-
-" call NERDTreeAddKeyMap({
-"         \ 'key': 'yy',
-"         \ 'callback': 'NERDTreeYankCurrentNode',
-"         \ 'quickhelpText': 'put full path of current node into the default register' })
-
-function! NERDTreeYankCurrentNode()
-    let n = g:NERDTreeFileNode.GetSelected()
-    if n != {}
-        call setreg('"', n.path.str())
-    endif
-endfunction
-
-" -------------------------------------------------------------------------- "
 " NVIM LSP
 " -------------------------------------------------------------------------- "
 if has('nvim')
-	autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+	" autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
+	nnoremap <silent> ga <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
 endif
-
-
-
-
-
-
 
 
 
@@ -1696,13 +1802,14 @@ command! -nargs=0 OR   :call CocAction('runCommand', 'editor.action.organizeImpo
 " _____________________________________________________________________________ "
 
 " colorscheme 
-" colorscheme ayu
-" colorscheme space-nvim
+if has('nvim')
+	colorscheme material
+else
+	colorscheme ayu
+	let ayucolor="mirage"   " for dark version of theme
+endif
 
-colorscheme material
 
-" let ayucolor="mirage"   " for dark version of theme
-" set background=dark
 set background=dark
 
 set cursorline                               " Highlight current line
@@ -1770,4 +1877,3 @@ hi! CursorLineNr guifg=#FFEE99 guibg=#0F1419
 "  vim signature
 "  ------------------------------------------------------------
 hi SignatureMarkText guifg=#B0BEC5 guibg=#263238
-klsdjfdklsjfsdkljflksjdf

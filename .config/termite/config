@@ -6,6 +6,7 @@ bold_is_bright = true
 #cell_width_scale = 1.0
 clickable_url = true
 dynamic_title = true
+# font = Iosevka Nerd Font 12
 font = M+ 1mn 13
 # font = Hack 10
 # fullscreen = true
@@ -53,9 +54,9 @@ foreground      = #f5ac78
 foreground_bold = #f5ac78
 cursor          = #7aabb6
 cursor_foreground = #000
-# background    = rgba(33, 39, 51, 1)
-background    = rgba(38, 50, 56, 1)
+# background    = rgba(38, 50, 56, 1)
 # background = white
+background = #263238
 
 # 16 color space
 color0  = #282828
@@ -91,9 +92,6 @@ color21 = #ebdbb2#
 #foreground_bold = #fa9730
 #cursor          =#000b1e
 #cursor_foreground = #000b1e
-#background      = rgba(34,25,31, 1)
-#
-## black
 #color0  = #666666
 #color8  = #888888
 #

@@ -38,7 +38,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id picom -b
 
 ###############        focus script         ##################
-bindsym $mod+n exec /usr/bin/i3-winmotion
+bindsym $mod+a exec /usr/bin/i3-winmotion
 
 ###############       alt+tab      ##################
 exec_always --no-startup-id i3-cycle-focus.py --history 2
@@ -51,14 +51,24 @@ exec --no-startup-id nm-applet
 # take a screenshot using flameshot
 bindsym $mod+Print exec "flameshot gui"
 
+# # Screenshots
+# bindsym --release Print exec mkdir -p ~/Pictures/screenshots && \
+#         exec maim -u ~/Pictures/screenshots/$(date "+%Y-%m-%d_%H-%M-%S").png
+# bindsym --release Control+Print \
+#         exec maim -u | xclip -selection clipboard -t image/png 
+# bindsym --release Shift+Print exec mkdir -p ~/Pictures/screenshots && \
+#         exec maim -u ~/Pictures/screenshots/$(date "+%Y-%m-%d_%H-%M-%S").png -s
+# bindsym --release Control+Shift+Print \
+#         exec maim -u -s | xclip -selection clipboard -t image/png 
+
 # -------------------------------------------------------------------------- #
 #         border
 # -------------------------------------------------------------------------- #
 # Hide borders
 hide_edge_borders both
 # change borders
-bindsym $mod+u border none
-bindsym $mod+y border pixel 30
+# bindsym $mod+u border none
+# bindsym $mod+y border pixel 30
 # bindsym $mod+n border normal
 
 # -------------------------------------------------------------------------- #
@@ -105,7 +115,7 @@ bindsym $mod+s exec firefox
 bindsym $mod+g exec dolphin
 
 # kill focused window
-bindsym $mod++q kill
+bindsym $mod+c kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id dmenu_run
@@ -114,7 +124,7 @@ bindsym $mod+d exec --no-startup-id dmenu_run
 
 # Lock the computer with a blur effect (See script)
 # bindsym $mod+c exec sh ~/.config/i3/lock.sh
-bindsym $mod+c exec sh ~/.config/i3/scrlt.sh
+bindsym $mod+x exec sh ~/.config/i3/scrlt.sh
 
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
@@ -167,21 +177,21 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # switch to workspace
-bindsym $Mod+1 workspace 1
-bindsym $Mod+2 workspace 2
-bindsym $Mod+3 workspace 3
-bindsym $Mod+4 workspace 4
-bindsym $Mod+5 workspace 5
-bindsym $Mod+6 workspace 6
-bindsym $Mod+7 workspace 7
-bindsym $Mod+8 workspace 8
+bindsym $mod+q workspace 1
+bindsym $mod+w workspace 2
+bindsym $mod+e workspace 3
+bindsym $mod+r workspace 4
+bindsym $mod+t workspace 5
+bindsym $mod+y workspace 6
+bindsym $mod+u workspace 7
+bindsym $mod+i workspace 8
 
 # switch to next or previous workspace
-bindsym $mod+Control+Left workspace prev
-bindsym $mod+Control+Right workspace next
+bindsym $mod+n workspace prev
+bindsym $mod+m workspace next
 
 # focus the parent container
-bindsym $moda terminal+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+1 move container to workspace number $ws1
 bindsym $mod+Shift+2 move container to workspace number $ws2
 bindsym $mod+Shift+3 move container to workspace number $ws3
 bindsym $mod+Shift+4 move container to workspace number $ws4
@@ -243,7 +253,7 @@ mode "resize" {
         bindsym $mod+r mode "default"
 }
 
-bindsym $mod+r mode "resize"
+bindsym $mod+b mode "resize"
 
 # choose working screen 
 bindsym $mod+p exec --no-startup-id ~/.config/i3/display.sh  
@@ -254,10 +264,6 @@ gaps outer -5
 
 # wallpaper
 exec --no-startup-id feh --bg-fill ~/Pictures/druillet4.jpg
-
-# switch to next or previous workspace
-bindsym $mod+Mod1+Left workspace prev
-bindsym $mod+Mod1+Right workspace next
 
 show_marks yes
 
