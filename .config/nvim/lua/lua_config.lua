@@ -1,8 +1,8 @@
--- --------------------------------------------------------
+-- -------------------------------------------------------------------------- #
 -- Neovim lua configuration
--- --------------------------------------------------------
+-- -------------------------------------------------------------------------- #
 
--- ----------------- theme ------------------------------------------------- "
+-- ----------------- theme -------------------------------------------------- #
 vim.g.material_style = 'oceanic'
 vim.g.material_italic_comments=true
 vim.g.material_italic_keywords=true
@@ -13,7 +13,9 @@ vim.g.material_borders=true
 vim.g.material_disable_background = true
 require('material').set()
 
--- ----------------- statusline -------------------------------------------- "
+-- -------------------------------------------------------------------------- #
+-- ----------------- statusline --------------------------------------------- #
+-- -------------------------------------------------------------------------- #
 local custom_gruvbox = require'lualine.themes.gruvbox'
 	-- Chnage the background of lualine_c section for normal mode
 custom_gruvbox.normal.c.bg = '#263238'
@@ -60,7 +62,61 @@ require'lualine'.setup {
 	}
 }
 
+---------------------------------------------------------------------------------
+---- TELESCOPE
+---- ----------------------------------------------------------------------------
+--require('telescope').setup{
+--  -- defaults = {
+--    -- vimgrep_arguments = {
+--    --   'rg',
+--    --   '--color=never',
+--    --   '--no-heading',
+--    --   '--with-filename',
+--    --   '--line-number',
+--    --   '--column',
+--    --   '--smart-case'
+--    -- },
+--    -- prompt_position = "bottom",
+--    -- prompt_prefix = "> ",
+--    -- selection_caret = "> ",
+--    -- entry_prefix = "  ",
+--    -- initial_mode = "insert",
+--    -- selection_strategy = "reset",
+--    -- sorting_strategy = "descending",
+--    -- layout_strategy = "horizontal",
+--    -- layout_defaults = {
+--    --   horizontal = {
+--    --     mirror = false,
+--    --   },
+--    --   vertical = {
+--    --     mirror = false,
+--    --   },
+--    -- },
+--    -- file_sorter =  require'telescope.sorters'.get_fuzzy_file,
+--    -- file_ignore_patterns = {},
+--    -- generic_sorter =  require'telescope.sorters'.get_generic_fuzzy_sorter,
+--    -- shorten_path = true,
+--    -- winblend = 0,
+--    -- width = 0.75,
+--    -- preview_cutoff = 120,
+--    -- results_height = 1,
+--    -- results_width = 0.8,
+--    -- border = {},
+--    -- borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
+--    -- color_devicons = true,
+--    -- use_less = true,
+--    -- set_env = { ['COLORTERM'] = 'truecolor' }, -- default = nil,
+--    -- file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
+--    -- grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
+--    -- qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,
+    -- -- Developer configurations: Not meant for general override
+    -- buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
+  -- }
+-- }
+
+-- -------------------------------------------------------------------------- #
 --  ----------------- lsp --------------------------------------------------- "
+-- -------------------------------------------------------------------------- #
 local nvim_lsp=require('lspconfig')
 
 -- add linters
@@ -69,30 +125,35 @@ local nvim_lsp=require('lspconfig')
 -- Use an on_attach function to only map the following keys 
 -- after the language server attaches to the current buffer
 local on_attach=function(client, bufnr)
-	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-	local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-	--Enable completion triggered by <c-x><c-o>
+	-- local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+	-- local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+
+	-- Enable completion triggered by <c-x><c-o>
 	buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
+
 	-- Mappings.
 	local opts={noremap=true, silent=true }
-	-- See `:help vim.lsp.*` for documentation on any of the below functions
+	buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
 	buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 	buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-	buf_set_keymap('n', 'gh', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-	buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
 	buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-	buf_set_keymap('n', '<Leader>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-	buf_set_keymap('n', '<Leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-	buf_set_keymap('n', '<Leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-	buf_set_keymap('n', '<Leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-	buf_set_keymap('n', '<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-	buf_set_keymap('n', '<Leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-	buf_set_keymap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-	buf_set_keymap('n', '<Leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-	buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-	buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-	buf_set_keymap('n', '<Leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-	buf_set_keymap("n", "<Leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+	buf_set_keymap('n', 'gwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+	buf_set_keymap('n', 'gwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+	buf_set_keymap('n', 'gwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+	-- buf_set_keymap('n', 'gv', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+	-- buf_set_keymap('n', 'gh', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+	-- buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+	-- buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+	-- buf_set_keymap('n', 'gra', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+	-- buf_set_keymap('n', 'ga', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+	-- buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+	-- buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+	-- buf_set_keymap('n', '<Leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+	-- buf_set_keymap("n", "<Leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
+
+	-- vim.api.nvim_command("autocmd CursorHold <buffer> lua require'lspsaga.diagnostic'.show_line_diagnostics()")
+	-- vim.api.nvim_command("autocmd CursorMoved <buffer> lua vim.lsp.util.buf_clear_references()")
+
 end
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
@@ -100,7 +161,9 @@ end
 -- for _, lsp in ipairs(servers) do
 -- 	nvim_lsp[lsp].setup { on_attach=on_attach }
 -- end
-require'lspconfig'.pylsp.setup{on_attach=require'completion'.on_attach}
+
+-- require'lspconfig'.pylsp.setup{on_attach=require'completion'.on_attach}
+require'lspconfig'.pyright.setup{}
 
 -- replace the default lsp diagnostic letters with prettier symbols
 vim.fn.sign_define("LspDiagnosticsSignError", {text = "", numhl = "LspDiagnosticsDefaultError"})
@@ -123,6 +186,40 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 	}
 )
 
+-- -------------------------------------------------------------------------- #
+--  ----------------- lspkind ----------------------------------------------- #
+-- -------------------------------------------------------------------------- #
+require('lspkind').init()
+
+-- -------------------------------------------------------------------------- #
+------ nvim compe
+-- -------------------------------------------------------------------------- #
+require'compe'.setup {
+  enabled = true;
+  autocomplete = true;
+  debug = false;
+  min_length = 1;
+  preselect = 'enable';
+  -- throttle_time = 80;
+  -- source_timeout = 200;
+  -- incomplete_delay = 400;
+  -- max_abbr_width = 100;
+  -- max_kind_width = 100;
+  -- max_menu_width = 100;
+  documentation = true;
+  source = {
+    path = true;
+    buffer = true;
+    calc = true;
+    nvim_lsp = true;
+    nvim_lua = true;
+    vsnip = true;
+    ultisnips = true;
+  };
+}
+
+-- highlight link CompeDocumentation NormalFloat
+
 -- show diagnostic virtual test on hover
 -- vim.cmd [[autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()]]
 -- vim.cmd [[autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()]]
@@ -131,7 +228,61 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 -- vim.api.nvim_set_keymap("n", "gn", "vim.lsp.diagnostic.goto_next()<CR>", {noremap = true, silent = true})
 -- vim.api.nvim_set_keymap("n", "gb", "vim.lsp.diagnostic.goto_prev()<CR>", {noremap = true, silent = true})
 
+-- -------------------------------------------------------------------------- #
+--  ----------------- lsp signature ----------------------------------------- #
+-- -------------------------------------------------------------------------- #
+cfg = {
+  bind = true, -- This is mandatory, otherwise border config won't get registered.
+               -- If you want to hook lspsaga or other signature handler, pls set to false
+  doc_lines = 2, -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
+                 -- set to 0 if you do not want any API comments be shown
+                 -- This setting only take effect in insert mode, it does not affect signature help in normal
+                 -- mode
+
+  hint_enable = true, -- virtual hint enable
+  hint_prefix = "🐼 ",  -- Panda for parameter
+  hint_scheme = "String",
+  use_lspsaga = true,  -- set to true if you want to use lspsaga popup
+  handler_opts = {
+    border = "shadow"   -- double, single, shadow, none
+  },
+  decorator = {"`", "`"}  -- decoractor can be `decorator = {"***", "***"}`  `decorator = {"**", "**"}` `decorator = {"**_", "_**"}`
+                          -- `decorator = {"*", "*"} see markdown help for more details
+                          -- <u></u> ~ ~ does not supported by nvim
+
+}
+require'lsp_signature'.on_attach(cfg)
+
+-- -------------------------------------------------------------------------- #
+--  ----------------- lspsaga ----------------------------------------------- #
+-- -------------------------------------------------------------------------- #
+local saga = require "lspsaga"
+
+local opts = {
+		border_style = "single", -- "single" "double" "round" "plus"
+		max_preview_lines = 20, -- preview lines of lsp_finder and definition preview
+		finder_reference_icon = '  ',
+		definition_preview_icon = '  ',
+		error_sign=' ',
+		warn_sign=' ',
+		hint_sign=' ',
+		infor_sign='',
+		finder_action_keys = {
+			open = 'o',
+			vsplit = 's',
+			split = 'i',
+			quit = 'q',
+			-- scroll_down = '<Down>',
+			-- scroll_up = '<Up>'
+		},
+}
+saga.init_lsp_saga(opts)
+
+-- require'lspsaga.diagnostic'.show_cursor_diagnostics()<CR>
+
+-- -------------------------------------------------------------------------- #
 -- LSP color -----------------------------------------------------------------
+-- -------------------------------------------------------------------------- #
 -- require("lsp-colors").setup({
 --   Error = "#db4b4b",
 --   Warning = "#e0af68",
@@ -139,10 +290,128 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 --   Hint = "#10B981"
 -- })
 
--- trouble ---------------------------------------------------------------
-require("trouble").setup {}
+-- -------------------------------------------------------------------------- #
+-- trouble ------------------------------------------------------------------ #
+-- -------------------------------------------------------------------------- #
+require("trouble").setup {
+	-- position = 'right',
+	-- keymaps = { 
+		-- position = "bottom", -- position of the list can be: bottom, top, left, right
+		-- height = 10, -- height of the trouble list when position is top or bottom
+    -- width = 50, -- width of the list when position is left or right
+    -- icons = true, -- use devicons for filenames
+    -- mode = "lsp_workspace_diagnostics", -- "lsp_workspace_diagnostics", "lsp_document_diagnostics", "quickfix", "lsp_references", "loclist"
+    -- fold_open = "", -- icon used for open folds
+    -- fold_closed = "", -- icon used for closed folds
+    -- action_keys = { -- key mappings for actions in the trouble list
+    --     close = "q", -- close the list
+    --     cancel = "<esc>", -- cancel the preview and get back to your last window / buffer / cursor
+    --     refresh = "r", -- manually refresh
+    --     jump = {"<cr>", "<tab>"}, -- jump to the diagnostic or open / close folds
+    --     open_split = { "x" }, -- open buffer in new split
+    --     open_vsplit = { "v" }, -- open buffer in new vsplit
+    --     open_tab = { "t" }, -- open buffer in new tab
+    --     jump_close = {"o"}, -- jump to the diagnostic and close the list
+    --     toggle_mode = "m", -- toggle between "workspace" and "document" diagnostics mode
+    --     toggle_preview = "P", -- toggle auto_preview
+    --     hover = "K", -- opens a small poup with the full multiline message
+    --     preview = "p", -- preview the diagnostic location
+    --     close_folds = {"zM", "zm"}, -- close all folds
+    --     open_folds = {"zR", "zr"}, -- open all folds
+    --     toggle_fold = {"zA", "za"}, -- toggle fold of current file
+    --     previous = "k", -- preview item
+    --     next = "j" -- next item
+    -- },
+    -- indent_lines = true, -- add an indent guide below the fold icons
+    -- auto_open = false, -- automatically open the list when you have diagnostics
+    -- auto_close = false, -- automatically close the list when you have no diagnostics
+    auto_preview = false, -- automatyically preview the location of the diagnostic. <esc> to close preview and go back to last window
+    -- auto_fold = false, -- automatically fold a file trouble list at creation
+    use_lsp_diagnostic_signs = true -- enabling this will use the signs defined in your lsp client
+	-- },
+	-- lsp_blacklist = {}
+}
 
--- symbol lsp ---------------------------------------------------------------
+
+-- blacklines
+-- vim.cmd "hi IndentBlanklineChar guifg=#383c44"
+
+-- misc --
+-- vim.cmd "hi LineNr guifg=#42464e"
+-- vim.cmd "hi Comment guifg=#42464e"
+-- vim.cmd "hi NvimInternalError guifg=#f9929b"
+-- vim.cmd "hi VertSplit guifg=#2a2e36"
+-- vim.cmd "hi EndOfBuffer guifg=#1e222a"
+
+-- Pmenu
+-- vim.cmd "hi PmenuSel guibg=#98c379"
+-- vim.cmd "hi Pmenu  guibg=#282c34"
+-- vim.cmd "hi PmenuSbar guibg =#353b45"
+-- vim.cmd "hi PmenuThumb guibg =#81A1C1"
+
+-- inactive statuslines as thin splitlines
+-- vim.cmd("highlight! StatusLineNC gui=underline guifg=#383c44")
+
+-- line n.o
+-- vim.cmd "hi clear CursorLine"
+-- vim.cmd "hi cursorlinenr guifg=#abb2bf"
+
+-- git signs ---
+-- vim.cmd "hi DiffAdd guifg=#81A1C1 guibg = none"
+-- vim.cmd "hi DiffChange guifg =#3A3E44 guibg = none"
+-- vim.cmd "hi DiffModified guifg = #81A1C1 guibg = none"
+
+-- NvimTree
+-- vim.cmd "hi NvimTreeFolderIcon guifg = #61afef"
+-- vim.cmd "hi NvimTreeFolderName guifg = #61afef"
+-- vim.cmd "hi NvimTreeIndentMarker guifg=#383c44"
+-- vim.cmd "hi NvimTreeNormal guibg=#1b1f27"
+-- vim.cmd "hi NvimTreeVertSplit guifg=#1e222a"
+-- vim.cmd "hi NvimTreeRootFolder guifg=#f9929b"
+
+-- telescope
+-- vim.cmd "hi TelescopeBorder   guifg=#2a2e36"
+-- vim.cmd "hi TelescopePromptBorder   guifg=#2a2e36"
+-- vim.cmd "hi TelescopeResultsBorder  guifg=#2a2e36"
+-- vim.cmd "hi TelescopePreviewBorder  guifg=#525865"
+
+-- LspDiagnostics ---
+
+-- error / warnings
+-- vim.cmd "hi LspDiagnosticsSignError guifg=#f9929b"
+-- vim.cmd "hi LspDiagnosticsVirtualTextError guifg=#BF616A"
+-- vim.cmd "hi LspDiagnosticsSignWarning guifg=#EBCB8B"
+-- vim.cmd "hi LspDiagnosticsVirtualTextWarning guifg=#EBCB8B"
+
+-- info
+-- vim.cmd "hi LspDiagnosticsSignInformation guifg=#A3BE8C"
+-- vim.cmd "hi LspDiagnosticsVirtualTextInformation guifg=#A3BE8C"
+
+-- hint
+-- vim.cmd "hi LspDiagnosticsSignHint guifg=#b6bdca"
+-- vim.cmd "hi LspDiagnosticsVirtualTextHint guifg=#b6bdca"
+
+
+
+-- start colorizer
+require('colorizer').setup()
+
+
+---------------------------------------------------------------------------------
+---- nvim-bufferline
+---- ----------------------------------------------------------------------------
+--require"bufferline".setup{
+--	options = {
+--			view = "multiwindow",
+--			numbers = "buffer_id",
+--			-- number_style = "superscript" | "" | { "none", "subscript" }, -- buffer_id at index 1, ordinal at index 2
+--			mappings = true,
+--			buffer_close_icon= "",
+--			modified_icon = "●",
+
+-- -------------------------------------------------------------------------- #
+-- symbol lsp --------------------------------------------------------------- #
+-- -------------------------------------------------------------------------- #
 -- vim.g.symbols_outline = {
 --     highlight_hovered_item = false,
 --     show_guides = true,

@@ -1,17 +1,21 @@
-" _____________________________________________________________________________ "
-" _____________________________________________________________________________ "
-" _____________________________________________________________________________ "
-"  _             _  _  _            _                               __  _        
-" | |           (_)| || |          (_)                             / _|(_)       
-" | |__   _   _  _ | || |_  ______  _  _ __     ___   ___   _ __  | |_  _   __ _ 
-" | '_ \ | | | || || || __||______|| || '_ \   / __| / _ \ | '_ \ |  _|| | / _` |
-" | |_) || |_| || || || |_         | || | | | | (__ | (_) || | | || |  | || (_| |
-" |_.__/  \__,_||_||_| \__|        |_||_| |_|  \___| \___/ |_| |_||_|  |_| \__, |
-"                                                                           __/ |
-"                                                                          |___/
-" _____________________________________________________________________________ "
-" _____________________________________________________________________________ "
-" _____________________________________________________________________________ "
+" ___________________________________________________________________________ "
+" ___________________________________________________________________________ "
+" ___________________________________________________________________________ "
+"  _             _  _  _        _                               __  _        
+" | |           (_)| || |      (_)                             / _|(_)       
+" | |__   _   _  _ | || |_  __  _  _ __     ___   ___   _ __  | |_  _   __ _ 
+" | '_ \ | | | || || || __||__|| || '_ \   / __| / _ \ | '_ \ |  _|| | / _` |
+" | |_) || |_| || || || |_     | || | | | | (__ | (_) || | | || |  | || (_| |
+" |_.__/  \__,_||_||_| \__|    |_||_| |_|  \___| \___/ |_| |_||_|  |_| \__, |
+"                                                                       __/ |
+"                                                                      |___/
+" ___________________________________________________________________________ "
+" ___________________________________________________________________________ "
+" ___________________________________________________________________________ "
+
+" TODO
+" brackets colors (red is hard to see)
+" f/t letters color
 
 if has('win32')
 	set fileformat=dos              " change end-of-line for windows files
@@ -24,7 +28,8 @@ set conceallevel=0                " manage conceal text
 set splitright                    " new windows appeard right vsplit
 set lazyredraw                   " don't draw screen while executing macro for speed
 
-set noerrorbells                  " Ring bell for error messages
+set belloff                       " disable bell
+set noerrorbells visualbell t_vb=
 
 set spelllang=en                  " syntax check
 setglobal helplang=en             " syntax check
@@ -32,6 +37,9 @@ setglobal helplang=en             " syntax check
 set nostartofline                 " going below move the cursor tp the firrst non-blank line
 
 set hls                           " highlight search
+
+set completeopt=menuone,noselect  " completion menu
+" set shortmess+=c                                             " Remove messages from in-completion menus
 
 " ----------------- indent ---------------------------------------------------
 set autoindent                    " autoindent files
@@ -47,7 +55,7 @@ set incsearch                       " Show search result while typing
 set encoding=utf-8                  " encoding file
 filetype plugin indent on           " Enable filetype detection for plugins and indentation options
 set nocompatible
-set smartcase                       " smart ingorecase when searching
+set ignorecase                      " ingorecase when searching
 set path+=**                        " add previous directory for gf, :find, ..
 
 " set diffopt+=indent-heuristica      " option for diffmmode
@@ -111,9 +119,8 @@ set sessionoptions-=blank       " dont't register blank pages
 set backspace=indent,eol,start    " remove space in indent and end of line
 
 " Show visual markers
-set listchars=tab:»\ ,trail:·,extends:❯,precedes:❮,nbsp:␣,eol:↲
+set listchars=tab:>-,trail:·,extends:❯,precedes:❮,nbsp:␣,eol:↲
 set list
-",eol:↲ or ¬ , tab: »·
 set showbreak=↪\ \ \ 
 
 " Don't lose visual selection after shifting
@@ -314,45 +321,39 @@ else
 	" execute "set <M-o>=\eo"
 endif
 
-" --------------------------------------------------------------------------- "
-" # Mappings
-" --------------------------------------------------------------------------- "
-nnoremap <silent> "" "+yiw
-nnoremap <silent> "<space> "+yy
+map Q <Nop>                                        " disable entring in ex mode
+noremap j gj
+noremap k gk
+
+nnoremap <silent> "" "+yiw                         " copy word into clipboard
+nnoremap <silent> "<space> "+yy                    " copy line into clipboard
 
 " for comment line
-map co :call FillLine('-', '#')<CR>    
-map c' i#<Esc> :call FillLine('-', '#')<CR>    
+map co :call FillLine('-', '#')<CR>                " for commenting fill rest of line with --- until char 79
+map c' i#<Esc> :call FillLine('-', '#')<CR>        " make a whole comment lie # ---..-- #
 " for print line
-map cp :call FillLine('-', '")')<CR>    
+map cp :call FillLine('-', '")')<CR>               " fill rest of line with ---")
 
-nnoremap sv *``
-map <space> y
-map ck i\<CR><ESC>
-" map M <Nop>
-nnoremap H ^
-nnoremap L g_
-inoremap <M-f> <Esc>:update<CR>
+nnoremap sv *``                                    " search current word under cursor
+map <space> y                                      " <space> is now to copy
+" map ck i\<CR><ESC>                                 " cut linne with an \
+nnoremap ck i"+\"<Esc>hK                           " cut too long string
+nnoremap K i<cr><esc>                              " cut line
+nnoremap H ^                                       " go end of line
+nnoremap L g_                                      " go start of line
+inoremap <M-f> <Esc>:update<CR>                    " save buffer if changes
 nnoremap <M-f> <Esc><Esc>:update<CR>
-" nnoremap <M-p> ]<space>"+pkJK 
-nnoremap K i<cr><esc>
-nnoremap c<space> i<space><Esc>
-nnoremap <M-'> i"+\"<Esc>hK
+nnoremap c<space> i<space><Esc>                    " insert a space a space
 
-
-" -------------------- next error quickfix list ----------------------------- #
-nnoremap ]c :cnext<CR>
-nnoremap [c :cprev<CR>
-nnoremap ]l :lnext<CR>
-nnoremap [l :lprev<CR>
+" -------------------- quickfix list ----------------------------- #
+nnoremap <silent> <F5> :call ToggleQuickFix()<cr>"
+nnoremap ]c :cnext<CR>                             " go to next item in quickfix list
+nnoremap [c :cprev<CR>                             " go to previous item in quickfix list
 
 " -------- autoformat files ------------------------------------------------- "
 nnoremap <silent> <F9> :r! python -m black -l 79 expand('%:p') 
 
 "" ---- e.g press 1 to go to buffer 1 -----------
-"" nnoremap <silent> <leader>gt :exe 'tabn' nr2char(getchar())<cr> "e.g press 1 to go to tab1
-""
-"autocmd BufReadPost * map <M-q> :tabn1<CR>
 map <M-1> :tabn1<CR>
 map <M-2> :tabn2<CR>
 map <M-3> :tabn3<CR>
@@ -362,16 +363,6 @@ map <M-6> :tabn6<CR>
 map <M-7> :tabn7<CR>
 map <M-8> :tabn8<CR>
 map <M-9> :tabn9<CR>
-
-" ---- reload config -----------
-nnoremap <leader>vo :vsp $MYVIMRC<CR>
-nnoremap <leader>vs :source $MYVIMRC<CR>
-
-" from right windows copy current word in register s, go replace with it to the left windows and search the replaced word to reppeat
-nnoremap s, "syiw<CR><C-w>h*``cgn<C-R>s<Esc><Esc>
-nnoremap s, "syiw<CR><C-w>l*``cgn<C-R>s<Esc><Esc>         " from left windows ...
-nnoremap s, "syiw<CR><C-w>j*``cgn<C-R>s<Esc><Esc>         " from bottom windows ...
-nnoremap s, "syiw<CR><C-w>k*``cgn<C-R>s<Esc><Esc>         " from top windows ...
 
 " ---- close buffers on left, rigth, ..
 nnoremap ql <C-w>l:wq<CR>
@@ -384,67 +375,40 @@ nnoremap qq :x<CR>
 nnoremap c* *``cgn
 nnoremap c# #``cgN
 
-" ----- close buffer
-" nnoremap qb <Esc>:bd!<CR>
-
-noremap j gj
-noremap k gk
-
 nnoremap <Leader>h :vert terminal<CR>
 
 nnoremap <Leader>l :let &scrolloff=100-&scrolloff<CR>                " make edit line always centered
-nnoremap <silent><Leader>t :TagbarToggle<CR>
+" nnoremap <silent><Leader>t :TagbarToggle<CR>
 
-"
-" Loclist
-"
+" ---------------------- loclist --------------------------
 nnoremap <silent> <F3> :call LNext(0)<CR>
 nnoremap <silent> <F4> :call LNext(1)<CR>
-
-"
+nnoremap ]l :lnext<CR>                             " go to next item in location list
+nnoremap [l :lprev<CR>                             " go to next item in location list
 nnoremap <C-w>p :lopen<CR>                  " open loclist
 nnoremap <C-p> :lcl<CR>                     " close loclist
 " nnoremap <M-u> :lla <CR>                    " navigate to last item in list
 
-nnoremap <silent> <F5> :call ToggleQuickFix()<cr>"
 "
-" compile with :make
 "
-" nnoremap <silent><Leader>r :make<CR>
-
-"
-" search
+" ------------------------ search------------------------------------
 "
 nnoremap <silent> ff :nohlsearch<Bar>:echo<CR> " Press ff to turn off highlighting and clear any message already displayed.
-" noremap <F2> :set hlsearch! hlsearch?<CR> " Press F6 to toggle high lighting on/off, and show  current value.
 
 "
-" registers
+" ------------------------ registers ------------------------------
 "
 " List contents of all registers
 " nnoremap <silent> "" :registers "0123456789abcdefghijklmnopqrstuvwxyz*+.<CR>
-command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
 " Clean Registers
+command! WipeReg for i in range(34,122) | silent! call setreg(nr2char(i), []) | endfor
 
 "
-" Tags
-"
-nnoremap <C-W>[ :call FollowTag()<CR>zt   " Follow tag in a vertical window
-"
-" signcolumn_on
-"
-nnoremap <Leader>2 :call ToggleSignColumn()<CR>            " Toggle signcolumn. Works only on vim>=8.0 or NeoVim
-
-"
-" python
-"
-" autocmd FileType python map <buffer> <F9> :w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-" autocmd FileType python imap <buffer> <F9> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
-" nnoremap  <Leader>e :call SaveAndExecutePython()<CR>
-" vnoremap  <Leader>e :<C-u>call SaveAndExecutePython()<CR>
+" --------------------- Tags -----------------------------------
+" nnoremap <C-W>[ :call FollowTag()<CR>zt   " Follow tag in a vertical window
 "
 "
-" python pdb
+" ------------------------ python pdb------------------------------------
 "
 " Add easy nbreakpoint shortcut with correct identation
 nnoremap <silent> <C-Y> :let a='import pdb; pdb.set_trace()'\|put=a<CR>kJi<CR><ESC>
@@ -493,26 +457,39 @@ call plug#begin(g:plug_install_files)
 " --------------------------------------------------------------
 " ------------------ Neovim plugins  ---------------------------
 " --------------------------------------------------------------
-"  if has('nvim')
-Plug 'neovim/nvim-lspconfig'                           " lsp configuration
-Plug 'nvim-treesitter/nvim-treesitter'                 " nvim treesitter tool
-Plug 'nvim-treesitter/completion-treesitter'           " better use of treesitter for completion
-Plug 'nvim-lua/completion-nvim'                        " completion plugin
-Plug 'kristijanhusak/completion-tags'                  " better using tag in completion
-Plug 'simrat39/symbols-outline.nvim'                   " tree with variables using lsp
-Plug 'folke/trouble.nvim'                              " pretty list for diagnostic, reference, quickfix, ..
-Plug 'folke/lsp-colors.nvim'                           " colorscheme for lsp
+if has('nvim')
+		Plug 'neovim/nvim-lspconfig'                           " lsp configuration
+		Plug 'glepnir/lspsaga.nvim'                            " light-weight lsp plugin based on neovim built-in lsp 
+		Plug 'onsails/lspkind-nvim'                            " add vs code icons to lsp completion
+		Plug 'ray-x/lsp_signature.nvim'                        " force to see function signature when typing
+		Plug 'hrsh7th/nvim-compe'                              " completion plugin
+		Plug 'simrat39/symbols-outline.nvim'                   " tree with variables using lsp
+		Plug 'folke/lsp-colors.nvim'                           " colorscheme for lsp
+		Plug 'folke/trouble.nvim'                              " pretty list for diagnostic, reference, quickfix, ..
 
-Plug 'kyazdani42/nvim-tree.lua'                        " file tree
-Plug 'norcalli/nvim-colorizer.lua'                     " show colors from hex code
-Plug 'kyazdani42/nvim-web-devicons'                    " additionnal icons for neovim
-Plug 'hoob3rt/lualine.nvim'                            " statusbar
-Plug 'romgrk/barbar.nvim'                            " bufferline 
-" Plug 'glepnir/indent-guides.nvim'                    " indent line
-Plug 'lukas-reineke/indent-blankline.nvim'             " show indent on blankline
+		Plug 'nvim-treesitter/nvim-treesitter'                 " nvim treesitter tool
+		Plug 'Pocco81/NoCLC.nvim'                              " remove line number in unfocused pan
+		Plug 'weilbith/nvim-lsp-smag'                          " Smart tags with lsp
+		Plug 'kyazdani42/nvim-tree.lua'                        " file tree
+		Plug 'norcalli/nvim-colorizer.lua'                     " show colors from hex code
+		Plug 'kyazdani42/nvim-web-devicons'                    " additionnal icons for neovim
 
-" Plug 'Shougo/denite.nvim'                            " file , buffers manager
-" Plug 'ncm2/float-preview.nvim/'
+		" Plug 'nvim-lua/popup.nvim'                             " to install telescope
+		" Plug 'nvim-lua/plenary.nvim'                           " to install telescope
+		" Plug 'nvim-telescope/telescope.nvim'                   " highly extendable fuzzy finder over lists
+		" Plug 'glepnir/indent-guides.nvim'                    " indent line
+		" Plug 'nvim-lua/completion-nvim'                        " completion plugin
+		" Plug 'kristijanhusak/completion-tags'                  " better using tag in completion
+		" Plug 'nvim-treesitter/completion-treesitter'           " better use of treesitter for completion
+		" Plug 'Shougo/denite.nvim'                            " file , buffers manager
+		" Plug 'ncm2/float-preview.nvim/'
+else
+		Plug 'preservim/nerdtree'                              " file explorer
+		" Plug 'neoclide/coc.nvim', {'branch': 'release'}        " new community driven completion engine
+		" Plug 'dense-analysis/ale'                            " syntax checking and semantic errors
+		Plug 'vim-airline/vim-airline'                       " add visual line
+		Plug 'vim-airline/vim-airline-themes'                " theme for airline
+endif
 
 " --------------------------------------------------------------
 " ---------------------- To config -----------------------------
@@ -530,60 +507,23 @@ Plug 'lukas-reineke/indent-blankline.nvim'             " show indent on blanklin
 " Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 " Plug 'junegunn/fzf.vim'                              " fuzzy finder Plug 'junegunn/fzf.vim'
 
-" --------------------------------------------------------------
-" ---------------------- New -----------------------------------
-" --------------------------------------------------------------
-"
-" --------------------------------------------------------------
-" ---------------------- Navigation ----------------------------
-" --------------------------------------------------------------
-" Plug 'KKPMW/vim-sendating'                           " Allow incrementing date like int
-" Plug 'majutsushi/tagbar'                             " show tags
-" Plug 'dahu/vim-fanfingtastic'                        " Extend search with f,t, ...
-Plug 'justinmk/vim-sneak'                              " 2 - characters jump
-Plug 'kshenoy/vim-signature'                           " show mark in sign
-Plug 'mhinz/vim-grepper'                               " grep tool
-Plug 'brooth/far.vim'                                  " find and replace in interactive windows
-Plug 'jeetsukumaran/vim-indentwise'                    " motions based on indent
-Plug 'Shougo/echodoc.vim'                              " echo funcitons doc
-Plug 'fcpg/vim-shore'                                  " j/k to first non-blank
-Plug 'chrisbra/NrrwRgn'                                " edit selection 
-Plug 'moll/vim-bbye'                                   " quit buffers properly
-Plug 'mattn/vim-findroot'                              " Find root of project
-Plug 'tpope/vim-surround'                              " add object with (, {, {, ...
-Plug 'tpope/vim-commentary'                            " comment out
-Plug 'tpope/vim-endwise'                               " end certain structures automatically
-Plug 'tpope/vim-repeat'                                " Allow to repeat with . some plugins actions
-Plug 'svermeulen/vim-subversive'                       " replace content with register
-Plug 'tpope/vim-unimpaired'                            " exchange lines relativvely
-Plug 'AndrewRadev/sideways.vim'                        " move func args
-"
 " --------------------------------------------------------------------------- "
-" --------------------- Session Management ---------------------------------- "
+" ---------------------- IDE ------------------------------------- "
 " --------------------------------------------------------------------------- "
-Plug 'mhinz/vim-startify'                             " start page for vim
-" Plug 'vim-scripts/restore_view.vim'                 " replaced by vim-stay
-
-" --------------------------------------------------------------------------- "
-" ----------------------- tmux ---------------------------------------------- "
-" --------------------------------------------------------------------------- "
-Plug 'christoomey/vim-tmux-navigator'                  " navigatte between tmux pane
-" Plug 'edkolev/tmuxline.vim'                            " additionnal icons for neovim
-
-" --------------------------------------------------------------------------- "
-" ---------------------- IDE masterrace ------------------------------------- "
-" --------------------------------------------------------------------------- "
-" Plug 'MathSquared/vim-python-sql'
-" Plug 'preservim/nerdtree'                              " file explorer
-Plug 'maxboisvert/vim-simple-complete'                 " as-you-type keyword completion
+Plug 'tpope/vim-commentary'                             " comment objects
+" Plug 'chrisbra/NrrwRgn'                                 " allow working only on a selected region in a new buffer
+" Plug 'mattn/vim-findroot'                               " Auto change directory to project root directory of the file.
+" Plug 'mhinz/vim-grepper'                                " Grep tool
+Plug 'fcpg/vim-shore'                                   " jump to first non-blak character when using j/k
+Plug 'maxboisvert/vim-simple-complete'                  " as-you-type keyword completion
+Plug 'justinmk/vim-sneak'                              " jump using 2-chars
+Plug 'svermeulen/vim-subversive'                       " substitution
+Plug 'tpope/vim-repeat'                                 " repetition plugin
 
 " --------------------------------------------------------------------------- "
 " ---------------------- code completion / inspect -------------------------- "
 " --------------------------------------------------------------------------- "
-Plug 'yssl/QFEnter'                                     " open buffers from quickfix list easy
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}        " new community driven completion engine
-" Plug 'dense-analysis/ale'                            " syntax checking and semantic errors
-
+" Plug 'yssl/QFEnter'                                     " open buffers from quickfix list easy
 " Plug 'MathSquared/vim-python-sql'
 " Plug 'https://github.com/tpope/vim-endwise'          " end certain structures automatically
 " Plug 'https://github.com/romainl/vim-qf'             " help with the quickfix lists
@@ -594,7 +534,7 @@ Plug 'yssl/QFEnter'                                     " open buffers from quic
 " ---------------------- git -----------------------------------
 " --------------------------------------------------------------
 Plug 'tpope/vim-fugitive'                              " git integration plugin
-Plug 'rbong/vim-flog'                                  " See git branches
+" Plug 'rbong/vim-flog'                                  " See git branches
 " Plug 'https://github.com/airblade/vim-gitgutter'
 " Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'rbong/vim-flog'                                " Commit viewer
@@ -618,7 +558,6 @@ Plug 'jeetsukumaran/vim-buffergator'                   " buffer list
 "- ---------------------- Python -------------------------------
 " --------------------------------------------------------------
 Plug 'mgedmin/python_open_module.vim'                  " Python standard library source code
-Plug 'FooSoft/vim-argwrap'                             " wrap functions args
 Plug 'kkoomen/vim-doge'                                " Docstring generator
 " Plug 'jmcantrell/vim-virtualenv'                       " Tool for python venv
 " Plug 'tell-k/vim-autopep8'                           " autoformat python
@@ -628,6 +567,9 @@ Plug 'kkoomen/vim-doge'                                " Docstring generator
 " --------------------------------------------------------------
 " ---------------------- Objects -------------------------------
 " --------------------------------------------------------------
+Plug 'FooSoft/vim-argwrap'                             " wrap functions args
+Plug 'tpope/vim-surround'                              " surround oparator
+Plug 'jeetsukumaran/vim-indentwise'                    " Move to indent
 Plug 'flwyd/vim-conjoin'                               " better join lines
 Plug 'wellle/targets.vim'                              " Better objects
 Plug 'michaeljsmith/vim-indent-object'                 " text object based on indentation levels.
@@ -640,8 +582,8 @@ Plug 'jeetsukumaran/vim-pythonsense'                   " add python objects (it 
 " --------------------------------------------------------------
 " ---------------------- Tags ----------------------------------
 " --------------------------------------------------------------
-Plug 'skywind3000/gutentags_plus'                      " help to generate tags
-" Plug 'ludovicchabant/vim-gutentags'                      " help to generate tags
+" Plug 'skywind3000/gutentags_plus'                    " help to generate tags
+" Plug 'ludovicchabant/vim-gutentags'                  " help to generate tags
 " Plug 'mgedmin/pytag.vim'                             " better tags for python
 " Plug 'mgedmin/python-imports.vim'                    " Insert Python import statements computed from tags, bound to <F5>
 " Plug 'universal-ctags/ctags'                         " help to generate tags
@@ -649,20 +591,26 @@ Plug 'skywind3000/gutentags_plus'                      " help to generate tags
 " --------------------------------------------------------------
 " ---------------------- Theming -------------------------------
 " --------------------------------------------------------------
-Plug 'ayu-theme/ayu-vim'                               " colorscheme
-Plug 'pierrzacharias/material.nvim'                         " colorscheme
+if has('nvim')
+		Plug 'pierrzacharias/material.nvim'                " colorscheme
+		Plug 'hoob3rt/lualine.nvim'                            " statusbar
+		Plug 'romgrk/barbar.nvim'                              " bufferline 
+		Plug 'lukas-reineke/indent-blankline.nvim'             " show indent on blankline
+else
+		Plug 'kaicataldo/material.vim', { 'branch': 'main' }
+		Plug 'ayu-theme/ayu-vim'                           " colorscheme
+		Plug 'Yggdroot/indentLine'                             " add visual indent
+endif
 " Plug 'Th3Whit3Wolf/space-nvim'                       " colorscheme
 Plug 'MTDL9/vim-log-highlighting'                      " highlight .log files
-Plug 'JMcKiern/vim-venter'                             " center a windows
-Plug 'hrsh7th/vim-unmatchparen'                        " highlight unmatch surrounding
+" Plug 'hrsh7th/vim-unmatchparen'                        " highlight unmatch surrounding
 Plug 'ryanoasis/vim-devicons'                          " add icon
-" Plug 'vim-airline/vim-airline'                       " add visual line
-" Plug 'vim-airline/vim-airline-themes'                " theme for airline
 Plug 'camspiers/animate.vim'                           " windows move animation
 Plug 'luochen1990/rainbow'                             " rainbow parenthesis
-Plug 'Yggdroot/indentLine'                           " add visual indent
 " Plug 'nathanaelkane/vim-indent-guides'
 Plug 'psliwka/vim-smoothie'                            " Better scroll
+Plug 'mhinz/vim-startify'                              " add start page to vim
+Plug 'kshenoy/vim-signature'                           " show marks in signcolumn
 
 " Plug 'miyakogi/conoline.vim'                         " highlights the line of the cursor
 " Plug 'ipod825/war.vim'
@@ -692,11 +640,6 @@ Plug 'psliwka/vim-smoothie'                            " Better scroll
 " Plug 'vim-grammarous'                                " Grammar corrections
 "
 " --------------------------------------------------------------
-" ---------------------- Jupyter -------------------------------
-" --------------------------------------------------------------
-" Plug 'https://github.com/mattn/vim_kernel'
-"
-" --------------------------------------------------------------
 " ---------------------- Markdown file -------------------------
 " --------------------------------------------------------------
 " tyru/vim-markdown
@@ -708,21 +651,11 @@ Plug 'psliwka/vim-smoothie'                            " Better scroll
 " --------------------------------------------------------------
 " ---------------------- Databases -----------------------------
 " --------------------------------------------------------------
+" Plug 'MathSquared/vim-python-sql'
 " https://github.com/tpope/vim-dadbod
 " Plug 'tpope/vim-vinegar'
 " mileszs/ack.vim                                      " wrap grep tools in vim
 "
-" --------------------------------------------------------------
-" ---------------------- REMOVED -------------------------------
-" --------------------------------------------------------------
-" Plug 'tmhedberg/SimpylFold'
-" Plug 'gotcha/vimpdb'
-" Plug 'mattboehm/vim-unstack'                         " open trace, don't  work :(
-" Plug 'tpope/vim-dispatch'                            " could be an alternative to quickrun
-" Plug 'ervandew/supertab'
-" Plug 'skywind3000/vim-auto-popmenu'
-" Plug 'liuchengxu/vim-clap'
-
 
 call plug#end()
 
@@ -793,28 +726,6 @@ if has('nvim')
 endif
 
 " -------------------------------------------------------------
-"  scroll bar
-"  ------------------------------------------------------------
-augroup ScrollbarInit
-  autocmd!
-  autocmd CursorMoved,VimResized,QuitPre * silent! lua require('scrollbar').show()
-  autocmd WinEnter,FocusGained           * silent! lua require('scrollbar').show()
-  autocmd WinLeave,FocusLost             * silent! lua require('scrollbar').clear()
-augroup end
-let g:scrollbar_shape = {
-    \ 'head': '▎',
-    \ 'body': '▎',
-    \ 'tail': '▎',
-    \ }
-let g:scrollbar_highlight = {
-    \ 'head': 'Insert',
-    \ 'body': 'Insert',
-    \ 'tail': 'Insert',
-    \ }
-let g:scrollbar_right_offset = 0
-
-
-" -------------------------------------------------------------
 "  Grepper
 "  ------------------------------------------------------------
 let g:grepper_quickfix=1          " USe location list
@@ -823,21 +734,6 @@ let g:grepper_switch=1              " Go into the location list after a search
 let g:grepper_side=1                " Open a new window and show matches with surrounding contextu
 nmap gs  <plug>(GrepperOperator)
 xmap gs  <plug>(GrepperOperator)
-
-" --------------------------------------------------------------
-"  Venter
-" --------------------------------------------------------------
-" let g:venter_use_textwidth=1
-let g:venter_close_tab_if_empty=1
-let g:venter_disable_vertsplit=v:true
-
-" --------------------------------------------------------------
-"  SimpylFold
-" --------------------------------------------------------------
-let g:SimpylFold_docstring_preview=1
-let g:SimpylFold_fold_docstring=0
-nnoremap zs :SimpylFoldDocstrings<CR>
-nnoremap ze :SimpylFoldDocstrings!<CR>
 
 " --------------------------------------------------------------
 " echo doc
@@ -859,11 +755,6 @@ let g:indent_guides_auto_colors=1
 let g:indent_guides_color_change_percent = 8
 let g:indent_guides_start_level = 2
 
-" --------------------------------------------------------------
-" gundo
-" --------------------------------------------------------------
-" let g:gundo_prefer_python3 = has('python3')  " Unbreak broken default config
- 
 " --------------------------------------------------------------
 " alpha dll
 " --------------------------------------------------------------
@@ -953,27 +844,23 @@ let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowTo
 " --------------------------------------------------------------
 " blankline inddent
 " --------------------------------------------------------------
-" let g:indentLine_setColors = 1
-" " let g:indentLine_color_term = 15
-" let g:indentLine_color_gui = '#F29718'
-" " let g:indentLine_bgcolor_gui = '#B8CC52'
-" " let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-let g:indentLine_char = "▎"
-let g:indent_blankline_char = "▏"
-" " let g:indentLine_leadingSpaceEnabled=1
-" let g:indentLine_showFirstIndentLevel=0
+if has('nvim')
+	let g:indentLine_char = "▎"
+	" let g:indent_blankline_char = "▏"
+	" let g:indentLine_setColors = 1
+	" " let g:indentLine_color_term = 15
+	" let g:indentLine_color_gui = '#F29718'
+	" " let g:indentLine_bgcolor_gui = '#B8CC52'
+	" " let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+	" " let g:indentLine_leadingSpaceEnabled=1
+	" let g:indentLine_showFirstIndentLevel=0
+endif
 
 " --------------------------------------------------------------
 " animate
 " --------------------------------------------------------------
 let g:animate#duration = 200.0
 let g:animate#easing_func = 'animate#ease_linear'
-
-" --------------------------------------------------------------
-" send to windows
-" --------------------------------------------------------------
-let g:sendtowindow_use_defaults=0
-" nnoremap ml :SidewaysJumpRight<cr>
 
 if has('nvim')
 	" --------------------------------------------------------------
@@ -1038,15 +925,15 @@ endif
 let g:subversivePromptWithCurrent=1
 "let g:subversivePreserveCursorPosition=1 "cursor will not move when substitutions are applied
 
-" --------------------------------------------------------------
-" airline
 " -------------------- theme ------------------------------------------------ "
 if has('nvim')
 	" we use lualine
 else
+	" --------------------------------------------------------------
+	" airline
+	" --------------------------------------------------------------
 	let g:airline_theme = 'desertink'
-
-	" -------------------- general options -------------------------------------- "
+	"  general options 
 	let g:airline_inactive_collapse=1
 	let g:airline_inactive_alt_sep=1
 	let g:airline_powerline_fonts = 1
@@ -1173,6 +1060,7 @@ let g:startify_change_to_dir = 1
 " let g:workspace_session_directory = $HOME . '/.cache/sessions/'
 
 let g:startify_custom_header = 'startify#center(startify#fortune#cowsay())'
+
 let g:startify_custom_header = [
 			\ '                              ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄                 ',
 			\ '                       ▄▄▄▄█▀▀▀            ▀▀██               ',
@@ -1188,6 +1076,7 @@ let g:startify_custom_header = [
 			\ '                    ▀█▄                         ▄▀▀           ',
 			\ '                       ▀█▄                  ▄▀▀               ',
 			\ ]
+
 " -------------- make nerdtree work at startup ------------------------------ "
 " autocmd VimEnter *
 "                 \   if !argc()
@@ -1251,43 +1140,39 @@ let g:startify_custom_header = [
 " --------------------------------------------------------------
 " fzf
 " --------------------------------------------------------------
-" Enable per-command history.
-" CTRL-N and CTRL-P will be automatically bound to next-history and
-" previous-history instead of down and up. If you don't like the change,
-" explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
-" let g:fzf_history_dir = '~/.local/share/fzf-history'
-" map <Leader>h :Files<CR>
-"
-"let g:fzf_tags_command = 'ctags -R'
-let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline '
-let g:fzf_layout = { 'down': '30%' }
-let g:fzf_commands_expect = 'alt-enter'
-"command! -bang -nargs=? -complete=dir Files
-"    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
-"" Get text in files with Rg
-"command! -bang -nargs=* Rg
-"  \ call fzf#vim#grep(
-"  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-"  \   fzf#vim#with_preview(), <bang>0)
-"" Ripgrep advanced
-"function! RipgrepFzf(query, fullscreen)
-"  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
-"  let initial_command = printf(command_fmt, shellescape(a:query))
-"  let reload_command = printf(command_fmt, '{q}')
-"  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-"  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-"endfunction
-""
-" command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
-" command! -bang -nargs=? -complete=dir Files
-" 	\ call fzf#vim#files(<q-args>, {'options': ['--info=inline']}, <bang>0)
-
-
-
-
-
-
-
+if has('nvim')
+else
+	" Enable per-command history.
+	" CTRL-N and CTRL-P will be automatically bound to next-history and
+	" previous-history instead of down and up. If you don't like the change,
+	" explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
+	" let g:fzf_history_dir = '~/.local/share/fzf-history'
+	" map <Leader>h :Files<CR>
+	"
+	"let g:fzf_tags_command = 'ctags -R'
+	let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline '
+	let g:fzf_layout = { 'down': '30%' }
+	let g:fzf_commands_expect = 'alt-enter'
+	"command! -bang -nargs=? -complete=dir Files
+	"    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
+	"" Get text in files with Rg
+	"command! -bang -nargs=* Rg
+	"  \ call fzf#vim#grep(
+	"  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+	"  \   fzf#vim#with_preview(), <bang>0)
+	"" Ripgrep advanced
+	"function! RipgrepFzf(query, fullscreen)
+	"  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+	"  let initial_command = printf(command_fmt, shellescape(a:query))
+	"  let reload_command = printf(command_fmt, '{q}')
+	"  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+	"  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
+	"endfunction
+	""
+	" command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+	" command! -bang -nargs=? -complete=dir Files
+	" 	\ call fzf#vim#files(<q-args>, {'options': ['--info=inline']}, <bang>0)
+endif
 
 
 
@@ -1312,15 +1197,77 @@ let g:fzf_commands_expect = 'alt-enter'
 " _____________________________________________________________________________ "
 
 " --------------------------------------------------------------------------
+" -- Lspsaga
+" -- -----------------------------------------------------------------------
+ if has('nvim')
+	" -- lsp provider to find the cursor word definition and reference
+	nnoremap <silent> gy <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
+	" -- or use command LspSagaFinder
+	" nnoremap <silent> gy :lspsaga lsp_finder<CR>
+
+	" -- code action
+	nnoremap <silent><leader>ca <cmd>lua require('lspsaga.codeaction').code_action()<CR>
+	vnoremap <silent><leader>ca :<C-U>lua require('lspsaga.codeaction').range_code_action()<CR>
+
+	" -- show hover doc
+	nnoremap <silent> gh <cmd>lua require('lspsaga.hover').render_hover_doc()<CR>
+	" -- or use command
+	" nnoremap <silent>gh :Lspsaga hover_doc<CR>
+
+	" -- scroll down hover doc or scroll in definition preview
+	nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
+	" -- scroll up hover doc
+	nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
+
+	" -- show signature help
+	nnoremap <silent> gs <cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>
+
+	" -- preview definition
+	nnoremap <silent> gf <cmd>lua require'lspsaga.provider'.preview_definition()<CR>
+
+	" -- show diagnostic
+	" nnoremap <silent><leader>cd <cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>
+	autocmd BufReadPost * map ga :Lspsaga show_line_diagnostics<CR>
+
+	" -- jump diagnostic
+	nnoremap <silent> [e <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>
+	nnoremap <silent> ]e <cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>
+endif
+
+" --------------------------------------------------------------------------
+" -- Telescope
+" -- -----------------------------------------------------------------------
+ if has('nvim')
+	" Find files using Telescope command-line sugar.
+	" nnoremap <leader>t :Telescope <CR>
+	" nnoremap <leader>ff <cmd>Telescope find_files<cr>
+	" nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+	" nnoremap <leader>fb <cmd>Telescope buffers<cr>
+	" nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+endif
+
+" --------------------------------------------------------------------------
+" -- Compe
+" -- -----------------------------------------------------------------------
+ if has('nvim')
+	" inoremap <silent><expr> <C-Space> compe#complete()
+	" inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+	inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+	" inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+	" inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+endif
+
+" --------------------------------------------------------------------------
 " -- QFEnter
 " -- -----------------------------------------------------------------------
-let g:qfenter_keymap = {}
-let g:qfenter_keymap.vopen = ['<C-v>']
-let g:qfenter_keymap.hopen = ['<C-CR>', '<C-s>', '<C-x>']
-let g:qfenter_keymap.topen = ['<C-t>']
+if has('nvim')
+	let g:qfenter_keymap = {}
+	let g:qfenter_keymap.vopen = ['<C-v>']
+	let g:qfenter_keymap.hopen = ['<C-CR>', '<C-s>', '<C-x>']
+	let g:qfenter_keymap.topen = ['<C-t>']
+endif
 
 if has('nvim')
-
 	" -------------------------------------------------------------
 	"  barbar
 	"  ------------------------------------------------------------
@@ -1351,11 +1298,9 @@ endif
 " -------------------------------------------------------------------------- "
 " COMPLETION
 " -------------------------------------------------------------------------- "
-
 " if has('nvim')
 "   " Because NeoVim's menu completions are in a vertical pum
 "   cnoremap <expr> <C-k> pumvisible() ? "\<C-p>"       : "\<C-k>"
-"   cnoremap <expr> <C-j> pumvisible() ? "\<C-n>"       : "\<Down>"
 "   cnoremap <expr> <Tab> pumvisible() ? "\<C-y>"       : "\<Tab>"
 "   cnoremap <expr> <C-f> pumvisible() ? "\<C-e>"       : "\<Right>"
 "   cnoremap <expr> <C-p> pumvisible() ? "\<Up><C-p>"   : "\<Up>"
@@ -1400,26 +1345,21 @@ map T <Plug>Sneak_T
 "  -----------------------------------------------------------
 if has('nvim')
 else
-	execute "set <M-'>=\e'"
-	execute "set <M-d>=\ed"
-	execute "set <M-k>=\ek"
-	execute "set <M-j>=\ej"
-	execute "set <M-L>=\eL"
-	execute "set <M-H>=\eH"
-	execute "set <M-h>=\eh"
-	execute "set <M-l>=\el"
-	execute "set <M-;>=\e;"
-	execute "set <M-b>=\en"
-	execute "set <M-g>=\en"
-	execute "set <M-g>=\en"
-	" execute "set <M-c>=\ep"
-	execute "set <M-p>=\ep"
+	execute "set <M-'> =\e'"
+	execute "set <M-d> =\ed"
+	execute "set <M-k> =\ek"
+	execute "set <M-j> =\ej"
+	execute "set <M-L> =\eL"
+	execute "set <M-H> =\eH"
+	execute "set <M-h> =\eh"
+	execute "set <M-l> =\el"
+	execute "set <M-;> =\e;"
+	execute "set <M-g> =\en"
+	execute "set <M-g> =\en"
+	" execute "set <M-c> =\ep"
+	execute "set <M-p> =\ep"
+" execute "set <M-b> =\en"
 endif
-
-" --------------------------------------------------------------
-"  Venter
-" --------------------------------------------------------------
-" map <silent> <M-m> :VenterToggle<cr>
 
 " -------------------------------------------------------------
 "  vim sneak
@@ -1437,10 +1377,10 @@ omap Z <Plug>Sneak_S
 nnoremap <M-'> :WipeReg<cr>
 
 " ------------------- Doge -------------------------------------------------- #
-nnoremap <M-d> :DogeGenerate<cr>
+nnoremap <A-d> :DogeGenerate<cr>
 
 " -------------------- buffergator ----------------------------------------- "
-map <C-b> :BuffergatorOpen<CR>
+map <M-b> :BuffergatorToggle<CR>
  
 " -------------------------------------------------------------------------- "
 " smoothie
@@ -1603,93 +1543,63 @@ xmap (j <Plug>SendDownV
 " -------------------------------------------------------------------------- "
 " Fzf
 " -------------------------------------------------------------------------- "
-nnoremap <Leader> <C-w>
-let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-h': 'split',
-  \ 'ctrl-v': 'vsplit' }
-" nnoremap mr :Rg<CR>
-" nnoremap mt :Tags<CR>
-" nnoremap mm :Marks<CR>
-" nnoremap <C-n> :BLines<CR>
-" nnoremap <C-o> :FzfPreviewProjectFiles<CR>
-" nmap <C-D> :Files<CR>
-" nmap <C-b> :Buffers<CR>
-inoremap <silent><expr> <M-g> coc#refresh()
-nmap <Leader>H :History<CR>
-" nmap <Leader>: :History:<CR>
-" nmap <Leader>gm :Maps<CR>
+if has('nvim')
+else
+	nnoremap <Leader> <C-w>
+	let g:fzf_action = {
+		\ 'ctrl-t': 'tab split',
+		\ 'ctrl-h': 'split',
+		\ 'ctrl-v': 'vsplit' }
+	" nnoremap mr :Rg<CR>
+	" nnoremap mt :Tags<CR>
+	" nnoremap mm :Marks<CR>
+	" nnoremap <C-n> :BLines<CR>
+	" nnoremap <C-o> :FzfPreviewProjectFiles<CR>
+	" nmap <C-D> :Files<CR>
+	" nmap <C-b> :Buffers<CR>
+	inoremap <silent><expr> <M-g> coc#refresh()
+	nmap <Leader>H :History<CR>
+	" nmap <Leader>: :History:<CR>
+	" nmap <Leader>gm :Maps<CR>
+endif
 
 " -------------------------------------------------------------------------- "
 " coc
 " -------------------------------------------------------------------------- "
-inoremap <silent><expr> <M-g> coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-let g:coc_snippet_next = '<TAB>'
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? coc#_select_confirm() :
-      \ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-let g:coc_snippet_next = '<TAB>'
-" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-" nmap  <silent><C-c> :CocEnable<CR>
-" nmap <M-c> :CocDiagnostics<CR>
-nmap <silent> <M-p> <Plug>(coc-action-diagnosticPreview)
-nmap <silent> gs <Plug>(coc-action-diagnosticToggle)
-nmap <silent> gi <Plug>(coc-diagnostic-info)
-nmap <silent> gb <Plug>(coc-diagnostic-prev)
-nmap <silent> gn <Plug>(coc-diagnostic-next)
-" nmap <silent> me <Plug>(coc-diagnostic-error)
-nmap <silent> gd <Plug>(coc-action-jumpDefinition)
-nmap <silent> ge <Plug>(coc-action-jumpDeclaration)
-nnoremap <silent> gr :call :<C-u>show_documentation<CR> " show Documentation
-nnoremap <silent><nowait> ga  :<C-u>CocList diagnostics<cr> " Show all diagnostics.
-nnoremap <silent><nowait> <Leader>u  :<C-u>CocList extensions<cr> " Manage extensions.
-" nnoremap <silent><nowait> mc  :<C-u>CocList commands<cr> " Show commands.
-" nnoremap <silent><nowait> mo  :<C-u>CocList outline<cr> " Find symbol of current document.
-" nnoremap <silent><nowait> ms  :<C-u>CocList -I symbols<cr> " Search workspace symbols.
-" nnoremap <silent><nowait> mp  :<C-u>CocListResume<CR> " Resume latest coc list.
-" nmap <C-n> : " CocCommand explorer<CR> " Explorer
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-" moving in coc windows
-" nnoremap <silent><expr> <down> coc#util#has_float() ? coc#util#float_scroll(1) : "\<down>"
-" nnoremap <silent><expr> <up> coc#util#has_float() ? coc#util#float_scroll(0) : "\<up>"
-" inoremap <silent><expr> <down> coc#util#has_float() ? <SID>coc_float_scroll(1) : "\<down>"
-" inoremap <silent><expr> <up> coc#util#has_float() ? <SID>coc_float_scroll(0) : "\<up>"
-" vnoremap <silent><expr> <down> coc#util#has_float() ? <SID>coc_float_scroll(1) : "\<down>"
-" vnoremap <silent><expr> <up> coc#util#has_float() ? <SID>coc_float_scroll(0) : "\<up>"/
-
-" -------------------------------------------------------------------------- "
-" cocfzflist
-" -------------------------------------------------------------------------- "
-" " nnoremap <silent> <Leader>a  :<C-u>CocFzfList diagnostics<CR>
-" nnoremap <silent> <Leader>b  :<C-u>CocFzfList diagnostics --current-buf<CR>
-" nnoremap <silent> <Leader>c  :<C-u>CocFzfList commands<CR>
-" " nnoremap <silent> <Leader>e  :<C-u>CocFzfList extensions<CR>
-" nnoremap <silent> <Leader>l  :<C-u>CocFzfList location<CR>
-" nnoremap <silent> <Leader>o  :<C-u>CocFzfList outline<CR>
-" nnoremap <silent> <Leader>s  :<C-u>CocFzfList symbols<CR>
-" nnoremap <silent> <Leader>S  :<C-u>CocFzfList services<CR>
-" nnoremap <silent> <Leader>p  :<C-u>CocFzfListResume<CR>
-
-" -------------------------------------------------------------------------- "
-" NVIM LSP
-" -------------------------------------------------------------------------- "
 if has('nvim')
-	" autocmd CursorHold * lua vim.lsp.diagnostic.show_line_diagnostics()
-	nnoremap <silent> ga <cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>
+else
+	inoremap <silent><expr> <M-g> coc#refresh()
+	inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+	let g:coc_snippet_next = '<TAB>'
+	inoremap <silent><expr> <TAB>
+				\ pumvisible() ? coc#_select_confirm() :
+				\ coc#expandableOrJumpable() ? "\<C-r>=coc#rpc#request('doKeymap', ['snippets-expand-jump',''])\<CR>" :
+				\ <SID>check_back_space() ? "\<TAB>" :
+				\ coc#refresh()
+	function! s:check_back_space() abort
+		let col = col('.') - 1
+		return !col || getline('.')[col - 1]  =~# '\s'
+	endfunction
+	let g:coc_snippet_next = '<TAB>'
+	" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+	" nmap  <silent><C-c> :CocEnable<CR>
+	" nmap <M-c> :CocDiagnostics<CR>
+	nmap <silent> <M-p> <Plug>(coc-action-diagnosticPreview)
+	nmap <silent> gs <Plug>(coc-action-diagnosticToggle)
+	nmap <silent> gi <Plug>(coc-diagnostic-info)
+	nmap <silent> gb <Plug>(coc-diagnostic-prev)
+	nmap <silent> gn <Plug>(coc-diagnostic-next)
+	" nmap <silent> me <Plug>(coc-diagnostic-error)
+	nmap <silent> gd <Plug>(coc-action-jumpDefinition)
+	nmap <silent> ge <Plug>(coc-action-jumpDeclaration)
+	nnoremap <silent> gr :call :<C-u>show_documentation<CR> " show Documentation
+	nnoremap <silent><nowait> ga  :<C-u>CocList diagnostics<cr> " Show all diagnostics.
+	nnoremap <silent><nowait> <Leader>u  :<C-u>CocList extensions<cr> " Manage extensions.
+	" Symbol renaming.
+	nmap <leader>rn <Plug>(coc-rename)
+	xmap <leader>f  <Plug>(coc-format-selected)
+	nmap <leader>f  <Plug>(coc-format-selected)
 endif
-
-
-
 
 " ___________________________________________________________________________ "
 " ___________________________________________________________________________ "
@@ -1708,7 +1618,6 @@ endif
 if has('win32') "specific options for windows
     let g:coc_node_path = 'C:\Program Files\nodejs\node'
 endif
-set shortmess+=c                                             " Remove messages from in-completion menus
 if has("patch-8.1.1564")
   " Recently vim can merge signcolumn and number column into one
   set signcolumn=number
@@ -1801,12 +1710,13 @@ command! -nargs=0 OR   :call CocAction('runCommand', 'editor.action.organizeImpo
 " _____________________________________________________________________________ "
 " _____________________________________________________________________________ "
 
-" colorscheme 
+" ------------------------------------------------------------------------- "
+" ------------------- colorscheme ------------------------------------------- #
+" ------------------------------------------------------------------------- "
+colorscheme material
 if has('nvim')
-	colorscheme material
 else
-	colorscheme ayu
-	let ayucolor="mirage"   " for dark version of theme
+		let g:material_theme_style = 'default'
 endif
 
 
@@ -1815,22 +1725,16 @@ set background=dark
 set cursorline                               " Highlight current line
 hi CursorLine guibg=#0F1419
 
-"set foldtext=clean_fold#fold_text_minimal()    | " Clean folds
-"set noshowmode                                | " Don't show mode changes
-"" set novisualbell                            | " Don't display visual bell
-"" set nowrap                                  | " Don't wrap lines
-"" set showmatch                               | " Show matching braces
-""
-"highlight! Comment cterm=NONE
-"highlight Keyword cterm=italic ctermfg=5
-
-" hi Normal guibg=NONE ctermbg=NONE
-" hi Terminal guibg=NONE ctermbg=NONE cterm=None
-
-" " Statusline
-" if has('unix') "specific options for linux
-"     hi! StatusLine cterm=NONE gui=NONE
-" endif
+" ------------------------------------------------------------------------- "
+" ------------------- LSP --------------------------------------------------- #
+" ------------------------------------------------------------------------- "
+ if has('nvim')
+	" hi link LspFloatWinBorder guifg='#F29718' guibg='#14191F'
+	" hi link LspSagaHoverBorder guifg='#F29718' guibg='#14191F'
+	" hi link LspSagaSignatureHelpBorder guifg='#F29718' guibg='#14191F'
+	" hi link LspSagaDefPreviewBorder guifg='#F29718' guibg='#14191F'
+	" hi link LspLinesDiagBorder guifg='#F29718' guibg='#14191F'
+endif
 
 " ------------------------------------------------------------------------- "
 " ------------------- column limit ---------------------------------------- "
