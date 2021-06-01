@@ -14,7 +14,6 @@
 " ___________________________________________________________________________ "
 
 " TODO
-" brackets colors (red is hard to see)
 " f/t letters color
 
 if has('win32')
@@ -335,7 +334,7 @@ map c' i#<Esc> :call FillLine('-', '#')<CR>        " make a whole comment lie # 
 map cp :call FillLine('-', '")')<CR>               " fill rest of line with ---")
 
 nnoremap sv *``                                    " search current word under cursor
-map <space> y                                      " <space> is now to copy
+" map <space> y                                      " <space> is now to copy
 " map ck i\<CR><ESC>                                 " cut linne with an \
 nnoremap ck i"+\"<Esc>hK                           " cut too long string
 nnoremap K i<cr><esc>                              " cut line
@@ -343,7 +342,7 @@ nnoremap H ^                                       " go end of line
 nnoremap L g_                                      " go start of line
 inoremap <M-f> <Esc>:update<CR>                    " save buffer if changes
 nnoremap <M-f> <Esc><Esc>:update<CR>
-nnoremap c<space> i<space><Esc>                    " insert a space a space
+" nnoremap c<space> i<space><Esc>                    " insert a space a space
 
 " -------------------- quickfix list ----------------------------- #
 nnoremap <silent> <F5> :call ToggleQuickFix()<cr>"
@@ -474,8 +473,9 @@ if has('nvim')
 		Plug 'norcalli/nvim-colorizer.lua'                     " show colors from hex code
 		Plug 'kyazdani42/nvim-web-devicons'                    " additionnal icons for neovim
 
+		" Plug 'nvim-lua/plenary.nvim'                           " neovim outside function
+		" Plug 'pwntester/octo.nvim'                             " neovim github plugin
 		" Plug 'nvim-lua/popup.nvim'                             " to install telescope
-		" Plug 'nvim-lua/plenary.nvim'                           " to install telescope
 		" Plug 'nvim-telescope/telescope.nvim'                   " highly extendable fuzzy finder over lists
 		" Plug 'glepnir/indent-guides.nvim'                    " indent line
 		" Plug 'nvim-lua/completion-nvim'                        " completion plugin
@@ -504,21 +504,25 @@ endif
 " Plug 'chimay/wheel/'                                 " better join lines
 " Plug 'jeetsukumaran/ctrlp-pythonic.vim'
 " Plug 'junegunn/loclisteasy-align'
-" Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-" Plug 'junegunn/fzf.vim'                              " fuzzy finder Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 " --------------------------------------------------------------------------- "
 " ---------------------- IDE ------------------------------------- "
 " --------------------------------------------------------------------------- "
+" Plug 'pechorin/any-jump.vim'                            " inspection code plugin
+Plug 'brooth/far.vim'                                   " search and replace
 Plug 'tpope/vim-commentary'                             " comment objects
 " Plug 'chrisbra/NrrwRgn'                                 " allow working only on a selected region in a new buffer
 " Plug 'mattn/vim-findroot'                               " Auto change directory to project root directory of the file.
-" Plug 'mhinz/vim-grepper'                                " Grep tool
+Plug 'mhinz/vim-grepper'                                " Grep tool
 Plug 'fcpg/vim-shore'                                   " jump to first non-blak character when using j/k
 Plug 'maxboisvert/vim-simple-complete'                  " as-you-type keyword completion
 Plug 'justinmk/vim-sneak'                              " jump using 2-chars
 Plug 'svermeulen/vim-subversive'                       " substitution
 Plug 'tpope/vim-repeat'                                 " repetition plugin
+Plug 'AndrewRadev/sideways.vim'                        " move func args
+Plug 'flwyd/vim-conjoin'                               " better join lines
 
 " --------------------------------------------------------------------------- "
 " ---------------------- code completion / inspect -------------------------- "
@@ -537,7 +541,7 @@ Plug 'tpope/vim-fugitive'                              " git integration plugin
 " Plug 'rbong/vim-flog'                                  " See git branches
 " Plug 'https://github.com/airblade/vim-gitgutter'
 " Plug 'Xuyuanp/nerdtree-git-plugin'
-" Plug 'rbong/vim-flog'                                " Commit viewer
+Plug 'rbong/vim-flog'                                " Commit viewer
 "
 " --------------------------------------------------------------
 " ---------------------- run in vim ----------------------------
@@ -567,10 +571,10 @@ Plug 'kkoomen/vim-doge'                                " Docstring generator
 " --------------------------------------------------------------
 " ---------------------- Objects -------------------------------
 " --------------------------------------------------------------
+Plug 'tpope/vim-unimpaired'                            " exchange lines relatively
 Plug 'FooSoft/vim-argwrap'                             " wrap functions args
 Plug 'tpope/vim-surround'                              " surround oparator
 Plug 'jeetsukumaran/vim-indentwise'                    " Move to indent
-Plug 'flwyd/vim-conjoin'                               " better join lines
 Plug 'wellle/targets.vim'                              " Better objects
 Plug 'michaeljsmith/vim-indent-object'                 " text object based on indentation levels.
 Plug 'kana/vim-textobj-user'                           " add new text objects
@@ -592,15 +596,16 @@ Plug 'jeetsukumaran/vim-pythonsense'                   " add python objects (it 
 " ---------------------- Theming -------------------------------
 " --------------------------------------------------------------
 if has('nvim')
-		Plug 'pierrzacharias/material.nvim'                " colorscheme
 		Plug 'hoob3rt/lualine.nvim'                            " statusbar
 		Plug 'romgrk/barbar.nvim'                              " bufferline 
-		Plug 'lukas-reineke/indent-blankline.nvim'             " show indent on blankline
+		" Plug 'lukas-reineke/indent-blankline.nvim'             " show indent on blankline
+		Plug 'qualious/indent-blankline.nvim', {'branch': 'dont_show_sp_ch_if_tabs'}  " show indent on blankline
+		Plug 'pierrzacharias/material.nvim'                " colorscheme
 else
 		Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 		Plug 'ayu-theme/ayu-vim'                           " colorscheme
-		Plug 'Yggdroot/indentLine'                             " add visual indent
 endif
+Plug 'Yggdroot/indentLine'                         " add visual indent
 " Plug 'Th3Whit3Wolf/space-nvim'                       " colorscheme
 Plug 'MTDL9/vim-log-highlighting'                      " highlight .log files
 " Plug 'hrsh7th/vim-unmatchparen'                        " highlight unmatch surrounding
@@ -674,6 +679,8 @@ endif
 " <<<<<<<<<<<<<<<<<<<< Plugin Configuration >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
 " >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> "
 
+let g:gh_token = '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'
+
 if has('nvim')
 	" -------------------------------------------------------------
 	"  barbar
@@ -721,8 +728,8 @@ if has('nvim')
 	" Magic buffer-picking mode
 	nnoremap <silent> <C-s> :BufferPick<CR>
 	" Sort automatically by...
-	" nnoremap <silent> <Space>bd :BufferOrderByDirectory<CR>
-	" nnoremap <silent> <Space>bl :BufferOrderByLanguage<CR>
+	nnoremap <silent> <Leader>bd :BufferOrderByDirectory<CR>
+	nnoremap <silent> <Leader>bl :BufferOrderByLanguage<CR>
 endif
 
 " -------------------------------------------------------------
@@ -775,6 +782,9 @@ let g:doge_mapping = '<Leader>do'
 " rainbow
 " --------------------------------------------------------------
 let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
+let g:rainbow_conf = {
+		\ 'guifgs': ['#FFCC00', '#82AAFF', '#fe8019']
+\}
 
 " --------------------------------------------------------------
 " gitgutter
@@ -785,8 +795,13 @@ let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowTo
 " let g:gitgutter_sign_removed = '-'
 
 " --------------------------------------------------------------
-" tagbar
+" tags
 " --------------------------------------------------------------
+" config project root markers.
+let g:gutentags_project_root = ['.root']
+" generate databases in my cache directory, prevent gtags files polluting
+" my project
+let g:gutentags_cache_dir = expand('~/.cache/tags')
 " let g:tagbar_compact = 1
 " let g:tagbar_show_tag_linenumbers = 1
 " let g:tagbar_singleclick = 1
@@ -828,15 +843,15 @@ let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowTo
 " " let g:tagbar_previewwin_pos = "aboveleft"
 " command! MakeTags !ctags -R .
 " " generate databases in my cache directory, prevent gtags files polluting my project
-" let g:gutentags_ctags_exclude = [
-" 			\ "*.min.js", "*.min.css", "build", "vendor", ".git",
-" 			\ '*.tmp', '*.csproj.user', '*.cache', '*.pdb', '*.pyc',
-" 			\ '*.class', '*.sln', "node_modules", '*.less', '*.scss',
-" 			\ '*.exe', '*.dll', '*.mp3',  '*.ogg', '*.swp',
-" 			\ '*.swo', '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png',
-"       \ '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz',
-" 			\ '*.tar.bz2', '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx',
-"       \ "*.vim/bundle/*", "tags*" , "*.idea/*"]
+let g:gutentags_ctags_exclude = [
+			\ "*.min.js", "*.min.css", "build", "vendor", ".git",
+			\ '*.tmp', '*.csproj.user', '*.cache', '*.pdb', '*.pyc',
+			\ '*.class', '*.sln', "node_modules", '*.less', '*.scss',
+			\ '*.exe', '*.dll', '*.mp3',  '*.ogg', '*.swp',
+			\ '*.swo', '*.bmp', '*.gif', '*.ico', '*.jpg', '*.png',
+      \ '*.rar', '*.zip', '*.tar', '*.tar.gz', '*.tar.xz',
+			\ '*.tar.bz2', '*.pdf', '*.doc', '*.docx', '*.ppt', '*.pptx',
+      \ "*.vim/bundle/*", "tags*" , "*.idea/*"]
 " " generate datebases in my cache directory, prevent gtags files polluting my project
 " let g:gutentags_plus_switch = 1      " change focus to quickfix window after search
 " set previewheight=60                 " remap tag open in new split windows
@@ -845,7 +860,8 @@ let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowTo
 " blankline inddent
 " --------------------------------------------------------------
 if has('nvim')
-	let g:indentLine_char = "▎"
+		let g:indent_blankline_extra_indent_level = -1
+		let g:indentLine_char = "▎"
 	" let g:indent_blankline_char = "▏"
 	" let g:indentLine_setColors = 1
 	" " let g:indentLine_color_term = 15
@@ -1140,41 +1156,40 @@ let g:startify_custom_header = [
 " --------------------------------------------------------------
 " fzf
 " --------------------------------------------------------------
-if has('nvim')
-else
-	" Enable per-command history.
-	" CTRL-N and CTRL-P will be automatically bound to next-history and
-	" previous-history instead of down and up. If you don't like the change,
-	" explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
-	" let g:fzf_history_dir = '~/.local/share/fzf-history'
-	" map <Leader>h :Files<CR>
-	"
-	"let g:fzf_tags_command = 'ctags -R'
-	let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline '
-	let g:fzf_layout = { 'down': '30%' }
-	let g:fzf_commands_expect = 'alt-enter'
-	"command! -bang -nargs=? -complete=dir Files
-	"    \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'options': ['--layout=reverse', '--info=inline']}), <bang>0)
-	"" Get text in files with Rg
-	"command! -bang -nargs=* Rg
-	"  \ call fzf#vim#grep(
-	"  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-	"  \   fzf#vim#with_preview(), <bang>0)
-	"" Ripgrep advanced
-	"function! RipgrepFzf(query, fullscreen)
-	"  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
-	"  let initial_command = printf(command_fmt, shellescape(a:query))
-	"  let reload_command = printf(command_fmt, '{q}')
-	"  let spec = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
-	"  call fzf#vim#grep(initial_command, 1, fzf#vim#with_preview(spec), a:fullscreen)
-	"endfunction
-	""
-	" command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
-	" command! -bang -nargs=? -complete=dir Files
-	" 	\ call fzf#vim#files(<q-args>, {'options': ['--info=inline']}, <bang>0)
-endif
+"let g:fzf_tags_command = 'ctags -R'
+" let $FZF_DEFAULT_OPTS = '--layout=reverse --info=inline '
+" let g:fzf_layout = { 'down': '30%' }
+" let g:fzf_commands_expect = 'alt-enter'
 
+let $FZF_DEFAULT_OPTS='
+    \ --color=dark --color=fg:#B0BEC5,bg:-1,hl:#FF9800,bg+:-1,hl+:1
+    \ --color=info:5,prompt:5,pointer:12,marker:1,spinner:1,header:-1
+    \ --layout=reverse  --margin=1,4'
 
+function! CreateCenteredFloatingWindow()
+    let width = min([&columns - 4, max([80, &columns - 20])])
+    let height = min([&lines - 4, max([20, &lines - 10])])
+    let top = ((&lines - height) / 2) - 1
+    let left = (&columns - width) / 2
+    let opts = {'relative': 'editor', 'row': top, 'col': left,
+			 \ 'width': width, 'height': height, 'style': 'minimal'}
+    let top = "┏" . repeat("━", width - 2) . "┓"
+    let mid = "┃" . repeat(" ", width - 2) . "┃"
+    let bot = "┗" . repeat("━", width - 2) . "┛"
+    let lines = [top] + repeat([mid], height - 2) + [bot]
+    let s:buf = nvim_create_buf(v:false, v:true)
+    call nvim_buf_set_lines(s:buf, 0, -1, v:true, lines)
+    call nvim_open_win(s:buf, v:true, opts)
+    set winhl=Normal:Floating
+    let opts.row += 1
+    let opts.height -= 2
+    let opts.col += 2
+    let opts.width -= 4
+    call nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
+    au BufWipeout <buffer> exe 'bw '.s:buf
+endfunction
+
+let g:fzf_layout = { 'window': 'call CreateCenteredFloatingWindow()' }
 
 " _____________________________________________________________________________ "
 " _____________________________________________________________________________ "
@@ -1333,8 +1348,6 @@ xmap Z <Plug>Sneak_S
 omap z <Plug>Sneak_s
 omap Z <Plug>Sneak_S
 let g:sneak#label = 1
-highlight Sneak guifg=#14191F guibg=#F29718
-highlight SneakScope guifg=#14191F guibg=#F29718
 
 map f <Plug>Sneak_f
 map F <Plug>Sneak_F
@@ -1385,10 +1398,10 @@ map <M-b> :BuffergatorToggle<CR>
 " -------------------------------------------------------------------------- "
 " smoothie
 " -------------------------------------------------------------------------- "
-" nmap <Down> :call  smoothie#downwards()<CR>
-" nmap <Up> :call  smoothie#upwards()<CR>"
-nmap <Down> <C-d>
-nmap <Up> <C-u>
+nmap <Down> :call  smoothie#downwards()<CR>
+nmap <Up> :call  smoothie#upwards()<CR>"
+" nmap <Down> <C-d>
+" nmap <Up> <C-u>
 
 " -------------------------------------------------------------------------- "
 " TagBar
@@ -1543,25 +1556,20 @@ xmap (j <Plug>SendDownV
 " -------------------------------------------------------------------------- "
 " Fzf
 " -------------------------------------------------------------------------- "
-if has('nvim')
-else
-	nnoremap <Leader> <C-w>
-	let g:fzf_action = {
-		\ 'ctrl-t': 'tab split',
-		\ 'ctrl-h': 'split',
-		\ 'ctrl-v': 'vsplit' }
-	" nnoremap mr :Rg<CR>
-	" nnoremap mt :Tags<CR>
-	" nnoremap mm :Marks<CR>
-	" nnoremap <C-n> :BLines<CR>
-	" nnoremap <C-o> :FzfPreviewProjectFiles<CR>
-	" nmap <C-D> :Files<CR>
-	" nmap <C-b> :Buffers<CR>
-	inoremap <silent><expr> <M-g> coc#refresh()
-	nmap <Leader>H :History<CR>
-	" nmap <Leader>: :History:<CR>
-	" nmap <Leader>gm :Maps<CR>
-endif
+" nnoremap <Leader> <C-w>
+let g:fzf_action = {
+	\ 'ctrl-t': 'tab split',
+	\ 'ctrl-s': 'split',
+	\ 'ctrl-v': 'vsplit' }
+nnoremap mr :Rg<CR>
+" nnoremap mt :Tags<CR>
+" nnoremap mm :Marks<CR>
+" nnoremap <C-n> :BLines<CR>
+" nnoremap <C-o> :FzfPreviewProjectFiles<CR>
+nmap <C-D> :Files<CR>
+nmap <C-b> :Buffers<CR>
+" nmap <Leader>: :History:<CR>
+" nmap <Leader>gm :Maps<CR>
 
 " -------------------------------------------------------------------------- "
 " coc
@@ -1714,6 +1722,7 @@ command! -nargs=0 OR   :call CocAction('runCommand', 'editor.action.organizeImpo
 " ------------------- colorscheme ------------------------------------------- #
 " ------------------------------------------------------------------------- "
 colorscheme material
+let $BAT_THEME='material'
 if has('nvim')
 else
 		let g:material_theme_style = 'default'
@@ -1724,6 +1733,12 @@ set background=dark
 
 set cursorline                               " Highlight current line
 hi CursorLine guibg=#0F1419
+
+" -------------------------------------------------------------
+"  vim sneak
+"  ------------------------------------------------------------
+highlight Sneak guifg=#14191F guibg=#F29718
+highlight SneakScope guifg=#14191F guibg=#F29718
 
 " ------------------------------------------------------------------------- "
 " ------------------- LSP --------------------------------------------------- #
