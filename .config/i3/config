@@ -110,7 +110,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start application
-bindsym $mod+Return exec xterm-kitty
+bindsym $mod+Return exec kitty
 bindsym $mod+s exec firefox
 bindsym $mod+g exec dolphin
 
